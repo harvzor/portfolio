@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include partials/head %>
+</head>
+<body>
+	<aside class="nav">
+		<% include partials/aside %>
+	</aside>
+	<button id="nav-open" class="diamond toggle"></button>
+	<main>
+		<header>
+			<%= pageTitle %>
+		</header>
+		<%- body %>
+	</main>
+	<aside class="right"></aside>
+	<script src="/Js/script.js"></script>
+</body>
+</html>
+

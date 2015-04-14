@@ -1,0 +1,34 @@
+.portfolio {
+	overflow:hidden;
+
+	&:hover > .example {
+		@include opacity(0.6);
+	}
+
+	@include screen($xs) {
+		margin:auto span(-0.5);
+	}
+}
+
+.portfolio > .example {
+	float:left;
+	width:span(36);
+	padding:20px;
+	border:1px solid rgb(200, 200, 200);
+	cursor:pointer;
+	@include transition(all 0.3s);
+
+	&:hover {
+		@include opacity(1);
+	}
+
+	.info {
+		padding:20px;
+	}
+
+	@include screen($xs) {
+		width:span(11);
+		margin:span(0.5);
+	}
+}
+

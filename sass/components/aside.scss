@@ -1,0 +1,154 @@
+aside.nav {
+	float:left;
+	position:fixed;
+	top:0;
+	width:span(36);
+	margin-left:span(-35);
+	height:100%;
+	background-image:url("../Media/aside.png");
+	overflow:hidden;
+	z-index:2;
+	@include transition(all 0.3s);
+
+	* {
+		@include opacity(0);
+		@include transition(all 0.3s);
+
+		@include screen($xs) {
+			@include opacity(1);
+		}
+	}
+
+	@include screen($xs) {
+		width:span(10);
+		margin-left:0;
+	}
+
+	&.toggled {
+		margin-left:0;
+
+		@include screen($xs) {
+			margin-left:span(-9);
+		}
+
+		* {
+			@include opacity(1);
+
+			@include screen($xs) {
+				@include opacity(0);
+			}
+		}
+	}
+
+	header {
+		position:absolute;
+		left:0;
+		top:0;
+		width:95%;
+		height:200px;
+		max-height:40%;
+		background-image:url("../Media/header.jpg");
+		background-size:cover;
+		background-repeat:none;
+		margin:2.5%;
+		color:white;
+		text-align:center;
+		@include border-radius(10px);
+
+		img {
+			margin-top:15px;
+			border:1px solid white;
+		}
+	}
+
+	nav {
+		position:relative;
+		top:50%;
+		text-align:center;
+		overflow:hidden;
+		@include transform(translateY(-50%));
+
+		a {
+			position:relative;
+			display:inline-block;
+			text-decoration:none;
+			margin:10px 0;
+			border:1px solid white;
+			padding:5px 10px;
+			color:white;
+			font-size:1.5em;
+			overflow:hidden;
+			@include border-radius(10px);
+
+			&:hover {
+				background-color:white;
+				color:black;
+			}
+
+			&.active {
+				&:before, &:after {
+					content:"";
+					position:absolute;
+					left:0;
+					width:110%;
+					height:2px;
+					background-color:white;
+				}
+
+				&:before {
+					top:0;
+				}
+
+				&:after {
+					bottom:0;
+				}
+			}
+		}
+	}
+
+	footer {
+		position:absolute;
+		bottom:0;
+		width:100%;
+		margin:5px 0;
+		text-align:center;
+
+		a {
+			margin:0 5px;
+			text-decoration:none;
+		}
+	}
+}
+
+#nav-open {
+	position:fixed;
+	left:span(1);
+	margin-left:-25px;
+	background-image:url("../Media/aside.png");
+	z-index:1;
+
+	&:hover {
+		margin-left:-20px;
+	}
+}
+
+#nav-close {
+	right:0;
+	margin-right:-25px;
+	background-color:white;
+
+	&:hover {
+		margin-right:-20px;
+	}
+}
+
+aside.right {
+	position:fixed;
+	right:0;
+	bottom:0;
+	//width:2.5%;
+	width:span(1);
+	height:100%;
+	background-image:url("../Media/aside.png");
+}
+

@@ -1,0 +1,95 @@
+$susy: (
+	flow: ltr,
+	math: fluid,
+	output: float,
+	gutter-position: split,
+	container: 1200px,
+	container-position: center,
+	columns: 36,
+	gutters: 0,
+	column-width: false,
+	global-box-sizing: border-box ,
+	last-flow: to,
+	debug: (
+		image: hide,
+		color: rgba(#66f, .25),
+		output: background,
+		toggle: top right,
+	),
+	use-custom: (
+		background-image: true,
+		background-options: false,
+		box-sizing: true,
+		clearfix: false,
+		rem: true,
+	)
+);
+
+@include border-box-sizing;
+
+a {
+	display:inline-block;
+}
+
+.diamond {
+	width:40px;
+	height:40px;
+	border:0;
+	padding:0;
+	@include transform(rotate(45deg));
+}
+
+.toggle {
+	position:absolute;
+	top:50%;
+	margin-top:-20px;
+	@include transition(margin 0.3s);
+
+	&:hover {
+		@include transform(rotate(45deg));
+	}
+}
+
+.circle {
+	@include border-radius(100%);
+}
+
+aside.nav ~ main {
+	left:span(2);
+	width:span(32);
+
+	@include screen($xs) {
+		left:span(10);
+		width:span(25);
+	}
+}
+
+aside.nav.toggled ~ main {
+	@include screen($xs) {
+		left:span(1);
+		width:span(34);
+	}
+}
+
+main {
+	position:relative;
+	padding:1em 7.5%;
+	@include transition(all 0.3s);
+
+	@include screen($xs) {
+		padding:1em 2.5%;
+	}
+	
+	header {
+		text-align:center;
+
+		h1 {
+			border-bottom:1px solid black;
+		}
+	}
+
+	img {
+		max-width:100%;
+	}
+}
+

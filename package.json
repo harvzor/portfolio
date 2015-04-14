@@ -1,0 +1,15 @@
+{
+  "name": "celeste-made",
+  "version": "0.1.0",
+  "dependencies": {
+    "ejs": "^2.3.1",
+    "express": "^4.12.3",
+    "express-ejs-layouts": "^1.1.0",
+    "express-generator": "~4.12.1",
+    "grunt": "~0.4.1",
+    "grunt-contrib-sass": "~0.7.3",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-express-server": "^0.5.1"
+  }
+}
