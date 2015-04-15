@@ -108,21 +108,27 @@ app.get('/portfolio/' + examples[0].href, function(req, res) {
 /////////////////
 // Statuses
 /////////////////
-/*
+app.use(express.static(__dirname + '/public'));
 app.use(function(req, res, next) {
-	res.status(404).send('Sorry cant find that!');
+	res.status(404).render('page', {
+		layout: 'common',
+		pageTitle: 'Status: 404',
+		bodyText: '<p>You\'re looking for a page that doesn\'t exist...</p>'
+	});
 });
 
 app.use(function(err, req, res, next) {
 	console.error(err.stack);
-	res.status(500).send('Something broke!');
+	res.status(500).render('page', {
+		layout: 'common',
+		pageTitle: 'Status: 500',
+		bodyText: '<p>So sorry, but a problem occured! Please email me if this problem persists.</p>'
+	});
 });
-*/
 
 /////////////////
 // Inititialise
 /////////////////
-app.use(express.static(__dirname + '/public'));
 
 var server = app.listen(3000, function () {
 	var host = server.address().address;
