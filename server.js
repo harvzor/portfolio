@@ -14,6 +14,7 @@ app.get('/', function(req, res) {
 
 	res.render('page', {
 		layout: 'common',
+		pageGroup: 'home',
 		pageTitle: 'Home',
 		bodyText: bodyText
 	});
@@ -37,6 +38,7 @@ var posts = [
 app.get('/blog', function(req, res) {
 	res.render('blog', {
 		layout: 'common',
+		pageGroup: 'blog',
 		pageTitle: 'Blog', 
 		posts: posts
 	});
@@ -48,6 +50,7 @@ app.get('/blog/' + posts[0].href, function(req, res) {
 
 	res.render('post', {
 		layout: 'common',
+		pageGroup: 'blog',
 		pageTitle: post.title,
 		bodyText: post.bodyText
 	});
@@ -58,6 +61,7 @@ app.get('/blog/' + posts[1].href, function(req, res) {
 
 	res.render('post', {
 		layout: 'common',
+		pageGroup: 'blog',
 		pageTitle: post.title,
 		bodyText: post.bodyText
 	});
@@ -89,6 +93,7 @@ var examples = [
 app.get('/portfolio', function(req, res) {
 	res.render('portfolio', {
 		layout: 'common',
+		pageGroup: 'portfolio',
 		pageTitle: 'Portfolio',
 		examples: examples
 	});
@@ -100,6 +105,7 @@ app.get('/portfolio/' + examples[0].href, function(req, res) {
 
 	res.render('post', {
 		layout: 'common',
+		pageGroup: 'portfolio',
 		pageTitle: example.title,
 		bodyText: example.bodyText
 	});
@@ -112,6 +118,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(function(req, res, next) {
 	res.status(404).render('page', {
 		layout: 'common',
+		pageGroup: '',
 		pageTitle: 'Status: 404',
 		bodyText: '<p>You\'re looking for a page that doesn\'t exist...</p>'
 	});
@@ -121,6 +128,7 @@ app.use(function(err, req, res, next) {
 	console.error(err.stack);
 	res.status(500).render('page', {
 		layout: 'common',
+		pageGroup: '',
 		pageTitle: 'Status: 500',
 		bodyText: '<p>So sorry, but a problem occured! Please email me if this problem persists.</p>'
 	});

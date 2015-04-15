@@ -3,13 +3,13 @@
 	<img class="circle" src="/Media/me.jpg" />
 </header>
 <nav>
-	<a class="active" href="/">
+	<a <% if(pageGroup === 'home') { %>class="active" <% } %>href="/">
 		Home
 	</a>
-	<a href="/portfolio">
+	<a <% if(pageGroup === 'portfolio') { %>class="active" <% } %>href="/portfolio">
 		Portfolio
 	</a>
-	<a href="/blog">
+	<a <% if(pageGroup === 'blog') { %>class="active" <% } %>href="/blog">
 		Blog
 	</a>
 </nav>
