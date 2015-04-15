@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 				tasks: ['uglify']
 			},
 			express: {
-				files:  ['*.js'],
+				files:  ['server.js'],
 				tasks:  ['express:live'],
 				options: {
 					spawn: false
@@ -61,5 +61,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-express-server');
 
-	grunt.registerTask('default', ['watch', 'express']);
+	grunt.task.run(['sass', 'uglify', 'express'])
+
+	grunt.registerTask('default', ['watch']);
 }
