@@ -10,7 +10,7 @@ app.set('view engine', 'ejs');
 app.use(expressLayouts)
 
 app.get('/', function(req, res) {
-	var bodyText = '<h2>A short introduction</h2><p>Hi. I\'m a web developer based in Oxford. I prefer backend development, and I have experience with PHP, but my favourite language is C#. I can also do front end development with HTML5, CSS3 (but preferably Sass) and JS. I\'m a big fan of modular programming, and doing it right the first time. </p><p>At the moment I\'m working for a great company called <a href="http://growcreate.co.uk">GrowCreate</a> located just outside of Oxford. At GrowCreate I develop for an open source CMS called <a href="/blog/why-umbraco.html">Umbraco</a>, which is built on top of ASP.NET.</p><h3>Say that again, but without the jargon</h3><p>Basically, I can build websites. If you\'re interested in my skills, then give me a buzz.</p><h3>Need to see more?</h3><p>Then take a look at my <a href="portfolio.html">portfolio</a> which shows work I\'ve done on my own, or with GrowCreate. If you\'re techy and you want to see code, then take a look at my <a href="https://github.com/HarveyWilliams">GitHub</a> profile - you can even see the source files for this website.</p><h3>Interests</h3><p>I\'m a bit of a nerd, and I love pretty much anything open source. I\'m a major fan of the Linux operating system, and I love to tweak Firefox to look and work exactly how I like it. Whenever I\'m working, and pretty much whenever there\'s a moment of silence, I like to listen to music. Anything with a guitar and an indie feel I\'ll like.</p>';
+	var bodyText = '<h2>A short introduction</h2><p>Hi. I\'m a web developer based in Oxford. I prefer backend development, and I have experience with PHP, but my favourite language is C#. I can also do front end development with HTML5, CSS3 (but preferably Sass) and JS. I\'m a big fan of modular programming, and doing it right the first time. </p><p>At the moment I\'m working for a great company called <a href="http://growcreate.co.uk">GrowCreate</a> located just outside of Oxford. At GrowCreate I develop for an open source CMS called <a href="/blog/why-umbraco.html">Umbraco</a>, which is built on top of ASP.NET.</p><h3>Say that again, but without the jargon</h3><p>Basically, I can build websites. If you\'re interested in my skills, then give me a buzz.</p><h3>Need to see more?</h3><p>Then take a look at my <a href="portfolio">portfolio</a> which shows work I\'ve done on my own, or with GrowCreate. If you\'re techy and you want to see code, then take a look at my <a href="https://github.com/HarveyWilliams">GitHub</a> profile - you can even see the source files for this website.</p><h3>Interests</h3><p>I\'m a bit of a nerd, and I love pretty much anything open source. I\'m a major fan of the Linux operating system, and I love to tweak Firefox to look and work exactly how I like it. Whenever I\'m working, and pretty much whenever there\'s a moment of silence, I like to listen to music. Anything with a guitar and an indie feel I\'ll like.</p>';
 
 	res.render('page', {
 		layout: 'common',
@@ -43,33 +43,65 @@ app.get('/blog', function(req, res) {
 });
 
 // Render blog posts
-/*
-for(var i = 0; i < posts.length; i++) {
-	post = posts[i];
-
-	app.get('/blog/' + post.href, function(req, res) {
-		res.render('post', {
-			layout: 'common',
-			pageTitle: post.title,
-			bodyText: post.bodyText
-		});
-	});
-}
-*/
-
 app.get('/blog/' + posts[0].href, function(req, res) {
+	var post = posts[0];
+
 	res.render('post', {
 		layout: 'common',
-		pageTitle: posts[0].title,
-		bodyText: posts[0].bodyText
+		pageTitle: post.title,
+		bodyText: post.bodyText
 	});
 });
 
 app.get('/blog/' + posts[1].href, function(req, res) {
+	var post = posts[1];
+
 	res.render('post', {
 		layout: 'common',
-		pageTitle: posts[1].title,
-		bodyText: posts[1].bodyText
+		pageTitle: post.title,
+		bodyText: post.bodyText
+	});
+});
+
+// Portfolio data
+var examples = [
+	{
+		href: 'the-phone-coop',
+		cover: 'coop.jpg',
+		name: 'The Phone Coop',
+		bodyText: ''
+	},
+	{
+		href: 'artists-name-plates',
+		cover: 'artistsnameplates.jpg',
+		name: 'Artists Name Plates',
+		bodyText: ''
+	},
+	{
+		href: 'skyval',
+		cover: 'skyval.jpg',
+		name: 'Skyval',
+		bodyText: ''
+	}
+];
+
+// Render portfolio parent
+app.get('/portfolio', function(req, res) {
+	res.render('portfolio', {
+		layout: 'common',
+		pageTitle: 'Portfolio',
+		examples: examples
+	});
+});
+
+// Render portfolio pages
+app.get('/portfolio/' + examples[0].href, function(req, res) {
+	var example = examples[0];
+
+	res.render('post', {
+		layout: 'common',
+		pageTitle: example.title,
+		bodyText: example.bodyText
 	});
 });
 
