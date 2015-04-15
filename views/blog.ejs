@@ -1,8 +1,10 @@
-<article class="post">
-	<a href="/blog/umbraco.html">
-		<h2><%= blogTitle %></h2>
-	</a>
-	<p>
-		<%= blogTitle %>
-	</p>
-</article>
+<% posts.forEach(function(post) { %>
+	<article class="post">
+		<a href="/blog/<%= post.href %>">
+			<h2><%= post.title %></h2>
+		</a>
+		<p>
+			<%= post.summary %>
+		</p>
+	</article>
+<% }); %>
