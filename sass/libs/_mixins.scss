@@ -144,3 +144,9 @@
 @mixin screen($size) {
 	@media only screen and (min-width:$size+'px') { @content; }
 }
+
+@mixin perspective($perspective) {
+	-webkit-perspective:$perspective;
+	-moz-perspective:$perspective;
+	perspective:$perspective;
+}

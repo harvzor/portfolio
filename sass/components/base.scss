@@ -80,6 +80,9 @@ main {
 	min-height:100%;
 	padding:1em 7.5% 0 7.5%;
 	@include transition(all 0.3s);
+	@include perspective(100px);
+	@include animation(1s ease 0s normal forwards 1 fadeIn);
+	@include transform(rotateY(0));
 
 	@include screen($xs) {
 		padding:1em 2.5% 0 2.5%;
