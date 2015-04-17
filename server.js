@@ -1,3 +1,14 @@
+/////////////////
+// Config
+/////////////////
+var config = {
+	ip: '127.0.0.1',
+	port: 3000
+};
+
+/////////////////
+// Start website
+/////////////////
 var express = require('express');
 var expressLayouts = require('express-ejs-layouts');
 
@@ -139,7 +150,7 @@ app.use(function(err, req, res, next) {
 // Inititialise
 /////////////////
 
-var server = app.listen(3000, function () {
+var server = app.listen(config.port, config.ip, function () {
 	var host = server.address().address;
 	var port = server.address().port;
 
