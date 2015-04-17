@@ -65,7 +65,8 @@ app.get('/blog', function(req, res) {
 // Render blog posts
 for(var i = 0; i < posts.length; i++) {
 	app.get('/blog/' + posts[i].href, function(req, res) {
-		var url = req.originalUrl.split('/')[2];
+		var url = req.originalUrl.split('/')[2]
+			.split('?')[0];
 		var post = posts.filterObjects('href', url)[0];
 
 		res.render('post', {
@@ -112,7 +113,8 @@ app.get('/portfolio', function(req, res) {
 // Render portfolio pages
 for(var i = 0; i < examples.length; i++) {
 	app.get('/portfolio/' + examples[i].href, function(req, res) {
-		var url = req.originalUrl.split('/')[2];
+		var url = req.originalUrl.split('/')[2]
+			.split('?')[0];
 		var example = examples.filterObjects('href', url)[0];
 
 		res.render('post', {
