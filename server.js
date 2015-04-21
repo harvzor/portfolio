@@ -3,7 +3,8 @@
 /////////////////
 var config = {
 	ip: '127.0.0.1',
-	port: 3000
+	port: 3000,
+	type: 'iis' // 'iis' or 'node'
 };
 
 /////////////////
@@ -156,10 +157,19 @@ app.use(function(err, req, res, next) {
 /////////////////
 // Inititialise
 /////////////////
-var server = app.listen(config.port, config.ip, function () {
-	var host = server.address().address;
-	var port = server.address().port;
 
-	console.log('Website listening at http://%s:%s', host, port);
-});
+if(config.type == 'node') {
+	// Used for Node server.
+	var server = app.listen(config.port, config.ip, function () {
+		var host = server.address().address;
+		var port = server.address().port;
+
+		console.log('Website listening at http://%s:%s', host, port);
+	});
+} else if(config.type == 'iis') {
+	// Used for IISNode.
+	app.listen(process.env.PORT);
+} else {
+	console.log('Error: wrong config.type set');
+}
 

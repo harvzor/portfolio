@@ -14,6 +14,7 @@ module.exports = function(grunt) {
 				files: ['../Js/script.js'],
 				tasks: ['uglify']
 			},
+			/*
 			express: {
 				files:  ['server.js'],
 				tasks:  ['express:live'],
@@ -21,6 +22,7 @@ module.exports = function(grunt) {
 					spawn: false
 				}
 			}
+			*/
 		},
 		//Compile SASS
 		sass: {
@@ -47,6 +49,7 @@ module.exports = function(grunt) {
 			},
 		},
 		// Run server
+		/*
 		express: {
 			live: {
 				options: {
@@ -54,12 +57,14 @@ module.exports = function(grunt) {
 				}
 			}
 		}
+		*/
 	});
 	
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-express-server');
+	//grunt.loadNpmTasks('grunt-express-server');
 
-	grunt.registerTask('default', ['sass', 'uglify', 'express', 'watch'])
+	//grunt.registerTask('default', ['sass', 'uglify', 'express', 'watch'])
+	grunt.registerTask('default', ['sass', 'uglify', 'watch'])
 }
