@@ -45,6 +45,12 @@ app.get('/', function(req, res) {
 
 var posts = [
 	{
+		href: 'hosting-with-iisnode',
+		title: 'Hosting websites with IISNode on a Windows server',
+		summary: 'Developing Node.js applications on Windows is easy, but getting them setup for production can be a little more difficult.',
+		bodyText: fs.readFileSync('data/blog/hosting-with-iisnode.html', 'utf8')
+	},
+	{
 		href: 'umbraco',
 		title: 'Umbraco',
 		summary: 'Read the advantages and disadvantages of using Umbraco.',
