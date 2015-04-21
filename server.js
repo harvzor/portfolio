@@ -22,6 +22,10 @@ Array.prototype.filterObjects = function(key, value) {
 	return this.filter(function(x) { return x[key] === value; })
 }
 
+app.locals.year = function() {
+	return new Date().getUTCFullYear();
+}
+
 /////////////////
 // Templating
 /////////////////

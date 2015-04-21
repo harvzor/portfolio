@@ -5,6 +5,7 @@ aside.nav {
 	width:span(36);
 	margin-left:span(-35);
 	height:100%;
+	background-color:black;
 	background-image:url("../Media/aside.png");
 	overflow:hidden;
 	z-index:2;
@@ -72,7 +73,6 @@ aside.nav {
 			position:relative;
 			display:inline-block;
 			text-decoration:none;
-			margin:10px 0;
 			border:1px solid white;
 			padding:5px 10px;
 			color:white;
@@ -135,7 +135,8 @@ aside.nav {
 #nav-close {
 	right:0;
 	margin-right:-25px;
-	background-color:white;
+	background-color:$grey-lightest;
+	background-image:url("../Media/main.png");
 
 	&:hover {
 		margin-right:-20px;
@@ -149,6 +150,7 @@ aside.right {
 	//width:2.5%;
 	width:span(1);
 	height:100%;
+	background-color:black;
 	background-image:url("../Media/aside.png");
 }
 

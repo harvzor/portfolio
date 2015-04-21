@@ -12,14 +12,14 @@
 	</aside>
 	<button id="nav-open" class="diamond toggle"></button>
 	<main>
-		<header>
-			<h1><%= pageTitle %></h1>
-		</header>
 		<section class="content">
+			<header>
+				<h1><%= pageTitle %></h1>
+			</header>
 			<%- body %>
 		</section>
 		<footer>
-			Copyright Harvey Williams
+			&copy; Harvey Williams <%= year() %>
 		</footer>
 	</main>
 	<aside class="right"></aside>
