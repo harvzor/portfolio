@@ -5,7 +5,7 @@
 	background-color:white;
 	border:1px solid $border;
 	padding:10px;
-	margin:5px 0;
+	margin:10px 0;
 	@include border-radius(5px);
 
 	&:hover {
@@ -16,5 +16,83 @@
 
 	p {
 		margin:0;
+	}
+}
+
+.post-nav {
+	position:relative;
+	width:100%;
+	padding:0;
+	font-size:0;
+
+	@include screen($xs) {
+		&:hover {
+			.nav-item {
+				width:25%;
+			}
+		}
+	}
+
+	.nav-item {
+		padding:10px;
+		overflow:hidden;
+		text-decoration:none;
+		overflow:hidden;
+		font-size:$base-font-size;
+
+		&:before {
+			display:inline-block;
+			position:absolute;
+			top:0;
+			font-size:2em;
+			margin:0 5px;
+			background-color:white;
+		}
+
+		&.prev-post {
+			border-bottom:1px solid $grey;
+
+			&:before {
+				left:0;
+				content:"<";
+			}
+
+			span {
+				margin-left:25px;
+			}
+		}
+
+		&.next-post {
+			&:before {
+				right:0;
+				content:">";
+			}
+
+			span {
+				margin-right:25px;
+			}
+		}
+
+		@include screen($xs) {
+			width:50%;
+			@include transition(width 0.3s);
+
+			&:hover {
+				width:75%;
+			}
+
+			&.prev-post {
+				border-right:1px solid $grey;
+				border-bottom:0;
+			}
+		}
+
+		span {
+			color:$grey-dark;
+
+			@include screen($xs) {
+				white-space:nowrap;
+			}
+		}
 	}
 }

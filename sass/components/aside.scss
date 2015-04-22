@@ -25,22 +25,6 @@ aside.nav {
 		margin-left:0;
 	}
 
-	&.toggled {
-		margin-left:0;
-
-		@include screen($xs) {
-			margin-left:span(-9);
-		}
-
-		* {
-			@include opacity(1);
-
-			@include screen($xs) {
-				@include opacity(0);
-			}
-		}
-	}
-
 	header {
 		position:absolute;
 		left:0;
@@ -116,6 +100,22 @@ aside.nav {
 		a {
 			margin:0 5px;
 			text-decoration:none;
+		}
+	}
+}
+
+.nav-toggled aside.nav {
+	margin-left:0;
+
+	@include screen($xs) {
+		margin-left:span(-9);
+	}
+
+	* {
+		@include opacity(1);
+
+		@include screen($xs) {
+			@include opacity(0);
 		}
 	}
 }
