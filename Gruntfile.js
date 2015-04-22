@@ -6,6 +6,9 @@ module.exports = function(grunt) {
 
 		//Watch for changes in css and js
 		watch: {
+			grunt: {
+				files: ['gruntfile.js']
+			},
 			css: {
 				files: ['Sass/*.scss', 'Sass/*/*.scss'],
 				tasks: ['sass']
