@@ -13,7 +13,15 @@
 	<button id="nav-open" class="diamond toggle"></button>
 	<main>
 		<section class="content">
-			<header>
+			<header class="breadcrumbs">
+				<%if (locals.parentPages) { %>
+					<% parentPages.forEach(function(parentPage) { %>
+						<a href="<%= parentPage.href %>">
+							<%= parentPage.title %>
+						</a>
+						<span> / </span>
+					<% }); %>
+				<% } %>
 				<h1><%= pageTitle %></h1>
 			</header>
 			<%- body %>

@@ -35,10 +35,21 @@ app.set('view engine', 'ejs');
 app.use(expressLayouts)
 
 app.get('/', function(req, res) {
+	var hours = new Date().getHours();
+	if(hours >= 5 && hours < 12) {
+		var timeOfDay = 'morning';
+	} else if(hours >= 12 && hours < 17) {
+		var timeOfDay = 'afternoon';
+	} else if(hours >= 17 && hours < 21) {
+		var timeOfDay = 'evening';
+	} else if(hours >= 21 || hours < 5) {
+		var timeOfDay = 'night';
+	}
+	
 	res.render('page', {
 		layout: 'common',
 		pageGroup: 'home',
-		pageTitle: 'Home',
+		pageTitle: 'Good ' + timeOfDay,
 		bodyText: fs.readFileSync('data/index.html', 'utf8')
 	});
 });
@@ -46,7 +57,7 @@ app.get('/', function(req, res) {
 var posts = [
 	{
 		href: 'hosting-with-iisnode',
-		title: 'Hosting websites with IISNode on a Windows server',
+		title: 'Hosting websites with IISNode',
 		summary: 'Developing Node.js applications on Windows is easy, but getting them setup for production can be a little more difficult.',
 		bodyText: fs.readFileSync('data/blog/hosting-with-iisnode.html', 'utf8')
 	},
@@ -65,7 +76,7 @@ var posts = [
 ];
 
 app.get('/blog', function(req, res) {
-	res.render('blog', {
+	res.render('posts', {
 		layout: 'common',
 		pageGroup: 'blog',
 		pageTitle: 'Blog', 
@@ -80,11 +91,31 @@ for(var i = 0; i < posts.length; i++) {
 			.split('?')[0];
 		var post = posts.filterObjects('href', url)[0];
 
+		var index = posts.map(function(x) { return x; }).indexOf(post);
+		if(index > 0) {
+			var prevPost = posts[index - 1];
+		} else {
+			var prevPost = posts[posts.length - 1];
+		}
+		if(index != posts.length - 1) {
+			var nextPost = posts[index + 1];
+		} else {
+			var nextPost = posts[0];
+		}
+
 		res.render('post', {
 			layout: 'common',
 			pageGroup: 'blog',
+			parentPages: [
+				{
+					title: 'blog',
+					href: '/blog'
+				}
+			],
 			pageTitle: post.title,
-			bodyText: post.bodyText
+			bodyText: post.bodyText,
+			prevPost: prevPost,
+			nextPost: nextPost
 		});
 	});
 }
@@ -113,7 +144,7 @@ var examples = [
 
 // Render portfolio parent
 app.get('/portfolio', function(req, res) {
-	res.render('portfolio', {
+	res.render('portfolio-examples', {
 		layout: 'common',
 		pageGroup: 'portfolio',
 		pageTitle: 'Portfolio',
@@ -128,9 +159,15 @@ for(var i = 0; i < examples.length; i++) {
 			.split('?')[0];
 		var example = examples.filterObjects('href', url)[0];
 
-		res.render('post', {
+		res.render('portfolio-example', {
 			layout: 'common',
 			pageGroup: 'portfolio',
+			parentPages: [
+				{
+					title: 'portfolio',
+					href: '/portfolio'
+				}
+			],
 			pageTitle: example.name,
 			bodyText: example.bodyText
 		});

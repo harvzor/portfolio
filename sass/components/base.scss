@@ -105,9 +105,17 @@ main {
 	@include animation(1s ease 0s normal forwards 1 fadeIn);
 	@include transform(rotateY(0));
 	
-	header {
+	.breadcrumbs {
+		margin:0;
 		text-align:center;
 		margin-bottom:0.5em;
+		font-size:2em;
+		line-height:1.5em;
+		color:$grey-dark;
+
+		a {
+			text-decoration:none;
+		}
 	}
 
 	.content {

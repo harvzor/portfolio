@@ -7,10 +7,9 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 h1 {
-	font-size:2em;
-	margin:0;
-	line-height:1.5em;
-	color:$grey-dark;
+	display:inline;
+	font-size:1em;
+	line-height:1em;
 }
 
 h2 {
