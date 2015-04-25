@@ -75,7 +75,7 @@ main {
 	left:span(2);
 	width:span(32);
 
-	@include screen($xs) {
+	@include screen($sm) {
 		left:span(10);
 		width:span(25);
 	}
@@ -84,13 +84,13 @@ main {
 body.nav-toggled {
 	overflow:hidden;
 
-	@include screen($xs) {
+	@include screen($sm) {
 		overflow:auto;
 	}
 }
 
 .nav-toggled main {
-	@include screen($xs) {
+	@include screen($sm) {
 		left:span(1);
 		width:span(34);
 	}

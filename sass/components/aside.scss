@@ -15,12 +15,12 @@ aside.nav {
 		@include opacity(0);
 		@include transition(all 0.3s);
 
-		@include screen($xs) {
+		@include screen($sm) {
 			@include opacity(1);
 		}
 	}
 
-	@include screen($xs) {
+	@include screen($sm) {
 		width:span(10);
 		margin-left:0;
 	}
@@ -31,24 +31,34 @@ aside.nav {
 		top:0;
 		width:95%;
 		height:200px;
-		max-height:40%;
+		max-height:30%;
 		background-image:url("../Media/header.jpg");
 		background-size:cover;
+		background-position:center;
 		background-repeat:none;
 		margin:2.5%;
 		color:white;
 		text-align:center;
 		@include border-radius(10px);
 
+		@include screen($xs) {
+			max-height:40%;
+		}
+
 		img {
-			margin-top:15px;
+			max-height:50%;
 			border:1px solid white;
+
+			@include screen($xs) {
+				margin-top:15px;
+			}
 		}
 	}
 
 	nav {
 		position:relative;
 		top:50%;
+		padding:0 30px;
 		text-align:center;
 		overflow:hidden;
 		@include transform(translateY(-50%));
@@ -107,14 +117,14 @@ aside.nav {
 .nav-toggled aside.nav {
 	margin-left:0;
 
-	@include screen($xs) {
+	@include screen($sm) {
 		margin-left:span(-9);
 	}
 
 	* {
 		@include opacity(1);
 
-		@include screen($xs) {
+		@include screen($sm) {
 			@include opacity(0);
 		}
 	}

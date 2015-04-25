@@ -141,8 +141,8 @@
 	clear:both;
 }
 
-@mixin screen($size) {
-	@media only screen and (min-width:$size+'px') { @content; }
+@mixin screen($width, $height: 0) {
+	@media only screen and (min-width:$width+'px') and (min-height:$height+'px') { @content; }
 }
 
 @mixin perspective($perspective) {
