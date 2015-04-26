@@ -55,6 +55,7 @@
 	Your server.js has to be tweaked just a little bit to make it work with IISNode. Notice the past line where the app has to listen using "process.env.PORT". This port is decided by IIS.
 </p>
 <pre>
+	<code>
 var express = require('express');
 
 var app = express();
@@ -64,6 +65,7 @@ app.get('/', function (req, res) {
 });
 
 app.listen(process.env.PORT);
+	</code>
 </pre>
 <p>
 	I found that many other tutorials said that "var app = express.createServer();" was the correct line to use, but I found that this just created an error. This may be due to the other tutorials using an older version of Express.
@@ -73,6 +75,7 @@ app.listen(process.env.PORT);
 	The web.config file is the configuration for this website. A handler is required to specify that the application is handled by IISNode. The rewrite allows the server.js deal with incoming connections rather than IIS.
 </p>
 <pre>
+	<code>
 &lt;configuration&gt;
 	&lt;system.webServer&gt;
 
@@ -94,6 +97,7 @@ app.listen(process.env.PORT);
 
 	&lt;/system.webServer&gt;
 &lt;/configuration&gt;
+	</code>
 </pre>
 <h3>Install the Express module</h3>
 <p>

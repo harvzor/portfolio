@@ -8,3 +8,5 @@ for(var i = 0; i < toggles.length; i++) {
 	});
 }
 
+hljs.initHighlightingOnLoad();
+
