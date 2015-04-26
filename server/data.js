@@ -3,10 +3,10 @@ var data = function(fs) {
 		// Blog data
 		posts: [
 			{
-				href: 'hosting-with-iisnode',
-				title: 'Hosting websites with IISNode',
+				href: 'installing-iisnode',
+				title: 'Installing IISNode for production',
 				summary: 'Developing Node.js applications on Windows is easy, but getting them setup for production can be a little more difficult.',
-				bodyText: fs.readFileSync('data/blog/hosting-with-iisnode.html', 'utf8')
+				bodyText: fs.readFileSync('data/blog/installing-iisnode.html', 'utf8')
 			},
 			{
 				href: 'umbraco',

@@ -1,20 +1,9 @@
 var routing = function(app, fs, express, data) {
 	app.get('/', function(req, res) {
-		var hours = new Date().getHours();
-		if(hours >= 5 && hours < 12) {
-			var timeOfDay = 'morning';
-		} else if(hours >= 12 && hours < 17) {
-			var timeOfDay = 'afternoon';
-		} else if(hours >= 17 && hours < 21) {
-			var timeOfDay = 'evening';
-		} else if(hours >= 21 || hours < 5) {
-			var timeOfDay = 'night';
-		}
-		
 		res.render('page', {
 			layout: 'common',
 			pageGroup: 'home',
-			pageTitle: 'Good ' + timeOfDay,
+			pageTitle: 'Hi',
 			bodyText: fs.readFileSync('data/index.html', 'utf8')
 		});
 	});
