@@ -22,24 +22,66 @@ var data = function(fs) {
 			}
 		],
 		// Portfolio data
-		examples: [
+		exampleGroups: [
 			{
-				href: 'the-phone-coop',
-				cover: 'coop.jpg',
-				name: 'The Phone Coop',
-				bodyText: ''
+				title: 'Personal projects',
+				info: 'These are the projects which I\'ve worked on by myself.',
+				pages: [
+					{
+						href: 'artists-name-plates',
+						cover: 'artistsnameplates.jpg',
+						name: 'Artists Name Plates',
+						bodyText: ''
+					},
+					{
+						href: 'harvey-williams',
+						cover: 'harveywilliams.jpg',
+						name: 'This portfolio site',
+						bodyText: ''
+					},
+					{
+						href: 'harvey-williams',
+						cover: 'harveywilliams.jpg',
+						name: 'This portfolio site',
+						bodyText: ''
+					}
+				]
 			},
 			{
-				href: 'artists-name-plates',
-				cover: 'artistsnameplates.jpg',
-				name: 'Artists Name Plates',
-				bodyText: ''
-			},
-			{
-				href: 'skyval',
-				cover: 'skyval.jpg',
-				name: 'Skyval',
-				bodyText: ''
+				title: 'GrowCreate',
+				info: 'Below are projects which I have done at GrowCreate, usually as part of a team.',
+				pages: [
+					{
+						href: 'skyval',
+						cover: 'skyval.jpg',
+						name: 'Skyval',
+						bodyText: ''
+					},
+					{
+						href: 'the-phone-coop',
+						cover: 'coop.jpg',
+						name: 'The Phone Coop',
+						bodyText: ''
+					},
+					{
+						href: 'carewatch',
+						cover: 'carewatch.jpg',
+						name: 'Carewatch',
+						bodyText: ''
+					},
+					{
+						href: 'stokers',
+						cover: 'stokers.jpg',
+						name: 'Stokers',
+						bodyText: ''
+					},
+					{
+						href: 'beerbods',
+						cover: 'beerbods.jpg',
+						name: 'Beerbods',
+						bodyText: ''
+					}
+				],
 			}
 		]
 	};

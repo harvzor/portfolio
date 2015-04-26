@@ -1,10 +1,16 @@
 <div class="portfolio">
-	<% examples.forEach(function(example) { %>
-		<a href="/portfolio/<%= example.href %>" class="box example">
-			<div class="info">
-				<%= example.name %>
-			</div>
-			<img src="/Media/Portfolio/<%= example.cover %>"/>
-		</a>
+	<% exampleGroups.forEach(function(group) { %>
+		<h2><%= group.title %></h2>
+		<p><%= group.info %></p>
+		<div class="group">
+			<% group.pages.forEach(function(page) { %>
+				<a href="/portfolio/<%= page.href %>" class="box example">
+					<div class="info">
+						<%= page.name %>
+					</div>
+					<img src="/Media/Portfolio/<%= page.cover %>"/>
+				</a>
+			<% }); %>
+		</div>
 	<% }); %>
 </div>

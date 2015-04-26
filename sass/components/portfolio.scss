@@ -1,46 +1,54 @@
 .portfolio {
 	overflow:hidden;
 
+	@include screen($xs) {
+		margin:auto span(-0.5);
+	}
+
+	h2 {
+		clear:both;
+	}
+}
+
+.group {
+	margin:0 span(-0.5);
+
 	&:hover > .example {
 		@include opacity(0.6);
 	}
 
-	@include screen($xs) {
-		margin:auto span(-0.5);
-	}
-}
+	.example {
+		float:left;
+		width:span(36);
+		padding:20px;
+		cursor:pointer;
+		color:$grey-dark;
+		text-decoration:none;
+		@include transition(all 0.3s);
 
-.example {
-	float:left;
-	width:span(36);
-	padding:20px;
-	cursor:pointer;
-	color:$grey-dark;
-	text-decoration:none;
-	@include transition(all 0.3s);
+		@include screen($xs) {
+			width:span(11);
+			margin:span(0.5);
+		}
 
-	&:hover {
-		text-decoration:underline;
-		@include opacity(1);
-	}
+		&:hover {
+			text-decoration:underline;
+			@include opacity(1);
+		}
 
-	&:active {
-		background-color:$grey;
-		color:white;
-	}
+		&:active {
+			background-color:$grey;
+			color:white;
+		}
 
-	.info {
-		padding-bottom:20px;
-		text-align:center;
-	}
+		.info {
+			padding-bottom:20px;
+			text-align:center;
+		}
 
-	img {
-		border:1px solid $border;
-	}
-
-	@include screen($xs) {
-		width:span(11);
-		margin:span(0.5);
+		img {
+			border:1px solid $border;
+		}
 	}
 }
 

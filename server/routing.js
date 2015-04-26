@@ -70,16 +70,21 @@ var routing = function(app, fs, express, data) {
 			layout: 'common',
 			pageGroup: 'portfolio',
 			pageTitle: 'Portfolio',
-			examples: data.examples
+			exampleGroups: data.exampleGroups
 		});
 	});
 
+	var examplePages = [];
+	for(var i = 0; i < data.exampleGroups.length; i++) {
+		examplePages = examplePages.concat(data.exampleGroups[i].pages);
+	}
+
 	// Render portfolio pages
-	for(var i = 0; i < data.examples.length; i++) {
-		app.get('/portfolio/' + data.examples[i].href, function(req, res) {
+	for(var i = 0; i < examplePages.length; i++) {
+		app.get('/portfolio/' + examplePages[i].href, function(req, res) {
 			var url = req.originalUrl.split('/')[2]
 				.split('?')[0];
-			var example = data.examples.filterObjects('href', url)[0];
+			var example = examplePages.filterObjects('href', url)[0];
 
 			res.render('portfolio-example', {
 				layout: 'common',

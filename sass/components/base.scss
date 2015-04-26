@@ -71,16 +71,6 @@ a {
 	@include border-radius(100%);
 }
 
-main {
-	left:span(2);
-	width:span(32);
-
-	@include screen($sm) {
-		left:span(10);
-		width:span(25);
-	}
-}
-
 body.nav-toggled {
 	overflow:hidden;
 
@@ -98,12 +88,19 @@ body.nav-toggled {
 
 main {
 	position:relative;
+	left:span(2);
+	width:span(32);
 	height:100%;
 	padding:1em 2.5% 0 2.5%;
 	@include transition(all 0.3s);
 	@include perspective(100px);
 	@include animation(1s ease 0s normal forwards 1 fadeIn);
 	@include transform(rotateY(0));
+
+	@include screen($sm) {
+		left:span(10);
+		width:span(25);
+	}
 	
 	.breadcrumbs {
 		margin:0;
