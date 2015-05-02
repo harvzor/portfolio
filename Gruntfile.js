@@ -10,11 +10,11 @@ module.exports = function(grunt) {
 				files: ['gruntfile.js']
 			},
 			css: {
-				files: ['Sass/*.scss', 'Sass/*/*.scss'],
+				files: ['src/sass/**/*.scss'],
 				tasks: ['sass']
 			},
 			js: {
-				files: ['../Js/script.js'],
+				files: ['src/js/script.js'],
 				tasks: ['uglify']
 			},
 			/*
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
 					style: 'compressed'
 				},
 				files: {
-					'public/css/main.css' : 'sass/main.scss'
+					'public/css/main.css' : 'src/sass/main.scss'
 				}
 			}
 		},
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
 			  mangle: true
 			},
 			files: { 
-				src: ['public/js/script.js'],
+				src: ['src/js/script.js'],
 				dest: 'public/js/compiled',
 				expand: true,
 				flatten: true,
