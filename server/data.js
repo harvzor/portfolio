@@ -31,7 +31,7 @@ var data = function(fs) {
 						href: 'artists-name-plates',
 						cover: 'artistsnameplates.jpg',
 						name: 'Artists Name Plates',
-						bodyText: ''
+						bodyText: fs.readFileSync('data/portfolio/artists-name-plates.html', 'utf8')
 					},
 					{
 						href: 'harvey-williams',
@@ -55,31 +55,31 @@ var data = function(fs) {
 						href: 'skyval',
 						cover: 'skyval.jpg',
 						name: 'Skyval',
-						bodyText: ''
+						bodyText: fs.readFileSync('data/portfolio/skyval.html', 'utf8')
 					},
 					{
 						href: 'the-phone-coop',
 						cover: 'coop.jpg',
 						name: 'The Phone Coop',
-						bodyText: ''
+						bodyText: fs.readFileSync('data/portfolio/the-phone-coop.html', 'utf8')
 					},
 					{
 						href: 'carewatch',
 						cover: 'carewatch.jpg',
 						name: 'Carewatch',
-						bodyText: ''
+						bodyText: fs.readFileSync('data/portfolio/carewatch.html', 'utf8')
 					},
 					{
 						href: 'stokers',
 						cover: 'stokers.jpg',
 						name: 'Stokers',
-						bodyText: ''
+						bodyText: fs.readFileSync('data/portfolio/stokers.html', 'utf8')
 					},
 					{
 						href: 'beerbods',
 						cover: 'beerbods.jpg',
 						name: 'Beerbods',
-						bodyText: ''
+						bodyText: fs.readFileSync('data/portfolio/beerbods.html', 'utf8')
 					}
 				],
 			}
