@@ -1,0 +1,18 @@
+.accessibility-toolbar {
+	a {
+		position:absolute;
+		left:-100%;
+		top:20px;
+		z-index:100;
+		background-color:white;
+		color:black;
+		text-decoration:none;
+		font-size:20px;
+		padding:10px;
+		@include transition(all 0.3s);
+
+		&:focus {
+			left:20px;
+		}
+	}
+}

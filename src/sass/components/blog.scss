@@ -8,7 +8,7 @@
 	margin:10px 0;
 	@include border-radius(5px);
 
-	&:hover {
+	&:hover, &:focus {
 		h2 {
 			text-decoration:underline;
 		}

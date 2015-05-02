@@ -9,11 +9,14 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
 </head>
 <body>
+	<div class="accessibility-toolbar">
+		<% include partials/accessibility-toolbar %>
+	</div>
 	<aside class="nav">
 		<% include partials/aside %>
 	</aside>
-	<button id="nav-open" class="diamond toggle"></button>
-	<main>
+	<a href="#" id="nav-open" class="diamond toggle" title="Show the sidebar."></a>
+	<main id="content">
 		<section class="content">
 			<header class="breadcrumbs">
 				<%if (locals.parentPages) { %>

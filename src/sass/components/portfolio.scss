@@ -13,8 +13,10 @@
 .group {
 	margin:0 span(-0.5);
 
-	&:hover > .example {
-		@include opacity(0.6);
+	&:hover {
+		> .example {
+			@include opacity(0.6);
+		}
 	}
 
 	.example {
@@ -31,7 +33,7 @@
 			margin:span(0.5);
 		}
 
-		&:hover {
+		&:hover, &:focus {
 			text-decoration:underline;
 			@include opacity(1);
 		}

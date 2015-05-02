@@ -60,6 +60,7 @@ a {
 	position:absolute;
 	top:50%;
 	margin-top:-20px;
+	cursor:pointer;
 	@include transition(margin 0.3s);
 
 	&:hover {

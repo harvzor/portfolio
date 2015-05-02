@@ -4,8 +4,9 @@
 	var aside = document.getElementsByClassName('nav')[0];
 
 	for(var i = 0; i < toggles.length; i++) {
-		toggles[i].addEventListener('click', function() {
+		toggles[i].addEventListener('click', function(event) {
 			body.classList.toggle('nav-toggled');
+			event.preventDefault();
 		});
 	}
 
