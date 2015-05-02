@@ -11,7 +11,10 @@
 
 	hljs.initHighlightingOnLoad();
 
-	new Menu(body, {
-		toggledClassName: 'nav-toggled'
-	});
+	if(window.innerWidth < 1024) {
+		new Menu(body, {
+			toggledClassName: 'nav-toggled'
+		});
+	}
 })();
+

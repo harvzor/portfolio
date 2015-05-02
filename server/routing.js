@@ -95,6 +95,10 @@ var routing = function(app, fs, express, data) {
 	/////////////////
 	app.use(express.static('./public'));
 
+	if(global.dev == true) {
+		app.use(express.static('./src'));
+	}
+
 	app.use(function(req, res, next) {
 		res.status(404).render('page', {
 			layout: 'common',

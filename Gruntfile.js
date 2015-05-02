@@ -1,10 +1,10 @@
 module.exports = function(grunt) {
 	// Initiate grunt config
 	grunt.initConfig({
-		//read dependacies
+		// Read dependacies
 		pkg: grunt.file.readJSON('package.json'),
 
-		//Watch for changes in css and js
+		// Watch for changes in css and js
 		watch: {
 			grunt: {
 				files: ['gruntfile.js']
@@ -13,21 +13,19 @@ module.exports = function(grunt) {
 				files: ['src/sass/**/*.scss'],
 				tasks: ['sass']
 			},
-			js: {
-				files: ['src/js/script.js'],
+			uglify: {
+				files: [
+					'src/js/*.js',
+					'src/js/libs/*.js'
+				],
 				tasks: ['uglify']
 			},
-			/*
-			express: {
-				files:  ['server.js'],
-				tasks:  ['express:live'],
-				options: {
-					spawn: false
-				}
+			compress: {
+				files: ['src/js/compiled/*.js'],
+				tasks: ['concat']
 			}
-			*/
 		},
-		//Compile SASS
+		// Compile SASS
 		sass: {
 			dist: {
 				options: { 
@@ -38,36 +36,35 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		//Minify JS
+		// Uglify JS
 		uglify: {
 			options: {
 			  mangle: true
 			},
-			files: { 
-				src: ['src/js/script.js'],
-				dest: 'public/js/compiled',
+			dist: { 
+				src: [
+					'src/js/*.js',
+					'src/js/libs/*.js',
+				],
+				dest: 'src/js/compiled/',
 				expand: true,
 				flatten: true,
 				ext: '.min.js'
 			},
 		},
-		// Run server
-		/*
-		express: {
-			live: {
-				options: {
-					script: 'server.js'
-				}
+		// Concat uglified JS
+		concat: {
+            dist: {
+				src: ['src/js/compiled/*.min.js',],
+				dest: 'public/js/compiled.min.js'
 			}
 		}
-		*/
 	});
 	
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
-	//grunt.loadNpmTasks('grunt-express-server');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 
-	//grunt.registerTask('default', ['sass', 'uglify', 'express', 'watch'])
-	grunt.registerTask('default', ['sass', 'uglify', 'watch'])
+	grunt.registerTask('default', ['sass', 'uglify', 'concat', 'watch'])
 }

@@ -1,7 +1,8 @@
 var config = {
 	ip: '127.0.0.1',
 	port: 3000,
-	type: 'iis' // 'iis' or 'node'
+	type: 'iis', // 'iis' or 'node'
+	dev: true
 }
 
 module.exports = config;

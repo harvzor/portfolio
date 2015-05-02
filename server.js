@@ -1,5 +1,7 @@
 var config = require('./server/config.js');
 
+global.dev = config.dev;
+
 /////////////////
 // Start website
 /////////////////
