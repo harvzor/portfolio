@@ -4,10 +4,11 @@ var routing = function(app, fs, express, data) {
 			layout: 'common',
 			pageGroup: 'home',
 			pageTitle: 'Hi',
-			bodyText: fs.readFileSync('data/index.html', 'utf8')
+			bodyText: data.index.bodyText
 		});
 	});
 
+	/*
 	app.get('/8tracks', function(req, res) {
 		res.render('page', {
 			layout: 'common',
@@ -16,6 +17,7 @@ var routing = function(app, fs, express, data) {
 			bodyText: fs.readFileSync('data/8tracks.html', 'utf8')
 		});
 	});
+	*/
 
 	app.get('/blog', function(req, res) {
 		res.render('posts', {
