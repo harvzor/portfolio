@@ -8,6 +8,15 @@ var routing = function(app, fs, express, data) {
 		});
 	});
 
+	app.get('/8tracks', function(req, res) {
+		res.render('page', {
+			layout: 'common',
+			pageGroup: '',
+			pageTitle: '8Tracks',
+			bodyText: fs.readFileSync('data/8tracks.html', 'utf8')
+		});
+	});
+
 	app.get('/blog', function(req, res) {
 		res.render('posts', {
 			layout: 'common',

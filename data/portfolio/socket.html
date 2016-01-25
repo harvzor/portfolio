@@ -1,0 +1,19 @@
+<p>
+	Previously for Umbraco, there has only been one common way of importing data into the database - <a href="https://our.umbraco.org/projects/developer-tools/cmsimport/">CMSImport</a>. I have personally used CMSImport for bringing data into a couple of projects, one of them being the <a href="http://carewatch.co.uk">Carewatch</a> website. A large portion of the data on Carewatch is imported from an external data source which creates new pages and nodes in Umbraco. Although CMSImport fixes a specific problem, at GrowCreate, we have quite often found that we need to get data into the database that isn't directly linked into Umbraco. In order to do this, we would create a simple C# importer that reads data from a CSV or Excel document and imports it into the database. The problem with this solution is that the user has no overview of if the import was successful.
+</p>
+<h2>Why have data that's not represented in Umbraco?</h2>
+<p>
+	For ecommerce websites that have literally thousands of products, having each product represented as a node is potentially wasteful - especially if the backend users don't want to edit nodes to update a product. This is why it may be better, from both the clients perspective and from a scalability perspective to have certain parts of the site kept outside of the CMS.
+</p>
+<h2>Socket makes importing data easier</h2>
+<p>
+	Socket is an idea that was thought up by <a href="https://twitter.com/theotron">Theo Paraskevopoulos</a>. He decided that a plugin for Umbraco that would allow backend users to import data in no predefined format, to a dynamically made database table in a seamless manner would be useful not only for GrowCreate, but other Umbraco users too.
+</p>
+<h2>But it's not just that</h2>
+<p>
+	The magic doesn't just end with importing data. Theo wanted a way for users to also get data out of these custom made tables too. Socket also allows advanced backend users to query the database. With these queries, users can then create easy to digest graphs that can be understood by anyone.
+</p>
+<h2>Working on Socket</h2>
+<p>
+	
+</p>

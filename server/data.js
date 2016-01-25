@@ -3,6 +3,12 @@ var data = function(fs) {
 		// Blog data
 		posts: [
 			{
+				href: 'caching-umbraco-web-controllers',
+				title: 'Caching Umbraco web API controllers',
+				summary: 'Caching improves load time for everyone. Here I explain how easily make caching work with Web API controllers.',
+				bodyText: fs.readFileSync('data/blog/caching-umbraco-web-controllers.html', 'utf8')
+			},
+			{
 				href: 'installing-iisnode',
 				title: 'Installing IISNode for production',
 				summary: 'Developing Node.js applications on Windows is easy, but getting them setup for production can be a little more difficult.',
@@ -25,7 +31,7 @@ var data = function(fs) {
 		exampleGroups: [
 			{
 				title: 'Personal projects',
-				info: 'These are the projects which I\'ve worked on by myself.',
+				info: 'These are the projects which I have freelanced on.',
 				pages: [
 					{
 						href: 'artists-name-plates',
@@ -35,54 +41,26 @@ var data = function(fs) {
 					},
 					{
 						href: 'harvey-williams',
-						cover: 'harveywilliams.jpg',
+						cover: 'harveywilliams.png',
 						name: 'This portfolio site',
-						bodyText: ''
-					},
-					{
-						href: 'harvey-williams',
-						cover: 'harveywilliams.jpg',
-						name: 'This portfolio site',
-						bodyText: ''
+						bodyText: fs.readFileSync('data/portfolio/harvey-williams.html', 'utf8')
 					}
 				]
-			},
+			}
+			/*
 			{
 				title: 'GrowCreate',
-				info: 'Below are projects which I have done at GrowCreate, usually as part of a team.',
+				info: 'Below are projects which I have worked on as part of a team at GrowCreate.',
 				pages: [
 					{
-						href: 'skyval',
-						cover: 'skyval.jpg',
-						name: 'Skyval',
-						bodyText: fs.readFileSync('data/portfolio/skyval.html', 'utf8')
-					},
-					{
-						href: 'the-phone-coop',
-						cover: 'coop.jpg',
-						name: 'The Phone Coop',
-						bodyText: fs.readFileSync('data/portfolio/the-phone-coop.html', 'utf8')
-					},
-					{
-						href: 'carewatch',
-						cover: 'carewatch.jpg',
-						name: 'Carewatch',
-						bodyText: fs.readFileSync('data/portfolio/carewatch.html', 'utf8')
-					},
-					{
-						href: 'stokers',
-						cover: 'stokers.jpg',
-						name: 'Stokers',
-						bodyText: fs.readFileSync('data/portfolio/stokers.html', 'utf8')
-					},
-					{
-						href: 'beerbods',
-						cover: 'beerbods.jpg',
-						name: 'Beerbods',
-						bodyText: fs.readFileSync('data/portfolio/beerbods.html', 'utf8')
+						href: 'Socket',
+						cover: '',
+						name: 'Socket',
+						bodyText: fs.readFileSync('data/portfolio/socket.html', 'utf8')
 					}
 				],
 			}
+			*/
 		]
 	};
 
