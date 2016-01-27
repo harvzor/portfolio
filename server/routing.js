@@ -57,6 +57,7 @@ var routing = function(app, fs, express, data) {
 					}
 				],
 				pageTitle: post.title,
+				postDate: post.postDate,
 				bodyText: post.bodyText,
 				prevPost: prevPost,
 				nextPost: nextPost
@@ -96,6 +97,7 @@ var routing = function(app, fs, express, data) {
 					}
 				],
 				pageTitle: example.name,
+				cover: example.cover,
 				bodyText: example.bodyText
 			});
 		});

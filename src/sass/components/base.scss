@@ -48,6 +48,15 @@ a {
 	@include border-radius(5px);
 }
 
+.meta {
+	margin:-11px -11px 0 -11px;
+	padding:11px;
+	background-color:black;
+	background-image:url("../Media/aside.png");
+	color:white;
+	@include border-radius(5px 5px 0 0);
+}
+
 .diamond {
 	width:40px;
 	height:40px;
