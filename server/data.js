@@ -1,26 +1,38 @@
 var data = function(fs) {
+	// Reads a file.
+	var getData = function(path) {
+		return fs.readFileSync('data/' + path, 'utf8');
+	};
+
 	var dataObject = {
 		index: {
-			bodyText: fs.readFileSync('data/index.html', 'utf8')
+			bodyText: getData('index.html')
 		},
-		// Blog data
+		// Blog data.
 		posts: [
+			{
+				href: 'stop-string-replacing-to-create-emails',
+				title: 'Stop using string replace to create emails!',
+				postDate: '28th January 2016',
+				summary: 'How to build HTML emails using Razor',
+				bodyText: getData('blog/stop-string-replacing-to-create-emails.html')
+			},
 			{
 				href: 'caching-umbraco-web-controllers',
 				title: 'Caching Umbraco web API controllers',
 				postDate: '26th January 2016',
 				summary: 'Caching improves load time for everyone. Here I explain how easily make caching work with Web API controllers.',
-				bodyText: fs.readFileSync('data/blog/caching-umbraco-web-controllers.html', 'utf8')
+				bodyText: getData('blog/caching-umbraco-web-controllers.html')
 			},
 			{
 				href: 'installing-iisnode',
 				title: 'Installing IISNode for production',
 				postDate: '25th January 2016',
 				summary: 'Developing Node.js applications on Windows is easy, but getting them setup for production can be a little more difficult.',
-				bodyText: fs.readFileSync('data/blog/installing-iisnode.html', 'utf8')
+				bodyText: getData('blog/installing-iisnode.html')
 			}
 		],
-		// Portfolio data
+		// Portfolio data.
 		exampleGroups: [
 			{
 				title: 'Personal projects',
@@ -30,13 +42,13 @@ var data = function(fs) {
 						href: 'artists-name-plates',
 						cover: '/media/portfolio/artistsnameplates.jpg',
 						name: 'Artists Name Plates',
-						bodyText: fs.readFileSync('data/portfolio/artists-name-plates.html', 'utf8')
+						bodyText: getData('portfolio/artists-name-plates.html')
 					},
 					{
 						href: 'harvey-williams',
 						cover: '/media/portfolio/harveywilliams.png',
 						name: 'This portfolio site',
-						bodyText: fs.readFileSync('data/portfolio/harvey-williams.html', 'utf8')
+						bodyText: getData('portfolio/harvey-williams.html')
 					}
 				]
 			}

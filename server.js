@@ -29,9 +29,8 @@ app.set('view engine', 'ejs');
 
 app.use(expressLayouts)
 
-var data = require('./server/data.js');
 var routing = require('./server/routing.js');
-routing(app, fs, express, data(fs));
+routing(app, fs, express, config);
 
 /////////////////
 // Inititialise
