@@ -1,15 +1,21 @@
 <article class="box">
 	<div class="meta">
-		<span><span class="meta-detail">Posted:</span> <%= postDate %></span>
+		<span><span class="meta-detail">Posted:</span> <%= helpers.friendlyDate(postDate) %></span>
 	</div>
 	<%- bodyText %>
 </article>
 <nav class="box post-nav">
-	<a href="<%= prevPost.href %>" class="nav-item prev-post">
-		<span><%= prevPost.title %></span>
-	</div>
-	<a href="<%= nextPost.href %>" class="nav-item next-post">
-		<span><%= nextPost.title %></span>
-	</a>
+	<% if (prevPost != null) { %>
+		<a href="<%= prevPost.href %>" class="nav-item prev-post">
+			<span class="post-nav-arrow">&lt;</span>
+			<span class="post-nav-title"><%= prevPost.title %></span>
+		</div>
+	<% } %>
+	<% if (nextPost != null) { %>
+		<a href="<%= nextPost.href %>" class="nav-item next-post">
+			<span class="post-nav-arrow">&gt;</span>
+			<span class="post-nav-title"><%= nextPost.title %></span>
+		</a>
+	<% } %>
 </nav>
 <% include partials/disqus %>

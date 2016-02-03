@@ -13,21 +13,21 @@ var data = function(fs) {
 			{
 				href: 'stop-string-replacing-to-create-emails',
 				title: 'Stop using string replace to create emails!',
-				postDate: '28th January 2016',
+				postDate: "Wed, 03 Feb 2016 00:00:00 GMT",
 				summary: 'How to build HTML emails using Razor',
 				bodyText: getData('blog/stop-string-replacing-to-create-emails.html')
 			},
 			{
 				href: 'caching-umbraco-web-controllers',
 				title: 'Caching Umbraco web API controllers',
-				postDate: '26th January 2016',
+				postDate: "Tue, 26 Jan 2016 00:00:00 GMT",
 				summary: 'Caching improves load time for everyone. Here I explain how easily make caching work with Web API controllers.',
 				bodyText: getData('blog/caching-umbraco-web-controllers.html')
 			},
 			{
 				href: 'installing-iisnode',
 				title: 'Installing IISNode for production',
-				postDate: '25th January 2016',
+				postDate: "Mon, 25 Jan 2016 00:00:00 GMT",
 				summary: 'Developing Node.js applications on Windows is easy, but getting them setup for production can be a little more difficult.',
 				bodyText: getData('blog/installing-iisnode.html')
 			}

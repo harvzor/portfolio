@@ -2,6 +2,7 @@ var routing = function(app, fs, express, config) {
 	var firstRun = true;
 	var dataPath = '../server/data.js';
 	var dataModule = require(dataPath);
+	var helpers = require('../server/helpers.js');
 	var actualData;
 
 	// Reloads the data if in dev mode, better for writing new posts!
@@ -40,30 +41,37 @@ var routing = function(app, fs, express, config) {
 			layout: 'common',
 			pageGroup: 'blog',
 			pageTitle: 'Blog', 
-			posts: data().posts
+			// Order posts by date.
+			posts: data().posts.sort(function(a, b) {
+				return new Date(b.postDate).getTime() - new Date(a.postDate).getTime();
+			})
 		});
 	});
 
-	// Render blog posts
+	// Render blog posts.
 	for(var i = 0; i < data().posts.length; i++) {
 		app.get('/blog/' + data().posts[i].href, function(req, res) {
+			var prevPost = null;
+			var nextPost = null;
 			var url = req.originalUrl.split('/')[2]
 				.split('?')[0];
+
 			var post = data().posts.filterObjects('href', url)[0];
 
-			var index = data().posts.map(function(x) { return x; }).indexOf(post);
-			if(index > 0) {
-				var prevPost = data().posts[index - 1];
-			} else {
-				var prevPost = data().posts[data().posts.length - 1];
+			var index = data().posts.map(function(x) { return x.href; }).indexOf(post.href);
+
+			// If not the first ever post.
+			if (index < data().posts.length - 1) {
+				prevPost = data().posts[index + 1];
 			}
-			if(index != data().posts.length - 1) {
-				var nextPost = data().posts[index + 1];
-			} else {
-				var nextPost = data().posts[0];
+
+			// If not the latest post.
+			if (index != 0) {
+				nextPost = data().posts[index - 1];
 			}
 
 			res.render('post', {
+				helpers: helpers,
 				layout: 'common',
 				pageGroup: 'blog',
 				parentPages: [
@@ -146,7 +154,7 @@ var routing = function(app, fs, express, config) {
 			bodyText: '<p>So sorry, but a problem occured! Please email me if this problem persists.</p>'
 		});
 	});
-}
+};
 
 module.exports = routing;
 
