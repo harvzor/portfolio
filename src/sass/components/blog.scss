@@ -20,11 +20,72 @@
 }
 
 .post-nav {
+	overflow:hidden;
 	position:relative;
 	width:100%;
 	padding:0;
 	font-size:0;
 
+	.nav-item {
+		position:relative;
+		width:100%;
+		overflow:hidden;
+		text-decoration:none;
+		overflow:hidden;
+		font-size:$base-font-size;
+
+		.post-nav-arrow {
+			display:inline-block;
+			height:100%;
+			font-size:2em;
+			padding:0 5px;
+			background-color:white;
+			@include border-radius(5px);
+		}
+
+		&.prev-post {
+			float:left;
+			padding-left:0;
+
+			.post-nav-arrow {
+				float:left;
+			}
+
+			.post-nav-title {
+				margin-left:25px;
+			}
+		}
+
+		&.next-post {
+			float:right;
+			padding-right:0;
+
+			.post-nav-arrow {
+				float:right;
+			}
+
+			.post-nav-title {
+				margin-right:25px;
+			}
+		}
+
+		.post-nav-title {
+			display:block;
+			padding:10px;
+			color:$grey-dark;
+			overflow:hidden;
+
+			@include screen($xs) {
+				white-space:nowrap;
+			}
+		}
+	}
+}
+
+// Styles only if there are next and previous psot links.
+// Can't use focus events for accessibility as the .post-nav parent
+// can't both be focused as well as the .nav-item.
+.post-nav.post-nav-next-prev {
 	@include screen($xs) {
 		&:hover {
 			.nav-item {
@@ -34,64 +95,23 @@
 	}
 
 	.nav-item {
-		padding:10px;
-		overflow:hidden;
-		text-decoration:none;
-		overflow:hidden;
-		font-size:$base-font-size;
+		@include screen($xs) {
+			width:50%;
+			@include transition(width 0.3s);
+		}
 
-		&:before {
-			display:inline-block;
-			position:absolute;
-			top:0;
-			font-size:2em;
-			margin:0 5px;
-			background-color:white;
+		&:hover {
+			@include screen($xs) {
+				width:75%;
+			}
 		}
 
 		&.prev-post {
 			border-bottom:1px solid $grey;
 
-			&:before {
-				left:0;
-				content:"<";
-			}
-
-			span {
-				margin-left:25px;
-			}
-		}
-
-		&.next-post {
-			&:before {
-				right:0;
-				content:">";
-			}
-
-			span {
-				margin-right:25px;
-			}
-		}
-
-		@include screen($xs) {
-			width:50%;
-			@include transition(width 0.3s);
-
-			&:hover {
-				width:75%;
-			}
-
-			&.prev-post {
+			@include screen($xs) {
 				border-right:1px solid $grey;
 				border-bottom:0;
-			}
-		}
-
-		span {
-			color:$grey-dark;
-
-			@include screen($xs) {
-				white-space:nowrap;
 			}
 		}
 	}

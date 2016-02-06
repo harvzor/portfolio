@@ -4,12 +4,12 @@
 	</div>
 	<%- bodyText %>
 </article>
-<nav class="box post-nav">
+<nav class="box post-nav<%= prevPost != null && nextPost != null ? ' post-nav-next-prev' : '' %>">
 	<% if (prevPost != null) { %>
 		<a href="<%= prevPost.href %>" class="nav-item prev-post">
 			<span class="post-nav-arrow">&lt;</span>
 			<span class="post-nav-title"><%= prevPost.title %></span>
-		</div>
+		</a>
 	<% } %>
 	<% if (nextPost != null) { %>
 		<a href="<%= nextPost.href %>" class="nav-item next-post">
