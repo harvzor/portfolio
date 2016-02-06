@@ -3,7 +3,10 @@
 <head>
 	<title><%= pageTitle %> | Harvey Williams</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<% if (typeof metaDescription != 'undefined') { %>
+		<meta name="description" content="<%= metaDescription %>" />
+	<% } %>
 	<link href="http://harveywilliams.net/<%= relativeUrl %>" rel="canonical" /> 
 
 	<link href="/css/main.css" rel="stylesheet" type="text/css">

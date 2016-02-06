@@ -20,8 +20,9 @@ var routing = function(app, fs, express, config) {
 		res.render('page', {
 			layout: 'common',
 			relativeUrl: '',
+			metaDescription: 'Hi. I am a young experienced web developer living near Oxford. I specialise in Umbraco CMS development.',
 			pageGroup: 'home',
-			pageTitle: 'Hi',
+			pageTitle: 'Hello World',
 			bodyText: data().index.bodyText
 		});
 	});
@@ -41,6 +42,7 @@ var routing = function(app, fs, express, config) {
 		res.render('posts', {
 			layout: 'common',
 			relativeUrl: 'blog',
+			metaDescription: 'Read about my latest thoughts and experiences in the world of web development.',
 			pageGroup: 'blog',
 			pageTitle: 'Blog', 
 			// Order posts by date.
@@ -76,6 +78,7 @@ var routing = function(app, fs, express, config) {
 				helpers: helpers,
 				layout: 'common',
 				relativeUrl: url,
+				metaDescription: post.metaDescription,
 				pageGroup: 'blog',
 				parentPages: [
 					{
@@ -97,6 +100,7 @@ var routing = function(app, fs, express, config) {
 		res.render('portfolio-examples', {
 			layout: 'common',
 			relativeUrl: 'portfolio',
+			metaDescription: 'Look through my portfolio to see projects that I have worked on.',
 			pageGroup: 'portfolio',
 			pageTitle: 'Portfolio',
 			exampleGroups: data().exampleGroups
@@ -118,6 +122,7 @@ var routing = function(app, fs, express, config) {
 			res.render('portfolio-example', {
 				layout: 'common',
 				relativeUrl: url,
+				metaDescription: example.metaDescription,
 				pageGroup: 'portfolio',
 				parentPages: [
 					{

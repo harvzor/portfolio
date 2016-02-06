@@ -1,8 +1,8 @@
 <p>
-	Almost every website that I build for a client needs to have some kind of way to contact the outside world. It might be to report an error, or if a scheduled task occured then some one might need notifying, or maybe a user has just made an order and the order details need to be sent to the owner of the site.
+	Almost every website that I build for a client needs to have some sort of way to contact the outside world; the most common way of doing this is to send an email.
 </p>
 <p>
-	Thing is, developers get lazy when they starting making emails. The technology is stuck in the past, and it's not a fun front end experience to try and create complicated layouts using tables. All of this together makes creating emails a hack and slash job. Here's the simple way a lot of emails are made:
+	The thing is, developers get lazy when they start making emails. The technology is stuck in the past and it's not a fun front end experience to try and create complicated layouts using tables. All of this together makes creating emails a hack and slash job. Here's the simple way a lot of emails are made:
 </p>
 <pre>
 	<code>
@@ -42,13 +42,13 @@ public bool Send()
 	Rendering MVC emails with Razor and CSHTML templates
 </h2>
 <p>
-	Enough of string formatting! We have a better method now. We're used to using Razor and some sort of MVC to built our ordinary website views. Surely there is some way we can incorporate that into our email design? Well there is!
+	Enough of string formatting! We have a better method now. We're used to using Razor and some sort of MVC to build our ordinary website views. Surely there is some way we can incorporate that into our email design? Well there is!
 </p>
 <h3>
 	The West Wind Toolkit Way
 </h3>
 <p>
-	Fortunately there is a tool out there which allows us to easily render a CSHTML template with a template of our choosing. This tool is called <a href="https://github.com/RickStrahl/WestwindToolkit" target="_blank">West Wind Toolkit</a>. It's opensource and under the MIT license, meaning we can use it in our projects.
+	Fortunately there is a tool out there which allows us to easily render a CSHTML view with a model of our choosing. This tool is called the <a href="https://github.com/RickStrahl/WestwindToolkit" target="_blank">West Wind Toolkit</a>. It's opensource and under the MIT license, meaning we can use it in our projects.
 </p>
 <p>
 	The particular part of the toolkit we plan on using is the <a href="https://github.com/RickStrahl/WestwindToolkit/blob/master/Westwind.Web.Mvc/Utils/ViewRenderer.cs">view renderer</a>. Since I didn't want to bloat my project with anything more than necessary, I ripped apart this piece of C# that West Wind has provided us with, and only kept the core methods in the end result:
@@ -265,7 +265,6 @@ public class NewSignUpModel
 </p>
 <pre>
 	<code>
-@using Grow.Core.Models.Mail
 @model NewSignUpModel
 &lt;h2&gt;Dear @(Model.Recipient),&lt;/h2&gt;
 &lt;p&gt;Thank you for signing up. We value you as a customer etc etc...&lt;/p&gt;
