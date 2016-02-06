@@ -19,6 +19,7 @@ var routing = function(app, fs, express, config) {
 	app.get('/', function(req, res) {
 		res.render('page', {
 			layout: 'common',
+			relativeUrl: '',
 			pageGroup: 'home',
 			pageTitle: 'Hi',
 			bodyText: data().index.bodyText
@@ -39,6 +40,7 @@ var routing = function(app, fs, express, config) {
 	app.get('/blog', function(req, res) {
 		res.render('posts', {
 			layout: 'common',
+			relativeUrl: 'blog',
 			pageGroup: 'blog',
 			pageTitle: 'Blog', 
 			// Order posts by date.
@@ -73,6 +75,7 @@ var routing = function(app, fs, express, config) {
 			res.render('post', {
 				helpers: helpers,
 				layout: 'common',
+				relativeUrl: url,
 				pageGroup: 'blog',
 				parentPages: [
 					{
@@ -93,6 +96,7 @@ var routing = function(app, fs, express, config) {
 	app.get('/portfolio', function(req, res) {
 		res.render('portfolio-examples', {
 			layout: 'common',
+			relativeUrl: 'portfolio',
 			pageGroup: 'portfolio',
 			pageTitle: 'Portfolio',
 			exampleGroups: data().exampleGroups
@@ -113,6 +117,7 @@ var routing = function(app, fs, express, config) {
 
 			res.render('portfolio-example', {
 				layout: 'common',
+				relativeUrl: url,
 				pageGroup: 'portfolio',
 				parentPages: [
 					{
@@ -139,6 +144,7 @@ var routing = function(app, fs, express, config) {
 	app.use(function(req, res, next) {
 		res.status(404).render('page', {
 			layout: 'common',
+			relativeUrl: '404',
 			pageGroup: '',
 			pageTitle: 'Status: 404',
 			bodyText: '<p>You\'re looking for a page that doesn\'t exist...</p>'
@@ -149,6 +155,7 @@ var routing = function(app, fs, express, config) {
 		console.error(err.stack);
 		res.status(500).render('page', {
 			layout: 'common',
+			relativeUrl: '500',
 			pageGroup: '',
 			pageTitle: 'Status: 500',
 			bodyText: '<p>So sorry, but a problem occured! Please email me if this problem persists.</p>'
