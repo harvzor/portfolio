@@ -14,7 +14,7 @@ var data = function(fs) {
 				href: 'rendering-mvc-emails-with-cshtml',
 				metaDescription: 'Learn to build HTML emails using MVC, Razor and CSHTML.',
 				title: 'How to render MVC emails with CSHTML',
-				postDate: 'Wed, 03 Feb 2016 00:00:00 GMT',
+				postDate: 'Wed, 06 Feb 2016 00:00:00 GMT',
 				summary: 'Tired of using string formatting to create emails in your code? Read here to find out about how to build HTML emails using MVC, Razor and CSHTML.',
 				bodyText: getData('blog/rendering-mvc-emails-with-cshtml.html')
 			},
