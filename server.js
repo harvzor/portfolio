@@ -6,10 +6,12 @@ global.dev = config.dev;
 // Start website
 /////////////////
 var express = require('express');
+var compression = require('compression');
 var expressLayouts = require('express-ejs-layouts');
 var fs = require('fs');
 
 var app = express();
+app.use(compression());
 
 /////////////////
 // Functions

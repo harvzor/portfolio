@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head lang="en">
 	<title><%= pageTitle %> | Harvey Williams</title>
-	<meta charset="utf-8">
+	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<% if (typeof metaDescription != 'undefined') { %>
 		<meta name="description" content="<%= metaDescription %>" />
 	<% } %>
-	<link href="harveywilliams.net/<%= relativeUrl %>" rel="canonical" /> 
-
+	<link href="//harveywilliams.net/<%= relativeUrl %>" rel="canonical" /> 
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 	<link href="/css/main.css" rel="stylesheet" type="text/css">
 	<link href="//fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/github.min.css">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
 </head>
 <body>
 	<div class="accessibility-toolbar">
@@ -42,6 +41,7 @@
 		</footer>
 	</main>
 	<aside class="right"></aside>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
 	<% if (dev) { %>
 		<script src="/js/libs/menujs.js"></script>
 		<script src="/js/script.js"></script>
