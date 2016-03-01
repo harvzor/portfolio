@@ -1,4 +1,4 @@
-var routing = function(app, fs, express, config) {
+var routing = function(app, fs, express, config, logger) {
 	var firstRun = true;
 	var dataPath = '../server/data.js';
 	var dataModule = require(dataPath);
@@ -17,6 +17,8 @@ var routing = function(app, fs, express, config) {
 	}
 
 	app.get('/', function(req, res) {
+		logger.info('Serving index.');
+
 		res.render('page', {
 			layout: 'common',
 			relativeUrl: '',
@@ -147,6 +149,8 @@ var routing = function(app, fs, express, config) {
 	}
 
 	app.use(function(req, res, next) {
+		logger.info('404 error: %s', req.originalUrl);
+
 		res.status(404).render('page', {
 			layout: 'common',
 			relativeUrl: '404',
@@ -157,7 +161,8 @@ var routing = function(app, fs, express, config) {
 	});
 
 	app.use(function(err, req, res, next) {
-		console.error(err.stack);
+		logger.error('500 error: %s', err.stack);
+
 		res.status(500).render('page', {
 			layout: 'common',
 			relativeUrl: '500',

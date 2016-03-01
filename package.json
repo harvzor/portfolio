@@ -13,17 +13,19 @@
     "url": "harveywilliams.net"
   },
   "dependencies": {
+    "bunyan": "^1.7.1",
     "compression": "^1.6.1",
     "ejs": "^2.3.1",
     "express": "^4.12.3",
     "express-ejs-layouts": "^1.1.0"
   },
   "devDependencies": {
+    "blessed": "^0.1.81",
+    "del": "^1.2.0",
     "ejs": "^2.3.1",
     "express": "^4.12.3",
     "express-ejs-layouts": "^1.1.0",
     "express-generator": "^4.12.1",
-    "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-concat": "^2.6.0",
@@ -33,6 +35,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.5.2",
-    "gulp-uglify": "^1.2.0"
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.7",
+    "tail": "^0.4.0"
   }
 }
