@@ -1,5 +1,8 @@
 // Load plugins
 //var gutil = require('gulp-util');
+//gutil.log = function() {};
+////process.argv.push('-q');
+
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
@@ -9,19 +12,25 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
-var notify = require('gulp-notify');
+var notifier = require('node-notifier');
 var del = require('del');
 var blessed = require('blessed');
 var tail = require('tail').Tail;
+var nodemon = require('nodemon');
+var fs = require('fs');
+var moment = require('moment');
 
-//gutil.log = gutil.noop;
-notify.logLevel(0);
+//notifier.logLevel(0);
 
-var traceLog = new tail('logs/log.log', '\n', {}, true);
+var traceLog = new tail('logs/log.txt', '\n', {}, true);
+
+var formatDate = function(d) {
+	return moment(d).format('YYYY MM DD hh:mm:ss');
+};
 
 traceLog.on('line', function(data) {
 	var json = JSON.parse(data);
-	logBox.pushLine('{red-fg}' + json.time + '{/red-fg} ' + json.msg);
+	logBox.pushLine('{yellow-fg}' + formatDate(json.time) + '{/yellow-fg} ' + json.msg);
 	screen.render();
 });
 
@@ -32,12 +41,37 @@ var screen = blessed.screen({
 	title: 'Gulp!'
 });
 
-var stylesBox = blessed.log({
+var gulpBox = blessed.log({
 	parent: screen,
 	top: '0',
 	left: '0',
 	width: '50%',
-	height: '50%',
+	height: '33%',
+	border: 'line',
+	tags: true,
+	keys: true,
+	vi: true,
+	mouse: true,
+	scrollback: 100,
+	scrollbar: {
+		ch: ' ',
+		fg: 'white',
+		track: {
+			bg: 'yellow'
+		},
+		style: {
+			inverse: true,
+		}
+	},
+	label: 'Gulp log',
+});
+
+var stylesBox = blessed.log({
+	parent: screen,
+	top: '33%',
+	left: '0',
+	width: '50%',
+	height: '33%',
 	border: 'line',
 	tags: true,
 	keys: true,
@@ -59,10 +93,10 @@ var stylesBox = blessed.log({
 
 var scriptsBox = blessed.log({
 	parent: screen,
-	top: '50%',
+	top: '66%',
 	left: '0',
 	width: '50%',
-	height: '50%',
+	height: '33%',
 	border: 'line',
 	tags: true,
 	keys: true,
@@ -87,7 +121,7 @@ var logBox = blessed.log({
 	top: '0',
 	left: '50%',
 	width: '50%',
-	height: '100%',
+	height: '99%',
 	border: 'line',
 	tags: true,
 	keys: true,
@@ -115,20 +149,20 @@ screen.key(['escape', 'q', 'C-c'], function(ch, key) {
 // Render the screen.
 screen.render();
 
-// Styles
+// Styles - compile custom Sass
 gulp.task('styles', function() {
 	return gulp.src([
 		'src/sass/main.scss'
 	])
 	.pipe(plumber({
 		errorHandler: function (err) {
-			stylesBox.pushLine(err.message);
+			stylesBox.pushLine('{yellow-fg}' + formatDate(new Date()) + '{/yellow-fg} {red-fg}' + err.message + '{/red-fg}');
 			screen.render();
 
-			notify.onError({
+			notifier.notify({
 				title: 'Error in style stask',
-				message: '<%= error.message %>'
-			})(err);
+				message: err.message
+			});
 
 			this.emit('end');
 		}
@@ -141,29 +175,31 @@ gulp.task('styles', function() {
 	.pipe(gulp.dest('public/css'))
 	.pipe(sourcemaps.write('.'))
 	.pipe(gulp.dest('public/css'))
-	.pipe(notify(
-		{
+	.on('end', function() {
+		stylesBox.pushLine('{yellow-fg}' + formatDate(new Date()) + '{/yellow-fg} Styles task completed.');
+		screen.render();
+
+		notifier.notify({
 			title: 'Styles task completed',
-			//message: 'Styles task completed',
-			onLast: true 
-		}
-	));
+			message: 'Success'
+		});
+	});
 });
  
-// Scripts
+// Scripts - compile custom js
 gulp.task('scripts', function() {
 	return gulp.src([
 		'src/js/script.js'
 	])
 	.pipe(plumber({
 		errorHandler: function (err) {
-			scriptsBox.pushLine(err.message);
+			scriptsBox.pushLine('{yellow-fg}' + formatDate(new Date()) + '{/yellow-fg} {red-fg}' + err.message + '{/red-fg}');
 			screen.render();
 
-			notify.onError({
+			notifier.notify({
 				title: 'Error in scripts task',
-				message: '<%= error.message %>',
-			})(err);
+				message: err.message
+			});
 
 			this.emit('end');
 		}
@@ -171,13 +207,44 @@ gulp.task('scripts', function() {
 	.pipe(rename({ suffix: '.min' }))
 	.pipe(uglify())
 	.pipe(gulp.dest('public/js'))
-	.pipe(notify(
-		{
+	.on('end', function() {
+		scriptsBox.pushLine('{yellow-fg}' + formatDate(new Date()) + '{/yellow-fg} Scripts task completed.');
+		screen.render();
+
+		notifier.notify({
 			title: 'Scripts task completed',
-			//message: 'Styles task completed',
-			onLast: true 
-		}
-	));
+			message: 'Success'
+		});
+	});
+});
+
+// Start - starts the server and restarts it on file change
+gulp.task('start', function() {
+	nodemon({
+		script: 'server.js',
+		ext: 'js',
+		stdout: false,
+		watch: ['server/*', 'server.js']
+	})
+	.on('start', function(event) {
+		gulpBox.pushLine('{yellow-fg}' + formatDate(new Date()) + '{/yellow-fg} Server started.');
+		screen.render();
+	})
+	/*
+	.on('restart', function() {
+		gulpBox.pushLine('{yellow-fg}' + formatDate(new Date()) + '{/yellow-fg} Server restarting...');
+		screen.render();
+	})
+	*/
+	.on('crash', function() {
+		gulpBox.pushLine('{yellow-fg}' + formatDate(new Date()) + '{/yellow-fg} {red-fg}Server crashed!{/red-fg}');
+		screen.render();
+
+		notifier.notify({
+			title: 'Server crashed.',
+			message: 'Error'
+		});
+	});
 });
  
 // Watch - watcher for changes in scss and js files: 'gulp watch' will run these tasks
@@ -204,7 +271,7 @@ gulp.task('vendor-scripts', function() {
 	.pipe(plumber({
 		errorHandler: function (err) {
 			//console.log(err);
-			notify.onError({
+			notifier.notify.onError({
 				message: 'Error in vendor-scripts task: <%= error.message %>'
 			})(err);
 			this.emit('end');
@@ -213,9 +280,9 @@ gulp.task('vendor-scripts', function() {
 	.pipe(concat('vendor.min.js'))
 	.pipe(uglify())
 	.pipe(gulp.dest('scripts'))
-	.pipe(notify({ message: 'Vendor-scripts task completed' }));
+	.pipe(notifier.notify({ message: 'Vendor-scripts task completed' }));
 });
 */
 
 // Default - runs the scripts, styles and watch tasks: 'gulp' will run this task
-gulp.task('default', ['scripts', 'styles', 'watch'])
+gulp.task('default', ['styles', 'scripts', 'start', 'watch'])

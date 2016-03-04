@@ -16,15 +16,15 @@ var logger = bunyan.createLogger({
 	streams: [
 		{
 			level: 'info',
-			path: 'logs/log.log'
+			path: 'logs/log.txt'
 		},
 		{
 			level: 'warn',
-			path: 'logs/log.log'
+			path: 'logs/log.txt'
 		},
 		{
 			level: 'error',
-			path: 'logs/log.log'
+			path: 'logs/log.txt'
 		}
 	]
 });
