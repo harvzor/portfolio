@@ -33,6 +33,14 @@ var data = function(fs) {
 				postDate: 'Mon, 25 Jan 2016 00:00:00 GMT',
 				summary: 'Developing Node.js applications on Windows is easy, but getting them setup for production can be a little more difficult. Read this post to discover how to set up IISNode in Windows and get a Node application running within IIS.',
 				bodyText: getData('blog/installing-iisnode.html')
+			},
+			{
+				href: 'making-umbraco-nodes-with-the-models-builder',
+				metaDescription: 'In my latest Umbraco website built I have been getting friendly with the new Models Builder that is included by default. In this post I show how the Models Builder can be used with the Content Service to create new Umbraco nodes programmatically.',
+				title: 'Making Umbraco Nodes with the Models Builder',
+				postDate: 'Sun, 20 Mar 2016 00:00:00 GMT',
+				summary: 'In my latest Umbraco website built I have been getting friendly with the new Models Builder that is included by default. In this post I show how the Models Builder can be used with the Content Service to create new Umbraco nodes programmatically.',
+				bodyText: getData('blog/making-umbraco-nodes-with-the-models-builder.html'),
 			}
 		],
 		// Portfolio data.
