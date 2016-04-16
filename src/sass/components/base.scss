@@ -27,10 +27,6 @@ $susy: (
 
 @include border-box-sizing;
 
-html, body {
-	height:100%;
-}
-
 body {
 	background-color:$grey-lightest;
 	background-image:url("../Media/main.png");
@@ -100,7 +96,6 @@ main {
 	position:relative;
 	left:span(2);
 	width:span(32);
-	height:100%;
 	padding:1em 2.5% 0 2.5%;
 	@include transition(all 0.3s);
 	@include perspective(100px);

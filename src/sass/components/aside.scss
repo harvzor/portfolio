@@ -3,13 +3,18 @@ aside.nav {
 	position:fixed;
 	top:0;
 	width:span(36);
-	margin-left:span(-35);
+	transform:translateX(span(-35));
 	height:100%;
 	background-color:black;
 	background-image:url("../Media/aside.png");
 	overflow:hidden;
 	z-index:2;
 	@include transition(all 0.3s);
+
+	@include screen($sm) {
+		width:span(10);
+		transform:translateX(0);
+	}
 
 	* {
 		@include opacity(0);
@@ -18,11 +23,6 @@ aside.nav {
 		@include screen($sm) {
 			@include opacity(1);
 		}
-	}
-
-	@include screen($sm) {
-		width:span(10);
-		margin-left:0;
 	}
 
 	header {
@@ -149,10 +149,10 @@ aside.nav {
 }
 
 .nav-toggled aside.nav {
-	margin-left:0;
+	transform:translateX(0);
 
 	@include screen($sm) {
-		margin-left:span(-9);
+		transform:translateX(-90%);
 	}
 
 	* {
