@@ -141,6 +141,24 @@ main {
 		height:30px;
 		padding:5px;
 		text-align:center;
+
+		&.footer-toggled {
+			span {
+				display:none;
+			}
+
+			.song {
+				display:block;
+			}
+		}
+
+		span {
+			cursor:pointer;
+		}
+
+		.song {
+			display:none;
+		}
 	}
 }
 

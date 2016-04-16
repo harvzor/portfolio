@@ -14,7 +14,7 @@ var routing = function(app, fs, express, config, logger) {
 		}
 
 		return actualData;
-	}
+	};
 
 	app.get('/', function(req, res) {
 		logger.info('Serving index.');

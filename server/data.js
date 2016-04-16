@@ -5,6 +5,14 @@ var data = function(fs) {
 	};
 
 	var dataObject = {
+		songs: [
+			{
+				name: 'Doing It To Death',
+				artist: 'The Kills',
+				date: 'Sat, 16 Apr 2016 00:00:00 GMT',
+				url: 'https://www.youtube.com/watch?v=498zUzNGQxY'
+			}
+		],
 		index: {
 			bodyText: getData('index.html')
 		},

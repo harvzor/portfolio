@@ -36,8 +36,9 @@
 			</header>
 			<%- body %>
 		</section>
-		<footer>
-			&copy; Harvey Williams <%= year() %>
+		<footer id="footer">
+			<span>&copy; Harvey Williams <%= year() %></span>
+			<a class="song" href="<%= songOfTheMoment().url %>" target="_blank" title="My song of the moment"><%= songOfTheMoment().name %> - <%= songOfTheMoment().artist %></a>
 		</footer>
 	</main>
 	<aside class="right"></aside>
@@ -67,4 +68,3 @@
 	<% } %>
 </body>
 </html>
-

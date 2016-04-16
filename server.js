@@ -32,6 +32,21 @@ var logger = bunyan.createLogger({
 var app = express();
 app.use(compression());
 
+// Reloads the data if in dev mode, better for writing new posts!
+var firstRun = true;
+var dataPath = './server/data.js';
+var dataModule = require(dataPath);
+var actualData;
+var data = function() {
+	if (firstRun || config.dev) {
+		firstRun = false;
+
+		actualData = dataModule(fs);
+	}
+
+	return actualData;
+};
+
 /////////////////
 // Functions
 /////////////////
@@ -41,7 +56,11 @@ Array.prototype.filterObjects = function(key, value) {
 
 app.locals.year = function() {
 	return new Date().getUTCFullYear();
-}
+};
+
+app.locals.songOfTheMoment = function() {
+	return data().songs[0];
+};
 
 /////////////////
 // Templating
