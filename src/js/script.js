@@ -18,9 +18,5 @@
 			toggledClassName: 'nav-toggled'
 		});
 	}
-
-	footer.addEventListener('click', function(event) {
-		footer.classList.toggle('footer-toggled');
-	});
 })();
 

@@ -142,7 +142,7 @@ main {
 		padding:5px;
 		text-align:center;
 
-		&.footer-toggled {
+		&:hover {
 			span {
 				display:none;
 			}
