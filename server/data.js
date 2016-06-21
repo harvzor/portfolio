@@ -7,6 +7,12 @@ var data = function(fs) {
 	var dataObject = {
 		songs: [
 			{
+				name: 'Paracetamol',
+				artist: 'Declan Mckenna',
+				date: 'Wed, 22 Jun 2016 00:00:00 GMT',
+				url: 'https://www.youtube.com/watch?v=Db0BQ7JI4KE'
+			},
+			{
 				name: 'Doing It To Death',
 				artist: 'The Kills',
 				date: 'Sat, 16 Apr 2016 00:00:00 GMT',
