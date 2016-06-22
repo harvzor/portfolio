@@ -9,3 +9,15 @@
 		@include opacity(1);
 	}
 }
+
+@include keyframes(fadeOut) {
+	0% {
+		@include transform(translateX(0) rotateY(0));
+		@include opacity(1);
+	}
+
+	100% {
+		@include transform(translateX(10%) rotateY(45deg));
+		@include opacity(0);
+	}
+}

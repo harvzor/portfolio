@@ -106,6 +106,10 @@ main {
 		left:span(10);
 		width:span(25);
 	}
+
+	&.exiting {
+		@include animation(1s ease 0s normal forwards 1 fadeOut);
+	}
 	
 	.breadcrumbs {
 		margin:0;
