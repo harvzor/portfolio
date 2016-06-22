@@ -26,6 +26,10 @@
 		aElements[i].addEventListener('click', function(e) {
 			var link = this;
 
+			if (link.href.indexOf('#') > -1 || link.target == '_blank') {
+				return;
+			}
+
 			e.preventDefault();
 
 			content.classList.add('exiting');
