@@ -29,6 +29,17 @@ var routing = function(app, fs, express, config, logger) {
 		});
 	});
 
+	app.get('/cv', function(req, res) {
+		res.render('page', {
+			layout: 'common',
+			relativeUrl: '/cv',
+			metaDescription: 'Looking to hire a great developer? We might be a perfect match.',
+			pageGroup: 'home',
+			pageTitle: 'Looking for some new talent?',
+			bodyText: data().cv.bodyText
+		});
+	});
+
 	/*
 	app.get('/8tracks', function(req, res) {
 		res.render('page', {

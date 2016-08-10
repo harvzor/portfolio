@@ -28,6 +28,9 @@ var data = function(fs) {
 		index: {
 			bodyText: getData('index.html')
 		},
+		cv: {
+			bodyText: getData('cv.html')
+		},
 		// Blog data.
 		posts: [
 			{

@@ -100,15 +100,25 @@ aside.nav {
 		}
 	}
 
+	.sub-footer a {
+		color:white;
+		text-decoration:none;
+		margin-top:10px;
+
+		&:hover {
+			text-decoration:underline;
+		}
+	}
+
 	footer {
 		position:absolute;
 		bottom:0;
 		width:100%;
-		height:42px;
+		height:72px;
 		margin:5px 0;
 		text-align:center;
 
-		a {
+		> a {
 			position:relative;
 			bottom:0;
 			height:42px;
