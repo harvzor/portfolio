@@ -7,6 +7,12 @@ var data = function(fs) {
 	var dataObject = {
 		songs: [
 			{
+				name: 'We Are The People',
+				artist: 'Empire of the Sun',
+				date: 'Thursday, 11 Aug 2016 00:00:00 GMT',
+				url: 'https://www.youtube.com/watch?v=hN5X4kGhAtU'
+			},
+			{
 				name: 'Paracetamol',
 				artist: 'Declan Mckenna',
 				date: 'Wed, 22 Jun 2016 00:00:00 GMT',
