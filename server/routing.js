@@ -108,14 +108,19 @@ var routing = function(app, fs, express, config, logger) {
 		});
 	}
 
-	// Render portfolio parent
+	// Redirect old portfolio link to projects.
 	app.get('/portfolio', function(req, res) {
-		res.render('portfolio-examples', {
+		res.redirect('/projects');
+	});
+
+	// Render project parent
+	app.get('/projects', function(req, res) {
+		res.render('project-examples', {
 			layout: 'common',
-			relativeUrl: 'portfolio',
-			metaDescription: 'Look through my portfolio to see projects that I have worked on.',
-			pageGroup: 'portfolio',
-			pageTitle: 'Portfolio',
+			relativeUrl: 'projects',
+			metaDescription: 'Look through my projects that I have worked on.',
+			pageGroup: 'projects',
+			pageTitle: 'Projects',
 			exampleGroups: data().exampleGroups
 		});
 	});
@@ -127,20 +132,20 @@ var routing = function(app, fs, express, config, logger) {
 
 	// Render portfolio pages
 	for(var i = 0; i < examplePages.length; i++) {
-		app.get('/portfolio/' + examplePages[i].href, function(req, res) {
+		app.get('/projects/' + examplePages[i].href, function(req, res) {
 			var url = req.originalUrl.split('/')[2]
 				.split('?')[0];
 			var example = examplePages.filterObjects('href', url)[0];
 
-			res.render('portfolio-example', {
+			res.render('project-example', {
 				layout: 'common',
 				relativeUrl: url,
 				metaDescription: example.metaDescription,
-				pageGroup: 'portfolio',
+				pageGroup: 'projects',
 				parentPages: [
 					{
-						title: 'portfolio',
-						href: '/portfolio'
+						title: 'projects',
+						href: '/projects'
 					}
 				],
 				pageTitle: example.name,

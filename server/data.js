@@ -74,25 +74,25 @@ var data = function(fs) {
 				bodyText: getData('blog/making-umbraco-nodes-with-the-models-builder.html'),
 			}
 		],
-		// Portfolio data.
+		// Project data.
 		exampleGroups: [
 			{
 				title: 'Personal projects',
-				info: 'These are the projects which I have freelanced on.',
+				info: 'These are the projects which I have worked on.',
 				pages: [
 					{
 						href: 'artists-name-plates',
 						metaDescription: 'I built a website for Artists Name Plates - an ecommerce site that allows users to buy name plates for paintings.',
-						cover: '/media/portfolio/artistsnameplates.jpg',
+						cover: '/media/projects/artistsnameplates.jpg',
 						name: 'Artists Name Plates',
-						bodyText: getData('portfolio/artists-name-plates.html')
+						bodyText: getData('projects/artists-name-plates.html')
 					},
 					{
 						href: 'harvey-williams',
 						metaDescription: 'I built this website using Node.JS and "love".',
-						cover: '/media/portfolio/harveywilliams.png',
+						cover: '/media/projects/harveywilliams.png',
 						name: 'This portfolio site',
-						bodyText: getData('portfolio/harvey-williams.html')
+						bodyText: getData('projects/harvey-williams.html')
 					}
 				]
 			}
