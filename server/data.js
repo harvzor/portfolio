@@ -81,6 +81,13 @@ var data = function(fs) {
 				info: 'These are the projects which I have worked on.',
 				pages: [
 					{
+						href: 'umbraco-iconator',
+						metaDescription: 'A simple package that lets Umbraco users select icons in the backoffice to be displayed on the front end.',
+						cover: '',
+						name: 'Umbraco Iconator',
+						bodyText: getData('projects/umbraco-iconator.html')
+					},
+					{
 						href: 'artists-name-plates',
 						metaDescription: 'I built a website for Artists Name Plates - an ecommerce site that allows users to buy name plates for paintings.',
 						cover: '/media/projects/artistsnameplates.jpg',

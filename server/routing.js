@@ -125,34 +125,29 @@ var routing = function(app, fs, express, config, logger) {
 		});
 	});
 
-	var examplePages = [];
-	for(var i = 0; i < data().exampleGroups.length; i++) {
-		examplePages = examplePages.concat(data().exampleGroups[i].pages);
-	}
+	// Render project pages
+	for(let i = 0; i < data().exampleGroups.length; i++) {
+		for(let x = 0; x < data().exampleGroups[i].pages.length; x++) {
+			app.get('/projects/' + data().exampleGroups[i].pages[x].href, function(req, res) {
+				let example = data().exampleGroups[i].pages[x];
 
-	// Render portfolio pages
-	for(var i = 0; i < examplePages.length; i++) {
-		app.get('/projects/' + examplePages[i].href, function(req, res) {
-			var url = req.originalUrl.split('/')[2]
-				.split('?')[0];
-			var example = examplePages.filterObjects('href', url)[0];
-
-			res.render('project-example', {
-				layout: 'common',
-				relativeUrl: url,
-				metaDescription: example.metaDescription,
-				pageGroup: 'projects',
-				parentPages: [
-					{
-						title: 'projects',
-						href: '/projects'
-					}
-				],
-				pageTitle: example.name,
-				cover: example.cover,
-				bodyText: example.bodyText
+				res.render('project-example', {
+					layout: 'common',
+					relativeUrl: example.href,
+					metaDescription: example.metaDescription,
+					pageGroup: 'projects',
+					parentPages: [
+						{
+							title: 'projects',
+							href: '/projects'
+						}
+					],
+					pageTitle: example.name,
+					cover: example.cover,
+					bodyText: example.bodyText
+				});
 			});
-		});
+		}
 	}
 
 	/////////////////

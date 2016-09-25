@@ -25,18 +25,17 @@ var moment = require('moment');
 var traceLog = new tail('logs/log.txt', '\n', {}, true);
 
 var formatDate = function(d) {
-	return moment(d).format('YYYY MM DD hh:mm:ss');
+	return '[{yellow-fg}' + moment(d).format('hh:mm:ss') + '{/yellow-fg}] ';
 };
 
 traceLog.on('line', function(data) {
 	var json = JSON.parse(data);
-	logBox.pushLine('{yellow-fg}' + formatDate(json.time) + '{/yellow-fg} ' + json.msg);
+	logBox.pushLine(formatDate(json.time) + json.msg);
 	screen.render();
 });
 
 var screen = blessed.screen({
 	smartCSR: true,
-	dockBorders: true,
 	resizeTimeout: 300,
 	title: 'Gulp!'
 });
@@ -49,9 +48,6 @@ var gulpBox = blessed.log({
 	height: '33%',
 	border: 'line',
 	tags: true,
-	keys: true,
-	vi: true,
-	mouse: true,
 	scrollback: 100,
 	scrollbar: {
 		ch: ' ',
@@ -68,15 +64,12 @@ var gulpBox = blessed.log({
 
 var stylesBox = blessed.log({
 	parent: screen,
-	top: '33%',
+	top: gulpBox.height,
 	left: '0',
 	width: '50%',
-	height: '33%',
+	height: gulpBox.height,
 	border: 'line',
 	tags: true,
-	keys: true,
-	vi: true,
-	mouse: true,
 	scrollback: 100,
 	scrollbar: {
 		ch: ' ',
@@ -93,15 +86,12 @@ var stylesBox = blessed.log({
 
 var scriptsBox = blessed.log({
 	parent: screen,
-	top: '66%',
+	top: gulpBox.height * 2,
 	left: '0',
 	width: '50%',
-	height: '33%',
+	height: gulpBox.height,
 	border: 'line',
 	tags: true,
-	keys: true,
-	vi: true,
-	mouse: true,
 	scrollback: 100,
 	scrollbar: {
 		ch: ' ',
@@ -121,12 +111,9 @@ var logBox = blessed.log({
 	top: '0',
 	left: '50%',
 	width: '50%',
-	height: '99%',
+	height: gulpBox.height * 3,
 	border: 'line',
 	tags: true,
-	keys: true,
-	vi: true,
-	mouse: true,
 	scrollback: 100,
 	scrollbar: {
 		ch: ' ',
@@ -156,11 +143,11 @@ gulp.task('styles', function() {
 	])
 	.pipe(plumber({
 		errorHandler: function (err) {
-			stylesBox.pushLine('{yellow-fg}' + formatDate(new Date()) + '{/yellow-fg} {red-fg}' + err.message + '{/red-fg}');
+			stylesBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
 			screen.render();
 
 			notifier.notify({
-				title: 'Error in style stask',
+				title: 'Error in styles stask',
 				message: err.message
 			});
 
@@ -176,7 +163,7 @@ gulp.task('styles', function() {
 	.pipe(sourcemaps.write('.'))
 	.pipe(gulp.dest('public/css'))
 	.on('end', function() {
-		stylesBox.pushLine('{yellow-fg}' + formatDate(new Date()) + '{/yellow-fg} Styles task completed.');
+		stylesBox.pushLine(formatDate(new Date()) + 'Styles task completed.');
 		screen.render();
 
 		notifier.notify({
@@ -193,7 +180,7 @@ gulp.task('scripts', function() {
 	])
 	.pipe(plumber({
 		errorHandler: function (err) {
-			scriptsBox.pushLine('{yellow-fg}' + formatDate(new Date()) + '{/yellow-fg} {red-fg}' + err.message + '{/red-fg}');
+			scriptsBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
 			screen.render();
 
 			notifier.notify({
@@ -208,7 +195,7 @@ gulp.task('scripts', function() {
 	.pipe(uglify())
 	.pipe(gulp.dest('public/js'))
 	.on('end', function() {
-		scriptsBox.pushLine('{yellow-fg}' + formatDate(new Date()) + '{/yellow-fg} Scripts task completed.');
+		scriptsBox.pushLine(formatDate(new Date()) + 'Scripts task completed.');
 		screen.render();
 
 		notifier.notify({
@@ -227,7 +214,7 @@ gulp.task('start', function() {
 		watch: ['server/*', 'server.js']
 	})
 	.on('start', function(event) {
-		gulpBox.pushLine('{yellow-fg}' + formatDate(new Date()) + '{/yellow-fg} Server started.');
+		gulpBox.pushLine(formatDate(new Date()) + 'Server started.');
 		screen.render();
 	})
 	/*
@@ -237,7 +224,7 @@ gulp.task('start', function() {
 	})
 	*/
 	.on('crash', function() {
-		gulpBox.pushLine('{yellow-fg}' + formatDate(new Date()) + '{/yellow-fg} {red-fg}Server crashed!{/red-fg}');
+		gulpBox.pushLine(formatDate(new Date()) + '{red-fg}Server crashed!{/red-fg}');
 		screen.render();
 
 		notifier.notify({

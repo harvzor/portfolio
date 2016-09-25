@@ -8,9 +8,13 @@
       "email": ""
     }
   ],
+  "scripts": {
+    "install": "npm install",
+    "start": "gulp --silent"
+  },
   "repository": {
     "type": "git",
-    "url": "harveywilliams.net"
+    "url": "https://github.com/HarveyWilliams/portfolio"
   },
   "dependencies": {
     "bunyan": "^1.7.1",
