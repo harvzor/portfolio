@@ -7,6 +7,12 @@ var data = function(fs) {
 	var dataObject = {
 		songs: [
 			{
+				name: 'Me Gustas Tu',
+				artist: 'Manu Chao',
+				date: 'Sundary, 25 Sep 2016 00:00:00 GMT',
+				url: 'https://www.youtube.com/watch?v=rs6Y4kZ8qtw'
+			},
+			{
 				name: 'We Are The People',
 				artist: 'Empire of the Sun',
 				date: 'Thursday, 11 Aug 2016 00:00:00 GMT',
