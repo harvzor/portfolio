@@ -84,6 +84,7 @@ var data = function(fs) {
 						href: 'umbraco-iconator',
 						metaDescription: 'A simple package that lets Umbraco users select icons in the backoffice to be displayed on the front end.',
 						cover: '',
+						cover: '/media/projects/umbraco-iconator/IconPickerDialog.png',
 						name: 'Umbraco Iconator',
 						bodyText: getData('projects/umbraco-iconator.html')
 					},
