@@ -37,7 +37,7 @@ var data = function(fs) {
 				href: 'potentially-useful-programs-for-the-budding-computerphile',
 				metaDescription: 'A list of programs that I find useful in day to day life with my computer.',
 				title: 'Potentially useful programs for the budding computerphile',
-				postDate: 'Tue, 21 Jun 2016 00:00:00 GMT',
+				postDate: 'Sun, 25 Sep 2016 00:00:00 GMT',
 				summary: 'There are many programs I use in day to day life to help speed up or complement my workflow. Here are a few of the nicher ones which you may not have heard of.',
 				bodyText: getData('blog/potentially-useful-programs-for-the-budding-computerphile.html')
 			},
