@@ -1,8 +1,14 @@
+<p>
+
+</p>
 <% posts.forEach(function(post) { %>
 	<a href="/blog/<%= post.href %>" class="post-preview">
 		<h2><%= post.title %></h2>
 		<p>
 			<%= post.summary %>
 		</p>
+		<div class="meta">
+			<span class="meta-detail">Posted:</span> <%= helpers.friendlyDate(post.postDate) %>
+		</div>
 	</a>
 <% }); %>

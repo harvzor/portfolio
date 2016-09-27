@@ -52,7 +52,11 @@ var routing = function(app, fs, express, config, logger) {
 	*/
 
 	app.get('/blog', function(req, res) {
+		var tags = data().posts.map(function(post) { return post.tags; });
+		tags = tags.filter(helpers.onlyUnique);
+
 		res.render('posts', {
+			helpers: helpers,
 			layout: 'common',
 			relativeUrl: 'blog',
 			metaDescription: 'Read about my latest thoughts and experiences in the world of web development.',

@@ -15,6 +15,11 @@ var helpers = {
 
 		return n + (s[(v-20) % 10] || s[v] || s[0]);
 	},
+	// Filters an array by unique values.
+	// http://stackoverflow.com/questions/1960473/unique-values-in-an-array
+	function onlyUnique(value, index, self) { 
+		return self.indexOf(value) === index;
+	},
 	// Gets a month from a digit.
 	// i = 0 - 11
 	// return a month

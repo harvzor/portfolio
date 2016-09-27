@@ -45,7 +45,8 @@ var data = function(fs) {
 				title: 'Potentially useful programs for the budding computerphile',
 				postDate: 'Sun, 25 Sep 2016 00:00:00 GMT',
 				summary: 'There are many programs I use in day to day life to help speed up or complement my workflow. Here are a few of the nicher ones which you may not have heard of.',
-				bodyText: getData('blog/potentially-useful-programs-for-the-budding-computerphile.html')
+				bodyText: getData('blog/potentially-useful-programs-for-the-budding-computerphile.html'),
+				tags: ['miscellaneous']
 			},
 			{
 				href: 'rendering-mvc-emails-with-cshtml',
@@ -53,7 +54,8 @@ var data = function(fs) {
 				title: 'How to render MVC emails with CSHTML',
 				postDate: 'Wed, 06 Feb 2016 00:00:00 GMT',
 				summary: 'Tired of using string formatting to create emails in your code? Read here to find out about how to build HTML emails using MVC, Razor and CSHTML.',
-				bodyText: getData('blog/rendering-mvc-emails-with-cshtml.html')
+				bodyText: getData('blog/rendering-mvc-emails-with-cshtml.html'),
+				tags: ['c#', 'programming']
 			},
 			{
 				href: 'caching-umbraco-web-controllers',
@@ -61,7 +63,8 @@ var data = function(fs) {
 				title: 'Caching Umbraco web API controllers',
 				postDate: 'Tue, 26 Jan 2016 00:00:00 GMT',
 				summary: 'Caching improves load time for everyone. Here I explain how easily make caching work with Web API controllers.',
-				bodyText: getData('blog/caching-umbraco-web-controllers.html')
+				bodyText: getData('blog/caching-umbraco-web-controllers.html'),
+				tags: ['c#', 'umbraco', 'programming']
 			},
 			{
 				href: 'installing-iisnode',
@@ -69,7 +72,8 @@ var data = function(fs) {
 				title: 'Installing IISNode for production',
 				postDate: 'Mon, 25 Jan 2016 00:00:00 GMT',
 				summary: 'Developing Node.js applications on Windows is easy, but getting them setup for production can be a little more difficult. Read this post to discover how to set up IISNode in Windows and get a Node application running within IIS.',
-				bodyText: getData('blog/installing-iisnode.html')
+				bodyText: getData('blog/installing-iisnode.html'),
+				tags: ['nodejs', 'programming']
 			},
 			{
 				href: 'making-umbraco-nodes-with-the-models-builder',
@@ -78,6 +82,7 @@ var data = function(fs) {
 				postDate: 'Sun, 20 Mar 2016 00:00:00 GMT',
 				summary: 'In my latest Umbraco website built I have been getting friendly with the new Models Builder that is included by default. In this post I show how the Models Builder can be used with the Content Service to create new Umbraco nodes programmatically.',
 				bodyText: getData('blog/making-umbraco-nodes-with-the-models-builder.html'),
+				tags: ['umbraco', 'c#', 'programming']
 			}
 		],
 		// Project data.
