@@ -1,6 +1,3 @@
-<p>
-
-</p>
 <% posts.forEach(function(post) { %>
 	<a href="/blog/<%= post.href %>" class="post-preview">
 		<h2><%= post.title %></h2>
@@ -12,3 +9,18 @@
 		</div>
 	</a>
 <% }); %>
+<div class="tags">
+	<p>Filter by:</p>
+	<% tags.forEach(function(tag) { %>
+		<a class="tag<% if (currentTag == tag.name) { %> active<% } %>" href="/blog?tag=<%= tag.name %>">
+			<div class="tag-inner">
+				<div class="box tag-front">
+					<%= tag.name %> (<%= tag.quantity %>)
+				</div>
+				<div class="box tag-back">
+					<%= tag.name %> (<%= tag.quantity %>)
+				</div>
+			</div>
+		</a>
+	<% }); %>
+</div>

@@ -17,7 +17,7 @@ var helpers = {
 	},
 	// Filters an array by unique values.
 	// http://stackoverflow.com/questions/1960473/unique-values-in-an-array
-	function onlyUnique(value, index, self) { 
+	onlyUnique: function(value, index, self) { 
 		return self.indexOf(value) === index;
 	},
 	// Gets a month from a digit.
@@ -62,6 +62,27 @@ var helpers = {
 				return "December";
 			break;
 		}
+	},
+	getBlogTags: function(data) {
+		var allTags = [];
+		var uniqueTags = [];
+		var tagsWithQuantity = [];
+
+		for (var i = 0; i < data.posts.length; i++) {
+			allTags = allTags.concat(data.posts[i].tags);
+		}
+
+		uniqueTags = allTags.filter(helpers.onlyUnique);
+
+		for (var i = 0; i < uniqueTags.length; i++) {
+			var quantity = allTags.filter(function(tag) {
+				return tag == uniqueTags[i];
+			}).length;
+
+			tagsWithQuantity.push({ name: uniqueTags[i], quantity: quantity });
+		}
+
+		return tagsWithQuantity;
 	}
 };
 

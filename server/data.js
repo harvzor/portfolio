@@ -55,7 +55,7 @@ var data = function(fs) {
 				postDate: 'Wed, 06 Feb 2016 00:00:00 GMT',
 				summary: 'Tired of using string formatting to create emails in your code? Read here to find out about how to build HTML emails using MVC, Razor and CSHTML.',
 				bodyText: getData('blog/rendering-mvc-emails-with-cshtml.html'),
-				tags: ['c#', 'programming']
+				tags: ['csharp', 'programming']
 			},
 			{
 				href: 'caching-umbraco-web-controllers',
@@ -64,7 +64,7 @@ var data = function(fs) {
 				postDate: 'Tue, 26 Jan 2016 00:00:00 GMT',
 				summary: 'Caching improves load time for everyone. Here I explain how easily make caching work with Web API controllers.',
 				bodyText: getData('blog/caching-umbraco-web-controllers.html'),
-				tags: ['c#', 'umbraco', 'programming']
+				tags: ['csharp', 'umbraco', 'programming']
 			},
 			{
 				href: 'installing-iisnode',
@@ -82,7 +82,7 @@ var data = function(fs) {
 				postDate: 'Sun, 20 Mar 2016 00:00:00 GMT',
 				summary: 'In my latest Umbraco website built I have been getting friendly with the new Models Builder that is included by default. In this post I show how the Models Builder can be used with the Content Service to create new Umbraco nodes programmatically.',
 				bodyText: getData('blog/making-umbraco-nodes-with-the-models-builder.html'),
-				tags: ['umbraco', 'c#', 'programming']
+				tags: ['umbraco', 'csharp', 'programming']
 			}
 		],
 		// Project data.

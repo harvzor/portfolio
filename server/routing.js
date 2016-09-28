@@ -52,8 +52,17 @@ var routing = function(app, fs, express, config, logger) {
 	*/
 
 	app.get('/blog', function(req, res) {
-		var tags = data().posts.map(function(post) { return post.tags; });
-		tags = tags.filter(helpers.onlyUnique);
+		logger.info('tag: %s', req.query.tag);
+
+		var posts = data().posts;
+
+		var tagsWithQuantity = helpers.getBlogTags(data());
+
+		if (req.query.tag) {
+			posts = posts.filter(function(post) {
+				return post.tags.indexOf(req.query.tag) > -1;
+			});
+		}
 
 		res.render('posts', {
 			helpers: helpers,
@@ -63,9 +72,11 @@ var routing = function(app, fs, express, config, logger) {
 			pageGroup: 'blog',
 			pageTitle: 'Blog', 
 			// Order posts by date.
-			posts: data().posts.sort(function(a, b) {
+			posts: posts.sort(function(a, b) {
 				return new Date(b.postDate).getTime() - new Date(a.postDate).getTime();
-			})
+			}),
+			tags: tagsWithQuantity,
+			currentTag: req.query.tag
 		});
 	});
 

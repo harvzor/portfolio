@@ -1,0 +1,49 @@
+.tags {
+	text-align:center;
+	margin:20px;
+}
+
+.tag {
+	position:relative;
+	color:$grey-darkest;
+	text-decoration:none;
+
+	&:hover, &:focus, &.active {
+		.tag-inner {
+			transform:rotateX(180deg);
+		}
+
+		.tag-back {
+			transform:rotateX(180deg);
+		}
+	}
+
+	.tag-inner {
+		transition:0.5s;
+		transform-style:preserve-3d;
+		perspective:1000px;
+		//backface-visibility:hidden;
+	}
+
+	.tag-front, .tag-back {
+		padding:10px;
+		margin:0;
+	}
+
+	.tag-front {
+
+	}
+
+	.tag-back {
+		position:absolute;
+		left:0;
+		top:0;
+		padding:10px;
+		height:100%;
+		width:100%;
+		background-color:$grey-darkest;
+		color:$grey-lightest;
+		transform:rotateX(180deg);
+		backface-visibility:hidden;
+	}
+}
