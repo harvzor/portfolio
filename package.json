@@ -8,10 +8,6 @@
       "email": ""
     }
   ],
-  "scripts": {
-    "install": "npm install",
-    "start": "gulp --silent"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/HarveyWilliams/portfolio"
