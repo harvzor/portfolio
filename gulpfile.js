@@ -22,6 +22,14 @@ var moment = require('moment');
 
 //notifier.logLevel(0);
 
+if (!fs.existsSync('logs/log.txt')) {
+	if (!fs.existsSync('logs')) {
+		fs.mkdirSync('logs');
+	}
+
+	fs.writeFileSync('logs/log.txt', '');
+}
+
 var traceLog = new tail('logs/log.txt', '\n', {}, true);
 
 var formatDate = function(d) {
