@@ -30,7 +30,6 @@
     "gulp-autoprefixer": "^2.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-cssnano": "^2.1.0",
-    "gulp-nodemon": "^2.0.6",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
@@ -40,6 +39,7 @@
     "gulp-util": "^3.0.7",
     "moment": "^2.11.2",
     "node-notifier": "^4.5.0",
+    "nodemon": "^1.11.0",
     "tail": "^0.4.0"
   }
 }
