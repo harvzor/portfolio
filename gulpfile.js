@@ -4,15 +4,14 @@ var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
 var plumber = require('gulp-plumber');
-var sourcemaps = require('gulp-sourcemaps');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var concat = require('gulp-concat');
 var notifier = require('node-notifier');
-var del = require('del');
-var blessed = require('blessed');
-var tail = require('tail').Tail;
-var nodemon = require('nodemon');
+var sourcemaps = require('gulp-sourcemaps');
+var rename = require('gulp-rename');
+var uglify = require('gulp-uglify');
+var blessed;
+var fs;
+var tail;
+var nodemon;
 
 var cli = false;
 var gulpBoxl
@@ -23,13 +22,32 @@ var screen;
 
 var formatDate = function(d) {
 	var date = new Date(d);
-	var time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+	var hours = date.getHours();
+	var minutes = date.getMinutes();
+	var seconds = date.getSeconds();
+	var time = '';
+
+	if (hours < 10) {
+		hours = "0" + hours;
+	}
+
+	if (minutes < 10) {
+		minutes = "0" + minutes;
+	}
+
+	if (seconds < 10) {
+		seconds = "0" + seconds;
+	}
+
+	time = hours + ':' + minutes + ':' + seconds;
 
 	return '[{yellow-fg}' + time + '{/yellow-fg}] ';
 };
 
 gulp.task('cli', function() {
-	var fs = require('fs');
+	blessed = require('blessed');
+	tail = require('tail').Tail;
+	fs = require('fs');
 
 	cli = true;
 
@@ -155,6 +173,9 @@ gulp.task('cli', function() {
 
 // Styles - compile custom Sass
 gulp.task('styles', function() {
+	if (typeof sourcemaps === 'undefined') {
+	}
+
 	return gulp.src([
 		'src/sass/main.scss'
 	])
@@ -232,6 +253,8 @@ gulp.task('scripts', function() {
 
 // Start - starts the server and restarts it on file change
 gulp.task('start', function() {
+	nodemon = require('nodemon');
+
 	nodemon({
 		script: 'server.js',
 		ext: 'js',
