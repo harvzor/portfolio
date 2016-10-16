@@ -1,8 +1,4 @@
 // Load plugins
-//var gutil = require('gulp-util');
-//gutil.log = function() {};
-////process.argv.push('-q');
-
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
@@ -17,10 +13,6 @@ var del = require('del');
 var blessed = require('blessed');
 var tail = require('tail').Tail;
 var nodemon = require('nodemon');
-var fs = require('fs');
-var moment = require('moment');
-
-//notifier.logLevel(0);
 
 var cli = false;
 var gulpBoxl
@@ -30,10 +22,15 @@ var logBox;
 var screen;
 
 var formatDate = function(d) {
-	return '[{yellow-fg}' + moment(d).format('hh:mm:ss') + '{/yellow-fg}] ';
+	var date = new Date(d);
+	var time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+
+	return '[{yellow-fg}' + time + '{/yellow-fg}] ';
 };
 
 gulp.task('cli', function() {
+	var fs = require('fs');
+
 	cli = true;
 
 	if (!fs.existsSync('logs/log.txt')) {

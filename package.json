@@ -37,7 +37,6 @@
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.7",
-    "moment": "^2.11.2",
     "node-notifier": "^4.5.0",
     "nodemon": "^1.11.0",
     "tail": "^0.4.0"
