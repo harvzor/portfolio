@@ -22,127 +22,139 @@ var moment = require('moment');
 
 //notifier.logLevel(0);
 
-if (!fs.existsSync('logs/log.txt')) {
-	if (!fs.existsSync('logs')) {
-		fs.mkdirSync('logs');
-	}
-
-	fs.writeFileSync('logs/log.txt', '');
-}
-
-var traceLog = new tail('logs/log.txt', '\n', {}, true);
+var cli = false;
+var gulpBoxl
+var stylesBox;
+var scriptsBox;
+var logBox;
+var screen;
 
 var formatDate = function(d) {
 	return '[{yellow-fg}' + moment(d).format('hh:mm:ss') + '{/yellow-fg}] ';
 };
 
-traceLog.on('line', function(data) {
-	var json = JSON.parse(data);
-	logBox.pushLine(formatDate(json.time) + json.msg);
+gulp.task('cli', function() {
+	cli = true;
+
+	if (!fs.existsSync('logs/log.txt')) {
+		if (!fs.existsSync('logs')) {
+			fs.mkdirSync('logs');
+		}
+
+		fs.writeFileSync('logs/log.txt', '');
+	}
+
+	var traceLog = new tail('logs/log.txt', '\n', {}, true);
+
+	traceLog.on('line', function(data) {
+		var json = JSON.parse(data);
+		logBox.pushLine(formatDate(json.time) + json.msg);
+		screen.render();
+	});
+
+	screen = blessed.screen({
+		smartCSR: true,
+		resizeTimeout: 300,
+		title: 'Gulp!'
+	});
+
+	gulpBox = blessed.log({
+		parent: screen,
+		top: '0',
+		left: '0',
+		width: '50%',
+		height: '33%',
+		border: 'line',
+		tags: true,
+		scrollback: 100,
+		scrollbar: {
+			ch: ' ',
+			fg: 'white',
+			track: {
+				bg: 'yellow'
+			},
+			style: {
+				inverse: true,
+			}
+		},
+		label: 'Gulp log',
+	});
+
+	stylesBox = blessed.log({
+		parent: screen,
+		top: gulpBox.height,
+		left: '0',
+		width: '50%',
+		height: gulpBox.height,
+		border: 'line',
+		tags: true,
+		scrollback: 100,
+		scrollbar: {
+			ch: ' ',
+			fg: 'white',
+			track: {
+				bg: 'yellow'
+			},
+			style: {
+				inverse: true,
+			}
+		},
+		label: 'Styles log',
+	});
+
+	scriptsBox = blessed.log({
+		parent: screen,
+		top: gulpBox.height * 2,
+		left: '0',
+		width: '50%',
+		height: gulpBox.height,
+		border: 'line',
+		tags: true,
+		scrollback: 100,
+		scrollbar: {
+			ch: ' ',
+			fg: 'white',
+			track: {
+				bg: 'yellow'
+			},
+			style: {
+				inverse: true,
+			}
+		},
+		label: 'Scripts log',
+	});
+
+	logBox = blessed.log({
+		parent: screen,
+		top: '0',
+		left: '50%',
+		width: '50%',
+		height: gulpBox.height * 3,
+		border: 'line',
+		tags: true,
+		scrollback: 100,
+		scrollbar: {
+			ch: ' ',
+			fg: 'white',
+			track: {
+				bg: 'yellow'
+			},
+			style: {
+				inverse: true,
+			}
+		},
+		label: 'Bunyan',
+	});
+
+	// Quit on Escape, q, or Control-C.
+	screen.key(['escape', 'q', 'C-c'], function(ch, key) {
+		return screen.destroy();
+	});
+
+	// Render the screen.
 	screen.render();
 });
 
-var screen = blessed.screen({
-	smartCSR: true,
-	resizeTimeout: 300,
-	title: 'Gulp!'
-});
-
-var gulpBox = blessed.log({
-	parent: screen,
-	top: '0',
-	left: '0',
-	width: '50%',
-	height: '33%',
-	border: 'line',
-	tags: true,
-	scrollback: 100,
-	scrollbar: {
-		ch: ' ',
-		fg: 'white',
-		track: {
-			bg: 'yellow'
-		},
-		style: {
-			inverse: true,
-		}
-	},
-	label: 'Gulp log',
-});
-
-var stylesBox = blessed.log({
-	parent: screen,
-	top: gulpBox.height,
-	left: '0',
-	width: '50%',
-	height: gulpBox.height,
-	border: 'line',
-	tags: true,
-	scrollback: 100,
-	scrollbar: {
-		ch: ' ',
-		fg: 'white',
-		track: {
-			bg: 'yellow'
-		},
-		style: {
-			inverse: true,
-		}
-	},
-	label: 'Styles log',
-});
-
-var scriptsBox = blessed.log({
-	parent: screen,
-	top: gulpBox.height * 2,
-	left: '0',
-	width: '50%',
-	height: gulpBox.height,
-	border: 'line',
-	tags: true,
-	scrollback: 100,
-	scrollbar: {
-		ch: ' ',
-		fg: 'white',
-		track: {
-			bg: 'yellow'
-		},
-		style: {
-			inverse: true,
-		}
-	},
-	label: 'Scripts log',
-});
-
-var logBox = blessed.log({
-	parent: screen,
-	top: '0',
-	left: '50%',
-	width: '50%',
-	height: gulpBox.height * 3,
-	border: 'line',
-	tags: true,
-	scrollback: 100,
-	scrollbar: {
-		ch: ' ',
-		fg: 'white',
-		track: {
-			bg: 'yellow'
-		},
-		style: {
-			inverse: true,
-		}
-	},
-	label: 'Bunyan',
-});
-
-// Quit on Escape, q, or Control-C.
-screen.key(['escape', 'q', 'C-c'], function(ch, key) {
-	return screen.destroy();
-});
-
-// Render the screen.
-screen.render();
 
 // Styles - compile custom Sass
 gulp.task('styles', function() {
@@ -151,8 +163,10 @@ gulp.task('styles', function() {
 	])
 	.pipe(plumber({
 		errorHandler: function (err) {
-			stylesBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
-			screen.render();
+			if (cli) {
+				stylesBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
+				screen.render();
+			}
 
 			notifier.notify({
 				title: 'Error in styles stask',
@@ -171,8 +185,10 @@ gulp.task('styles', function() {
 	.pipe(sourcemaps.write('.'))
 	.pipe(gulp.dest('public/css'))
 	.on('end', function() {
-		stylesBox.pushLine(formatDate(new Date()) + 'Styles task completed.');
-		screen.render();
+		if (cli) {
+			stylesBox.pushLine(formatDate(new Date()) + 'Styles task completed.');
+			screen.render();
+		}
 
 		notifier.notify({
 			title: 'Styles task completed',
@@ -188,8 +204,10 @@ gulp.task('scripts', function() {
 	])
 	.pipe(plumber({
 		errorHandler: function (err) {
-			scriptsBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
-			screen.render();
+			if (cli) {
+				scriptsBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
+				screen.render();
+			}
 
 			notifier.notify({
 				title: 'Error in scripts task',
@@ -203,8 +221,10 @@ gulp.task('scripts', function() {
 	.pipe(uglify())
 	.pipe(gulp.dest('public/js'))
 	.on('end', function() {
-		scriptsBox.pushLine(formatDate(new Date()) + 'Scripts task completed.');
-		screen.render();
+		if (cli) {
+			scriptsBox.pushLine(formatDate(new Date()) + 'Scripts task completed.');
+			screen.render();
+		}
 
 		notifier.notify({
 			title: 'Scripts task completed',
@@ -222,8 +242,10 @@ gulp.task('start', function() {
 		watch: ['server/*', 'server.js']
 	})
 	.on('start', function(event) {
-		gulpBox.pushLine(formatDate(new Date()) + 'Server started.');
-		screen.render();
+		if (cli) {
+			gulpBox.pushLine(formatDate(new Date()) + 'Server started.');
+			screen.render();
+		}
 	})
 	/*
 	.on('restart', function() {
@@ -232,8 +254,10 @@ gulp.task('start', function() {
 	})
 	*/
 	.on('crash', function() {
-		gulpBox.pushLine(formatDate(new Date()) + '{red-fg}Server crashed!{/red-fg}');
-		screen.render();
+		if (cli) {
+			gulpBox.pushLine(formatDate(new Date()) + '{red-fg}Server crashed!{/red-fg}');
+			screen.render();
+		}
 
 		notifier.notify({
 			title: 'Server crashed.',
@@ -251,33 +275,5 @@ gulp.task('watch', function() {
 	gulp.watch('src/js/script.js', ['scripts']);
 });
 
-/*
-// Build - task to concat and minify all javascript: 'gulp build' will run this task
-gulp.task('vendor-scripts', function() {
-	return gulp.src([
-		'scripts/vendor/jquery-1.11.3.min.js',
-		'scripts/vendor/jquery.validate.min.js',
-		'scripts/vendor/jquery.validate.unobtrusive.min.js',
-		'scripts/vendor/modal.js',
-		'scripts/vendor/nouislider.min.js',
-		'scripts/vendor/swiper.jquery.min.js',
-		'scripts/vendor/jquery.cookie.js'
-	])
-	.pipe(plumber({
-		errorHandler: function (err) {
-			//console.log(err);
-			notifier.notify.onError({
-				message: 'Error in vendor-scripts task: <%= error.message %>'
-			})(err);
-			this.emit('end');
-		}
-	}))
-	.pipe(concat('vendor.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('scripts'))
-	.pipe(notifier.notify({ message: 'Vendor-scripts task completed' }));
-});
-*/
-
 // Default - runs the scripts, styles and watch tasks: 'gulp' will run this task
-gulp.task('default', ['styles', 'scripts', 'start', 'watch'])
+gulp.task('default', ['cli', 'styles', 'scripts', 'start', 'watch'])
