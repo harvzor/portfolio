@@ -46,6 +46,15 @@ var data = function(fs) {
 		// Blog data.
 		posts: [
 			{
+				href: 'understanding-threads-and-static-classes-in-csharp',
+				metaDescription: '',
+				title: 'Understanding Threads and Static Classes in C#',
+				postDate: 'Sun, 25 Sep 2016 00:00:00 GMT',
+				summary: '',
+				bodyText: getData('blog/understanding-threads-and-static-classes-in-csharp.md'),
+				tags: ['csharp', 'programming']
+			},
+			{
 				href: 'potentially-useful-programs-for-the-budding-computerphile',
 				metaDescription: 'A list of programs that I find useful in day to day life with my computer.',
 				title: 'Potentially useful programs for the budding computerphile',
