@@ -15,6 +15,12 @@ var data = function(fs) {
 	var dataObject = {
 		songs: [
 			{
+				name: 'Renn!',
+				artist: 'Enno Bunger',
+				date: 'Wednesday, 26 Oct 2016 00:00:00 GMT',
+				url: 'https://www.youtube.com/watch?v=SmBP2lMhEnE'
+			},
+			{
 				name: 'Barfuß Am Klavier',
 				artist: 'AnnenMayKantereit',
 				date: 'Saturday, 15 Oct 2016 00:00:00 GMT',
