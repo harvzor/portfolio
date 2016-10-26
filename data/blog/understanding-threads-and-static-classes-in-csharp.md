@@ -9,72 +9,72 @@ Here is a simplified example of the buggy program:
 ```
 namespace StaticTest
 {
-  public class Program
-  {
-    static void Main(string[] args)
+    public class Program
     {
-      while (true)
-      {
-        // Run the method asynchronously.
-        new Task(Worker.Work).Start();
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                // Run the method asynchronously.
+                new Task(Worker.Work).Start();
 
-        Thread.Sleep(5000);
+                Thread.Sleep(5000);
 
-        new Task(Worker.Work).Start();
+                new Task(Worker.Work).Start();
 
-        Console.ReadLine();
-      }
+                Console.ReadLine();
+            }
+        }
     }
-  }
-
-  /// <summary>
-  /// A class that will do "work".
-  /// </summary>
-  public static class Worker
-  {
-    /// <summary>
-    /// A simple logging variable which has text appended to it.
-    /// </summary>
-    public static string Log;
 
     /// <summary>
-    /// An indicator that stops the process from being ran twice.
+    /// A class that will do "work".
     /// </summary>
-    public static bool InProgress;
-
-    /// <summary>
-    /// A fake method that will work for 10 seconds before logging.
-    /// </summary>
-    public static void Work()
+    public static class Worker
     {
-      Log = "";
+        /// <summary>
+        /// A simple logging variable which has text appended to it.
+        /// </summary>
+        public static string Log;
 
-      var startTime = DateTime.Now;
+        /// <summary>
+        /// An indicator that stops the process from being ran twice.
+        /// </summary>
+        public static bool InProgress;
 
-      Log += "Started at: " + startTime.ToString() + Environment.NewLine;
+        /// <summary>
+        /// A fake method that will work for 10 seconds before logging.
+        /// </summary>
+        public static void Work()
+        {
+            Log = "";
 
-      if (InProgress)
-      {
-        Log += "Process already started before. Exiting out." + Environment.NewLine;
+            var startTime = DateTime.Now;
 
-        return;
-      }
+            Log += "Started at: " + startTime.ToString() + Environment.NewLine;
 
-      InProgress = true;
+            if (InProgress)
+            {
+                Log += "Process already started before. Exiting out." + Environment.NewLine;
 
-      Log += "Doing work for 10 seconds..." + Environment.NewLine;
+                return;
+            }
 
-      Thread.Sleep(10000);
+            InProgress = true;
 
-      Log += "Finished work." + Environment.NewLine;
+            Log += "Doing work for 10 seconds..." + Environment.NewLine;
 
-      Log += "Ended at: " + DateTime.Now.ToString() + Environment.NewLine;
+            Thread.Sleep(10000);
 
-      Console.Write(Log);
+            Log += "Finished work." + Environment.NewLine;
 
-      InProgress = false;
+            Log += "Ended at: " + DateTime.Now.ToString() + Environment.NewLine;
+
+            Console.Write(Log);
+
+            InProgress = false;
+        }
     }
-  }
 }
 ```
 
@@ -86,18 +86,18 @@ This program had a little bit of consideration put into it to ensure some simple
 I expected the following to be logged to the terminal:
 
 ```
-Started at: 25/10/2016 20:11:27
+Started at: 26/10/2016 20:11:27
 Finished work.
-Ended at: 25/10/2016 20:11:27
+Ended at: 26/10/2016 20:11:27
 ```
 
 But instead, this was logged:
 
 ```
-Started at: 25/10/2016 20:11:27
+Started at: 26/10/2016 20:11:27
 Process already started before. Exiting out.
 Finished work.
-Ended at: 25/10/2016 20:11:32
+Ended at: 26/10/2016 20:11:32
 ```
 
 This can be a little bit confusing, but as it turns out, the static properties on a static class are not thread safe. What this means is that the property is shared between threads.
@@ -107,15 +107,15 @@ Here's a step by step on what happened:
 - Main started running
 - the Work method was ran (on a new thread, which we will call "Work (1)")
 - Main then paused on Thread.Sleep(5000)
-- Work (1) continued and set the Log string to empty. It then added "Started at: 25/10/2016 20:11:27"
+- Work (1) continued and set the Log string to empty. It then added "Started at: 26/10/2016 20:11:27"
 - Process.InProgress was currently set to false, so Work skipped the if block
 - Process.InPogress was set to true
 - "Doing work for 10 seconds..." is added to the log
 - Work (1) then waited at Thread.Sleep(10000)
 - Main finished waiting and started a new thread for the next Work (2) method
-- Work (2) sets the Log string to empty. It then added "Started at: 25/10/2016 20:11:32"
+- Work (2) sets the Log string to empty. It then added "Started at: 26/10/2016 20:11:32"
 - Work (2) saw that the InProgress boolean was set to true, and added "Process already started before. Exiting out." to the Log
-- Work (1) finished waiting added "Finished work." and "Ended at: 25/10/2016 20:11:32" to the Log
+- Work (1) finished waiting added "Finished work." and "Ended at: 26/10/2016 20:11:32" to the Log
 - Work (1) writes the Log to the console
 
 This program can be fixed by either making the Worker class non-static (along with the properties and methods inside of it), or by making the Log thread static. This can be done with a simple attribute:

@@ -1,7 +1,15 @@
 var data = function(fs) {
+	var marked = require('marked');
+
 	// Reads a file.
 	var getData = function(path) {
-		return fs.readFileSync('data/' + path, 'utf8');
+		var contents = fs.readFileSync('data/' + path, 'utf8');
+
+		if (path.endsWith('.md')) {
+			return marked(contents);
+		}
+
+		return contents;
 	};
 
 	var dataObject = {
@@ -47,10 +55,10 @@ var data = function(fs) {
 		posts: [
 			{
 				href: 'understanding-threads-and-static-classes-in-csharp',
-				metaDescription: '',
+				metaDescription: 'Writing static classes can cause problems if thread safety isn\'t properly considered. In a program I helped write, some surprising results occured which could have easily been avoided by ensuring my properties weren\'t getting shared between threads.',
 				title: 'Understanding Threads and Static Classes in C#',
-				postDate: 'Sun, 25 Sep 2016 00:00:00 GMT',
-				summary: '',
+				postDate: 'Sun, 26 Sep 2016 00:00:00 GMT',
+				summary: 'Writing static classes can cause problems if thread safety isn\'t properly considered. In a program I helped write, some surprising results occured which could have easily been avoided by ensuring my properties weren\'t getting shared between threads. Read on to find out what I learned...',
 				bodyText: getData('blog/understanding-threads-and-static-classes-in-csharp.md'),
 				tags: ['csharp', 'programming']
 			},
