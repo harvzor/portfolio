@@ -5,7 +5,7 @@ var data = function(fs) {
 	var getData = function(path) {
 		var contents = fs.readFileSync('data/' + path, 'utf8');
 
-		if (path.endsWith('.md')) {
+		if (path.indexOf('.md') !== -1) {
 			return marked(contents);
 		}
 
