@@ -17,25 +17,25 @@ var data = function(fs) {
 			{
 				name: 'Renn!',
 				artist: 'Enno Bunger',
-				date: 'Wednesday, 26 Oct 2016 00:00:00 GMT',
+				date: 'Wed, 26 Oct 2016 00:00:00 GMT',
 				url: 'https://www.youtube.com/watch?v=SmBP2lMhEnE'
 			},
 			{
 				name: 'Barfuß Am Klavier',
 				artist: 'AnnenMayKantereit',
-				date: 'Saturday, 15 Oct 2016 00:00:00 GMT',
+				date: 'Sat, 15 Oct 2016 00:00:00 GMT',
 				url: 'https://www.youtube.com/watch?v=tERRFWuYG48'
 			},
 			{
 				name: 'Me Gustas Tu',
 				artist: 'Manu Chao',
-				date: 'Sunday, 25 Sep 2016 00:00:00 GMT',
+				date: 'Sun, 25 Sep 2016 00:00:00 GMT',
 				url: 'https://www.youtube.com/watch?v=rs6Y4kZ8qtw'
 			},
 			{
 				name: 'We Are The People',
 				artist: 'Empire of the Sun',
-				date: 'Thursday, 11 Aug 2016 00:00:00 GMT',
+				date: 'Thu, 11 Aug 2016 00:00:00 GMT',
 				url: 'https://www.youtube.com/watch?v=hN5X4kGhAtU'
 			},
 			{
@@ -63,7 +63,7 @@ var data = function(fs) {
 				href: 'understanding-threads-and-static-classes-in-csharp',
 				metaDescription: 'Writing static classes can cause problems if thread safety isn\'t properly considered. In a program I helped write, some surprising results occured which could have easily been avoided by ensuring my properties weren\'t getting shared between threads.',
 				title: 'Understanding Threads and Static Classes in C#',
-				postDate: 'Sun, 26 Oct 2016 00:00:00 GMT',
+				postDate: 'Wed, 26 Oct 2016 00:00:00 GMT',
 				summary: 'Writing static classes can cause problems if thread safety isn\'t properly considered. In a program I helped write, some surprising results occured which could have easily been avoided by ensuring my properties weren\'t getting shared between threads. Read on to find out what I learned...',
 				bodyText: getData('blog/understanding-threads-and-static-classes-in-csharp.md'),
 				tags: ['csharp', 'programming']
