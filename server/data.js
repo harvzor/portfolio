@@ -57,7 +57,7 @@ var data = function(fs) {
 				href: 'understanding-threads-and-static-classes-in-csharp',
 				metaDescription: 'Writing static classes can cause problems if thread safety isn\'t properly considered. In a program I helped write, some surprising results occured which could have easily been avoided by ensuring my properties weren\'t getting shared between threads.',
 				title: 'Understanding Threads and Static Classes in C#',
-				postDate: 'Sun, 26 Sep 2016 00:00:00 GMT',
+				postDate: 'Sun, 26 Oct 2016 00:00:00 GMT',
 				summary: 'Writing static classes can cause problems if thread safety isn\'t properly considered. In a program I helped write, some surprising results occured which could have easily been avoided by ensuring my properties weren\'t getting shared between threads. Read on to find out what I learned...',
 				bodyText: getData('blog/understanding-threads-and-static-classes-in-csharp.md'),
 				tags: ['csharp', 'programming']
