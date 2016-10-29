@@ -51,6 +51,16 @@ var routing = function(app, fs, express, config, logger) {
 	});
 	*/
 
+	app.get('/songs', function(req, res) {
+		res.render('songs', {
+			layout: 'common',
+            relativeUrl: '/cv',
+			pageGroup: '',
+			pageTitle: 'Songs',
+            songs: data().songs
+		});
+	});
+
 	app.get('/blog', function(req, res) {
 		logger.info('tag: %s', req.query.tag);
 

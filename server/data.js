@@ -18,37 +18,37 @@ var data = function(fs) {
 				name: 'Renn!',
 				artist: 'Enno Bunger',
 				date: 'Wed, 26 Oct 2016 00:00:00 GMT',
-				url: 'https://www.youtube.com/watch?v=SmBP2lMhEnE'
+				url: 'https://www.youtube.com/embed/SmBP2lMhEnE'
 			},
 			{
 				name: 'Barfuß Am Klavier',
 				artist: 'AnnenMayKantereit',
 				date: 'Sat, 15 Oct 2016 00:00:00 GMT',
-				url: 'https://www.youtube.com/watch?v=tERRFWuYG48'
+				url: 'https://www.youtube.com/embed/tERRFWuYG48'
 			},
 			{
 				name: 'Me Gustas Tu',
 				artist: 'Manu Chao',
 				date: 'Sun, 25 Sep 2016 00:00:00 GMT',
-				url: 'https://www.youtube.com/watch?v=rs6Y4kZ8qtw'
+				url: 'https://www.youtube.com/embed/rs6Y4kZ8qtw'
 			},
 			{
 				name: 'We Are The People',
 				artist: 'Empire of the Sun',
 				date: 'Thu, 11 Aug 2016 00:00:00 GMT',
-				url: 'https://www.youtube.com/watch?v=hN5X4kGhAtU'
+				url: 'https://www.youtube.com/embed/hN5X4kGhAtU'
 			},
 			{
 				name: 'Paracetamol',
 				artist: 'Declan Mckenna',
 				date: 'Wed, 22 Jun 2016 00:00:00 GMT',
-				url: 'https://www.youtube.com/watch?v=Db0BQ7JI4KE'
+				url: 'https://www.youtube.com/embed/Db0BQ7JI4KE'
 			},
 			{
 				name: 'Doing It To Death',
 				artist: 'The Kills',
 				date: 'Sat, 16 Apr 2016 00:00:00 GMT',
-				url: 'https://www.youtube.com/watch?v=498zUzNGQxY'
+				url: 'https://www.youtube.com/embed/498zUzNGQxY'
 			}
 		],
 		index: {
