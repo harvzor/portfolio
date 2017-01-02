@@ -1,3 +1,26 @@
+var hw = {};
+
+hw.youtubeVideoSetup = function() {
+	var videos = document.getElementsByClassName('youtube-video');
+
+	for (var i = 0; i < videos.length; i++) {
+		videos[i].addEventListener('click', function(e) {
+			var video = this;
+
+			e.preventDefault();
+
+			var iframe = document.createElement('iframe');
+
+			iframe.setAttribute('src', video.getAttribute('href') + '?autoplay=1');
+			iframe.setAttribute('height', '300');
+			iframe.setAttribute('frameborder', '0');
+			iframe.setAttribute('allowfullscreen', '');
+
+			video.parentNode.replaceChild(iframe, video);
+		});
+	}
+};
+
 (function() {
 	var body = document.getElementsByTagName('body')[0];
 	var toggles = document.getElementsByClassName('toggle');
@@ -39,6 +62,8 @@
 			}, 300);
 		});
 	}
+
+	hw.youtubeVideoSetup();
 
 	window.onbeforeunload = function(event) { 
 		content.classList.add('exiting');

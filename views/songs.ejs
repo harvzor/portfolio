@@ -1,8 +1,11 @@
 <article class="box">
     <% for (var i = 0; i < songs.length; i++) { %>
         <h2><%= songs[i].name %> by <%= songs[i].artist %></h2>
-        <small>Added <%= songs[i].date %></small>
+        <small>Added <%= helpers.friendlyDate(songs[i].date) %></small>
         <br />
-        <iframe width="560" height="315" src="<%= songs[i].url %>" frameborder="0" allowfullscreen></iframe>
+        <a class="youtube-video" href="https://www.youtube.com/embed/<%= songs[i].id %>" target="_blank" style="background-image:url('https://img.youtube.com/vi/<%= songs[i].id %>/maxresdefault.jpg')">
+            <div class="icon-play youtube-video-play"></div>
+        </a>
     <% } %>
 </article>
+

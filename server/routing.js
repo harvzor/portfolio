@@ -53,6 +53,7 @@ var routing = function(app, fs, express, config, logger) {
 
 	app.get('/songs', function(req, res) {
 		res.render('songs', {
+			helpers: helpers,
 			layout: 'common',
             relativeUrl: '/cv',
 			pageGroup: '',

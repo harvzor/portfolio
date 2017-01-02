@@ -1,0 +1,21 @@
+.youtube-video {
+    display:block;
+    position:relative;
+    height:300px;
+    background-repeat:none;
+    background-size:cover;
+    background-position:50% 50%;
+
+    .youtube-video-play {
+        position:absolute;
+        left:50%;
+        top:50%;
+        padding:10px;
+        margin-left:-26px;
+        margin-top:-26px;
+        font-size:32px;
+        color:white;
+        background-color:black;
+    }
+}
+
