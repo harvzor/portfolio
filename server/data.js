@@ -60,6 +60,15 @@ var data = function(fs) {
         // Blog data.
         posts: [
             {
+                href: 'getting-the-length-in-seconds-for-mp3-files-in-a-folder',
+                metaDescription: 'Find out how you can use NodeJS to get the play time length in seconds of a group of MP3 files in a folder.',
+                title: 'Determining the length in seconds of a folder of MP3 files using NodeJS',
+                postDate: 'Sun, 08 Jan 2017 00:00:00 GMT',
+                summary: 'NodeJS is a great quick and easy tool which allows you to quickly hack together any script which can save you time. In this post I show how I used Node to get the length in seconds of a bunch of MP3 files in the folder.',
+                bodyText: getData('blog/getting-the-length-in-seconds-for-mp3-files-in-a-folder.md'),
+                tags: ['nodejs', 'programming']
+            },
+            {
                 href: 'understanding-threads-and-static-classes-in-csharp',
                 metaDescription: 'Writing static classes can cause problems if thread safety isn\'t properly considered. In a program I helped write, some surprising results occured which could have easily been avoided by ensuring my properties weren\'t getting shared between threads.',
                 title: 'Understanding Threads and Static Classes in C#',
