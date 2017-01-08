@@ -1,119 +1,119 @@
 <p>
-	This website is was my first website which I built in Node.js. It started out being just a static website because I knew I would be the only maintainer, and I'm happy to dive into code to change some content. However, I quickly found that the site was getting out of hand as more pages were created - to make even a small change to any common element meant copy and pasting accross each page.
+    This website is was my first website which I built in Node.js. It started out being just a static website because I knew I would be the only maintainer, and I'm happy to dive into code to change some content. However, I quickly found that the site was getting out of hand as more pages were created - to make even a small change to any common element meant copy and pasting accross each page.
 </p>
 <h2>The solution? Node.js!</h2>
 <p>
-	I decided that I had to add some backend logic to piece together my pages. First I questioned if PHP was the answer, but I've always found that PHP would also get out of hand with bits of code getting lost in places. I asked my coworker from GrowCreate for their oponion, and they said that I should try building in Node.
+    I decided that I had to add some backend logic to piece together my pages. First I questioned if PHP was the answer, but I've always found that PHP would also get out of hand with bits of code getting lost in places. I asked my coworker from GrowCreate for their oponion, and they said that I should try building in Node.
 </p>
 <h2>The problem</h2>
 <p>
-	Developing Node applications on Windows is very simple. All you have to do is just open up a cmd window (after installing Node) and type "node server.js", where server.js is your server configuration file. However, doing this on a live Windows server was impractical. Having a cmd window open to host the website all the time would be a bad idea. Intead, I wanted my site to be hosted through IIS, as it meant that all of my sites would be clearly visible from one applicaion on my server. Currently, only way to do this is by installing IISNode.
+    Developing Node applications on Windows is very simple. All you have to do is just open up a cmd window (after installing Node) and type "node server.js", where server.js is your server configuration file. However, doing this on a live Windows server was impractical. Having a cmd window open to host the website all the time would be a bad idea. Intead, I wanted my site to be hosted through IIS, as it meant that all of my sites would be clearly visible from one applicaion on my server. Currently, only way to do this is by installing IISNode.
 </p>
 <p>
-	Getting IISNode running is easy once you've done it before, but understanding the steps required to get there can be a little difficult.
+    Getting IISNode running is easy once you've done it before, but understanding the steps required to get there can be a little difficult.
 </p>
 <h2>Getting started</h2>
 <p>
-	I suggest doing this on your development machine before doing this on a server. Below is a list of things you will need already set up before you can get IISNode set up.
+    I suggest doing this on your development machine before doing this on a server. Below is a list of things you will need already set up before you can get IISNode set up.
 </p>
 <ul>
-	<li>IIS7/8 installed</li>
-	<li>Node installed</li>
+    <li>IIS7/8 installed</li>
+    <li>Node installed</li>
 </ul>
 <h2>Installing IISNode</h2>
 <p>
-	I accidentally went down the path of trying to build IISNode from source which can be pain if you've never done that sort of thing before. As it turns out, you can download a compiled install file from <a href="https://github.com/azure/iisnode/wiki/iisnode-releases" target="_blank">here</a>. Choose the correct build for your system (either 64bit or 32bit). I will be using v0.2.11 as it is the latest version at the time of writing.
+    I accidentally went down the path of trying to build IISNode from source which can be pain if you've never done that sort of thing before. As it turns out, you can download a compiled install file from <a href="https://github.com/azure/iisnode/wiki/iisnode-releases" target="_blank">here</a>. Choose the correct build for your system (either 64bit or 32bit). I will be using v0.2.11 as it is the latest version at the time of writing.
 </p>
 <p>
-	After downloading this file, install it!
+    After downloading this file, install it!
 </p>
 <h3>Testing IISNode</h3>
 <p>
-	If you want to test that IISNode installed correctly, you can use the setupsamples.bat script to create an instance of IISNode. To run this file, you will need to open up an administrator window of cmd and cd to either "C:\Program Files\iisnode" (or "C:\Program Files (x86)\iisnode" if you installed the 32bit version). Type "setupsamples.bat" into the cmd prompt and the script should run. Read the output to check if the script ran successfully. The output should be similar to the one below.
+    If you want to test that IISNode installed correctly, you can use the setupsamples.bat script to create an instance of IISNode. To run this file, you will need to open up an administrator window of cmd and cd to either "C:\Program Files\iisnode" (or "C:\Program Files (x86)\iisnode" if you installed the 32bit version). Type "setupsamples.bat" into the cmd prompt and the script should run. Read the output to check if the script ran successfully. The output should be similar to the one below.
 </p>
 <img src="/media/blog/installing-iisnode/setupsamples.png">
 <p>
-	Now provided that you have the "Default Web Site" running, you should be able to go to <a href="http://localhost/node" target="_blank">localhost/node"</a> in your browser. If your browser just tells you that it is unable to connect to this, then it's likely that the "Default Web Site" is not running. If it gives you an "HTTP Error 404.0 - Not Found", then the script did not run correctly. Otherwise you should be on a page similar to the one below.
+    Now provided that you have the "Default Web Site" running, you should be able to go to <a href="http://localhost/node" target="_blank">localhost/node"</a> in your browser. If your browser just tells you that it is unable to connect to this, then it's likely that the "Default Web Site" is not running. If it gives you an "HTTP Error 404.0 - Not Found", then the script did not run correctly. Otherwise you should be on a page similar to the one below.
 </p>
 <img src="/media/blog/installing-iisnode/localhost.png">
 <p>
-	Clicking on the first link "helloworld" will show you a running example of a Node site running in IISNode. You can actually see the source code for this in "C:\Program Files\iisnode\www".
-	</p>
+    Clicking on the first link "helloworld" will show you a running example of a Node site running in IISNode. You can actually see the source code for this in "C:\Program Files\iisnode\www".
+    </p>
 <h2>URL Rewriting</h2>
 <p>
-	In "localhost:8080/node" try navigating to the "urlrewrite" part of the site by following the link. If you get an error on the page, then Url Rewriting has not been installed. This is going to be necessary if you want to run an Express site. You can download URL Rewrite from Microsoft <a href="http://www.iis.net/downloads/microsoft/url-rewrite" target="_blank">here</a>. Click on the "Install this extension" button and download the file. After downloading the file, run it. It should bring up a Web Platform Installer which will guide you through the simple installation procedure.
+    In "localhost:8080/node" try navigating to the "urlrewrite" part of the site by following the link. If you get an error on the page, then Url Rewriting has not been installed. This is going to be necessary if you want to run an Express site. You can download URL Rewrite from Microsoft <a href="http://www.iis.net/downloads/microsoft/url-rewrite" target="_blank">here</a>. Click on the "Install this extension" button and download the file. After downloading the file, run it. It should bring up a Web Platform Installer which will guide you through the simple installation procedure.
 </p>
 <p>
-	Once URL Rewriting is installed, go back to the page on your localhost and refresh to test if it's working.
+    Once URL Rewriting is installed, go back to the page on your localhost and refresh to test if it's working.
 </p>
 <h2>Express</h2>
 <p>
-	If you want to get Express working with IISNode, you will only need to create two files; a JS file which will control your server, and a web.config for IIS.
+    If you want to get Express working with IISNode, you will only need to create two files; a JS file which will control your server, and a web.config for IIS.
 </p>
 <h3>server.js</h3>
 <p>
-	Your server.js has to be tweaked just a little bit to make it work with IISNode. Notice the past line where the app has to listen using "process.env.PORT". This port is decided by IIS.
+    Your server.js has to be tweaked just a little bit to make it work with IISNode. Notice the past line where the app has to listen using "process.env.PORT". This port is decided by IIS.
 </p>
 <pre>
-	<code>
+    <code>
 var express = require('express');
 
 var app = express();
 
 app.get('/', function (req, res) {
-	res.send('Express is working on IISNode!');
+    res.send('Express is working on IISNode!');
 });
 
 app.listen(process.env.PORT);
-	</code>
+    </code>
 </pre>
 <p>
-	I found that many other tutorials said that "var app = express.createServer();" was the correct line to use, but I found that this just created an error. This may be due to the other tutorials using an older version of Express.
+    I found that many other tutorials said that "var app = express.createServer();" was the correct line to use, but I found that this just created an error. This may be due to the other tutorials using an older version of Express.
 </p>
 <h3>web.config</h3>
 <p>
-	The web.config file is the configuration for this website. A handler is required to specify that the application is handled by IISNode. The rewrite allows the server.js deal with incoming connections rather than IIS.
+    The web.config file is the configuration for this website. A handler is required to specify that the application is handled by IISNode. The rewrite allows the server.js deal with incoming connections rather than IIS.
 </p>
 <pre>
-	<code>
+    <code>
 &lt;configuration&gt;
-	&lt;system.webServer&gt;
+    &lt;system.webServer&gt;
 
-		&lt;!-- indicates that the server.js file is a node.js application
-		to be handled by the iisnode module --&gt;
+        &lt;!-- indicates that the server.js file is a node.js application
+        to be handled by the iisnode module --&gt;
 
-		&lt;handlers&gt;
-			&lt;add name=&quot;iisnode&quot; path=&quot;server.js&quot; verb=&quot;*&quot; modules=&quot;iisnode&quot; /&gt;
-		&lt;/handlers&gt;
+        &lt;handlers&gt;
+            &lt;add name=&quot;iisnode&quot; path=&quot;server.js&quot; verb=&quot;*&quot; modules=&quot;iisnode&quot; /&gt;
+        &lt;/handlers&gt;
 
-		&lt;rewrite&gt;
-			&lt;rules&gt;
-				&lt;rule name=&quot;sendToNode&quot;&gt;
-					&lt;match url=&quot;/*&quot; /&gt;
-					&lt;action type=&quot;Rewrite&quot; url=&quot;server.js&quot; /&gt;
-				&lt;/rule&gt;
-			&lt;/rules&gt;
-		&lt;/rewrite&gt;
+        &lt;rewrite&gt;
+            &lt;rules&gt;
+                &lt;rule name=&quot;sendToNode&quot;&gt;
+                    &lt;match url=&quot;/*&quot; /&gt;
+                    &lt;action type=&quot;Rewrite&quot; url=&quot;server.js&quot; /&gt;
+                &lt;/rule&gt;
+            &lt;/rules&gt;
+        &lt;/rewrite&gt;
 
-	&lt;/system.webServer&gt;
+    &lt;/system.webServer&gt;
 &lt;/configuration&gt;
-	</code>
+    </code>
 </pre>
 <h3>Install the Express module</h3>
 <p>
-	You will also need to install the express module before this Node server will work. Open a cmd prompt and cd to your folder (which has the server.js and web.config files) and type "npm install express".
+    You will also need to install the express module before this Node server will work. Open a cmd prompt and cd to your folder (which has the server.js and web.config files) and type "npm install express".
 </p>
 <h2>Adding your site to IIS.</h2>
 <p>
-	The last step is adding your site to IIS Manager. Open up the program and on your Sites, right click and select "Add Website...". Fill out the details and link it to your folder with the server.js and web.config files inside of it.
+    The last step is adding your site to IIS Manager. Open up the program and on your Sites, right click and select "Add Website...". Fill out the details and link it to your folder with the server.js and web.config files inside of it.
 </p>
 <img src="/media/blog/installing-iisnode/iismanager.png">
 <p>
-	After adding your host name to your systems hosts file, navigate to the url in a web browser and see the result.
+    After adding your host name to your systems hosts file, navigate to the url in a web browser and see the result.
 </p>
 <img src="/media/blog/installing-iisnode/expressrunning.png">
 <h2>Resources</h2>
 <ul>
-	<li><a href="https://github.com/azure/iisnode/wiki/iisnode-releases">IISNode GitHub</a></li>
+    <li><a href="https://github.com/azure/iisnode/wiki/iisnode-releases">IISNode GitHub</a></li>
 </ul>
 

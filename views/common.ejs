@@ -1,79 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-	<title><%= pageTitle %> | Harvey Williams</title>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<% if (typeof metaDescription != 'undefined') { %>
-		<meta name="description" content="<%= metaDescription %>" />
-	<% } %>
-	<link href="//harveywilliams.net/<%= relativeUrl %>" rel="canonical" /> 
-	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-	<link href="/css/main.css" rel="stylesheet" type="text/css">
-	<link href="//fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/github.min.css">
+    <title><%= pageTitle %> | Harvey Williams</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <% if (typeof metaDescription != 'undefined') { %>
+        <meta name="description" content="<%= metaDescription %>" />
+    <% } %>
+    <link href="//harveywilliams.net/<%= relativeUrl %>" rel="canonical" /> 
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/github.min.css">
 </head>
 <body>
-	<div class="accessibility-toolbar">
-		<% include partials/accessibility-toolbar %>
-	</div>
-	<aside class="nav">
-		<% include partials/aside %>
-	</aside>
-	<a href="#" id="nav-open" class="diamond toggle" title="Show the sidebar."></a>
-	<main id="content">
-		<section class="content">
-			<header class="breadcrumbs">
-				<%if (locals.parentPages) { %>
-					<% parentPages.forEach(function(parentPage) { %>
-						<a href="<%= parentPage.href %>">
-							<%= parentPage.title %>
-						</a>
-						<span> / </span>
-					<% }); %>
-				<% } %>
-				<h1><%= pageTitle %></h1>
-			</header>
-			<%- body %>
-		</section>
-		<footer>
-			<span>&copy; Harvey Williams <%= year() %></span>
-			<a class="song" href="/songs" title="My song of the moment"><%= songOfTheMoment().name %> - <%= songOfTheMoment().artist %></a>
-		</footer>
-	</main>
-	<aside class="right"></aside>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
-	<% if (dev) { %>
-		<script src="/js/libs/menujs.js"></script>
-		<script src="/js/script.js"></script>
-	<% } else { %>
-		<script src="/js/script.min.js"></script>
-	<% } %>
-	<% if (!dev) { %>
-		<!-- Piwik -->
-		<script type="text/javascript">
-			var _paq = _paq || [];
-			_paq.push(['trackPageView']);
-			_paq.push(['enableLinkTracking']);
-			(function() {
-			var u="//piwik.harveywilliams.net/";
-			_paq.push(['setTrackerUrl', u+'piwik.php']);
-			_paq.push(['setSiteId', 1]);
-			var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-			g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-			})();
-		</script>
-		<noscript><p><img src="//piwik.harveywilliams.net/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-		<!-- End Piwik Code -->
-		<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <div class="accessibility-toolbar">
+        <% include partials/accessibility-toolbar %>
+    </div>
+    <aside class="nav">
+        <% include partials/aside %>
+    </aside>
+    <a href="#" id="nav-open" class="diamond toggle" title="Show the sidebar."></a>
+    <main id="content">
+        <section class="content">
+            <header class="breadcrumbs">
+                <%if (locals.parentPages) { %>
+                    <% parentPages.forEach(function(parentPage) { %>
+                        <a href="<%= parentPage.href %>">
+                            <%= parentPage.title %>
+                        </a>
+                        <span> / </span>
+                    <% }); %>
+                <% } %>
+                <h1><%= pageTitle %></h1>
+            </header>
+            <%- body %>
+        </section>
+        <footer>
+            <span>&copy; Harvey Williams <%= year() %></span>
+            <a class="song" href="/songs" title="My song of the moment"><%= songOfTheMoment().name %> - <%= songOfTheMoment().artist %></a>
+        </footer>
+    </main>
+    <aside class="right"></aside>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <% if (dev) { %>
+        <script src="/js/libs/menujs.js"></script>
+        <script src="/js/script.js"></script>
+    <% } else { %>
+        <script src="/js/script.min.js"></script>
+    <% } %>
+    <% if (!dev) { %>
+        <!-- Piwik -->
+        <script type="text/javascript">
+            var _paq = _paq || [];
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+            var u="//piwik.harveywilliams.net/";
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', 1]);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+            })();
+        </script>
+        <noscript><p><img src="//piwik.harveywilliams.net/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+        <!-- End Piwik Code -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-			ga('create', 'UA-89707735-1', 'auto');
-			ga('send', 'pageview');
-		</script>
-	<% } %>
+            ga('create', 'UA-89707735-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+    <% } %>
 </body>
 </html>
+

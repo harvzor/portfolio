@@ -1,16 +1,17 @@
 <div class="portfolio">
-	<% exampleGroups.forEach(function(group) { %>
-		<h2><%= group.title %></h2>
-		<p><%= group.info %></p>
-		<div class="group">
-			<% group.pages.forEach(function(page) { %>
-				<a href="/projects/<%= page.href %>" class="box example">
-					<div class="info">
-						<%= page.name %>
-					</div>
-					<img src="<%= page.cover %>" alt="" />
-				</a>
-			<% }); %>
-		</div>
-	<% }); %>
+    <% exampleGroups.forEach(function(group) { %>
+        <h2><%= group.title %></h2>
+        <p><%= group.info %></p>
+        <div class="group">
+            <% group.pages.forEach(function(page) { %>
+                <a href="/projects/<%= page.href %>" class="box example">
+                    <div class="info">
+                        <%= page.name %>
+                    </div>
+                    <img src="<%= page.cover %>" alt="" />
+                </a>
+            <% }); %>
+        </div>
+    <% }); %>
 </div>
+

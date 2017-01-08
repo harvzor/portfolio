@@ -12,21 +12,21 @@ var fs = require('fs');
 var bunyan = require('bunyan');
 
 var logger = bunyan.createLogger({
-	name: 'portfolio',
-	streams: [
-		{
-			level: 'info',
-			path: 'logs/log.txt'
-		},
-		{
-			level: 'warn',
-			path: 'logs/log.txt'
-		},
-		{
-			level: 'error',
-			path: 'logs/log.txt'
-		}
-	]
+    name: 'portfolio',
+    streams: [
+        {
+            level: 'info',
+            path: 'logs/log.txt'
+        },
+        {
+            level: 'warn',
+            path: 'logs/log.txt'
+        },
+        {
+            level: 'error',
+            path: 'logs/log.txt'
+        }
+    ]
 });
 
 var app = express();
@@ -38,28 +38,28 @@ var dataPath = './server/data.js';
 var dataModule = require(dataPath);
 var actualData;
 var data = function() {
-	if (firstRun || config.dev) {
-		firstRun = false;
+    if (firstRun || config.dev) {
+        firstRun = false;
 
-		actualData = dataModule(fs);
-	}
+        actualData = dataModule(fs);
+    }
 
-	return actualData;
+    return actualData;
 };
 
 /////////////////
 // Functions
 /////////////////
 Array.prototype.filterObjects = function(key, value) {
-	return this.filter(function(x) { return x[key] === value; })
+    return this.filter(function(x) { return x[key] === value; })
 }
 
 app.locals.year = function() {
-	return new Date().getUTCFullYear();
+    return new Date().getUTCFullYear();
 };
 
 app.locals.songOfTheMoment = function() {
-	return data().songs[0];
+    return data().songs[0];
 };
 
 /////////////////
@@ -77,17 +77,17 @@ routing(app, fs, express, config, logger);
 /////////////////
 
 if(config.type == 'node') {
-	// Used for Node server.
-	var server = app.listen(config.port, config.ip, function () {
-		var host = server.address().address;
-		var port = server.address().port;
+    // Used for Node server.
+    var server = app.listen(config.port, config.ip, function () {
+        var host = server.address().address;
+        var port = server.address().port;
 
-		logger.info('Website listening at http://%s:%s.', host, port);
-	});
+        logger.info('Website listening at http://%s:%s.', host, port);
+    });
 } else if(config.type == 'iis') {
-	// Used for IISNode.
-	app.listen(process.env.PORT);
+    // Used for IISNode.
+    app.listen(process.env.PORT);
 } else {
-	logger.error('Error: wrong config.type set');
+    logger.error('Error: wrong config.type set');
 }
 
