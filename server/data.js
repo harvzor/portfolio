@@ -60,6 +60,15 @@ var data = function(fs) {
         // Blog data.
         posts: [
             {
+                href: 'best-umbraco-packages-2017',
+                metaDescription: '',
+                title: 'The best Umbraco packages of 2017',
+                postDate: 'Sun, 15 Jan 2017 00:00:00 GMT',
+                summary: '',
+                bodyText: getData('blog/best-umbraco-packages-2017.md'),
+                tags: ['umbraco', 'programming']
+            },
+            {
                 href: 'getting-the-length-in-seconds-for-mp3-files-in-a-folder',
                 metaDescription: 'Find out how you can use NodeJS to get the play time length in seconds of a group of MP3 files in a folder.',
                 title: 'Determining the length in seconds of a folder of MP3 files using NodeJS',
