@@ -1,13 +1,16 @@
-<% posts.forEach(function(post) { %>
-    <a href="/blog/<%= post.href %>" class="post-preview">
-        <h2><%= post.title %></h2>
-        <p>
-            <%= post.summary %>
-        </p>
-        <div class="meta">
-            <span class="meta-detail">Posted:</span> <%= helpers.friendlyDate(post.postDate) %>
-        </div>
-    </a>
+<% postsByYear.forEach(function(group) { %>
+    <h2><%= group.year %></h2>
+    <% group.posts.forEach(function(post) { %>
+        <a href="/blog/<%= post.href %>" class="post-preview">
+            <h2><%= post.title %></h2>
+            <p>
+                <%= post.summary %>
+            </p>
+            <div class="meta">
+                <span class="meta-detail">Posted:</span> <%= helpers.friendlyDate(post.postDate) %>
+            </div>
+        </a>
+    <% }); %>
 <% }); %>
 <div class="tags">
     <p>Filter by:</p>

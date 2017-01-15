@@ -66,7 +66,6 @@ var routing = function(app, fs, express, config, logger) {
         logger.info('tag: %s', req.query.tag);
 
         var posts = data().posts;
-
         var tagsWithQuantity = helpers.getBlogTags(data());
 
         if (req.query.tag) {
@@ -75,6 +74,11 @@ var routing = function(app, fs, express, config, logger) {
             });
         }
 
+        // Order posts by date.
+        posts = posts.sort(function(a, b) {
+            return new Date(b.postDate).getTime() - new Date(a.postDate).getTime();
+        });
+
         res.render('posts', {
             helpers: helpers,
             layout: 'common',
@@ -82,10 +86,7 @@ var routing = function(app, fs, express, config, logger) {
             metaDescription: 'Read about my latest thoughts and experiences in the world of web development.',
             pageGroup: 'blog',
             pageTitle: 'Blog', 
-            // Order posts by date.
-            posts: posts.sort(function(a, b) {
-                return new Date(b.postDate).getTime() - new Date(a.postDate).getTime();
-            }),
+            postsByYear: helpers.orderBlogPostsByYear(posts),
             tags: tagsWithQuantity,
             currentTag: req.query.tag
         });
