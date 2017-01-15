@@ -15,7 +15,7 @@
 <div class="tags">
     <p>Filter by:</p>
     <% tags.forEach(function(tag) { %>
-        <a class="tag<% if (currentTag == tag.name) { %> active<% } %>" href="/blog?tag=<%= tag.name %>">
+        <a class="tag<% if (currentTag == tag.tag) { %> active<% } %>" href="/blog?tag=<%= tag.tag %>">
             <div class="tag-inner">
                 <div class="box tag-front">
                     <%= tag.name %> (<%= tag.quantity %>)

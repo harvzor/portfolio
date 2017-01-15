@@ -63,13 +63,15 @@ var helpers = {
             break;
         }
     },
-    getBlogTags: function(data) {
+    getBlogTags: function(posts) {
         var allTags = [];
         var uniqueTags = [];
         var tagsWithQuantity = [];
 
-        for (var i = 0; i < data.posts.length; i++) {
-            allTags = allTags.concat(data.posts[i].tags);
+        tagsWithQuantity.push({ name: 'all', tag: '', quantity: posts.length });
+
+        for (var i = 0; i < posts.length; i++) {
+            allTags = allTags.concat(posts[i].tags);
         }
 
         uniqueTags = allTags.filter(helpers.onlyUnique);
@@ -79,7 +81,7 @@ var helpers = {
                 return tag == uniqueTags[i];
             }).length;
 
-            tagsWithQuantity.push({ name: uniqueTags[i], quantity: quantity });
+            tagsWithQuantity.push({ name: uniqueTags[i], tag: uniqueTags[i], quantity: quantity });
         }
 
         return tagsWithQuantity;

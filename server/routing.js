@@ -66,7 +66,7 @@ var routing = function(app, fs, express, config, logger) {
         logger.info('tag: %s', req.query.tag);
 
         var posts = data().posts;
-        var tagsWithQuantity = helpers.getBlogTags(data());
+        var tagsWithQuantity = helpers.getBlogTags(posts);
 
         if (req.query.tag) {
             posts = posts.filter(function(post) {
