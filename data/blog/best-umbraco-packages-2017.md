@@ -1,4 +1,4 @@
-2017 is still in it's infancy and using the best packages in your Umbraco installations can help make your experience of using Umbraco much more enjoyable. I have been working with Umbraco for three years now. Packages have come and gone, but some have stuck around for longer. Here you can read about the packages with I have used and recommend trying out.
+2017 is still in it's infancy and using the best packages in your Umbraco installations can help make your experience of using Umbraco much more enjoyable. I have been working with Umbraco for three years now, packages have come and gone, but some have stuck around for longer. Here you can read about the packages which I have used and recommend trying out.
 
 ## Show me the packages
 
