@@ -121,6 +121,10 @@ main {
     &.exiting {
         @include animation(1s ease 0s normal forwards 1 fadeOut);
     }
+
+    a {
+        word-break:break-all;
+    }
     
     .breadcrumbs {
         margin:0;
