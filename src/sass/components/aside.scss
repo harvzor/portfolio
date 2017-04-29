@@ -60,8 +60,8 @@ aside.nav {
         top:50%;
         padding:0 30px;
         text-align:center;
-        overflow:hidden;
-        @include transform(translateY(-50%));
+        font-size:0;
+        @include transform(translateY(-100%));
 
         a {
             position:relative;
@@ -69,6 +69,7 @@ aside.nav {
             text-decoration:none;
             border:1px solid white;
             padding:5px 10px;
+            margin:2px;
             color:white;
             font-size:24px;
             overflow:hidden;
@@ -96,6 +97,10 @@ aside.nav {
                 &:after {
                     bottom:0;
                 }
+            }
+
+            i {
+                font-size:20px;
             }
         }
     }

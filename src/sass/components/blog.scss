@@ -1,3 +1,23 @@
+.post-preview-columns {
+    display:flex;
+
+    @include screen($xs) {
+        margin:0 span(-0.5);
+    }
+
+    .post-preview {
+        display:flex;
+        flex-direction:column;
+        float:left;
+        width:span(11);
+        margin:0 span(0.5);
+
+        .meta {
+            margin-top:auto;
+        }
+    }
+}
+
 .post-preview {
     display:block;
     color:$grey-dark;

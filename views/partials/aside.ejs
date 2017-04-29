@@ -1,15 +1,20 @@
-<header>
-    <h2>Harvey Williams</h2>
-    <img class="circle" src="/Media/me.jpg" alt="Harvey Williams" />
-</header>
+<a href="/">
+    <header>
+        <h2>Harvey Williams</h2>
+        <img class="circle" src="/Media/me.jpg" alt="Harvey Williams" />
+    </header>
+</a>
 <nav>
-    <a <% if(pageGroup === 'home') { %>class="active" <% } %>href="/">
-        Home
+    <a <% if(pageGroup === 'about') { %>class="active" <% } %>href="/about">
+        <i class="icon-info"></i>
+        About
     </a>
     <a <% if(pageGroup === 'projects') { %>class="active" <% } %>href="/portfolio">
+        <i class="icon-user-tie"></i>
         Portfolio
     </a>
     <a <% if(pageGroup === 'blog') { %>class="active" <% } %>href="/blog">
+        <i class="icon-bubble"></i>
         Blog
     </a>
 </nav>
