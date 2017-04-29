@@ -66,7 +66,7 @@ var data = function(fs) {
                 href: 'best-umbraco-packages-2017',
                 metaDescription: 'Discover some of the best Umbraco packages/projects of 2017 that can help aid your experience of using Umbraco as a developer.',
                 title: 'The best Umbraco packages of 2017',
-                postDate: 'Sun, 15 Jan 2017 00:00:00 GMT',
+                postDate: 'Sun, 02 Mar 2017 00:00:00 GMT',
                 summary: 'Discover some of the best Umbraco packages which can help you build Umbraco websites.',
                 bodyText: getData('blog/best-umbraco-packages-2017.md'),
                 tags: ['umbraco', 'programming']
