@@ -1,16 +1,22 @@
 .post-preview-columns {
     display:flex;
+    flex-direction:column;
 
     @include screen($xs) {
         margin:0 span(-0.5);
+        flex-direction:row;
     }
 
     .post-preview {
         display:flex;
         flex-direction:column;
         float:left;
-        width:span(11);
-        margin:0 span(0.5);
+        width:span(36);
+
+        @include screen($xs) {
+            width:span(11);
+            margin:0 span(0.5);
+        }
 
         .meta {
             margin-top:auto;
