@@ -63,6 +63,15 @@ var data = function(fs) {
         // Blog data.
         posts: [
             {
+                href: 'stop-using-scheduledtasks-in-umbraco',
+                metaDescription: 'ScheduledTasks are an antiquated way of handling scheduling events in .NET and here\'s why.',
+                title: 'Stop using ScheduledTasks in Umbraco',
+                postDate: 'Sun, 01 Jun 2017 00:00:00 GMT',
+                summary: 'ScheduledTasks are an antiquated way of handling scheduling events in .NET and here\'s why.',
+                bodyText: getData('blog/stop-using-scheduledtasks-in-umbraco.md'),
+                tags: ['umbraco', 'programming']
+            },
+            {
                 href: 'best-umbraco-packages-2017',
                 metaDescription: 'Discover some of the best Umbraco packages/projects of 2017 that can help aid your experience of using Umbraco as a developer.',
                 title: 'The best Umbraco packages of 2017',
