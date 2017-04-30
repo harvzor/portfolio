@@ -52,7 +52,10 @@ var data = function(fs) {
             }
         ],
         index: {
-            bodyText: getData('index.html')
+            bodyText: getData('index.md')
+        },
+        about: {
+            bodyText: getData('about.md')
         },
         cv: {
             bodyText: getData('cv.html')

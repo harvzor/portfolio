@@ -17,15 +17,33 @@ var routing = function(app, fs, express, config, logger) {
     };
 
     app.get('/', function(req, res) {
-        logger.info('Serving index.');
+        var posts = data().posts;
 
+        // Order posts by date.
+        posts = posts.sort(function(a, b) {
+            return new Date(b.postDate).getTime() - new Date(a.postDate).getTime();
+        });
+
+        res.render('home', {
+            helpers: helpers,
+            layout: 'common',
+            relativeUrl: '',
+            metaDescription: 'Hi. I am a young experienced web developer living in Oxford. I specialise in Umbraco CMS development.',
+            pageGroup: 'home',
+            pageTitle: 'Hello World',
+            bodyText: data().index.bodyText,
+            posts: posts.slice(0, posts.length > 3 ? 3 : posts.length)
+        });
+    });
+
+    app.get('/about', function(req, res) {
         res.render('page', {
             layout: 'common',
             relativeUrl: '',
-            metaDescription: 'Hi. I am a young experienced web developer living near Oxford. I specialise in Umbraco CMS development.',
-            pageGroup: 'home',
-            pageTitle: 'Hello World',
-            bodyText: data().index.bodyText
+            metaDescription: 'Hi. I am a young experienced web developer living in Oxford. I specialise in Umbraco CMS development.',
+            pageGroup: 'about',
+            pageTitle: 'About me',
+            bodyText: data().about.bodyText
         });
     });
 
@@ -34,7 +52,7 @@ var routing = function(app, fs, express, config, logger) {
             layout: 'common',
             relativeUrl: '/cv',
             metaDescription: 'Looking to hire a great developer? We might be a perfect match.',
-            pageGroup: 'home',
+            pageGroup: '',
             pageTitle: 'Looking for some new talent?',
             bodyText: data().cv.bodyText
         });
