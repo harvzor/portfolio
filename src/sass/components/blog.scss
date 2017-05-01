@@ -58,7 +58,11 @@
         overflow:hidden;
         text-decoration:none;
         overflow:hidden;
-        font-size:$base-font-size;
+        font-size:$base-font-size-mobile;
+
+        @include screen($sm) {
+            font-size:$base-font-size-desktop;
+        }
 
         .post-nav-arrow {
             display:inline-block;

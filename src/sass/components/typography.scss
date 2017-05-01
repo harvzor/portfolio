@@ -1,5 +1,9 @@
 html {
-    font-size:$base-font-size;
+    font-size:$base-font-size-mobile;
+
+    @include screen($sm) {
+        font-size:$base-font-size-desktop;
+    }
 }
 
 h1, h2, h3, h4, h5, h6, p {
