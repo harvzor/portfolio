@@ -1,13 +1,13 @@
 module.exports = function(app, fs, express, config, logger, data, helpers) {
     app.get('/blog', function(req, res) {
-        logger.info('tag: %s', req.query.tag);
+        var tag = req.query.tag;
 
         var posts = data().posts;
         var tagsWithQuantity = helpers.getBlogTags(posts);
 
-        if (req.query.tag) {
+        if (tag) {
             posts = posts.filter(function(post) {
-                return post.tags.indexOf(req.query.tag) > -1;
+                return post.tags.indexOf(tag) > -1;
             });
         }
 
@@ -25,7 +25,7 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
             pageTitle: 'Blog', 
             postsByYear: helpers.orderBlogPostsByYear(posts),
             tags: tagsWithQuantity,
-            currentTag: req.query.tag
+            currentTag: typeof tag === 'undefined' ? '' : tag
         });
     });
 };

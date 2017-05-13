@@ -1,3 +1,4 @@
+    <% include partials/filter %>
 <% postsByYear.forEach(function(group) { %>
     <h2><%= group.year %></h2>
     <% group.posts.forEach(function(post) { %>
@@ -12,19 +13,4 @@
         </a>
     <% }); %>
 <% }); %>
-<div class="tags">
-    <p>Filter by:</p>
-    <% tags.forEach(function(tag) { %>
-        <a class="tag<% if (currentTag == tag.tag) { %> active<% } %>" href="/blog?tag=<%= tag.tag %>">
-            <div class="tag-inner">
-                <div class="box tag-front">
-                    <%= tag.name %> (<%= tag.quantity %>)
-                </div>
-                <div class="box tag-back">
-                    <%= tag.name %> (<%= tag.quantity %>)
-                </div>
-            </div>
-        </a>
-    <% }); %>
-</div>
 
