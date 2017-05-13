@@ -4,15 +4,8 @@
         Filter by:
     </p>
     <% tags.forEach(function(tag) { %>
-        <a class="tags-tag<% if (currentTag === tag.tag) { %> active<% } %>" href="?tag=<%= tag.tag %>">
-            <div class="tags-tag-inner">
-                <div class="box tags-tag-front">
-                    <%= tag.name %> (<%= tag.quantity %>)
-                </div>
-                <div class="box tags-tag-back">
-                    <%= tag.name %> (<%= tag.quantity %>)
-                </div>
-            </div>
+        <a class="box tags-tag<% if (currentTag === tag.tag) { %> active<% } %>" href="?tag=<%= tag.tag %>">
+            <%= tag.name %> (<%= tag.quantity %>)
         </a>
     <% }); %>
 </div>

@@ -17,39 +17,12 @@
     color:$grey-darkest;
     text-decoration:none;
     margin:5px;
+    padding:10px;
+    transition:all 0.3s;
 
     &:hover, &:focus, &.active {
-        .tags-tag-inner {
-            transform:rotateX(180deg);
-        }
-
-        .tags-tag-back {
-            transform:rotateX(180deg);
-        }
+        background-color:$grey-darkest;
+        color:white;
     }
 }
 
-.tags-tag-inner {
-    transition:0.5s;
-    transform-style:preserve-3d;
-    perspective:1000px;
-    //backface-visibility:hidden;
-}
-
-.tags-tag-front, .tags-tag-back {
-    padding:10px;
-    margin:0;
-}
-
-.tags-tag-back {
-    position:absolute;
-    left:0;
-    top:0;
-    padding:10px;
-    height:100%;
-    width:100%;
-    background-color:$grey-darkest;
-    color:$grey-lightest;
-    transform:rotateX(180deg);
-    backface-visibility:hidden;
-}
