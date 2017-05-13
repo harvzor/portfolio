@@ -1,0 +1,41 @@
+.info-columns {
+    display:flex;
+    flex-direction:column;
+
+    @include screen($xs) {
+        margin:0 span(-0.5);
+        flex-direction:row;
+    }
+}
+
+.info-columns-column {
+    display:flex;
+    flex-direction:column;
+    float:left;
+    width:span(36);
+    text-align:center;
+    color:$grey-dark;
+
+    @include screen($xs) {
+        width:span(8);
+        margin:0 span(0.5);
+    }
+
+    i {
+        display:inline-block;
+        width:80px;
+        height:80px;
+        border:1px solid $border;
+        margin:0 auto;
+        border-radius:50%;
+        font-size:40px;
+        line-height:80px; // To center the icon.
+        background-color:$grey-lightest;
+        background-image:url("../Media/main.png");
+    }
+
+    p {
+        margin:0;
+    }
+}
+

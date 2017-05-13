@@ -27,6 +27,10 @@ $susy: (
 
 @include border-box-sizing;
 
+html {
+    overflow-y:overlay;
+}
+
 body {
     background-color:$grey-lightest;
     background-image:url("../Media/main.png");
