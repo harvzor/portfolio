@@ -122,7 +122,7 @@ main {
     }
 
     &.exiting {
-        @include animation(1s ease 0s normal forwards 1 fadeOut);
+        @include animation(0.1s ease 0s normal forwards 1 fadeOut);
     }
 
     a:not(.post-preview) {
