@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+    <channel>
+        <title>Harvey Williams</title>
+        <description>Web development blog and other things. Mainly focusing on Umbraco.</description>
+        <% posts.forEach(function(post) { %>
+            <item>
+                <title><%= post.title %></title>
+                <link>https://harveywilliams.net/blog/<%= post.href %></link>
+                <description><%= post.summary %></description>
+                <% post.tags.forEach(function(tag) { %>
+                    <category><%= tag %></category>
+                <% }); %>
+                <pubDate><%= post.postDate %></pubDate>
+                <content:encoded><![CDATA[<%- post.bodyText %>]]></content:encoded>
+            </item>
+        <% }); %>
+    </channel>
+</rss>
+
