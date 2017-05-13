@@ -2,6 +2,7 @@ var data = function(fs) {
     var marked = require('marked');
 
     // Reads a file.
+    // Will return HTML, even if the original format is Markdown.
     var getData = function(path) {
         var contents = fs.readFileSync('data/' + path, 'utf8');
 
