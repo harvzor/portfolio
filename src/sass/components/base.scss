@@ -124,10 +124,12 @@ main {
         left:span(10);
         width:span(25);
 
+        /* Removed as it broke refresh scroll position.
         @supports (height:100vh) {
             height:100vh;
             overflow-y:scroll;
         }
+        */
     }
 
     &.exiting {
