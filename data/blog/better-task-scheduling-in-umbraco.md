@@ -12,7 +12,7 @@ Tasks which you may want a task scheduler to do include:
 - ensuring that repeat payments or orders occur
 - sending emails to users which haven't been active in a while
 
-Umbraco has a built-in way of handling task scheduling. Add the following code in a YourUmbracoSite.Web/config/umbracoSettings.config file and you're away:
+Umbraco has a built-in way of handling task scheduling. Add the following code in a `YourUmbracoSite.Web/config/umbracoSettings.config` file and you're away:
 
 ```
 <scheduledTasks>
