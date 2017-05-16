@@ -12,7 +12,7 @@ Tasks which you may want a task scheduler to do include:
 - ensuring that repeat payments or orders occur
 - sending emails to users which haven't been active in a while
 
-Umbraco has a built-in way of handling task scheduling. Shove the following code in a YourUmbracoSite.Web/config/umbracoSettings.config file and you're away:
+Umbraco has a built-in way of handling task scheduling. Add the following code in a YourUmbracoSite.Web/config/umbracoSettings.config file and you're away:
 
 ```
 <scheduledTasks>
@@ -31,7 +31,7 @@ This works by visiting the given URL at a set interval (in seconds). But this me
 - the task can be interrupted by a server or website restart and there's no built in error handling
 - tasks have to be publicly accessible by a URL and the built in Umbraco authorisation doesn't work
 
-It's about time we did away with this and used something more professional!
+It's about time we did away with this and used something better!
 
 ## Okay! What's the solution?
 
