@@ -70,6 +70,7 @@ var data = function(fs) {
                 postDate: 'Thu, 01 Jun 2017 00:00:00 GMT',
                 summary: 'ScheduledTasks are an antiquated way of handling scheduling events in .NET. Here\'s three better solutions you should be considering instead.',
                 bodyText: getData('blog/better-task-scheduling-in-umbraco.md'),
+                canonical: 'https://growcreate.co.uk/blog/better-task-scheduling-in-umbraco/'
                 tags: ['umbraco', 'programming']
             },
             {
