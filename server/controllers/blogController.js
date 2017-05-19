@@ -37,7 +37,8 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
                 postDate: post.postDate,
                 bodyText: post.bodyText,
                 prevPost: prevPost,
-                nextPost: nextPost
+                nextPost: nextPost,
+                canonical: post.canonical 
             });
         });
     }
