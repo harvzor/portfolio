@@ -2,6 +2,7 @@ var data = function(fs) {
     var marked = require('marked');
 
     // Reads a file.
+    // Will return HTML, even if the original format is Markdown.
     var getData = function(path) {
         var contents = fs.readFileSync('data/' + path, 'utf8');
 
@@ -62,6 +63,16 @@ var data = function(fs) {
         },
         // Blog data.
         posts: [
+            {
+                href: 'better-task-scheduling-in-umbraco',
+                metaDescription: 'ScheduledTasks are an antiquated way of handling scheduling events in .NET. Here\'s three better solutions you should be considering instead.',
+                title: 'Better task scheduling in Umbraco',
+                postDate: 'Thu, 01 Jun 2017 00:00:00 GMT',
+                summary: 'ScheduledTasks are an antiquated way of handling scheduling events in .NET. Here\'s three better solutions you should be considering instead.',
+                bodyText: getData('blog/better-task-scheduling-in-umbraco.md'),
+                canonical: 'https://growcreate.co.uk/blog/better-task-scheduling-in-umbraco/'
+                tags: ['umbraco', 'programming']
+            },
             {
                 href: 'best-umbraco-packages-2017',
                 metaDescription: 'Discover some of the best Umbraco packages/projects of 2017 that can help aid your experience of using Umbraco as a developer.',

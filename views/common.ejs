@@ -4,13 +4,30 @@
     <title><%= pageTitle %> | Harvey Williams</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <% if (typeof metaDescription != 'undefined') { %>
+    <% if (typeof metaDescription !== 'undefined') { %>
         <meta name="description" content="<%= metaDescription %>" />
     <% } %>
-    <link href="//harveywilliams.net/<%= relativeUrl %>" rel="canonical" /> 
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@harvzor"/>
+    <meta name="twitter:title" content="<%= pageTitle %>" />
+    <% if (typeof metaDescription !== 'undefined') { %>
+        <meta name="twitter:description" content="<%= metaDescription %>" />
+    <% } %>
+    <% /*
+    <meta name="twitter:image" content="/Media/me-2.jpg" />
+    <meta name="twitter:image:alt" content="Harvey Williams" />
+    */ %>
+
+    <% if (typeof canonical !== 'undefined') { %>
+        <link href="<%= canonical %>" rel="canonical" /> 
+    <% } else { %>
+        <link href="//harveywilliams.net/<%= relativeUrl %>" rel="canonical" /> 
+    <% } %>
+    <link rel="alternate" type="application/rss+xml" title="Harvey Williams" href="/rss" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link href="/css/main.css" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet" type="text/css">
+    <% //<link href="//fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet" type="text/css"> %>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/github.min.css">
 </head>
 <body>
@@ -21,7 +38,7 @@
         <% include partials/aside %>
     </aside>
     <a href="#" id="nav-open" class="diamond toggle" title="Show the sidebar."></a>
-    <main id="content">
+    <main id="content" class="parallax">
         <section class="content">
             <header class="breadcrumbs">
                 <%if (locals.parentPages) { %>
@@ -45,7 +62,6 @@
     <aside class="right"></aside>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
     <% if (dev) { %>
-        <script src="/js/libs/menujs.js"></script>
         <script src="/js/script.js"></script>
     <% } else { %>
         <script src="/js/script.min.js"></script>

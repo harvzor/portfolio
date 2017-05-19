@@ -27,6 +27,10 @@ $susy: (
 
 @include border-box-sizing;
 
+html {
+    overflow-y:overlay;
+}
+
 body {
     background-color:$grey-lightest;
     background-image:url("../Media/main.png");
@@ -119,31 +123,24 @@ main {
     @include screen($sm) {
         left:span(10);
         width:span(25);
+
+        /* Removed as it broke refresh scroll position.
+        @supports (height:100vh) {
+            height:100vh;
+            overflow-y:scroll;
+        }
+        */
     }
 
     &.exiting {
-        @include animation(1s ease 0s normal forwards 1 fadeOut);
+        @include animation(0.1s ease 0s normal forwards 1 fadeOut);
     }
 
     a:not(.post-preview) {
         word-break:break-all;
     }
     
-    .breadcrumbs {
-        margin:0;
-        text-align:center;
-        margin-bottom:0.5em;
-        font-size:2em;
-        line-height:1.5em;
-        color:$grey-dark;
-
-        a {
-            text-decoration:none;
-        }
-    }
-
     .content {
-        min-height:100%;
         margin-bottom:-30px;
 
         &:after {

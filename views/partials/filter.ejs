@@ -1,0 +1,12 @@
+<div class="tags">
+    <p class="tags-title">
+        <i class="icon-filter"></i>
+        Filter by:
+    </p>
+    <% tags.forEach(function(tag) { %>
+        <a class="box tags-tag<% if (currentTag === tag.tag) { %> active<% } %>" href="?tag=<%= tag.tag %>">
+            <%= tag.name %> (<%= tag.quantity %>)
+        </a>
+    <% }); %>
+</div>
+
