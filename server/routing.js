@@ -24,6 +24,7 @@ module.exports = function(app, fs, express, config, logger) {
     // Static files
     /////////////////
     app.use(express.static('./public'));
+    app.use('/.well-known', express.static('./.well-known'));
 
     if (global.dev == true) {
         app.use(express.static('./src'));

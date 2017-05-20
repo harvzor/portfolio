@@ -4,10 +4,11 @@ var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
 var plumber = require('gulp-plumber');
-var notifier = require('node-notifier');
 var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
+var through2 = require('through2');
+var notifier;
 var blessed;
 var fs;
 var tail;
@@ -19,6 +20,51 @@ var stylesBox;
 var scriptsBox;
 var logBox;
 var screen;
+
+var note = function() {
+    notifier = require('node-notifier');
+
+    var timer = null;
+    var messages = null;
+
+    var resetMessages = function() {
+        messages = {
+            info: '',
+            error: ''
+        };
+    };
+
+    resetMessages();
+
+    return function(type, message) {
+        clearTimeout(timer);
+
+        messages[type] += '\n' + message;
+
+
+        timer = setTimeout(function() {
+            if (messages.info !== '') {
+                notifier.notify({
+                    title: 'Tasks ran:',
+                    message: messages.info,
+                    icon: __dirname + '\\gulp\\gulp-logo-blue.png',
+                    type: 'info'
+                });
+            }
+
+            if (messages.error !== '') {
+                notifier.notify({
+                    title: 'Tasks errored:',
+                    message: messages.error,
+                    icon: __dirname + '\\gulp\\gulp-logo-blue.png',
+                    type: 'error'
+                });
+            }
+
+            resetMessages();
+        }, 1000);
+    };
+}();
 
 var formatDate = function(d) {
     var date = new Date(d);
@@ -173,9 +219,6 @@ gulp.task('cli', function() {
 
 // Styles - compile custom Sass
 gulp.task('styles', function() {
-    if (typeof sourcemaps === 'undefined') {
-    }
-
     return gulp.src([
         'src/sass/main.scss'
     ])
@@ -186,10 +229,7 @@ gulp.task('styles', function() {
                 screen.render();
             }
 
-            notifier.notify({
-                title: 'Error in styles stask',
-                message: err.message
-            });
+            note('error', 'Error in styles task.');
 
             this.emit('end');
         }
@@ -200,19 +240,17 @@ gulp.task('styles', function() {
     .pipe(cssnano({ zindex: false }))
     .pipe(autoprefixer('last 2 version'))
     .pipe(gulp.dest('public/css'))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('public/css'))
-    .on('end', function() {
+    .pipe(through2.obj(function(file, enc, callback) {
         if (cli) {
             stylesBox.pushLine(formatDate(new Date()) + 'Styles task completed.');
             screen.render();
         }
 
-        notifier.notify({
-            title: 'Styles task completed',
-            message: 'Success'
-        });
-    });
+        note('info', 'Styles task completed.');
+
+        callback(null, file);
+    }))
+    .pipe(sourcemaps.write('.')); // For some reason this has to go at the end or through2 will occur twice.
 });
  
 // Scripts - compile custom js
@@ -227,10 +265,7 @@ gulp.task('scripts', function() {
                 screen.render();
             }
 
-            notifier.notify({
-                title: 'Error in scripts task',
-                message: err.message
-            });
+            note('error', 'Error in scripts task.');
 
             this.emit('end');
         }
@@ -238,17 +273,16 @@ gulp.task('scripts', function() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
     .pipe(gulp.dest('public/js'))
-    .on('end', function() {
+    .pipe(through2.obj(function(file, enc, callback) {
         if (cli) {
             scriptsBox.pushLine(formatDate(new Date()) + 'Scripts task completed.');
             screen.render();
         }
 
-        notifier.notify({
-            title: 'Scripts task completed',
-            message: 'Success'
-        });
-    });
+        note('info', 'Scripts task completed.');
+
+        callback(null, file);
+    }));
 });
 
 // Start - starts the server and restarts it on file change
@@ -279,10 +313,7 @@ gulp.task('start', function() {
             screen.render();
         }
 
-        notifier.notify({
-            title: 'Server crashed.',
-            message: 'Error'
-        });
+        note('error', 'Server crashed.');
     });
 });
  
