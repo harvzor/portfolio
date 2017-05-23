@@ -3,21 +3,29 @@ module.exports = function(app, fs, express, config, logger) {
     var dataModule = require('../server/data.js');
     var helpers = require('../server/helpers.js');
     var actualData;
+    var cachedAmpCss;
 
     // Reloads the data if in dev mode, better for writing new posts!
     var data = function() {
-        if (firstRun || config.dev) {
-            firstRun = false;
-
+        if (actualData == null || config.dev) {
             actualData = dataModule(fs);
         }
 
         return actualData;
     };
 
+    // Reloads the CSS if in dev mode.
+    var ampCss = function() {
+        if (cachedAmpCss == null || config.dev) {
+            cachedAmpCss = fs.readFileSync('./public/css/amp.css', 'utf8');
+        }
+
+        return cachedAmpCss;
+    }
+
     // Load each controller and run them.
     fs.readdirSync('./server/controllers/').forEach(function(file) {
-        require('../server/controllers/' + file)(app, fs, express, config, logger, data, helpers);
+        require('../server/controllers/' + file)(app, ampCss, express, config, logger, data, helpers);
     });
 
     /////////////////

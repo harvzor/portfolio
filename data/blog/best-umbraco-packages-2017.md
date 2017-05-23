@@ -6,7 +6,7 @@
 
 https://our.umbraco.org/projects/developer-tools/301-url-tracker/
 
-As of <a href="https://umbraco.com/follow-us/blog-archive/2016/6/15/umbraco-75-beta-out-now/" target="_blank">Umbraco 7.5</a>, the CMS comes with its own 301 redirecter. What this does is when you move or rename a page in Umbraco, the 301 redirecter will put a redirect in place to send the user from the old pages URL to the new one. This helps a lot with SEO as Google hates it when it finds a 404 where a page used to be.
+As of [Umbraco 7.5](https://umbraco.com/follow-us/blog-archive/2016/6/15/umbraco-75-beta-out-now/), the CMS comes with its own 301 redirecter. What this does is when you move or rename a page in Umbraco, the 301 redirecter will put a redirect in place to send the user from the old pages URL to the new one. This helps a lot with SEO as Google hates it when it finds a 404 where a page used to be.
 
 However, the 301 redirecter is not perfect. It is fast but it doesn't allow you to setup your own redirects. This can be a pain if you're migrating from an old site, or you need to set up some more comprehensive redirects.
 
@@ -25,7 +25,7 @@ An alternative to NC is Archetype, which offers nearly the same functionality bu
 
 ### uSync
 
-<img src="/media/blog/best-umbraco-packages-2017/usync.png" alt="uSync in the back office." />
+![uSync in the back office](/media/blog/best-umbraco-packages-2017/usync.png)
 
 https://our.umbraco.org/projects/developer-tools/usync/
 
@@ -43,7 +43,7 @@ Before this package came along, I was writing custom C# models which reflect ind
 
 This package actually comes built into Umbraco. Generally it is turned on by default, which can be a little confusing if you haven't built with Umbraco before. However, I strongly recommend reading the documentation on this package as it will help you in the long run.
 
-If you're not into having models generated automatically (as this can give you less control over the resultant code), you may want to look into using <a href="https://our.umbraco.org/projects/developer-tools/ditto/" target="_blank">Ditto</a> as it can help speed up the rate which you can write your own models. I have not personally used Ditto as I love the Models Builder, but I think Ditto would have been great otherwise.
+If you're not into having models generated automatically (as this can give you less control over the resultant code), you may want to look into using [Ditto](https://our.umbraco.org/projects/developer-tools/ditto/) as it can help speed up the rate which you can write your own models. I have not personally used Ditto as I love the Models Builder, but I think Ditto would have been great otherwise.
 
 ### Umbraco Core Property Value Converters
 
@@ -59,7 +59,7 @@ A note on using this package - it's best not to add it after a site has been bui
 
 https://our.umbraco.org/projects/developer-tools/umbraco-forms/
 
-I have written about Umbraco Forms <a href="https://growcreate.co.uk/blog/umbraco-review-2017-developing-websites-with-umbraco/" target="_blank">before</a>, but would just like to reiterate for anyone else that this package is really quite nice. Umbraco Forms allows content editors in Umbraco to create forms of their liking which can then be added to the front end. This is great as it saves developers from needing to add or remove fields in the long run - the content editor can do all this as they need.
+I have written about Umbraco Forms [before](https://growcreate.co.uk/blog/umbraco-review-2017-developing-websites-with-umbraco/), but would just like to reiterate for anyone else that this package is really quite nice. Umbraco Forms allows content editors in Umbraco to create forms of their liking which can then be added to the front end. This is great as it saves developers from needing to add or remove fields in the long run - the content editor can do all this as they need.
 
 Umbraco Forms also saves form submissions into a database table which can all be accessed through the backoffice. This is great because if the SMTP details on your website suddenly stop working (it's happened before and I guarantee it will happen again), form submissions will still be saved in an easy to reach place.
 
@@ -67,13 +67,13 @@ The only downside of this package is that it costs 129 euros per a domain. Howev
 
 ### Iconator
 
-<img src="/media/blog/best-umbraco-packages-2017/icon-picker-dialogue.png" alt="Iconator in the back office." />
+![Iconator in the back office](/media/blog/best-umbraco-packages-2017/icon-picker-dialogue.png)
 
 https://our.umbraco.org/projects/backoffice-extensions/iconator/
 
 No article would be complete without some shameless self-promoting... That's why I'm sharing my own personal package called Iconator with you. It's a simple package which scans a CSS file for icon classes (using a regex) and allows a backend user to select the icon they want in a friendly and visual way.
 
-I've used this package on a number of client websites as it solves an everyday problem. If you're not sure about icon fonts, you can see why they're great <a href="https://css-tricks.com/examples/IconFont/">here</a>.
+I've used this package on a number of client websites as it solves an everyday problem. If you're not sure about icon fonts, you can see why they're great [here](https://css-tricks.com/examples/IconFont/).
 
 ### Multi Url Picker
 
@@ -85,7 +85,7 @@ A DLL is supplied with this package which gives you a model which you can cast t
 
 ### Documento
 
-<img src="/media/blog/best-umbraco-packages-2017/documento.png" alt="Documento in the back office." />
+![Documento in the back office.](/media/blog/best-umbraco-packages-2017/documento.png)
 
 https://our.umbraco.org/projects/backoffice-extensions/documento/
 
@@ -105,7 +105,7 @@ This package is a must have if you're creating complicated Grid layouts in Umbra
 
 ### uComponents (Umbraco 6)
 
-<img src="/media/blog/best-umbraco-packages-2017/ucomponents.png" alt="uComponents in the back office." />
+![uComponents in the back office](/media/blog/best-umbraco-packages-2017/ucomponents.png)
 
 https://our.umbraco.org/projects/backoffice-extensions/ucomponents
 

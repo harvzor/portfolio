@@ -1,4 +1,5 @@
-module.exports = function(app, fs, express, config, logger, data, helpers) {
+module.exports = function(app, ampCss, express, config, logger, data, helpers) {
+
     // Render blog posts.
     for (var i = 0; i < data().posts.length; i++) {
         app.get('/blog/' + data().posts[i].href, function(req, res) {
@@ -63,8 +64,9 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
                 ],
                 pageTitle: post.title,
                 datePublished: post.postDate,
+                canonical: post.canonical,
                 ampBodyText: post.ampBodyText,
-                canonical: post.canonical 
+                ampCss: ampCss()
             });
         });
     }

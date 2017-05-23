@@ -216,41 +216,47 @@ gulp.task('cli', function() {
     screen.render();
 });
 
+var styles = function(source, taskName) {
+    return gulp.src(source)
+        .pipe(plumber({
+            errorHandler: function (err) {
+                if (cli) {
+                    stylesBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
+                    screen.render();
+                }
 
-// Styles - compile custom Sass
-gulp.task('styles', function() {
-    return gulp.src([
-        'src/sass/main.scss'
-    ])
-    .pipe(plumber({
-        errorHandler: function (err) {
+                note('error', 'Error in styles task.');
+
+                this.emit('end');
+            }
+        }))
+        .pipe(sourcemaps.init())
+        .pipe(sass())
+        .pipe(gulp.dest('public/css'))
+        .pipe(cssnano({ zindex: false }))
+        .pipe(autoprefixer('last 2 version'))
+        .pipe(gulp.dest('public/css'))
+        .pipe(through2.obj(function(file, enc, callback) {
             if (cli) {
-                stylesBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
+                stylesBox.pushLine(formatDate(new Date()) + taskName + ' task completed.');
                 screen.render();
             }
 
-            note('error', 'Error in styles task.');
+            note('info', taskName + ' task completed.');
 
-            this.emit('end');
-        }
-    }))
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .pipe(gulp.dest('public/css'))
-    .pipe(cssnano({ zindex: false }))
-    .pipe(autoprefixer('last 2 version'))
-    .pipe(gulp.dest('public/css'))
-    .pipe(through2.obj(function(file, enc, callback) {
-        if (cli) {
-            stylesBox.pushLine(formatDate(new Date()) + 'Styles task completed.');
-            screen.render();
-        }
+            callback(null, file);
+        }))
+        .pipe(sourcemaps.write('.')); // For some reason this has to go at the end or through2 will occur twice.
+};
 
-        note('info', 'Styles task completed.');
 
-        callback(null, file);
-    }))
-    .pipe(sourcemaps.write('.')); // For some reason this has to go at the end or through2 will occur twice.
+// Styles - compile custom Sass
+gulp.task('styles', function() {
+    styles(['src/sass/main.scss'], 'Styles');
+});
+
+gulp.task('amp-styles', function() {
+    styles(['src/ampSass/amp.scss'], 'AMP styles');
 });
  
 // Scripts - compile custom js
@@ -321,11 +327,13 @@ gulp.task('start', function() {
 gulp.task('watch', function() {
     // Watch .scss files
     gulp.watch('src/sass/**/*.scss', ['styles']);
+
+    gulp.watch('src/ampsass/**/*.scss', ['amp-styles']);
  
     // Watch .js files
     gulp.watch('src/js/script.js', ['scripts']);
 });
 
 // Default - runs the scripts, styles and watch tasks: 'gulp' will run this task
-gulp.task('default', ['cli', 'styles', 'scripts', 'start', 'watch'])
+gulp.task('default', ['cli', 'styles', 'amp-styles', 'scripts', 'start', 'watch'])
 

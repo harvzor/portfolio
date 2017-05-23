@@ -4,6 +4,8 @@ iisnode
 
 logs
 
+public/css/amp.css
+public/css/amp.css.map
 public/css/main.css
 public/css/main.css.map
 public/js/*

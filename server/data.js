@@ -4,7 +4,7 @@ var data = function(fs) {
     var ampRenderer = new marked.Renderer();
 
     var linkRender = function(href, title, text) {
-          return '<a target="_blank" href="'+ href +'" title="' + title + '">' + text + '</a>';
+          return '<a target="_blank" href="'+ href +'">' + text + '</a>';
     };
 
     renderer.link = linkRender;
@@ -12,7 +12,7 @@ var data = function(fs) {
     ampRenderer.link = linkRender;
 
     ampRenderer.image = function(href, title, text) {
-          return '<amp-img src="' + href + '" alt="' + text + '" height="400" width="800"></amp-img>';
+          return '<amp-img src="' + href + '" alt="' + text + '" layout="responsive" height="400" width="800"></amp-img>';
     }
 
     // Reads a file.
@@ -22,7 +22,7 @@ var data = function(fs) {
 
         if (path.indexOf('.md') !== -1) {
             if (isAmp) {
-                return marked(contents, { renderer: ampRenderer });
+                return marked(contents, { renderer: ampRenderer, sanitize: true });
             }
 
             return marked(contents, { renderer: renderer });
