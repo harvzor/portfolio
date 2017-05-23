@@ -64,7 +64,7 @@ module.exports = function(app, ampCss, express, config, logger, data, helpers) {
                 ],
                 pageTitle: post.title,
                 datePublished: post.postDate,
-                canonical: post.canonical,
+                canonical: typeof post.canonical === 'undefined' ? '/blog/' + url : post.canonical,
                 ampBodyText: post.ampBodyText,
                 ampCss: ampCss()
             });
