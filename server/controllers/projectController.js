@@ -9,7 +9,7 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
 
                         (function(example) {
                             res.render('project-example', {
-                                layout: 'common',
+                                layout: '_common',
                                 relativeUrl: example.href,
                                 metaDescription: example.metaDescription,
                                 pageGroup: 'projects',

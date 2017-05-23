@@ -4,7 +4,7 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
         res.set('Content-Type', 'text/xml');
 
         res.render('rss', {
-            layout: 'rss',
+            layout: 'rss', // This probably causes the template to be created twice...
             helpers: helpers,
             posts: data().posts
         });

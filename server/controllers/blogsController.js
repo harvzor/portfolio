@@ -18,7 +18,7 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
 
         res.render('posts', {
             helpers: helpers,
-            layout: 'common',
+            layout: '_common',
             relativeUrl: 'blog',
             metaDescription: 'Read about my latest thoughts and experiences in the world of web development.',
             pageGroup: 'blog',

@@ -1,6 +1,6 @@
 module.exports = function(app, fs, express, config, logger, data, helpers) {
     // Render blog posts.
-    for(var i = 0; i < data().posts.length; i++) {
+    for (var i = 0; i < data().posts.length; i++) {
         app.get('/blog/' + data().posts[i].href, function(req, res) {
             var prevPost = null;
             var nextPost = null;
@@ -23,7 +23,7 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
 
             res.render('post', {
                 helpers: helpers,
-                layout: 'common',
+                layout: '_common',
                 relativeUrl: url,
                 metaDescription: post.metaDescription,
                 pageGroup: 'blog',
@@ -38,6 +38,32 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
                 bodyText: post.bodyText,
                 prevPost: prevPost,
                 nextPost: nextPost,
+                canonical: post.canonical,
+                ampCanonical: '/amp/blog/' + url
+            });
+        });
+
+        app.get('/amp/blog/' + data().posts[i].href, function(req, res) {
+            var url = req.originalUrl.split('/')[3]
+                .split('?')[0];
+
+            var post = data().posts.filterObjects('href', url)[0];
+
+            res.render('postAmp', {
+                helpers: helpers,
+                layout: '_amp',
+                relativeUrl: url,
+                metaDescription: post.metaDescription,
+                pageGroup: 'blog',
+                parentPages: [
+                    {
+                        title: 'blog',
+                        href: '/blog'
+                    }
+                ],
+                pageTitle: post.title,
+                datePublished: post.postDate,
+                ampBodyText: post.ampBodyText,
                 canonical: post.canonical 
             });
         });

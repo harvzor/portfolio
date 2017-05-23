@@ -9,7 +9,7 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
 
         res.render('home', {
             helpers: helpers,
-            layout: 'common',
+            layout: '_common',
             relativeUrl: '',
             metaDescription: 'Hi. I am a young experienced web developer living in Oxford. I specialise in Umbraco CMS development.',
             pageGroup: 'home',

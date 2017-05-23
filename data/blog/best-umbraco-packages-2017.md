@@ -14,7 +14,7 @@ This is where 301 Url Tracker comes in. This package has been around since Umbra
 
 ### Nested Content
 
-<img src="/media/blog/best-umbraco-packages-2017/nested-content.png" alt="Nested Content in the back office." />
+![Nested Content in the back office.](/media/blog/best-umbraco-packages-2017/nested-content.png)
 
 https://our.umbraco.org/projects/backoffice-extensions/nested-content/
 

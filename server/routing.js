@@ -40,7 +40,7 @@ module.exports = function(app, fs, express, config, logger) {
         logger.info('404 error: %s', req.originalUrl);
 
         res.status(404).render('page', {
-            layout: 'common',
+            layout: '_common',
             relativeUrl: '404',
             pageGroup: '',
             pageTitle: 'Status: 404',
@@ -52,7 +52,7 @@ module.exports = function(app, fs, express, config, logger) {
         logger.error('500 error: %s', err.stack);
 
         res.status(500).render('page', {
-            layout: 'common',
+            layout: '_common',
             relativeUrl: '500',
             pageGroup: '',
             pageTitle: 'Status: 500',

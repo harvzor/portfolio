@@ -1,13 +1,31 @@
 var data = function(fs) {
     var marked = require('marked');
+    var renderer = new marked.Renderer();
+    var ampRenderer = new marked.Renderer();
+
+    var linkRender = function(href, title, text) {
+          return '<a target="_blank" href="'+ href +'" title="' + title + '">' + text + '</a>';
+    };
+
+    renderer.link = linkRender;
+
+    ampRenderer.link = linkRender;
+
+    ampRenderer.image = function(href, title, text) {
+          return '<amp-img src="' + href + '" alt="' + text + '" height="400" width="800"></amp-img>';
+    }
 
     // Reads a file.
     // Will return HTML, even if the original format is Markdown.
-    var getData = function(path) {
+    var getData = function(path, isAmp) {
         var contents = fs.readFileSync('data/' + path, 'utf8');
 
         if (path.indexOf('.md') !== -1) {
-            return marked(contents);
+            if (isAmp) {
+                return marked(contents, { renderer: ampRenderer });
+            }
+
+            return marked(contents, { renderer: renderer });
         }
 
         return contents;
@@ -70,6 +88,7 @@ var data = function(fs) {
                 postDate: 'Thu, 01 Jun 2017 00:00:00 GMT',
                 summary: 'ScheduledTasks are an antiquated way of handling scheduling events in .NET. Here\'s three better solutions you should be considering instead.',
                 bodyText: getData('blog/better-task-scheduling-in-umbraco.md'),
+                ampBodyText: getData('blog/better-task-scheduling-in-umbraco.md', true),
                 canonical: 'https://growcreate.co.uk/blog/better-task-scheduling-in-umbraco/',
                 tags: ['umbraco', 'programming']
             },
@@ -80,6 +99,7 @@ var data = function(fs) {
                 postDate: 'Sun, 02 Mar 2017 00:00:00 GMT',
                 summary: 'Discover some of the best Umbraco packages which can help you build Umbraco websites.',
                 bodyText: getData('blog/best-umbraco-packages-2017.md'),
+                ampBodyText: getData('blog/best-umbraco-packages-2017.md', true),
                 tags: ['umbraco', 'programming']
             },
             {

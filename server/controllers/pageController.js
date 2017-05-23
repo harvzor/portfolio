@@ -1,7 +1,7 @@
 module.exports = function(app, fs, express, config, logger, data, helpers) {
     app.get('/about', function(req, res) {
         res.render('page', {
-            layout: 'common',
+            layout: '_common',
             relativeUrl: '',
             metaDescription: 'Hi. I am a young experienced web developer living in Oxford. I specialise in Umbraco CMS development.',
             pageGroup: 'about',
@@ -12,7 +12,7 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
 
     app.get('/cv', function(req, res) {
         res.render('page', {
-            layout: 'common',
+            layout: '_common',
             relativeUrl: '/cv',
             metaDescription: 'Looking to hire a great developer? We might be a perfect match.',
             pageGroup: '',
@@ -24,7 +24,7 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
     /*
     app.get('/8tracks', function(req, res) {
         res.render('page', {
-            layout: 'common',
+            layout: '_common',
             pageGroup: '',
             pageTitle: '8Tracks',
             bodyText: fs.readFileSync('data/8tracks.html', 'utf8')
@@ -35,7 +35,7 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
     app.get('/songs', function(req, res) {
         res.render('songs', {
             helpers: helpers,
-            layout: 'common',
+            layout: '_common',
             relativeUrl: '/cv',
             pageGroup: '',
             pageTitle: 'Songs',

@@ -1,4 +1,4 @@
-This blog post has also been published to <a href="https://growcreate.co.uk/blog/better-task-scheduling-in-umbraco/" target="_blank">GrowCreate's blog</a>.
+This blog post has also been published to [GrowCreate's blog](https://growcreate.co.uk/blog/better-task-scheduling-in-umbraco/).
 
 Some web applications need to be able to trigger tasks to occur as set times. A good task scheduler should be able to do the following:
 

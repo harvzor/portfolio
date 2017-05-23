@@ -15,12 +15,14 @@
         <meta name="twitter:description" content="<%= metaDescription %>" />
     <% } %>
     <% /*
-    <meta name="twitter:image" content="/Media/me-2.jpg" />
-    <meta name="twitter:image:alt" content="Harvey Williams" />
+        <meta name="twitter:image" content="/Media/me-2.jpg" />
+        <meta name="twitter:image:alt" content="Harvey Williams" />
     */ %>
-
+    <% if (typeof ampCanonical !== 'undefined') { %>
+        <link rel="amphtml" href="<%= ampCanonical %>" />
+    <% } %>
     <% if (typeof canonical !== 'undefined') { %>
-        <link href="<%= canonical %>" rel="canonical" /> 
+        <link rel="canonical" href="<%= canonical %>" /> 
     <% } else { %>
         <link href="//harveywilliams.net/<%= relativeUrl %>" rel="canonical" /> 
     <% } %>
