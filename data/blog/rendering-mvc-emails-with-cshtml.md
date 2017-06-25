@@ -1,11 +1,8 @@
-<p>
-    Almost every website that I build for a client needs to have some sort of way to contact the outside world; the most common way of doing this is to send an email.
-</p>
-<p>
-    The thing is, developers get lazy when they start making emails. The technology is stuck in the past and it's not a fun front end experience to try and create complicated layouts using tables. All of this together makes creating emails a hack and slash job. Here's the simple way a lot of emails are made:
-</p>
-<pre>
-    <code>
+Almost every website that I build for a client needs to have some sort of way to contact the outside world; the most common way of doing this is to send an email.
+
+The thing is, developers get lazy when they start making emails. The technology is stuck in the past and it's not a fun front end experience to try and create complicated layouts using tables. All of this together makes creating emails a hack and slash job. Here's the simple way a lot of emails are made:
+
+```
 public bool Send()
 {
     var mailServer = new SmtpClient();
@@ -17,7 +14,7 @@ public bool Send()
     mail.IsBodyHtml = true;
 
     // Don't do this!!
-    mail.Body = String.Format("&lt;h2&gt;Dear {0},&lt;/h2&gt;&lt;p&gt;Thank you for signing up. We value you as a customer etc etc...&lt;/p&lt;&lt;p&gt;From the team at {1}.&lt;/p&gt;",
+    mail.Body = String.Format("<h2>Dear {0},</h2><p>Thank you for signing up. We value you as a customer etc etc...</p<<p>From the team at {1}.</p>",
         "Bar Foo",
         "foo.bar.net");
 
@@ -33,28 +30,21 @@ public bool Send()
 
     return true;
 }
-    </code>
-</pre>
-<p>
-    The above doesn't look crazy bad, but just wait until the email starts getting complicated. If you want to have real formatting, then it's going to quickly get out of hand.
-</p>
-<h2>
-    Rendering MVC emails with Razor and CSHTML templates
-</h2>
-<p>
-    Enough of string formatting! We have a better method now. We're used to using Razor and some sort of MVC to build our ordinary website views. Surely there is some way we can incorporate that into our email design? Well there is!
-</p>
-<h3>
-    The West Wind Toolkit Way
-</h3>
-<p>
-    Fortunately there is a tool out there which allows us to easily render a CSHTML view with a model of our choosing. This tool is called the <a href="https://github.com/RickStrahl/WestwindToolkit" target="_blank">West Wind Toolkit</a>. It's opensource and under the MIT license, meaning we can use it in our projects.
-</p>
-<p>
-    The particular part of the toolkit we plan on using is the <a href="https://github.com/RickStrahl/WestwindToolkit/blob/master/Westwind.Web.Mvc/Utils/ViewRenderer.cs">view renderer</a>. Since I didn't want to bloat my project with anything more than necessary, I ripped apart this piece of C# that West Wind has provided us with, and only kept the core methods in the end result:
-</p>
-<pre>
-    <code>
+```
+
+The above doesn't look crazy bad, but just wait until the email starts getting complicated. If you want to have real formatting, then it's going to quickly get out of hand.
+
+## Rendering MVC emails with Razor and CSHTML templates
+
+Enough of string formatting! We have a better method now. We're used to using Razor and some sort of MVC to build our ordinary website views. Surely there is some way we can incorporate that into our email design? Well there is!
+
+### The West Wind Toolkit Way
+
+Fortunately there is a tool out there which allows us to easily render a CSHTML view with a model of our choosing. This tool is called the [West Wind Toolkit](https://github.com/RickStrahl/WestwindToolkit). It's opensource and under the MIT license, meaning we can use it in our projects.
+
+The particular part of the toolkit we plan on using is the [view renderer](https://github.com/RickStrahl/WestwindToolkit/blob/master/Westwind.Web.Mvc/Utils/ViewRenderer.cs). Since I didn't want to bloat my project with anything more than necessary, I ripped apart this piece of C\# that West Wind has provided us with, and only kept the core methods in the end result:
+
+```
 using System;
 using System.Web;
 using System.Web.Mvc;
@@ -63,7 +53,7 @@ using System.Web.Routing;
 
 namespace YourNamespace
 {
-    /// <summary>
+    /// 
     /// Class that renders MVC views to a string using the
     /// standard MVC View Engine to render the view.
     /// 
@@ -74,22 +64,22 @@ namespace YourNamespace
     /// 
     /// Code extracted from:
     /// https://github.com/RickStrahl/WestwindToolkit/blob/master/Westwind.Web.Mvc/Utils/ViewRenderer.cs
-    /// </summary>
+    /// 
     public class ViewRenderer
     {
-        /// <summary>
+        /// 
         /// Required Controller Context
-        /// </summary>
+        /// 
         protected ControllerContext Context { get; set; }
 
-        /// <summary>
+        /// 
         /// Initializes the ViewRenderer with a Context.
-        /// </summary>
-        /// <param name="controllerContext">
+        /// 
+        /// 
         /// If you are running within the context of an ASP.NET MVC request pass in
         /// the controller's context. 
         /// Only leave out the context if no context is otherwise available.
-        /// </param>
+        /// 
         public ViewRenderer(ControllerContext controllerContext = null)
         {
             // Create a known controller from HttpContext if no context is passed
@@ -97,7 +87,7 @@ namespace YourNamespace
             {
                 if (HttpContext.Current != null)
                 {
-                    controllerContext = CreateController<EmptyController>().ControllerContext;
+                    controllerContext = CreateController().ControllerContext;
                 }
                 else
                 {
@@ -110,51 +100,51 @@ namespace YourNamespace
             Context = controllerContext;
         }
 
-        /// <summary>
+        /// 
         /// Renders a partial MVC view to string. Use this method to render
         /// a partial view that doesn't merge with _Layout and doesn't fire
         /// _ViewStart.
-        /// </summary>
-        /// <param name="viewPath">
+        /// 
+        /// 
         /// The path to the view to render. Either in same controller, shared by 
         /// name or as fully qualified ~/ path including extension
-        /// </param>
-        /// <param name="model">The model to pass to the viewRenderer</param>
-        /// <param name="controllerContext">Active controller context</param>
-        /// <returns>String of the rendered view or null on error</returns>
+        /// 
+        /// The model to pass to the viewRenderer
+        /// Active controller context
+        /// String of the rendered view or null on error
         public static string RenderView(string viewPath, object model = null, ControllerContext controllerContext = null)
         {
             var renderer = new ViewRenderer(controllerContext);
             return renderer.RenderViewToString(viewPath, model);
         }
 
-        /// <summary>
+        /// 
         /// Renders a partial MVC view to string. Use this method to render
         /// a partial view that doesn't merge with _Layout and doesn't fire
         /// _ViewStart.
-        /// </summary>
-        /// <param name="viewPath">
+        /// 
+        /// 
         /// The path to the view to render. Either in same controller, shared by 
         /// name or as fully qualified ~/ path including extension
-        /// </param>
-        /// <param name="model">The model to pass to the viewRenderer</param>
-        /// <returns>String of the rendered view or null on error</returns>
+        /// 
+        /// The model to pass to the viewRenderer
+        /// String of the rendered view or null on error
         public string RenderViewToString(string viewPath, object model = null)
         {
             return RenderViewToStringInternal(viewPath, model, true);
         }
 
-        /// <summary>
+        /// 
         /// Internal method that handles rendering of either partial or 
         /// or full views.
-        /// </summary>
-        /// <param name="viewPath">
+        /// 
+        /// 
         /// The path to the view to render. Either in same controller, shared by 
         /// name or as fully qualified ~/ path including extension
-        /// </param>
-        /// <param name="model">Model to render the view with</param>
-        /// <param name="partial">Determines whether to render a full or partial view</param>
-        /// <returns>String of the rendered view</returns>
+        /// 
+        /// Model to render the view with
+        /// Determines whether to render a full or partial view
+        /// String of the rendered view
         private string RenderViewToStringInternal(string viewPath, object model, bool partial = false)
         {
             // first find the ViewEngine for this view
@@ -187,14 +177,14 @@ namespace YourNamespace
             return result;
         }
 
-        /// <summary>
+        /// 
         /// Creates an instance of an MVC controller from scratch 
         /// when no existing ControllerContext is present       
-        /// </summary>
-        /// <typeparam name="T">Type of the controller to create</typeparam>
-        /// <returns>Controller Context for T</returns>
-        /// <exception cref="InvalidOperationException">thrown if HttpContext not available</exception>
-        public static T CreateController<T>(RouteData routeData = null) where T : Controller, new()
+        /// 
+        /// Type of the controller to create
+        /// Controller Context for T
+        /// thrown if HttpContext not available
+        public static T CreateController(RouteData routeData = null) where T : Controller, new()
         {
             // create a disconnected controller instance
             T controller = new T();
@@ -227,61 +217,49 @@ namespace YourNamespace
         }
     }
 
-    /// <summary>
+    /// 
     /// Empty MVC Controller instance used to 
     /// instantiate and provide a new ControllerContext
     /// for the ViewRenderer
-    /// </summary>
+    /// 
     public class EmptyController : Controller { }
 }
-    </code>
-</pre>
-<p>
-    You can also view the latest version that I will be using in my projects <a href="https://gist.github.com/HarveyWilliams/0405edd6719c16171329" target="_blank">here</a>.
-</p>
-<p>
-    Include this view renderer in your project, and you can use it to render Razor CSHTML views with a model.
-</p>
-<h3>
-    Building the Model
-</h3>
-<p>
-    Before we start using the view renderer in our project, we will need to set up a model to use with our view. Below is a very simple one that covers the two properties that our model will need:
-</p>
-<pre>
-    <code>
+```
+
+You can also view the latest version that I will be using in my projects [here](https://gist.github.com/HarveyWilliams/0405edd6719c16171329).
+
+Include this view renderer in your project, and you can use it to render Razor CSHTML views with a model.
+
+### Building the Model
+
+Before we start using the view renderer in our project, we will need to set up a model to use with our view. Below is a very simple one that covers the two properties that our model will need:
+
+```
 public class NewSignUpModel
 {
     public string Recipient { get; set; }
     public string Team { get; set; }
 }
-    </code>
-</pre>
-<h3>
-    Building the view
-</h3>
-<p>
-    Our view will need to reference the model we just made using @model at the top of the template:
-</p>
-<pre>
-    <code>
+```
+
+### Building the view
+
+Our view will need to reference the model we just made using @model at the top of the template:
+
+```
 @model NewSignUpModel
-&lt;h2&gt;Dear @(Model.Recipient),&lt;/h2&gt;
-&lt;p&gt;Thank you for signing up. We value you as a customer etc etc...&lt;/p&gt;
-&lt;p&gt;From the team at @(Model.Team).&lt;/p&gt;
-    </code>
-</pre>
-<p>
-    The @model reference allows use to then write @(Model.Recipient) where we want the parameter to be shown. But I'm sure you're used to doing this kind of thing by now.
-</p>
-<h3>
-    Updating the mail sending method
-</h3>
-<p>
-    Finally, we need to update our original mail send method to use the view renderer. Pass in the path to your view as the first parameter to the ViewRenderer.RenderView method, and the model you intend the view to use as the second:
-</p>
-<pre>
-    <code>
+<h2>Dear @(Model.Recipient),</h2>
+<p>Thank you for signing up. We value you as a customer etc etc...</p>
+<p>From the team at @(Model.Team).</p>
+```
+
+The @model reference allows use to then write @(Model.Recipient) where we want the parameter to be shown. But I'm sure you're used to doing this kind of thing by now.
+
+### Updating the mail sending method
+
+Finally, we need to update our original mail send method to use the view renderer. Pass in the path to your view as the first parameter to the ViewRenderer.RenderView method, and the model you intend the view to use as the second:
+
+```
 public bool Send()
 {
     var mailServer = new SmtpClient();
@@ -310,9 +288,7 @@ public bool Send()
 
     return true;
 }
-    </code>
-</pre>
-<p>
-    Using the above method will get an email sent off but with the view that we created as the body of the email.
-</p>
+```
+
+Using the above method will get an email sent off but with the view that we created as the body of the email.
 

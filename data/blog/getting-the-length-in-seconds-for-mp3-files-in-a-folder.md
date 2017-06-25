@@ -1,11 +1,10 @@
 Recently I came across a problem where I needed to get the length for a group of MP3 files in a folder. Windows displays the length in hours, minutes and seconds, but I purely needed the length of each file in only seconds. Originally my plan was to get the length of the files using a calculator, but this was error prone, time consuming and also.. I mean, I'm a programmer. Surely there's a simple script that can do this for me?
 
-Judging from <a href="http://stackoverflow.com/questions/119404/time-length-of-an-mp3-file" target="_blank">this Stack Overflow thread</a>, it was very easy to do using Python, but I don't have Python installed (although I should probably find some time to actually learn the languages basics). I do however have NodeJS installed.
+Judging from [this Stack Overflow thread](http://stackoverflow.com/questions/119404/time-length-of-an-mp3-file), it was very easy to do using Python, but I don't have Python installed (although I should probably find some time to actually learn the languages basics). I do however have NodeJS installed.
 
-After discovering and installing <a href="https://www.npmjs.com/package/mp3-duration" target="_blank">this package</a> that can find the length of a single MP3 file, the next step was easy. Simply get all of the files in a folder, and get the length of each file:
+After discovering and installing [this package](https://www.npmjs.com/package/mp3-duration) that can find the length of a single MP3 file, the next step was easy. Simply get all of the files in a folder, and get the length of each file:
 
-<pre>
-    <code class="javascript">
+```
 const mp3Duration = require('mp3-duration');
 const fs = require('fs');
 
@@ -25,8 +24,8 @@ fs.readdir(folder, (err, files) => {
             console.log(file + ' is ' + duration + ' seconds long');
         });
     }
-});</code>
-</pre>
+});
+```
 
 After running this script and waiting a couple of seconds, the console began to spit out of all of data I needed:
 
@@ -56,8 +55,7 @@ Hurrah! Oh wait, the files aren't quite in order here. I wanted the files to be 
 A quick change ensured that each file would be read in the correct order:
 
 
-<pre>
-    <code class="javascript">
+```
 const mp3Duration = require('mp3-duration');
 const fs = require('fs');
 
@@ -85,8 +83,8 @@ fs.readdir(folder, (err, files) => {
     }
 
     readFiles(files, 0);
-});</code>
-</pre>
+});
+```
 
 This causes this output:
 
@@ -110,8 +108,7 @@ This script is significantly slower than the last, because the program waits unt
 
 My challenge was now complete, but still, I wanted to produce the fastest script I could. The `Promise` API is really useful for this:
 
-<pre>
-    <code class="javascript">
+```
 const mp3Duration = require('mp3-duration');
 const fs = require('fs');
 
@@ -144,13 +141,12 @@ fs.readdir(folder, (err, files) => {
     }).catch((err) => {
         console.log('error:', err);
     });
-});</code>
-</pre>
+});
+```
 
 After a few seconds of waiting, this outputs an array of sorted values:
 
-<pre>
-    <code class="javascript">
+```
 [ '01.mp3 is 445.1 seconds long',   
   '02.mp3 is 320.183 seconds long', 
   '03.mp3 is 437.316 seconds long', 
@@ -162,8 +158,8 @@ After a few seconds of waiting, this outputs an array of sorted values:
   '09.mp3 is 585.117 seconds long', 
   '10.mp3 is 344.842 seconds long', 
   '11.mp3 is 420.206 seconds long', 
-  ...]</code>
-</pre>
+  ...]
+```
 
 ## Conclusion
 

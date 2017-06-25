@@ -23,7 +23,7 @@ Umbraco has a built-in way of handling task scheduling. Add the following code i
 </scheduledTasks>
 ```
 
-You can read more about using this <a href="https://our.umbraco.org/Documentation/Reference/Config/umbracoSettings/#scheduledtasks" target="_blank">here</a>.
+You can read more about using this [here](https://our.umbraco.org/Documentation/Reference/Config/umbracoSettings/#scheduledtasks).
 
 This works by visiting the given URL at a set interval (in seconds). But this method has a lot of drawbacks:
 
@@ -39,27 +39,27 @@ It's about time we did away with this and used something better!
 
 There's a few ways to schedule tasks in .NET. Here are some options:
 
-- <a href="#quartz">Quartz</a>
-- <a href="#hangfire">Hangfire</a>
-- <a href="#windows-task-scheduler">Windows Task Scheduler</a>
+- [Quartz](#quartz)
+- [Hangfire](#hangfire)
+- [Windows Task Scheduler](#windows-task-scheduler)
 
 ### Quartz
 
-<a href="https://www.quartz-scheduler.net/" target="_blank">Quartz</a> is an open source .NET scheduler and is a port of a popular Java job scheduler.
+[Quartz](https://www.quartz-scheduler.net/) is an open source .NET scheduler and is a port of a popular Java job scheduler.
 
-I have used Quartz on an internal project and my experience was good. You can either schedule tasks using the built in LINQ methods, or if you understand <a href="http://www.adminschoice.com/crontab-quick-reference" target="_blank">crontabs</a> then you can build complex schedules with one line strings.
+I have used Quartz on an internal project and my experience was good. You can either schedule tasks using the built in LINQ methods, or if you understand [crontabs](http://www.adminschoice.com/crontab-quick-reference) then you can build complex schedules with one line strings.
 
 Tasks can either be stored in memory or you can configure Quartz to save tasks to a database. The former option is simpler to setup, but would require you schedule the tasks on site startup if you want to have commonly occurring tasks.
 
 The only downside of Quartz I can think of is **there's no UI to view tasks**, so it's still not transparent to non-developers what is going on.
 
-There is an Umbraco package called <a href="https://our.umbraco.org/projects/backoffice-extensions/url-task-scheduler-for-v7/" target="_blank">Url Task Scheduler for V7</a> which uses Quartz for scheduling and provides a UI on an Umbraco dashboard. Though you should note this package is targeted at developers and there haven't been any recent updates to the package. Use at your own risk!
+There is an Umbraco package called [Url Task Scheduler for V7](https://our.umbraco.org/projects/backoffice-extensions/url-task-scheduler-for-v7/) which uses Quartz for scheduling and provides a UI on an Umbraco dashboard. Though you should note this package is targeted at developers and there haven't been any recent updates to the package. Use at your own risk!
 
 ### Hangfire
 
-<a href="https://www.hangfire.io/" target="_blank">Hangfire</a> is a full-featured solution for task scheduling as it even includes a beautiful UI which you can access via your browser. The UI can tell you when tasks have been called, when they completed and if an error occurred.
+[Hangfire](https://www.hangfire.io/) is a full-featured solution for task scheduling as it even includes a beautiful UI which you can access via your browser. The UI can tell you when tasks have been called, when they completed and if an error occurred.
 
-Hangfire assumes you have a MS SQL database and setting it up to use the database is super simple. But the best thing is some other Umbracians have written blog posts on integrating Hangfire with Umbraco. Check them out <a href="http://camaya.co/posts/2016/07/31/how-to-integrate-hangfire-with-umbraco/" target="_blank">here</a> and <a href="http://www.abstractmethod.co.uk/blog/2016/4/better-task-scheduling-in-umbraco/" target="_blank">here</a>.
+Hangfire assumes you have a MS SQL database and setting it up to use the database is super simple. But the best thing is some other Umbracians have written blog posts on integrating Hangfire with Umbraco. Check them out [here](http://camaya.co/posts/2016/07/31/how-to-integrate-hangfire-with-umbraco/) and [here](http://www.abstractmethod.co.uk/blog/2016/4/better-task-scheduling-in-umbraco/).
 
 Hangfire might be a little overkill if you want to setup a couple of simple reoccurring tasks, but for bigger websites, there is a real benefit from using it.
 
@@ -92,5 +92,5 @@ It's often that more complicated websites need to be able to run reoccurring tas
 
 My personal favourite solution is Hangfire because of the user friendly UI. But ultimately, what you use depends on how critical tasks that you need carrying out are and the budget of your client.
 
-Have you got a solution you prefer? Or do you think Umbraco should include a better task scheduler in the core? You can contact me on <a href="https://twitter.com/Harvzor" target="_blank">Twitter</a> to let me know what you think!
+Have you got a solution you prefer? Or do you think Umbraco should include a better task scheduler in the core? You can contact me on [Twitter](https://twitter.com/Harvzor) to let me know what you think!
 
