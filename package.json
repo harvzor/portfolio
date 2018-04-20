@@ -1,11 +1,10 @@
 {
-  "name": "HarveyWilliamsPersonalSite",
+  "name": "harvey-williams-personal-site",
   "version": "0.1.1",
   "description": "The portfolio website built by and for Harvey Williams which uses Node.",
   "contributors": [
     {
-      "name": "Harvey Williams",
-      "email": ""
+      "name": "Harvey Williams"
     }
   ],
   "repository": {
@@ -13,31 +12,28 @@
     "url": "https://github.com/HarveyWilliams/portfolio"
   },
   "dependencies": {
-    "bunyan": "^1.7.1",
-    "compression": "^1.6.1",
-    "ejs": "^2.3.1",
-    "express": "^4.12.3",
-    "express-ejs-layouts": "^1.1.0",
-    "marked": "^0.3.6"
+    "bunyan": "^1.8.12",
+    "compression": "^1.7.2",
+    "ejs": "^2.5.9",
+    "express": "^4.16.3",
+    "express-ejs-layouts": "^2.4.0",
+    "marked": "^0.3.19"
   },
   "devDependencies": {
     "blessed": "^0.1.81",
-    "ejs": "^2.3.1",
-    "express": "^4.12.3",
-    "express-ejs-layouts": "^1.1.0",
-    "express-generator": "^4.12.1",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^2.3.1",
-    "gulp-cssnano": "^2.1.0",
-    "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^1.0.1",
+    "express-generator": "^4.16.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.1.1",
-    "gulp-sourcemaps": "^1.5.2",
-    "gulp-uglify": "^1.2.0",
-    "node-notifier": "^4.5.0",
-    "nodemon": "^1.11.0",
-    "tail": "^0.4.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "node-notifier": "^5.2.1",
+    "nodemon": "^1.17.3",
+    "tail": "^1.2.3",
     "through2": "^2.0.3"
   }
 }
