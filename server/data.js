@@ -81,6 +81,18 @@ var data = function(fs) {
         },
         // Blog data.
         posts: [
+            /*
+                {
+                    href: 'umbraco-super-admin',
+                    metaDescription: '',
+                    title: '',
+                    postDate: 'Sun, 25 Jul 2017 00:00:00 GMT',
+                    summary: '',
+                    bodyText: getData('blog/umbraco-super-admin.md'),
+                    ampBodyText: getData('blog/umbraco-super-admin.md', true),
+                    tags: ['umbraco', 'programming']
+                },
+            */
             {
                 href: 'unique-field-in-umbraco-forms',
                 metaDescription: 'A simple code sample which shows how you can force unique field values in an Umbraco Form.',
