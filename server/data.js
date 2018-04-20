@@ -34,6 +34,12 @@ var data = function(fs) {
     var dataObject = {
         songs: [
             {
+                name: 'Blood In The Cut',
+                artist: 'K.Flay',
+                date: 'Fri, 20 Apr 2018 00:00:00 GMT',
+                id: 'DMA4vDwP7n4'
+            },
+            {
                 name: 'Renn!',
                 artist: 'Enno Bunger',
                 date: 'Wed, 26 Oct 2016 00:00:00 GMT',
