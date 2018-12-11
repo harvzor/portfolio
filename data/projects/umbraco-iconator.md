@@ -8,4 +8,4 @@ All of this required a small amount of configuration to be done in Umbraco.
 
 ![Icon Picker Data Type](/media/projects/umbraco-iconator/IconPickerDataType.png)
 
-Iconator is available on GitHub: <a href="https://github.com/HarveyWilliams/Iconator">[https://github.com/HarveyWilliams/Iconator]
+Iconator is available on GitHub: https://github.com/HarveyWilliams/Iconator
