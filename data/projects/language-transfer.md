@@ -1,6 +1,6 @@
 <img src="/media/projects/language-transfer/language-transfer-pixel-2.png" style="width:300px;">
 
-*You can look at my prototype web app [here](http://lt2.harveywilliams.net/).*
+*You can look at my prototype web app [here](https://languagetransfer.harveywilliams.net/).*
 
 In my eternal quest to improve my German language skills, I'm always looking for better resources to learn from online.
 

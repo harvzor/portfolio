@@ -1,3 +1,5 @@
+![Artists Name Plates homepage](/media/projects/artistsnameplates.jpg)
+
 Artists Name Plates is a small business that makes gold tablets with chosen text that are pinned onto antique frames. The business had a need for a website to make it easier for customers to gather information including the prices for each plate.
 
 Before the website, the only way for customers to make orders was by either ordering through eBay or emailing the business directly. The website added the option for customers to order with a specially made order form. This gives the customer what they need to make repeat successful orders.

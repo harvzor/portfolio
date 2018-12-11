@@ -217,21 +217,21 @@ var data = function(fs) {
                         metaDescription: 'A simple package that lets Umbraco users select icons in the backoffice to be displayed on the front end.',
                         cover: '/media/projects/umbraco-iconator/IconPickerDialog.png',
                         name: 'Umbraco Iconator',
-                        bodyText: getData('projects/umbraco-iconator.html')
+                        bodyText: getData('projects/umbraco-iconator.md')
                     },
                     {
                         href: 'artists-name-plates',
                         metaDescription: 'I built a website for Artists Name Plates - an ecommerce site that allows users to buy name plates for paintings.',
                         cover: '/media/projects/artistsnameplates.jpg',
                         name: 'Artists Name Plates',
-                        bodyText: getData('projects/artists-name-plates.html')
+                        bodyText: getData('projects/artists-name-plates.md')
                     },
                     {
                         href: 'harvey-williams',
                         metaDescription: 'I built this website using Node.JS and "love".',
                         cover: '/media/projects/harveywilliams.png',
                         name: 'This portfolio site',
-                        bodyText: getData('projects/harvey-williams.html')
+                        bodyText: getData('projects/harvey-williams.md')
                     }
                 ]
             }
