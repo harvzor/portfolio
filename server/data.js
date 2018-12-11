@@ -206,9 +206,15 @@ var data = function(fs) {
                 info: 'These are the projects which I have worked on.',
                 pages: [
                     {
+                        href: 'language-transfer',
+                        metaDescription: 'Proof of concept (prototype) of Language Transfer app. ',
+                        cover: '/media/projects/language-transfer/language-transfer-pixel-2.png',
+                        name: 'Language Transfer Prototype',
+                        bodyText: getData('projects/language-transfer.md')
+                    },
+                    {
                         href: 'umbraco-iconator',
                         metaDescription: 'A simple package that lets Umbraco users select icons in the backoffice to be displayed on the front end.',
-                        cover: '',
                         cover: '/media/projects/umbraco-iconator/IconPickerDialog.png',
                         name: 'Umbraco Iconator',
                         bodyText: getData('projects/umbraco-iconator.html')

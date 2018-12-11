@@ -1,0 +1,9 @@
+Artists Name Plates is a small business that makes gold tablets with chosen text that are pinned onto antique frames. The business had a need for a website to make it easier for customers to gather information including the prices for each plate.
+
+Before the website, the only way for customers to make orders was by either ordering through eBay or emailing the business directly. The website added the option for customers to order with a specially made order form. This gives the customer what they need to make repeat successful orders.
+
+## About the project
+
+After just learning how to use PHP to make basic web applications, I was itching for a real project to work on. Along came Artists Name Plates which needed a professional web presence and an online order form. My brother, Fraser Williams, did the original design and coded up most of the static content. It was up to me to design and build the form which had to take in user input and correctly calculate the total price of each order.
+
+For over a year this original implementation stood, but it was clear that updates needed to be made to the project as the site became more popular. I decided to do a complete rebuild of the website with Umbraco CMS so that the clients could edit content and add pages as they saw fit. Also, using ASP.NET, I knew I would be able to create a much more complex form, with more features (such as a postcode lookup) for a better, more modern user experience.
