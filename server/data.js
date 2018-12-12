@@ -1,10 +1,10 @@
-var data = function(fs) {
+var data = function(fs, logger) {
     var marked = require('marked');
     var renderer = new marked.Renderer();
     var ampRenderer = new marked.Renderer();
 
     var linkRender = function(href, title, text) {
-          return '<a target="_blank" href="'+ href +'">' + text + '</a>';
+        return '<a target="_blank" href="'+ href +'">' + text + '</a>';
     };
 
     renderer.link = linkRender;
@@ -12,13 +12,17 @@ var data = function(fs) {
     ampRenderer.link = linkRender;
 
     ampRenderer.image = function(href, title, text) {
-          return '<amp-img src="' + href + '" alt="' + text + '" layout="responsive" height="400" width="800"></amp-img>';
-    }
+        return '<amp-img src="' + href + '" alt="' + text + '" layout="responsive" height="400" width="800"></amp-img>';
+    };
 
-    // Reads a file.
-    // Will return HTML, even if the original format is Markdown.
-    var getData = function(path, isAmp) {
-        var contents = fs.readFileSync('data/' + path, 'utf8');
+    /**
+     * Reads a file.
+     * Will return HTML, even if the original format is Markdown.
+     * @param {string} path
+     * @param {boolean} isAmp
+     */
+    var getContent = function(path, isAmp) {
+        let contents = fs.readFileSync('data/' + path, 'utf8');
 
         if (path.indexOf('.md') !== -1) {
             if (isAmp) {
@@ -77,127 +81,16 @@ var data = function(fs) {
             }
         ],
         index: {
-            bodyText: getData('index.md')
+            bodyText: getContent('index.md')
         },
         about: {
-            bodyText: getData('about.md')
+            bodyText: getContent('about.md')
         },
         cv: {
-            bodyText: getData('cv.html')
+            bodyText: getContent('cv.html')
         },
         // Blog data.
         posts: [
-            /*
-                {
-                    href: 'umbraco-super-admin',
-                    metaDescription: '',
-                    title: '',
-                    postDate: new Date(),
-                    summary: '',
-                    bodyText: getData('blog/umbraco-super-admin.md'),
-                    ampBodyText: getData('blog/umbraco-super-admin.md', true),
-                    tags: ['umbraco', 'programming']
-                },
-            */
-            {
-                href: 'unique-field-in-umbraco-forms',
-                metaDescription: 'A simple code sample which shows how you can force unique field values in an Umbraco Form.',
-                title: 'Unique Field in Umbraco Forms',
-                postDate: new Date(),
-                summary: 'A simple code sample which shows how you can force unique field values in an Umbraco Form.',
-                bodyText: getData('blog/unique-field-in-umbraco-forms.md'),
-                ampBodyText: getData('blog/unique-field-in-umbraco-forms.md', true),
-                tags: ['umbraco', 'programming']
-            },
-            {
-                href: 'better-task-scheduling-in-umbraco',
-                metaDescription: 'ScheduledTasks are an antiquated way of handling scheduling events in .NET. Here\'s three better solutions you should be considering instead.',
-                title: 'Better task scheduling in Umbraco',
-                postDate: 'Thu, 01 Jun 2017 00:00:00 GMT',
-                summary: 'ScheduledTasks are an antiquated way of handling scheduling events in .NET. Here\'s three better solutions you should be considering instead.',
-                bodyText: getData('blog/better-task-scheduling-in-umbraco.md'),
-                ampBodyText: getData('blog/better-task-scheduling-in-umbraco.md', true),
-                canonical: 'https://growcreate.co.uk/blog/better-task-scheduling-in-umbraco/',
-                tags: ['umbraco', 'programming']
-            },
-            {
-                href: 'best-umbraco-packages-2017',
-                metaDescription: 'Discover some of the best Umbraco packages/projects of 2017 that can help aid your experience of using Umbraco as a developer.',
-                title: 'The best Umbraco packages of 2017',
-                postDate: 'Sun, 02 Mar 2017 00:00:00 GMT',
-                summary: 'Discover some of the best Umbraco packages which can help you build Umbraco websites.',
-                bodyText: getData('blog/best-umbraco-packages-2017.md'),
-                ampBodyText: getData('blog/best-umbraco-packages-2017.md', true),
-                tags: ['umbraco', 'programming']
-            },
-            {
-                href: 'getting-the-length-in-seconds-for-mp3-files-in-a-folder',
-                metaDescription: 'Find out how you can use NodeJS to get the play time length in seconds of a group of MP3 files in a folder.',
-                title: 'Determining the length in seconds of a folder of MP3 files using NodeJS',
-                postDate: 'Sun, 08 Jan 2017 00:00:00 GMT',
-                summary: 'NodeJS is a great quick and easy tool which allows you to quickly hack together any script which can save you time. In this post I show how I used Node to get the length in seconds of a bunch of MP3 files in the folder.',
-                bodyText: getData('blog/getting-the-length-in-seconds-for-mp3-files-in-a-folder.md'),
-                tags: ['nodejs', 'programming']
-            },
-            {
-                href: 'understanding-threads-and-static-classes-in-csharp',
-                metaDescription: 'Writing static classes can cause problems if thread safety isn\'t properly considered. In a program I helped write, some surprising results occured which could have easily been avoided by ensuring my properties weren\'t getting shared between threads.',
-                title: 'Understanding Threads and Static Classes in C#',
-                postDate: 'Wed, 26 Oct 2016 00:00:00 GMT',
-                summary: 'Writing static classes can cause problems if thread safety isn\'t properly considered. In a program I helped write, some surprising results occured which could have easily been avoided by ensuring my properties weren\'t getting shared between threads. Read on to find out what I learned...',
-                bodyText: getData('blog/understanding-threads-and-static-classes-in-csharp.md'),
-                tags: ['csharp', 'programming']
-            },
-            {
-                href: 'potentially-useful-programs-for-the-budding-computerphile',
-                metaDescription: 'A list of programs that I find useful in day to day life with my computer.',
-                title: 'Potentially useful programs for the budding computerphile',
-                postDate: 'Sun, 25 Sep 2016 00:00:00 GMT',
-                summary: 'There are many programs I use in day to day life to help speed up or complement my workflow. Here are a few of the nicher ones which you may not have heard of.',
-                bodyText: getData('blog/potentially-useful-programs-for-the-budding-computerphile.md'),
-                ampBodyText: getData('blog/potentially-useful-programs-for-the-budding-computerphile.md', true),
-                tags: ['miscellaneous']
-            },
-            {
-                href: 'making-umbraco-nodes-with-the-models-builder',
-                metaDescription: 'In my latest Umbraco website built I have been getting friendly with the new Models Builder that is included by default. In this post I show how the Models Builder can be used with the Content Service to create new Umbraco nodes programmatically.',
-                title: 'Making Umbraco Nodes with the Models Builder',
-                postDate: 'Sun, 20 Mar 2016 00:00:00 GMT',
-                summary: 'In my latest Umbraco website built I have been getting friendly with the new Models Builder that is included by default. In this post I show how the Models Builder can be used with the Content Service to create new Umbraco nodes programmatically.',
-                bodyText: getData('blog/making-umbraco-nodes-with-the-models-builder.md'),
-                ampBodyText: getData('blog/making-umbraco-nodes-with-the-models-builder.md', true),
-                tags: ['umbraco', 'csharp', 'programming']
-            },
-            {
-                href: 'rendering-mvc-emails-with-cshtml',
-                metaDescription: 'Learn to build HTML emails using MVC, Razor and CSHTML.',
-                title: 'How to render MVC emails with CSHTML',
-                postDate: 'Wed, 06 Feb 2016 00:00:00 GMT',
-                summary: 'Tired of using string formatting to create emails in your code? Read here to find out about how to build HTML emails using MVC, Razor and CSHTML.',
-                bodyText: getData('blog/rendering-mvc-emails-with-cshtml.md'),
-                ampBodyText: getData('blog/rendering-mvc-emails-with-cshtml.md', true),
-                tags: ['csharp', 'programming']
-            },
-            {
-                href: 'caching-umbraco-web-controllers',
-                metaDescription: 'Find out how to cache an Umbraco surface controller.',
-                title: 'Caching Umbraco web API controllers',
-                postDate: 'Tue, 26 Jan 2016 00:00:00 GMT',
-                summary: 'Caching improves load time for everyone. Here I explain how easily make caching work with Web API controllers.',
-                bodyText: getData('blog/caching-umbraco-web-controllers.md'),
-                ampBodyText: getData('blog/caching-umbraco-web-controllers.md', true),
-                tags: ['csharp', 'umbraco', 'programming']
-            },
-            {
-                href: 'installing-iisnode',
-                metaDescription: 'Follow this step by step tutorial on how to set up IISNode on Windows and get your first Node website hosted using IISNode.',
-                title: 'Installing IISNode for production',
-                postDate: 'Mon, 25 Jan 2016 00:00:00 GMT',
-                summary: 'Developing Node.js applications on Windows is easy, but getting them setup for production can be a little more difficult. Read this post to discover how to set up IISNode in Windows and get a Node application running within IIS.',
-                bodyText: getData('blog/installing-iisnode.md'),
-                ampBodyText: getData('blog/installing-iisnode.md', true),
-                tags: ['nodejs', 'programming']
-            }
         ],
         // Project data.
         exampleGroups: [
@@ -207,46 +100,65 @@ var data = function(fs) {
                 pages: [
                     {
                         href: 'umbraco-helper-extension',
-                        metaDescription: 'Browser extension for Umbraco. ',
+                        metaDescription: 'Browser extension for Umbraco.',
                         //cover: '/media/projects/language-transfer/language-transfer-pixel-2.png',
                         name: 'Umbraco Helper Extension',
-                        bodyText: getData('projects/umbraco-helper-extension.md')
+                        bodyText: getContent('projects/umbraco-helper-extension.md')
                     },
                     {
                         href: 'language-transfer',
                         metaDescription: 'Proof of concept (prototype) of Language Transfer app. ',
                         cover: '/media/projects/language-transfer/language-transfer-pixel-2.png',
                         name: 'Language Transfer App',
-                        bodyText: getData('projects/language-transfer.md')
+                        bodyText: getContent('projects/language-transfer.md')
                     },
                     {
                         href: 'umbraco-iconator',
                         metaDescription: 'A simple package that lets Umbraco users select icons in the backoffice to be displayed on the front end.',
                         cover: '/media/projects/umbraco-iconator/IconPickerDialog.png',
                         name: 'Umbraco Iconator',
-                        bodyText: getData('projects/umbraco-iconator.md')
+                        bodyText: getContent('projects/umbraco-iconator.md')
                     },
                     {
                         href: 'artists-name-plates',
                         metaDescription: 'I built a website for Artists Name Plates - an ecommerce site that allows users to buy name plates for paintings.',
                         cover: '/media/projects/artistsnameplates.jpg',
                         name: 'Artists Name Plates',
-                        bodyText: getData('projects/artists-name-plates.md')
+                        bodyText: getContent('projects/artists-name-plates.md')
                     },
                     {
                         href: 'harvey-williams',
                         metaDescription: 'I built this website using Node.JS and "love".',
                         cover: '/media/projects/harveywilliams.png',
                         name: 'This portfolio site',
-                        bodyText: getData('projects/harvey-williams.md')
+                        bodyText: getContent('projects/harvey-williams.md')
                     }
                 ]
             }
         ]
     };
 
+    var getBlogPosts = () => {
+        let fileNames = fs.readdirSync('data/blog');
+
+        fileNames
+            .filter(fileName => fileName.indexOf('.json') !== -1)
+            .forEach(fileName => {
+                let contents = fs.readFileSync('data/blog/' + fileName, 'utf8');
+                let json = JSON.parse(contents);
+
+                if (json.published) {
+                    json.bodyText = getContent(json.bodyText);
+                    //json.ampBodyText = getContent(json.bodyText, true);
+
+                    dataObject.posts.push(json);
+                }
+            });
+    };
+
+    getBlogPosts();
+
     return dataObject;
 }
 
 module.exports = data;
-

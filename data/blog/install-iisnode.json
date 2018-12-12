@@ -1,0 +1,10 @@
+{
+    "published": true,
+    "href": "installing-iisnode",
+    "metaDescription": "Follow this step by step tutorial on how to set up IISNode on Windows and get your first Node website hosted using IISNode.",
+    "title": "Installing IISNode for production",
+    "postDate": "Mon, 25 Jan 2016 00:00:00 GMT",
+    "summary": "Developing Node.js applications on Windows is easy, but getting them setup for production can be a little more difficult. Read this post to discover how to set up IISNode in Windows and get a Node application running within IIS.",
+    "bodyText": "blog/installing-iisnode.md",
+    "tags": ["nodejs", "programming"]
+}

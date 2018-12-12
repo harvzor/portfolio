@@ -1,5 +1,5 @@
 module.exports = function(app, fs, express, config, logger) {
-    var firstRun = true;
+    //var firstRun = true;
     var dataModule = require('../server/data.js');
     var helpers = require('../server/helpers.js');
     var actualData;
@@ -8,7 +8,7 @@ module.exports = function(app, fs, express, config, logger) {
     // Reloads the data if in dev mode, better for writing new posts!
     var data = function() {
         if (actualData == null || config.dev) {
-            actualData = dataModule(fs);
+            actualData = dataModule(fs, logger);
         }
 
         return actualData;
@@ -41,7 +41,7 @@ module.exports = function(app, fs, express, config, logger) {
     /////////////////
     // Statuses
     /////////////////
-    
+
     // These have to be setup after everything else.
 
     app.use(function(req, res, next) {

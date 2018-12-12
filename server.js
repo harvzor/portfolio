@@ -34,14 +34,13 @@ app.use(compression());
 
 // Reloads the data if in dev mode, better for writing new posts!
 var firstRun = true;
-var dataPath = './server/data.js';
-var dataModule = require(dataPath);
+var dataModule = require('./server/data.js');
 var actualData;
 var data = function() {
     if (firstRun || config.dev) {
         firstRun = false;
 
-        actualData = dataModule(fs);
+        actualData = dataModule(fs, logger);
     }
 
     return actualData;
@@ -76,7 +75,7 @@ routing(app, fs, express, config, logger);
 // Inititialise
 /////////////////
 
-if(config.type == 'node') {
+if (config.type == 'node') {
     // Used for Node server.
     var server = app.listen(config.port, config.ip, function () {
         var host = server.address().address;
@@ -90,4 +89,3 @@ if(config.type == 'node') {
 } else {
     logger.error('Error: wrong config.type set');
 }
-

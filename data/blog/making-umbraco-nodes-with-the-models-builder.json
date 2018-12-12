@@ -1,0 +1,10 @@
+{
+    "published": true,
+    "href": "making-umbraco-nodes-with-the-models-builder",
+    "metaDescription": "In my latest Umbraco website built I have been getting friendly with the new Models Builder that is included by default. In this post I show how the Models Builder can be used with the Content Service to create new Umbraco nodes programmatically.",
+    "title": "Making Umbraco Nodes with the Models Builder",
+    "postDate": "Sun, 20 Mar 2016 00:00:00 GMT",
+    "summary": "In my latest Umbraco website built I have been getting friendly with the new Models Builder that is included by default. In this post I show how the Models Builder can be used with the Content Service to create new Umbraco nodes programmatically.",
+    "bodyText": "blog/making-umbraco-nodes-with-the-models-builder.md",
+    "tags": ["umbraco", "csharp", "programming"]
+}
