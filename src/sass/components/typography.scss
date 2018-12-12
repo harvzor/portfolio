@@ -1,4 +1,16 @@
+@font-face {
+    font-family: 'Roboto-Regular';
+    //jsrc: url('webfont.eot'); /* IE9 Compat Modes */
+    src:
+        //url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        //url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
+        //url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
+        url('/fonts/Roboto-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+        //url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
 html {
+    font-family:'Roboto-Regular', sans-serif;
     font-size:$base-font-size-mobile;
 
     @include screen($sm) {
@@ -42,6 +54,14 @@ p {
     margin:1em 0 1em 0;
     font-size:1em;
     line-height:1.6em;
+
+    a {
+        text-decoration:none;
+
+        &:hover, &:focus {
+            text-decoration:underline;
+        }
+    }
 }
 
 pre {

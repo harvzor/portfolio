@@ -8,6 +8,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var through2 = require('through2');
+var wait = require('gulp-wait');
 var notifier;
 var blessed;
 var fs;
@@ -15,7 +16,7 @@ var tail;
 var nodemon;
 
 var cli = false;
-var gulpBoxl
+var gulpBox;
 var stylesBox;
 var scriptsBox;
 var logBox;
@@ -40,7 +41,6 @@ var note = function() {
         clearTimeout(timer);
 
         messages[type] += '\n' + message;
-
 
         timer = setTimeout(function() {
             if (messages.info !== '') {
@@ -218,6 +218,8 @@ gulp.task('cli', function() {
 
 var styles = function(source, taskName) {
     return gulp.src(source)
+        // Hack for Visual Studio Code locking up the file https://github.com/dlmanning/gulp-sass/issues/543
+        .pipe(wait(500))
         .pipe(plumber({
             errorHandler: function (err) {
                 if (cli) {
@@ -258,7 +260,7 @@ gulp.task('styles', function() {
 gulp.task('amp-styles', function() {
     styles(['src/ampSass/amp.scss'], 'AMP styles');
 });
- 
+
 // Scripts - compile custom js
 gulp.task('scripts', function() {
     return gulp.src([
@@ -322,14 +324,14 @@ gulp.task('start', function() {
         note('error', 'Server crashed.');
     });
 });
- 
+
 // Watch - watcher for changes in scss and js files: 'gulp watch' will run these tasks
 gulp.task('watch', function() {
     // Watch .scss files
     gulp.watch('src/sass/**/*.scss', ['styles']);
 
     gulp.watch('src/ampsass/**/*.scss', ['amp-styles']);
- 
+
     // Watch .js files
     gulp.watch('src/js/script.js', ['scripts']);
 });

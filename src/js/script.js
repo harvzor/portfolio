@@ -44,7 +44,7 @@ hw.exitingAnimation = function() {
         });
     }
 
-    window.onbeforeunload = function(event) { 
+    window.onbeforeunload = function(event) {
         content.classList.add('exiting');
     }
 };
@@ -67,4 +67,3 @@ hw.nav = function() {
     hw.youtubeVideoSetup();
     hw.exitingAnimation();
 })();
-

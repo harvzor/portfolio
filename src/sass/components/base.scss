@@ -33,7 +33,7 @@ html {
 
 body {
     background-color:$grey-lightest;
-    background-image:url("../Media/main.png");
+    background-image:url("/media/main.png");
 }
 
 a {
@@ -62,7 +62,7 @@ a {
 
 .meta {
     padding:10px;
-    background-image:url("../Media/main.png");
+    background-image:url("/media/main.png");
     color:black;
     border:1px solid $border;
     @include border-radius(5px);
@@ -121,8 +121,8 @@ main {
     @include transform(rotateY(0));
 
     @include screen($sm) {
-        left:span(10);
-        width:span(25);
+        left:span(8);
+        width:span(27);
 
         /* Removed as it broke refresh scroll position.
         @supports (height:100vh) {
@@ -139,7 +139,7 @@ main {
     a:not(.post-preview) {
         word-break:break-all;
     }
-    
+
     .content {
         margin-bottom:-30px;
 

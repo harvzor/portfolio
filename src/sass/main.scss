@@ -1,19 +1,18 @@
-@import "libs/variables";
-@import "libs/normalize";
-@import "libs/mixins";
-@import "libs/susy";
-@import "libs/animations";
+@import "./libs/variables";
+@import "./libs/normalize";
+@import "./libs/mixins";
+@import "./libs/susy";
+@import "./libs/animations";
 
-@import "components/typography";
-@import "components/base";
-@import "components/aside";
-@import "components/portfolio";
-@import "components/blog";
-@import "components/accessibility";
-@import "components/icons";
-@import "components/tag";
-@import "components/video";
-@import "components/breadcrumbs";
-@import "components/info-columns";
-@import "components/post-preview";
-
+@import "./components/typography";
+@import "./components/base";
+@import "./components/aside";
+@import "./components/portfolio";
+@import "./components/blog";
+@import "./components/accessibility";
+@import "./components/icons";
+@import "./components/tag";
+@import "./components/video";
+@import "./components/breadcrumbs";
+@import "./components/info-columns";
+@import "./components/post-preview";

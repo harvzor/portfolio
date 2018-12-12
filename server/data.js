@@ -92,7 +92,7 @@ var data = function(fs) {
                     href: 'umbraco-super-admin',
                     metaDescription: '',
                     title: '',
-                    postDate: 'Sun, 25 Jul 2017 00:00:00 GMT',
+                    postDate: new Date(),
                     summary: '',
                     bodyText: getData('blog/umbraco-super-admin.md'),
                     ampBodyText: getData('blog/umbraco-super-admin.md', true),
@@ -103,7 +103,7 @@ var data = function(fs) {
                 href: 'unique-field-in-umbraco-forms',
                 metaDescription: 'A simple code sample which shows how you can force unique field values in an Umbraco Form.',
                 title: 'Unique Field in Umbraco Forms',
-                postDate: 'Sun, 25 Jul 2017 00:00:00 GMT',
+                postDate: new Date(),
                 summary: 'A simple code sample which shows how you can force unique field values in an Umbraco Form.',
                 bodyText: getData('blog/unique-field-in-umbraco-forms.md'),
                 ampBodyText: getData('blog/unique-field-in-umbraco-forms.md', true),
@@ -202,14 +202,21 @@ var data = function(fs) {
         // Project data.
         exampleGroups: [
             {
-                title: 'Personal projects',
-                info: 'These are the projects which I have worked on.',
+                //title: 'Personal projects',
+                //info: 'Some projects I have worked on.',
                 pages: [
+                    {
+                        href: 'umbraco-helper-extension',
+                        metaDescription: 'Browser extension for Umbraco. ',
+                        //cover: '/media/projects/language-transfer/language-transfer-pixel-2.png',
+                        name: 'Umbraco Helper Extension',
+                        bodyText: getData('projects/umbraco-helper-extension.md')
+                    },
                     {
                         href: 'language-transfer',
                         metaDescription: 'Proof of concept (prototype) of Language Transfer app. ',
                         cover: '/media/projects/language-transfer/language-transfer-pixel-2.png',
-                        name: 'Language Transfer Prototype',
+                        name: 'Language Transfer App',
                         bodyText: getData('projects/language-transfer.md')
                     },
                     {
