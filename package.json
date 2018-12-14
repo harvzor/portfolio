@@ -34,7 +34,7 @@
     "gulp-uglify": "^3.0.0",
     "node-notifier": "^5.2.1",
     "nodemon": "^1.17.3",
-    "tail": "^1.2.3",
+    "tail": "^2.0.1",
     "through2": "^2.0.3"
   }
 }

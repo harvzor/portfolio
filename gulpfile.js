@@ -105,13 +105,13 @@ gulp.task('cli', function() {
         fs.writeFileSync('logs/log.txt', '');
     }
 
-    var traceLog = new tail('logs/log.txt', '\n', {}, true);
+    new tail('logs/log.txt', { separator: '\n', useWatchFile: true })
+        .on('line', function(data) {
+            var json = JSON.parse(data);
 
-    traceLog.on('line', function(data) {
-        var json = JSON.parse(data);
-        logBox.pushLine(formatDate(json.time) + json.msg);
-        screen.render();
-    });
+            logBox.pushLine(formatDate(json.time) + json.msg);
+            screen.render();
+        });
 
     screen = blessed.screen({
         smartCSR: true,
