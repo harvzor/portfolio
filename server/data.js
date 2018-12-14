@@ -52,50 +52,7 @@ var data = function(fs, logger) {
     };
 
     var dataObject = {
-        songs: [
-            {
-                name: 'Blood In The Cut',
-                artist: 'K.Flay',
-                date: 'Fri, 20 Apr 2018 00:00:00 GMT',
-                id: 'DMA4vDwP7n4'
-            },
-            {
-                name: 'Renn!',
-                artist: 'Enno Bunger',
-                date: 'Wed, 26 Oct 2016 00:00:00 GMT',
-                id: 'SmBP2lMhEnE'
-            },
-            {
-                name: 'Barfuß Am Klavier',
-                artist: 'AnnenMayKantereit',
-                date: 'Sat, 15 Oct 2016 00:00:00 GMT',
-                id: 'tERRFWuYG48'
-            },
-            {
-                name: 'Me Gustas Tu',
-                artist: 'Manu Chao',
-                date: 'Sun, 25 Sep 2016 00:00:00 GMT',
-                id: 'rs6Y4kZ8qtw'
-            },
-            {
-                name: 'We Are The People',
-                artist: 'Empire of the Sun',
-                date: 'Thu, 11 Aug 2016 00:00:00 GMT',
-                id: 'hN5X4kGhAtU'
-            },
-            {
-                name: 'Paracetamol',
-                artist: 'Declan Mckenna',
-                date: 'Wed, 22 Jun 2016 00:00:00 GMT',
-                id: 'Db0BQ7JI4KE'
-            },
-            {
-                name: 'Doing It To Death',
-                artist: 'The Kills',
-                date: 'Sat, 16 Apr 2016 00:00:00 GMT',
-                id: '498zUzNGQxY'
-            }
-        ],
+        songs: [],
         index: {
             bodyText: getContent('index.md')
         },
@@ -116,6 +73,11 @@ var data = function(fs, logger) {
             }
         ]
     };
+
+    getJson('songs')
+        .forEach(song => {
+            dataObject.songs.push(song);
+        });
 
     getJson('blog')
         .forEach(post => {
