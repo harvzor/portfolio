@@ -31,7 +31,10 @@ module.exports = function(app, fs, express, config, logger) {
     /////////////////
     // Static files
     /////////////////
+
     app.use(express.static('./public'));
+
+    // Just used for verifying SSL with Let's Encrypt.
     app.use('/.well-known', express.static('./.well-known'));
 
     if (global.dev == true) {

@@ -1,5 +1,4 @@
 module.exports = function(app, ampCss, express, config, logger, data, helpers) {
-
     // Render blog posts.
     for (var i = 0; i < data().posts.length; i++) {
         app.get('/blog/' + data().posts[i].href, function(req, res) {

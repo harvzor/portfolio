@@ -1,22 +1,25 @@
 module.exports = function(app, fs, express, config, logger, data, helpers) {
     app.get('/', function(req, res) {
-        var posts = data().posts;
+        let posts = data().posts
+            // Order by date.
+            .sort(function(a, b) {
+                return new Date(b.postDate).getTime() - new Date(a.postDate).getTime();
+            });
 
-        // Order posts by date.
-        posts = posts.sort(function(a, b) {
-            return new Date(b.postDate).getTime() - new Date(a.postDate).getTime();
-        });
+        let index = data().index;
+
+        // Page title is an array so pick a random one from the array.
+        let pageTitle = index.pageTitle[helpers.getRandomInt(0, index.pageTitle.length - 1)];
 
         res.render('home', {
             helpers: helpers,
             layout: '_common',
             relativeUrl: '',
-            metaDescription: 'Hi. I am a young experienced web developer living in Oxford. I specialise in Umbraco CMS development.',
+            metaDescription: index.metaDescription,
             pageGroup: 'home',
-            pageTitle: 'Hello World',
-            bodyText: data().index.bodyText,
+            pageTitle: pageTitle,
+            bodyText: index.bodyText,
             posts: posts.slice(0, posts.length > 3 ? 3 : posts.length)
         });
     });
 };
-

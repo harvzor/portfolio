@@ -322,6 +322,10 @@ gulp.task('start', function() {
         }
 
         note('error', 'Server crashed.');
+    })
+    .on('readable', function() {
+        this.stdout.pipe(fs.createWriteStream('logs/nodemon-output.txt'));
+        this.stderr.pipe(fs.createWriteStream('logs/nodemon-err.txt'));
     });
 });
 

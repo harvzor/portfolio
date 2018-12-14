@@ -58,7 +58,7 @@ app.locals.year = function() {
 };
 
 app.locals.songOfTheMoment = function() {
-    return data().songs[0];
+    return data().songs.songs[0];
 };
 
 /////////////////
@@ -83,7 +83,7 @@ if (config.type == 'node') {
 
         logger.info('Website listening at http://%s:%s.', host, port);
     });
-} else if(config.type == 'iis') {
+} else if (config.type == 'iis') {
     // Used for IISNode.
     app.listen(process.env.PORT);
 } else {

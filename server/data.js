@@ -52,15 +52,25 @@ var data = function(fs, logger) {
     };
 
     var dataObject = {
-        songs: [],
         index: {
-            bodyText: getContent('index.md')
+            pageTitle: ['Hello, World', 'Howdy, World', 'Wattup, World', 'Hey, World'],
+            bodyText: getContent('index.md'),
+            metaDescription: 'Hi. I am a web developer and tech enthusiast from England.'
         },
         about: {
-            bodyText: getContent('about.md')
+            pageTitle: 'About me',
+            bodyText: getContent('about.md'),
+            metaDescription: 'Hi. I am a web developer and tech enthusiast from England.'
         },
         cv: {
-            bodyText: getContent('cv.html')
+            pageTitle: 'Looking for some new talent?',
+            bodyText: getContent('cv.html'),
+            metaDescription: 'Looking to hire a great developer? We might be a perfect match.'
+        },
+        songs: {
+            pageTitle: 'Songs',
+            songs: [],
+            metaDescription: 'Some of my favourite songs.'
         },
         // Blog data.
         posts: [],
@@ -75,10 +85,12 @@ var data = function(fs, logger) {
     };
 
     getJson('songs')
+        .sort((songA, songB) => new Date(songA.date).getTime() < new Date(songB.date).getTime())
         .forEach(song => {
-            dataObject.songs.push(song);
+            dataObject.songs.songs.push(song);
         });
 
+    //dataObject.posts =
     getJson('blog')
         .forEach(post => {
             if (post.published) {
@@ -90,7 +102,7 @@ var data = function(fs, logger) {
         });
 
     getJson('projects')
-        .forEach(project => {
+        .map(project => {
             if (project.published) {
                 project.bodyText = getContent(project.bodyText);
 

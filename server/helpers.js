@@ -6,7 +6,7 @@ var helpers = {
             + " " + helpers.getMonth(date.getMonth())
             + " " + date.getFullYear();
     },
-    // Gets an ordinal ("th", "st", "nd" or "rd") from a number and returns 
+    // Gets an ordinal ("th", "st", "nd" or "rd") from a number and returns
     // the original number as well as the ordinal.
     // https://gist.github.com/jlbruno/1535691
     getOrdinal: function(n) {
@@ -17,7 +17,7 @@ var helpers = {
     },
     // Filters an array by unique values.
     // http://stackoverflow.com/questions/1960473/unique-values-in-an-array
-    onlyUnique: function(value, index, self) { 
+    onlyUnique: function(value, index, self) {
         return self.indexOf(value) === index;
     },
     // Gets a month from a digit.
@@ -118,6 +118,18 @@ var helpers = {
         }
 
         return postsByYear;
+    },
+    /**
+     * Returns a random integer between min (inclusive) and max (inclusive).
+     * The value is no lower than min (or the next integer greater than min
+     * if min isn't an integer) and no greater than max (or the next integer
+     * lower than max if max isn't an integer).
+     * Using Math.round() will give you a non-uniform distribution!
+     */
+    getRandomInt: function(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 };
 
