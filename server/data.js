@@ -35,6 +35,22 @@ var data = function(fs, logger) {
         return contents;
     };
 
+    var getJson = (dataLocation) => {
+        let fileNames = fs.readdirSync('data/' + dataLocation);
+
+        return fileNames
+            .filter(fileName => fileName.indexOf('.json') !== -1)
+            .map(fileName => {
+                try {
+                    let contents = fs.readFileSync('data/' +  dataLocation + '/' + fileName, 'utf8');
+
+                    return JSON.parse(contents);
+                } catch (e) {
+                    logger.error(e);
+                }
+            });
+    };
+
     var dataObject = {
         songs: [
             {
@@ -90,73 +106,35 @@ var data = function(fs, logger) {
             bodyText: getContent('cv.html')
         },
         // Blog data.
-        posts: [
-        ],
+        posts: [],
         // Project data.
         exampleGroups: [
             {
                 //title: 'Personal projects',
                 //info: 'Some projects I have worked on.',
-                pages: [
-                    {
-                        href: 'umbraco-helper-extension',
-                        metaDescription: 'Browser extension for Umbraco.',
-                        //cover: '/media/projects/language-transfer/language-transfer-pixel-2.png',
-                        name: 'Umbraco Helper Extension',
-                        bodyText: getContent('projects/umbraco-helper-extension.md')
-                    },
-                    {
-                        href: 'language-transfer',
-                        metaDescription: 'Proof of concept (prototype) of Language Transfer app. ',
-                        cover: '/media/projects/language-transfer/language-transfer-pixel-2.png',
-                        name: 'Language Transfer App',
-                        bodyText: getContent('projects/language-transfer.md')
-                    },
-                    {
-                        href: 'umbraco-iconator',
-                        metaDescription: 'A simple package that lets Umbraco users select icons in the backoffice to be displayed on the front end.',
-                        cover: '/media/projects/umbraco-iconator/IconPickerDialog.png',
-                        name: 'Umbraco Iconator',
-                        bodyText: getContent('projects/umbraco-iconator.md')
-                    },
-                    {
-                        href: 'artists-name-plates',
-                        metaDescription: 'I built a website for Artists Name Plates - an ecommerce site that allows users to buy name plates for paintings.',
-                        cover: '/media/projects/artistsnameplates.jpg',
-                        name: 'Artists Name Plates',
-                        bodyText: getContent('projects/artists-name-plates.md')
-                    },
-                    {
-                        href: 'harvey-williams',
-                        metaDescription: 'I built this website using Node.JS and "love".',
-                        cover: '/media/projects/harveywilliams.png',
-                        name: 'This portfolio site',
-                        bodyText: getContent('projects/harvey-williams.md')
-                    }
-                ]
+                pages: []
             }
         ]
     };
 
-    var getBlogPosts = () => {
-        let fileNames = fs.readdirSync('data/blog');
+    getJson('blog')
+        .forEach(post => {
+            if (post.published) {
+                post.bodyText = getContent(post.bodyText);
+                //post.ampBodyText = getContent(post.bodyText, true);
 
-        fileNames
-            .filter(fileName => fileName.indexOf('.json') !== -1)
-            .forEach(fileName => {
-                let contents = fs.readFileSync('data/blog/' + fileName, 'utf8');
-                let json = JSON.parse(contents);
+                dataObject.posts.push(post);
+            }
+        });
 
-                if (json.published) {
-                    json.bodyText = getContent(json.bodyText);
-                    //json.ampBodyText = getContent(json.bodyText, true);
+    getJson('projects')
+        .forEach(project => {
+            if (project.published) {
+                project.bodyText = getContent(project.bodyText);
 
-                    dataObject.posts.push(json);
-                }
-            });
-    };
-
-    getBlogPosts();
+                dataObject.exampleGroups[0].pages.push(project);
+            }
+        });
 
     return dataObject;
 }

@@ -1,0 +1,8 @@
+{
+    "published": true,
+    "href": "umbraco-iconator",
+    "metaDescription": "A simple package that lets Umbraco users select icons in the backoffice to be displayed on the front end.",
+    "cover": "/media/projects/umbraco-iconator/IconPickerDialog.png",
+    "name": "Umbraco Iconator",
+    "bodyText": "projects/umbraco-iconator.md"
+}
