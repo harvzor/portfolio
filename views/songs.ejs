@@ -1,11 +1,13 @@
 <article class="box">
-    <% for (var i = 0; i < songs.length; i++) { %>
-        <h2><%= songs[i].name %> by <%= songs[i].artist %></h2>
-        <small>Added <%= helpers.friendlyDate(songs[i].date) %></small>
+    <% songs
+        .sort((songA, songB) => new Date(songA.date).getTime() < new Date(songB.date).getTime())
+        .forEach(song => {
+    %>
+        <h2><%= song.name %> by <%= song.artist %></h2>
+        <small>Added <%= helpers.friendlyDate(song.date) %></small>
         <br />
-        <a class="youtube-video" href="https://www.youtube.com/embed/<%= songs[i].id %>" target="_blank" style="background-image:url('https://img.youtube.com/vi/<%= songs[i].id %>/maxresdefault.jpg')">
+        <a class="youtube-video" href="https://www.youtube.com/embed/<%= song.id %>" target="_blank" style="background-image:url('https://img.youtube.com/vi/<%= song.id %>/maxresdefault.jpg')">
             <div class="icon-play youtube-video-play"></div>
         </a>
-    <% } %>
+    <% }) %>
 </article>
-
