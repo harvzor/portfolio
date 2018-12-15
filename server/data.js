@@ -45,8 +45,10 @@ var data = function(fs, logger) {
         paths
             .filter(path => path.includes('.json'))
             .map(path => {
+                let fullPath = dir + '/' + path;
+
                 try {
-                    let contents = fs.readFileSync(dir + '/' + path, 'utf8');
+                    let contents = fs.readFileSync(fullPath, 'utf8');
                     let json = JSON.parse(contents);
 
                     if (typeof json.bodyText !== 'undefined') {
@@ -54,6 +56,10 @@ var data = function(fs, logger) {
 
                         //json.ampBodyText = getContent(page.bodyText, true);
                     }
+
+                    // The lastmod tag is optional in sitmaps and in most of the cases it's ignored by search engines
+                    // https://stackoverflow.com/a/31354426
+                    //json.lastModified = fs.statSync(fullPath).mtime;
 
                     if (helpers.isObject(data)) {
                         data[json.name] = json;

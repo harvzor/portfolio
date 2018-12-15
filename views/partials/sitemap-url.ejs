@@ -1,0 +1,15 @@
+<url>
+    <loc><%= host %><%= page.path %></loc>
+    <% /* %><lastmod><%= page.lastModified %></lastmod><% */ %>
+</url>
+<% if (typeof page.children !== 'undefined') { %>
+    <% for (let key of Object.keys(page.children)) {
+        let child = page.children[key];
+
+        if (typeof child.controller === 'undefined') {
+            continue;
+        }
+    %>
+        <%- include('sitemap-url', { host: host, page: child }) %>
+    <% } %>
+<% } %>

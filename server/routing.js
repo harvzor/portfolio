@@ -53,6 +53,7 @@ module.exports = function(app, fs, express, config, logger) {
 
     require('../server/controllers/redirectsController.js')(app, ampCss, express, config, logger, data, helpers);
     require('../server/controllers/rssController.js')(app, ampCss, express, config, logger, data, helpers);
+    require('../server/controllers/sitemapXmlController.js')(app, ampCss, express, config, logger, data, helpers);
 
     // Load each controller and run them.
     /*
