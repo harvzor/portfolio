@@ -1,4 +1,6 @@
-module.exports = function(app, fs, express, config, logger, data, helpers, page) {
+const logger = require('../logger');
+
+module.exports = function(app, fs, express, config, data, helpers, page) {
     app.get(page.path, (req, res) => {
         res.render('songs', {
             helpers: helpers,

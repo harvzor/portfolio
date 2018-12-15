@@ -74,6 +74,12 @@ var helpers = {
             break;
         }
     },
+    /**
+     * Get the current year.
+     */
+    getYear: () => {
+        return new Date().getUTCFullYear();
+    },
     getBlogTags: function(posts) {
         var allTags = [];
         var uniqueTags = [];

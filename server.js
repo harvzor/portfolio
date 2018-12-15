@@ -1,60 +1,26 @@
-var config = require('./server/config.js');
+const config = require('./server/config.js');
 
 global.dev = config.dev;
 
 /////////////////
 // Start website
 /////////////////
-var express = require('express');
-var compression = require('compression');
-var expressLayouts = require('express-ejs-layouts');
-var fs = require('fs');
-var bunyan = require('bunyan');
+const express = require('express');
+const compression = require('compression');
+const expressLayouts = require('express-ejs-layouts');
+const fs = require('fs');
+const data = require('./server/data');
+const logger = require('./server/logger');
 
-var logger = bunyan.createLogger({
-    name: 'portfolio',
-    streams: [
-        {
-            level: 'info',
-            path: 'logs/log.txt'
-        },
-        {
-            level: 'warn',
-            path: 'logs/log.txt'
-        },
-        {
-            level: 'error',
-            path: 'logs/log.txt'
-        }
-    ]
-});
-
-var app = express();
+const app = express();
 app.use(compression());
-
-// Reloads the data if in dev mode, better for writing new posts!
-var firstRun = true;
-var dataModule = require('./server/data.js');
-var actualData;
-var data = function() {
-    if (firstRun || config.dev) {
-        firstRun = false;
-
-        actualData = dataModule(fs, logger);
-    }
-
-    return actualData;
-};
 
 /////////////////
 // Functions
 /////////////////
+
 Array.prototype.filterObjects = function(key, value) {
     return this.filter(function(x) { return x[key] === value; })
-}
-
-app.locals.year = function() {
-    return new Date().getUTCFullYear();
 };
 
 app.locals.songOfTheMoment = function() {
@@ -68,8 +34,7 @@ app.set('view engine', 'ejs');
 
 app.use(expressLayouts)
 
-var routing = require('./server/routing.js');
-routing(app, fs, express, config, logger);
+require('./server/routing.js')(app, fs, express, config);
 
 /////////////////
 // Inititialise

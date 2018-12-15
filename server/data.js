@@ -1,7 +1,9 @@
-var helpers = require('./helpers');
+const marked = require('marked');
+const helpers = require('./helpers');
+const fs = require('fs');
+const logger = require('./logger');
 
-var data = function(fs, logger) {
-    var marked = require('marked');
+const renderer = function() {
     var renderer = new marked.Renderer();
     var ampRenderer = new marked.Renderer();
 
@@ -17,6 +19,17 @@ var data = function(fs, logger) {
         return '<amp-img src="' + href + '" alt="' + text + '" layout="responsive" height="400" width="800"></amp-img>';
     };
 
+    return {
+        normal: renderer,
+        amp: ampRenderer
+    };
+}();
+
+const data = function() {
+    logger.info('data running');
+
+    var actualData = null;
+
     /**
      * Reads a file.
      * Will return HTML, even if the original format is Markdown.
@@ -28,10 +41,10 @@ var data = function(fs, logger) {
 
         if (path.indexOf('.md') !== -1) {
             if (isAmp) {
-                return marked(contents, { renderer: ampRenderer, sanitize: true });
+                return marked(contents, { renderer: renderer.amp, sanitize: true });
             }
 
-            return marked(contents, { renderer: renderer });
+            return marked(contents, { renderer: renderer.normal });
         }
 
         return contents;
@@ -89,7 +102,43 @@ var data = function(fs, logger) {
         return data;
     };
 
-    return findData('data');
+    // Reloads the data if in dev mode, better for writing new posts!
+    return function() {
+        if (actualData === null || global.dev) {
+            actualData = findData('data');
+        }
+
+        return actualData;
+    };
+}();
+
+data.forEachPage = function(callback, obj) {
+    obj = obj || data();
+
+    for (let key of Object.keys(obj)) {
+        let page = obj[key];
+
+        callback(page);
+
+        if (typeof page.children !== 'undefined' && page.children.length > 0) {
+            data.forEachPage(callback, page.children);
+        }
+    }
+};
+
+data.flatten = function() {
+    let pages = [];
+
+    data.forEachPage(page => {
+        pages.push(page);
+    });
+
+    return pages;
+};
+
+data.getPage = function(url) {
+    return data.flatten()
+        .find(page => page.path === url);
 };
 
 module.exports = data;

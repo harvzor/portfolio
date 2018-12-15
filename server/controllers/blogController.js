@@ -1,4 +1,6 @@
-module.exports = function(app, ampCss, express, config, logger, data, helpers, page) {
+const logger = require('../logger');
+
+module.exports = function(app, ampCss, express, config, data, helpers, page) {
     // Render blog post.
     app.get(page.path, (req, res) => {
         var prevPost = null;
@@ -34,12 +36,12 @@ module.exports = function(app, ampCss, express, config, logger, data, helpers, p
                     href: '/blog'
                 }
             ],
-            pageTitle: page.title,
-            postDate: page.postDate,
-            bodyText: page.bodyText,
+            pageTitle: post.title,
+            postDate: post.postDate,
+            bodyText: post.bodyText,
             prevPost: prevPost,
             nextPost: nextPost,
-            canonical: page.canonical
+            canonical: post.canonical
             //ampCanonical: '/amp/blog/' + url
         });
     });

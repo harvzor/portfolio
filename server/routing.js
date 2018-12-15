@@ -1,18 +1,10 @@
-module.exports = function(app, fs, express, config, logger) {
+const logger = require('./logger');
+
+module.exports = function(app, fs, express, config) {
     //var firstRun = true;
-    var dataModule = require('../server/data.js');
-    var helpers = require('../server/helpers.js');
-    var actualData;
+    const data = require('../server/data.js');
+    const helpers = require('../server/helpers.js');
     var cachedAmpCss;
-
-    // Reloads the data if in dev mode, better for writing new posts!
-    var data = function() {
-        if (actualData == null || config.dev) {
-            actualData = dataModule(fs, logger);
-        }
-
-        return actualData;
-    };
 
     // Reloads the CSS if in dev mode.
     var ampCss = function() {
@@ -25,7 +17,7 @@ module.exports = function(app, fs, express, config, logger) {
 
     var setupController = (page) => {
         try {
-            require('../server/controllers/' + page.controller + 'Controller.js')(app, ampCss, express, config, logger, data, helpers, page);
+            require('../server/controllers/' + page.controller + 'Controller.js')(app, ampCss, express, config, data, helpers, page);
         } catch (e) {
             logger.error('Failed to render page with name: ' + page.name, e);
         }
@@ -35,9 +27,11 @@ module.exports = function(app, fs, express, config, logger) {
         for (let key of Object.keys(obj)) {
             var page = obj[key];
 
-            if (!helpers.isObject(page)) {
-                continue;
-            }
+            /*
+                if (!helpers.isObject(page)) {
+                    continue;
+                }
+            */
 
             if (typeof page.controller !== 'undefined') {
                 setupController(page);
