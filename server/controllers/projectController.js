@@ -21,7 +21,8 @@ module.exports = function(app, fs, express, config, data, helpers, page) {
             ],
             pageTitle: page.name,
             cover: page.cover,
-            bodyText: page.bodyText
+            bodyText: page.bodyText,
+            page: page
         });
     });
 };

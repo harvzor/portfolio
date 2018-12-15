@@ -24,7 +24,7 @@ hw.youtubeVideoSetup = function() {
 // Delay loading of next page so an exiting animation can be played.
 hw.exitingAnimation = function() {
     var aElements = document.getElementsByTagName('a');
-    var content = document.getElementById('content');
+    var body = document.getElementsByTagName('body')[0];
 
     for (var i = 0; i < aElements.length; i++) {
         aElements[i].addEventListener('click', function(e) {
@@ -36,7 +36,7 @@ hw.exitingAnimation = function() {
 
             e.preventDefault();
 
-            content.classList.add('exiting');
+            body.classList.add('exiting');
 
             setTimeout(function() {
                 window.location.href = link.href;
@@ -45,7 +45,7 @@ hw.exitingAnimation = function() {
     }
 
     window.onbeforeunload = function(event) {
-        content.classList.add('exiting');
+        body.classList.add('exiting');
     }
 };
 

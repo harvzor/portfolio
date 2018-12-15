@@ -10,7 +10,8 @@ module.exports = (app, fs, express, config, data, helpers, page) => {
             pageGroup: page.pageGroup,
             pageTitle: page.pageTitle,
             projects: page.children
-                .filter(project => project.published)
+                .filter(project => project.published),
+            page: page
         });
     });
 };

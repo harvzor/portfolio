@@ -27,7 +27,8 @@ module.exports = function(app, fs, express, config, data, helpers, page) {
             pageTitle: page.pageTitle,
             postsByYear: helpers.orderBlogPostsByYear(posts),
             tags: tagsWithQuantity,
-            currentTag: typeof tag === 'undefined' ? '' : tag
+            currentTag: typeof tag === 'undefined' ? '' : tag,
+            page: page
         });
     });
 };

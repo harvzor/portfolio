@@ -9,7 +9,8 @@ module.exports = function(app, fs, express, config, data, helpers, page) {
             metaDescription: page.metaDescription,
             pageGroup: '',
             pageTitle: page.pageTitle,
-            songs: page.children
+            songs: page.children,
+            page: page
         });
     });
 };

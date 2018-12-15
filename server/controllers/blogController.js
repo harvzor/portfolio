@@ -41,7 +41,8 @@ module.exports = function(app, ampCss, express, config, data, helpers, page) {
             bodyText: post.bodyText,
             prevPost: prevPost,
             nextPost: nextPost,
-            canonical: post.canonical
+            canonical: post.canonical,
+            page: post
             //ampCanonical: '/amp/blog/' + url
         });
     });

@@ -3,6 +3,7 @@ aside.nav {
     position:fixed;
     top:0;
     width:span(36);
+    max-width:340px;
     transform:translateX(span(-35));
     min-height:600px;
     height:100%;
@@ -199,6 +200,7 @@ aside.right {
     height:100%;
     background-color:black;
     background-image:url("/media/aside.png");
+    animation:0.3s ease 0s normal forwards 1 fadeIn;;
 }
 
 .diamond {
@@ -218,5 +220,13 @@ aside.right {
 
     &:hover {
         @include transform(rotate(45deg));
+    }
+}
+
+.page-page, .blog-page, .project-page, .songs-page {
+    aside.right {
+        @include screen($lg) {
+            width:calc(100% - 1240px);
+        }
     }
 }
