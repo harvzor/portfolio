@@ -1,0 +1,27 @@
+.box {
+    margin:10px 0;
+    padding:20px;
+    border:1px solid $border;
+    background-color:white;
+    @include border-radius(5px);
+
+    p:first-child {
+        margin-top:0;
+    }
+
+    p:last-child {
+        margin-bottom:0;
+    }
+
+    iframe {
+        width:100%;
+    }
+}
+
+.meta {
+    padding:10px;
+    background-image:url("/media/main.png");
+    color:black;
+    border:1px solid $border;
+    @include border-radius(5px);
+}
