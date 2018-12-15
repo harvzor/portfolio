@@ -37,19 +37,6 @@ var data = function(fs, logger) {
         return contents;
     };
 
-    var dataObject = {
-        // Blog data.
-        posts: [],
-        // Project data.
-        exampleGroups: [
-            {
-                //title: 'Personal projects',
-                //info: 'Some projects I have worked on.',
-                pages: []
-            }
-        ]
-    };
-
     var findData = (dir, data) => {
         data = data || {};
         let paths = fs.readdirSync(dir);
@@ -96,9 +83,7 @@ var data = function(fs, logger) {
         return data;
     };
 
-    dataObject = findData('data');
-
-    return dataObject;
+    return findData('data');
 };
 
 module.exports = data;
