@@ -1,14 +1,13 @@
-module.exports = function(app, fs, express, config, logger, data, helpers) {
-    // Render project parent
-    app.get('/projects', function(req, res) {
+module.exports = (app, fs, express, config, logger, data, helpers, page) => {
+    app.get(page.path, function(req, res) {
         res.render('project-examples', {
             layout: '_common',
-            relativeUrl: 'projects',
-            metaDescription: 'Look through my projects that I have worked on.',
-            pageGroup: 'projects',
-            pageTitle: 'Projects',
-            exampleGroups: data().exampleGroups
+            relativeUrl: page.relativeUrl,
+            metaDescription: page.metaDescription,
+            pageGroup: page.pageGroup,
+            pageTitle: page.pageTitle,
+            projects: page.children
+                .filter(project => project.published)
         });
     });
 };
-

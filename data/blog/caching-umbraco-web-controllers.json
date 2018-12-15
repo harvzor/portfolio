@@ -1,4 +1,6 @@
 {
+    "path": "/blog/caching-umbraco-web-controllers",
+    "name": "caching-umbraco-web-controllers",
     "published": true,
     "href": "caching-umbraco-web-controllers",
     "metaDescription": "Find out how to cache an Umbraco surface controller.",
@@ -6,5 +8,6 @@
     "postDate": "Tue, 26 Jan 2016 00:00:00 GMT",
     "summary": "Caching improves load time for everyone. Here I explain how easily make caching work with Web API controllers.",
     "bodyText": "blog/caching-umbraco-web-controllers.md",
-    "tags": ["csharp", "umbraco", "programming"]
+    "tags": ["csharp", "umbraco", "programming"],
+    "controller": "blog"
 }

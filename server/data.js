@@ -1,3 +1,5 @@
+var helpers = require('./helpers');
+
 var data = function(fs, logger) {
     var marked = require('marked');
     var renderer = new marked.Renderer();
@@ -35,43 +37,7 @@ var data = function(fs, logger) {
         return contents;
     };
 
-    var getJson = (dataLocation) => {
-        let fileNames = fs.readdirSync('data/' + dataLocation);
-
-        return fileNames
-            .filter(fileName => fileName.indexOf('.json') !== -1)
-            .map(fileName => {
-                try {
-                    let contents = fs.readFileSync('data/' +  dataLocation + '/' + fileName, 'utf8');
-
-                    return JSON.parse(contents);
-                } catch (e) {
-                    logger.error(e);
-                }
-            });
-    };
-
     var dataObject = {
-        index: {
-            pageTitle: ['Hello, World', 'Howdy, World', 'Wattup, World', 'Hey, World'],
-            bodyText: getContent('index.md'),
-            metaDescription: 'Hi. I am a web developer and tech enthusiast from England.'
-        },
-        about: {
-            pageTitle: 'About me',
-            bodyText: getContent('about.md'),
-            metaDescription: 'Hi. I am a web developer and tech enthusiast from England.'
-        },
-        cv: {
-            pageTitle: 'Looking for some new talent?',
-            bodyText: getContent('cv.html'),
-            metaDescription: 'Looking to hire a great developer? We might be a perfect match.'
-        },
-        songs: {
-            pageTitle: 'Songs',
-            songs: [],
-            metaDescription: 'Some of my favourite songs.'
-        },
         // Blog data.
         posts: [],
         // Project data.
@@ -84,33 +50,55 @@ var data = function(fs, logger) {
         ]
     };
 
-    getJson('songs')
-        .sort((songA, songB) => new Date(songA.date).getTime() < new Date(songB.date).getTime())
-        .forEach(song => {
-            dataObject.songs.songs.push(song);
-        });
+    var findData = (dir, data) => {
+        data = data || {};
+        let paths = fs.readdirSync(dir);
 
-    //dataObject.posts =
-    getJson('blog')
-        .forEach(post => {
-            if (post.published) {
-                post.bodyText = getContent(post.bodyText);
-                //post.ampBodyText = getContent(post.bodyText, true);
+        // Foreach of the JSON files...
+        paths
+            .filter(path => path.includes('.json'))
+            .map(path => {
+                try {
+                    let contents = fs.readFileSync(dir + '/' + path, 'utf8');
+                    let json = JSON.parse(contents);
 
-                dataObject.posts.push(post);
-            }
-        });
+                    if (typeof json.bodyText !== 'undefined') {
+                        json.bodyText = getContent(json.bodyText);
 
-    getJson('projects')
-        .map(project => {
-            if (project.published) {
-                project.bodyText = getContent(project.bodyText);
+                        //json.ampBodyText = getContent(page.bodyText, true);
+                    }
 
-                dataObject.exampleGroups[0].pages.push(project);
-            }
-        });
+                    if (helpers.isObject(data)) {
+                        data[json.name] = json;
+                    } else {
+                        data.push(json);
+                    }
+                } catch (e) {
+                    logger.error(e);
+                }
+            });
+
+        // Foreach of the folder...
+        paths
+            .filter(path => !path.includes('.'))
+            .forEach(path => {
+                if (typeof data[path] === 'undefined') {
+                    data[path] = [];
+
+                    findData(dir + '/' + path, data[path]);
+                } else {
+                    data[path].children = [];
+
+                    findData(dir + '/' + path, data[path].children);
+                }
+            });
+
+        return data;
+    };
+
+    dataObject = findData('data');
 
     return dataObject;
-}
+};
 
 module.exports = data;

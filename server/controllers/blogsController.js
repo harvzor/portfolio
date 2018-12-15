@@ -1,8 +1,8 @@
-module.exports = function(app, fs, express, config, logger, data, helpers) {
-    app.get('/blog', function(req, res) {
+module.exports = function(app, fs, express, config, logger, data, helpers, page) {
+    app.get(page.path, (req, res) => {
         var tag = req.query.tag;
 
-        var posts = data().posts;
+        var posts = data().blog.children;
         var tagsWithQuantity = helpers.getBlogTags(posts);
 
         if (tag) {
@@ -12,7 +12,7 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
         }
 
         // Order posts by date.
-        posts = posts.sort(function(a, b) {
+        posts = posts.sort((a, b) => {
             return new Date(b.postDate).getTime() - new Date(a.postDate).getTime();
         });
 
@@ -20,13 +20,12 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
             helpers: helpers,
             layout: '_common',
             relativeUrl: 'blog',
-            metaDescription: 'Read about my latest thoughts and experiences in the world of web development.',
-            pageGroup: 'blog',
-            pageTitle: 'Blog', 
+            metaDescription: page.metaDescription,
+            pageGroup: page.pageGroup,
+            pageTitle: page.pageTitle,
             postsByYear: helpers.orderBlogPostsByYear(posts),
             tags: tagsWithQuantity,
             currentTag: typeof tag === 'undefined' ? '' : tag
         });
     });
 };
-

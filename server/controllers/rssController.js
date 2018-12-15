@@ -6,8 +6,7 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
         res.render('rss', {
             layout: 'rss', // This probably causes the template to be created twice...
             helpers: helpers,
-            posts: data().posts
+            posts: data().blog.children
         });
     });
 };
-

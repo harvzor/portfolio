@@ -1,12 +1,13 @@
 module.exports = function(app, fs, express, config, logger, data, helpers, page) {
-    app.get(page.path, function(req, res) {
-        res.render('page', {
+    app.get(page.path, (req, res) => {
+        res.render('songs', {
+            helpers: helpers,
             layout: '_common',
-            relativeUrl: '',
+            relativeUrl: page.relativeUrl,
             metaDescription: page.metaDescription,
-            pageGroup: page.pageGroup,
+            pageGroup: '',
             pageTitle: page.pageTitle,
-            bodyText: page.bodyText
+            songs: page.children
         });
     });
 };

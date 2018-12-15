@@ -1,8 +1,9 @@
 {
+    "path": "/projects/artists-name-plates",
     "published": true,
-    "href": "artists-name-plates",
     "metaDescription": "I built a website for Artists Name Plates - an ecommerce site that allows users to buy name plates for paintings.",
     "cover": "/media/projects/artistsnameplates.jpg",
     "name": "Artists Name Plates",
-    "bodyText": "projects/artists-name-plates.md"
+    "bodyText": "projects/artists-name-plates.md",
+    "controller": "project"
 }

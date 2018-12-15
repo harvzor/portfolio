@@ -1,0 +1,10 @@
+{
+    "path": "/songs",
+    "relativeUrl": "/songs",
+    "name": "songs",
+    "pageTitle": "Songs",
+    "pageGroup": "",
+    "songs": [],
+    "metaDescription": "Some of my favourite songs.",
+    "controller": "songs"
+}

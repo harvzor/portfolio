@@ -58,7 +58,7 @@ app.locals.year = function() {
 };
 
 app.locals.songOfTheMoment = function() {
-    return data().songs.songs[0];
+    return data().songs.children[0];
 };
 
 /////////////////

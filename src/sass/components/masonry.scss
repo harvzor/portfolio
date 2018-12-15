@@ -1,0 +1,15 @@
+// Adapted from:
+// https://w3bits.com/css-masonry/
+
+/* The Masonry Container */
+.masonry {
+    column-gap:1.5em;
+
+    @include screen($sm) {
+        column-count:2;
+    }
+
+    @include screen($md) {
+        column-count:3;
+    }
+}

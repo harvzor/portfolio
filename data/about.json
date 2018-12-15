@@ -1,0 +1,9 @@
+{
+    "path": "/about",
+    "name": "about",
+    "pageTitle": "About me",
+    "pageGroup": "about",
+    "bodyText": "about.md",
+    "metaDescription": "Hi. I am a web developer and tech enthusiast from England.",
+    "controller": "page"
+}

@@ -1,4 +1,15 @@
 var helpers = {
+    /**
+     * Check if var is object (and not array).
+     * @param {*} obj
+     */
+    isObject: function(obj) {
+        if (obj instanceof Array) {
+            return false;
+        }
+
+        return obj === Object(obj);
+    },
     // A general way for rendering dates on the front end.
     friendlyDate: function(d) {
         var date = new Date(d);

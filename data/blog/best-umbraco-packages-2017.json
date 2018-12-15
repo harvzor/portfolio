@@ -1,4 +1,6 @@
 {
+    "path": "/blog/best-umbraco-packages-2017",
+    "name": "best-umbraco-packages-2017",
     "published": true,
     "href": "best-umbraco-packages-2017",
     "metaDescription": "Discover some of the best Umbraco packages/projects of 2017 that can help aid your experience of using Umbraco as a developer.",
@@ -6,5 +8,6 @@
     "postDate": "Sun, 02 Mar 2017 00:00:00 GMT",
     "summary": "Discover some of the best Umbraco packages which can help you build Umbraco websites.",
     "bodyText": "blog/best-umbraco-packages-2017.md",
-    "tags": ["umbraco", "programming"]
+    "tags": ["umbraco", "programming"],
+    "controller": "blog"
 }

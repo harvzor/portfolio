@@ -1,0 +1,13 @@
+{
+    "path": "/",
+    "name": "home",
+    "pageTitle": [
+        "Hello, World",
+        "Howdy, World",
+        "Wattup, World",
+        "Hey, World"
+    ],
+    "bodyText": "home.md",
+    "metaDescription": "Hi. I am a web developer and tech enthusiast from England.",
+    "controller": "home"
+}

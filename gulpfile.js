@@ -217,6 +217,9 @@ gulp.task('cli', function() {
 });
 
 var styles = function(source, taskName) {
+    // Stop the through2 from getting run twice... A bit hacky.
+    let first = true;
+
     return gulp.src(source)
         // Hack for Visual Studio Code locking up the file https://github.com/dlmanning/gulp-sass/issues/543
         .pipe(wait(500))
@@ -237,8 +240,15 @@ var styles = function(source, taskName) {
         .pipe(gulp.dest('public/css'))
         .pipe(cssnano({ zindex: false }))
         .pipe(autoprefixer('last 2 version'))
+        .pipe(sourcemaps.write('.')) // For some reason this has to go at the end or through2 will occur twice.
         .pipe(gulp.dest('public/css'))
-        .pipe(through2.obj(function(file, enc, callback) {
+        .pipe(through2.obj((file, enc, callback) => {
+            if (!first) {
+                return;
+            }
+
+            first = false;
+
             if (cli) {
                 stylesBox.pushLine(formatDate(new Date()) + taskName + ' task completed.');
                 screen.render();
@@ -247,8 +257,7 @@ var styles = function(source, taskName) {
             note('info', taskName + ' task completed.');
 
             callback(null, file);
-        }))
-        .pipe(sourcemaps.write('.')); // For some reason this has to go at the end or through2 will occur twice.
+        }));
 };
 
 

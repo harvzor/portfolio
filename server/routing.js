@@ -23,10 +23,43 @@ module.exports = function(app, fs, express, config, logger) {
         return cachedAmpCss;
     }
 
+    var setupController = (page) => {
+        try {
+            require('../server/controllers/' + page.controller + 'Controller.js')(app, ampCss, express, config, logger, data, helpers, page);
+        } catch (e) {
+            logger.error('Failed to render page with name: ' + page.name, e);
+        }
+    };
+
+    var setupControllers = (obj) => {
+        for (let key of Object.keys(obj)) {
+            var page = obj[key];
+
+            if (!helpers.isObject(page)) {
+                continue;
+            }
+
+            if (typeof page.controller !== 'undefined') {
+                setupController(page);
+            }
+
+            if (typeof page.children !== 'undefined' && page.children.length > 0) {
+                setupControllers(page.children);
+            }
+        }
+    };
+
+    setupControllers(data());
+
+    require('../server/controllers/redirectsController.js')(app, ampCss, express, config, logger, data, helpers);
+    require('../server/controllers/rssController.js')(app, ampCss, express, config, logger, data, helpers);
+
     // Load each controller and run them.
-    fs.readdirSync('./server/controllers/').forEach(function(file) {
-        require('../server/controllers/' + file)(app, ampCss, express, config, logger, data, helpers);
-    });
+    /*
+        fs.readdirSync('./server/controllers/').forEach(function(file) {
+            require('../server/controllers/' + page.controller + 'Controller.js')(app, ampCss, express, config, logger, data, helpers);
+        });
+    */
 
     /////////////////
     // Static files
@@ -37,7 +70,7 @@ module.exports = function(app, fs, express, config, logger) {
     // Just used for verifying SSL with Let's Encrypt.
     app.use('/.well-known', express.static('./.well-known'));
 
-    if (global.dev == true) {
+    if (global.dev) {
         app.use(express.static('./src'));
     }
 
@@ -47,28 +80,29 @@ module.exports = function(app, fs, express, config, logger) {
 
     // These have to be setup after everything else.
 
-    app.use(function(req, res, next) {
-        logger.info('404 error: %s', req.originalUrl);
+    if (!global.dev) {
+        app.use((req, res, next) => {
+            logger.info('404 error: %s', req.originalUrl);
 
-        res.status(404).render('page', {
-            layout: '_common',
-            relativeUrl: '404',
-            pageGroup: '',
-            pageTitle: 'Status: 404',
-            bodyText: '<p>You\'re looking for a page that doesn\'t exist...</p>'
+            res.status(404).render('page', {
+                layout: '_common',
+                relativeUrl: '404',
+                pageGroup: '',
+                pageTitle: 'Status: 404',
+                bodyText: '<p>You\'re looking for a page that doesn\'t exist...</p>'
+            });
         });
-    });
 
-    app.use(function(err, req, res, next) {
-        logger.error('500 error: %s', err.stack);
+        app.use((err, req, res, next) => {
+            logger.error('500 error: %s', err.stack);
 
-        res.status(500).render('page', {
-            layout: '_common',
-            relativeUrl: '500',
-            pageGroup: '',
-            pageTitle: 'Status: 500',
-            bodyText: '<p>So sorry, but a problem occured! Please email me if this problem persists.</p>'
+            res.status(500).render('page', {
+                layout: '_common',
+                relativeUrl: '500',
+                pageGroup: '',
+                pageTitle: 'Status: 500',
+                bodyText: '<p>So sorry, but a problem occured! Please email me if this problem persists.</p>'
+            });
         });
-    });
+    }
 };
-

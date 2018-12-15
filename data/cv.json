@@ -1,0 +1,8 @@
+{
+    "path": "/cv",
+    "name": "cv",
+    "pageTitle": "Looking for some new talent?",
+    "bodyText": "cv.md",
+    "metaDescription": "Looking to hire a great developer? We might be a perfect match.",
+    "controller": "page"
+}

@@ -4,4 +4,3 @@ module.exports = function(app, fs, express, config, logger, data, helpers) {
         res.redirect('/projects');
     });
 };
-

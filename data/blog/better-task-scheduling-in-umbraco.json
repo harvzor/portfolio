@@ -1,4 +1,6 @@
 {
+    "path": "/blog/better-task-scheduling-in-umbraco",
+    "name": "better-task-scheduling-in-umbraco",
     "published": true,
     "href": "better-task-scheduling-in-umbraco",
     "metaDescription": "ScheduledTasks are an antiquated way of handling scheduling events in .NET. Here\"s three better solutions you should be considering instead.",
@@ -7,5 +9,6 @@
     "summary": "ScheduledTasks are an antiquated way of handling scheduling events in .NET. Here\"s three better solutions you should be considering instead.",
     "bodyText": "blog/better-task-scheduling-in-umbraco.md",
     "canonical": "https://growcreate.co.uk/blog/better-task-scheduling-in-umbraco/",
-    "tags": ["umbraco", "programming"]
+    "tags": ["umbraco", "programming"],
+    "controller": "blog"
 }

@@ -1,4 +1,6 @@
 {
+    "path": "/blog/umbraco-super-admin",
+    "name": "umbraco-super-admin",
     "published": false,
     "href": "umbraco-super-admin",
     "metaDescription": "",
@@ -6,5 +8,6 @@
     "postDate": null,
     "summary": "",
     "bodyText": "blog/umbraco-super-admin.md",
-    "tags": ["umbraco", "programming"]
+    "tags": ["umbraco", "programming"],
+    "controller": "blog"
 }

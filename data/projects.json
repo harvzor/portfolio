@@ -1,0 +1,9 @@
+{
+    "path": "/projects",
+    "relativeUrl": "projects",
+    "name": "projects",
+    "pageTitle": "Projects",
+    "pageGroup": "projects",
+    "metaDescription": "Look through my projects that I have worked on.",
+    "controller": "projects"
+}

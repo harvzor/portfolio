@@ -1,8 +1,9 @@
 {
+    "path": "/projects/umbraco-helper-extension",
     "published": true,
-    "href": "umbraco-helper-extension",
     "metaDescription": "Browser extension for Umbraco.",
     "cover": null,
     "name": "Umbraco Helper Extension",
-    "bodyText": "projects/umbraco-helper-extension.md"
+    "bodyText": "projects/umbraco-helper-extension.md",
+    "controller": "project"
 }
