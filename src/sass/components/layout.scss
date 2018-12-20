@@ -1,0 +1,127 @@
+/*
+ * Seriously regretting using suzy for widths when I want this kind of control.
+*/
+
+main {
+    left:span(2);
+    width:span(32);
+
+    @include screen($sm) {
+        left:span(10);
+        width:span(25);
+    }
+
+    @include screen(1350) {
+        left:span(8);
+        width:span(27);
+    }
+
+    @include screen(1600) {
+        left:span(7);
+        width:span(28);
+    }
+
+    @include screen(1800) {
+        left:span(6);
+        width:span(29);
+    }
+
+    @include screen(2200) {
+        left:span(5);
+        width:span(30);
+    }
+
+    @include screen(2600) {
+        left:span(4);
+        width:span(31);
+    }
+}
+
+// Max-width should be about 350px and min-width 300px.
+aside.nav {
+    width:span(36);
+
+    @include screen($sm) {
+        width:span(10);
+        transform:translateX(0);
+    }
+
+    @include screen(1350) {
+        width:span(8);
+    }
+
+    @include screen(1600) {
+        width:span(7);
+    }
+
+    @include screen(1800) {
+        width:span(6);
+    }
+
+    @include screen(2200) {
+        width:span(5);
+    }
+
+    @include screen(2600) {
+        width:span(4);
+    }
+}
+
+.page-page, .blog-page, .project-page, .songs-page {
+    // Max width of actual paragraphs and content should only ever be 800px.
+    main {
+        @include screen($lg) {
+            width:span(20);
+        }
+
+        @include screen(1800) {
+            width:span(18);
+        }
+
+        @include screen(1900) {
+            width:span(17);
+        }
+
+        @include screen(2000) {
+            width:span(16);
+        }
+
+        @include screen(2100) {
+            width:span(15);
+        }
+
+        @include screen(2200) {
+            width:span(14);
+        }
+    }
+
+    aside.right {
+        @include screen(1600) {
+            width:span(9);
+        }
+
+        @include screen(1800) {
+            width:span(12);
+        }
+
+        @include screen(1900) {
+            width:span(13);
+        }
+
+        @include screen(2000) {
+            width:span(14);
+        }
+
+        @include screen(2100) {
+            width:span(15);
+        }
+
+        @include screen(2200) {
+            width:span(17);
+        }
+
+        @include screen(2600) {
+            width:span(18);
+        }
+    }
+}
