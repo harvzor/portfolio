@@ -6,7 +6,7 @@ aside.nav {
     min-height:600px;
     height:100%;
     padding:20px 30px;
-    background-color:black;
+    background-color:$background;
     background-image:url("/media/aside.png");
     color:white;
     overflow:hidden;
@@ -193,7 +193,7 @@ aside.right {
     //width:2.5%;
     width:span(1);
     height:100%;
-    background-color:black;
+    background-color:$background;
     background-image:url("/media/aside.png");
     animation:0.3s ease 0s normal forwards 1 fadeIn;;
 }
