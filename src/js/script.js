@@ -12,7 +12,7 @@ hw.youtubeVideoSetup = function() {
             var iframe = document.createElement('iframe');
 
             iframe.setAttribute('src', video.getAttribute('href') + '?autoplay=1');
-            iframe.setAttribute('height', '300');
+            iframe.setAttribute('height', video.clientHeight);
             iframe.setAttribute('frameborder', '0');
             iframe.setAttribute('allowfullscreen', '');
 

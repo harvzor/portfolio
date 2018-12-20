@@ -1,7 +1,11 @@
 .youtube-video {
     display:block;
     position:relative;
-    height:300px;
+    // https://css-tricks.com/aspect-ratio-boxes/
+    // I'm normally finding background images which are 1280px by 720px so get the video placeholder to always be
+    // that aspect ratio:
+    padding-top:720px / 1280px * 100%;
+    margin:10px 0;
     background-repeat:none;
     background-size:cover;
     background-position:50% 50%;

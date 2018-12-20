@@ -1,8 +1,13 @@
 <article class="box">
-    <% songs.forEach(song => { %>
-        <h2><%= song.name %> by <%= song.artist %></h2>
-        <small>Added <%= helpers.friendlyDate(song.date) %></small>
-        <br />
+    <p>A collection of some of my favourite songs of the moment.</p>
+    <% songs
+        .sort((a, b) => {
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+        })
+        .forEach(song => {
+    %>
+        <h2><%= song.name %> - <%= song.artist %></h2>
+        <div class="meta">Added <%= helpers.friendlyDate(song.date) %></div>
         <a class="youtube-video" href="https://www.youtube.com/embed/<%= song.id %>" target="_blank" style="background-image:url('https://img.youtube.com/vi/<%= song.id %>/maxresdefault.jpg')">
             <div class="icon-play youtube-video-play"></div>
         </a>
