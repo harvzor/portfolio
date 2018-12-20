@@ -78,15 +78,17 @@ aside.nav {
         }
     }
 
-    .sub-footer a {
-        color:white;
-        text-decoration:none;
-        margin-top:10px;
+    /*
+        .sub-footer a {
+            color:white;
+            text-decoration:none;
+            margin-top:10px;
 
-        &:hover {
-            text-decoration:underline;
+            &:hover {
+                text-decoration:underline;
+            }
         }
-    }
+    */
 
     footer {
         position:absolute;
@@ -201,7 +203,7 @@ aside.right {
     height:40px;
     border:0;
     padding:0;
-    @include transform(rotate(45deg));
+    transform:rotate(45deg);
 }
 
 .toggle {
@@ -209,9 +211,9 @@ aside.right {
     top:50%;
     margin-top:-20px;
     cursor:pointer;
-    @include transition(margin 0.3s);
+    transition:margin 0.3s;
 
     &:hover {
-        @include transform(rotate(45deg));
+        transform:rotate(45deg);
     }
 }

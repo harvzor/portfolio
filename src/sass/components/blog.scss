@@ -23,7 +23,7 @@
             font-size:2em;
             padding:0 5px;
             background-color:white;
-            @include border-radius(5px);
+            border-radius:5px;
         }
 
         &.prev-post {
@@ -65,7 +65,7 @@
     }
 }
 
-// Styles only if there are next and previous psot links.
+// Styles only if there are next and previous post links.
 // Can't use focus events for accessibility as the .post-nav parent
 // can't both be focused as well as the .nav-item.
 .post-nav.post-nav-next-prev {
@@ -80,7 +80,7 @@
     .nav-item {
         @include screen($xs) {
             width:50%;
-            @include transition(width 0.3s);
+            transition:width 0.3s;
         }
 
         &:hover {

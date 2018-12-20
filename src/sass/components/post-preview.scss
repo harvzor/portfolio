@@ -32,7 +32,7 @@
     border:1px solid $border;
     padding:10px;
     margin:10px 0;
-    @include border-radius(5px);
+    border-radius:5px;
 
     &:hover, &:focus {
         h2 {
@@ -44,4 +44,3 @@
         margin-top:0;
     }
 }
-

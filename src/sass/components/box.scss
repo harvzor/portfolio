@@ -3,7 +3,7 @@
     padding:20px;
     border:1px solid $border;
     background-color:white;
-    @include border-radius(5px);
+    border-radius:5px;
 
     p:first-child {
         margin-top:0;
@@ -23,5 +23,5 @@
     background-image:url("/media/main.png");
     color:black;
     border:1px solid $border;
-    @include border-radius(5px);
+    border-radius:5px;
 }

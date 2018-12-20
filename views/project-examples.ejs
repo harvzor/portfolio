@@ -1,12 +1,10 @@
-<div class="portfolio">
-    <div class="group masonry">
-        <% projects.forEach(project => { %>
-            <a href="<%= project.path %>" class="box example">
-                <div class="info">
-                    <%= project.name %>
-                </div>
-                <img src="<%= project.cover %>" alt="" />
-            </a>
-        <% }); %>
-    </div>
+<div class="group masonry">
+    <% projects.forEach(project => { %>
+        <a href="<%= project.path %>" class="box example">
+            <div class="info">
+                <%= project.name %>
+            </div>
+            <img src="<%= project.cover %>" alt="" />
+        </a>
+    <% }); %>
 </div>
