@@ -1,15 +1,50 @@
 const logger = require('../logger');
+const helpers = require('../helpers');
+
+var orderBlogPostsByYear = (posts) => {
+    var postsByYear = [];
+    var group = null;
+    var post = null;
+    var years = [];
+
+    for (var i = 0; i < posts.length; i++) {
+        post = posts[i];
+
+        years.push(new Date(post.postDate).getFullYear());
+    }
+
+    years = years.filter(helpers.onlyUnique);
+
+    for (var i = 0; i < years.length; i++) {
+        group = {
+            year: years[i],
+            posts: []
+        };
+
+        for (var x = 0; x < posts.length; x++) {
+            post = posts[x];
+
+            if (new Date(post.postDate).getFullYear() == years[i]) {
+                group.posts.push(post);
+            }
+        }
+
+        postsByYear.push(group);
+    }
+
+    return postsByYear;
+};
 
 module.exports = function(app, fs, express, config, data, helpers, page) {
     app.get(page.path, (req, res) => {
-        var tag = req.query.tag;
+        const tag = req.query.tag;
 
-        var posts = data().blog.children;
-        var tagsWithQuantity = helpers.getBlogTags(posts);
+        let posts = data().blog.children;
+        const tagsWithQuantity = helpers.getBlogTags(posts);
 
         if (tag) {
-            posts = posts.filter(function(post) {
-                return post.tags.indexOf(tag) > -1;
+            posts = posts.filter(post => {
+                return post.tags.includes(tag);
             });
         }
 
@@ -25,7 +60,7 @@ module.exports = function(app, fs, express, config, data, helpers, page) {
             metaDescription: page.metaDescription,
             pageGroup: page.pageGroup,
             pageTitle: page.pageTitle,
-            postsByYear: helpers.orderBlogPostsByYear(posts),
+            postsByYear: orderBlogPostsByYear(posts),
             tags: tagsWithQuantity,
             currentTag: typeof tag === 'undefined' ? '' : tag,
             page: page

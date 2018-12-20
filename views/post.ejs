@@ -4,18 +4,11 @@
     </div>
     <%- bodyText %>
 </article>
-<nav class="box post-nav<%= prevPost != null && nextPost != null ? ' post-nav-next-prev' : '' %>">
-    <% if (prevPost != null) { %>
-        <a href="<%= prevPost.href %>" class="nav-item prev-post">
-            <span class="post-nav-arrow">&lt;</span>
-            <span class="post-nav-title"><%= prevPost.title %></span>
-        </a>
-    <% } %>
-    <% if (nextPost != null) { %>
-        <a href="<%= nextPost.href %>" class="nav-item next-post">
-            <span class="post-nav-arrow">&gt;</span>
-            <span class="post-nav-title"><%= nextPost.title %></span>
-        </a>
-    <% } %>
-</nav>
+<% if (relatedPosts.length > 0) { %>
+    <h2>Related blog posts</h2>
+    <% relatedPosts.forEach(relatedPost => { %>
+        <%- include('partials/post-preview', { post: relatedPost.post }) %>
+    <% }); %>
+<% } %>
+<% /* include partials/prev-next-posts */ %>
 <% include partials/disqus %>

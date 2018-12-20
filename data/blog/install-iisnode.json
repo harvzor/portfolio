@@ -8,6 +8,6 @@
     "postDate": "Mon, 25 Jan 2016 00:00:00 GMT",
     "summary": "Developing Node.js applications on Windows is easy, but getting them setup for production can be a little more difficult. Read this post to discover how to set up IISNode in Windows and get a Node application running within IIS.",
     "bodyText": "blog/installing-iisnode.md",
-    "tags": ["nodejs", "programming"],
+    "tags": ["nodejs"],
     "controller": "blog"
 }

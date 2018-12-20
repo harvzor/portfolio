@@ -1,28 +1,69 @@
 const logger = require('../logger');
 
+var getPrevAndNextPosts = (data, post) => {
+    var prev = null;
+    var next = null;
+
+    var index = data().blog.children
+        .map((x) => { return x.href; })
+        .indexOf(post.href);
+
+    // If not the first ever post.
+    if (index < data().blog.children.length - 1) {
+        prev = data().blog.children[index + 1];
+    }
+
+    // If not the latest post.
+    if (index != 0) {
+        next = data().blog.children[index - 1];
+    }
+
+    return {
+        prev: prev,
+        next: next
+    };
+};
+
 module.exports = function(app, ampCss, express, config, data, helpers, page) {
     // Render blog post.
     app.get(page.path, (req, res) => {
-        var prevPost = null;
-        var nextPost = null;
-        var url = req.originalUrl.split('/')[2]
+        let post = null;
+
+        let url = req.originalUrl
+            .split('/')[2]
             .split('?')[0];
 
-        var post = data().blog.children.filterObjects('href', url)[0];
+        let otherPosts = data().blog.children
+            .filter(otherPost => {
+                if (otherPost.href === url) {
+                    post = otherPost;
 
-        var index = data().blog.children
-            .map((x) => { return x.href; })
-            .indexOf(post.href);
+                    return false;
+                }
 
-        // If not the first ever post.
-        if (index < data().blog.children.length - 1) {
-            prevPost = data().blog.children[index + 1];
-        }
+                return true;
+            });
 
-        // If not the latest post.
-        if (index != 0) {
-            nextPost = data().blog.children[index - 1];
-        }
+        //let relatedPosts = getPrevAndNextPosts(data, post);
+
+        let relatedPostsWithMatchingTagsCount = otherPosts
+            .map(otherPost => {
+                let numberOfMatchingTags = 0;
+
+                otherPost.tags.forEach(otherPostTag => {
+                    if (post.tags.includes(otherPostTag)) {
+                        numberOfMatchingTags++;
+                    }
+                });
+
+                return {
+                    matching: numberOfMatchingTags,
+                    post: otherPost
+                };
+            })
+            .filter(otherPost => otherPost.matching > 0)
+            .sort((otherPostA, otherPostB) => otherPostA.matching < otherPostB.matching)
+            .slice(0, 3);
 
         res.render('post', {
             helpers: helpers,
@@ -39,8 +80,10 @@ module.exports = function(app, ampCss, express, config, data, helpers, page) {
             pageTitle: post.title,
             postDate: post.postDate,
             bodyText: post.bodyText,
-            prevPost: prevPost,
-            nextPost: nextPost,
+            tags: post.tags,
+            relatedPosts: relatedPostsWithMatchingTagsCount,
+            //prevPost: relatedPosts.prev,
+            //nextPost: relatedPosts.next,
             canonical: post.canonical,
             page: post
             //ampCanonical: '/amp/blog/' + url

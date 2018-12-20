@@ -68,6 +68,7 @@
 // Styles only if there are next and previous post links.
 // Can't use focus events for accessibility as the .post-nav parent
 // can't both be focused as well as the .nav-item.
+/*
 .post-nav.post-nav-next-prev {
     @include screen($xs) {
         &:hover {
@@ -99,4 +100,4 @@
         }
     }
 }
-
+*/
