@@ -165,13 +165,13 @@ aside.nav {
 
 #nav-open {
     position:fixed;
-    left:span(1);
-    margin-left:-25px;
+    left:0;
+    margin-left:5px;
     background-image:url("/media/aside.png");
     z-index:1;
 
     &:hover {
-        margin-left:-20px;
+        margin-left:10px;
     }
 }
 
@@ -181,7 +181,7 @@ aside.nav {
     background-color:$grey-lightest;
     background-image:url("/media/main.png");
 
-    &:hover, &:focus {
+    &:hover {
         margin-right:-20px;
     }
 }
