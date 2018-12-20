@@ -24,11 +24,12 @@ h1, h2, h3, h4, h5, h6, p {
 
 h1 {
     display:inline;
+    font-size:1em;
     line-height:1em;
 }
 
 h2 {
-    font-size:1.2em;
+    font-size:1.5em;
     margin:1em 0 0.5em 0;
 }
 
@@ -37,7 +38,7 @@ h3 {
     margin:1em 0 0.5em 0;
 }
 
-h1, h4, h5, h6, p {
+h4, h5, h6, p {
     font-size:1em;
 }
 
