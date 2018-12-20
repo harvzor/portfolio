@@ -1,9 +1,9 @@
+// Max-width should be about 350px and min-width 300px.
 aside.nav {
     float:left;
     position:fixed;
     top:0;
     width:span(36);
-    max-width:340px;
     transform:translateX(span(-35));
     min-height:600px;
     height:100%;
@@ -16,8 +16,28 @@ aside.nav {
     transition:all 0.3s;
 
     @include screen($sm) {
-        width:span(8);
+        width:span(10);
         transform:translateX(0);
+    }
+
+    @include screen(1350) {
+        width:span(8);
+    }
+
+    @include screen(1600) {
+        width:span(7);
+    }
+
+    @include screen(1800) {
+        width:span(6);
+    }
+
+    @include screen(2200) {
+        width:span(5);
+    }
+
+    @include screen(2600) {
+        width:span(4);
     }
 
     * {
@@ -225,8 +245,32 @@ aside.right {
 
 .page-page, .blog-page, .project-page, .songs-page {
     aside.right {
-        @include screen($lg) {
-            width:calc(100% - 1240px);
+        @include screen(1600) {
+            width:span(9);
+        }
+
+        @include screen(1800) {
+            width:span(12);
+        }
+
+        @include screen(1900) {
+            width:span(13);
+        }
+
+        @include screen(2000) {
+            width:span(14);
+        }
+
+        @include screen(2100) {
+            width:span(15);
+        }
+
+        @include screen(2200) {
+            width:span(17);
+        }
+
+        @include screen(2600) {
+            width:span(18);
         }
     }
 }

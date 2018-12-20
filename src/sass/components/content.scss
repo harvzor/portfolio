@@ -1,0 +1,118 @@
+main {
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    left:span(2);
+    width:span(32);
+    min-height:100vh;
+    padding:1em 2.5% 0 2.5%;
+    transition:all 0.3s;
+    animation:1s ease 0s normal forwards 1 fadeIn;;
+
+    @include screen($sm) {
+        left:span(10);
+        width:span(25);
+    }
+
+    @include screen(1350) {
+        left:span(8);
+        width:span(27);
+    }
+
+    @include screen(1600) {
+        left:span(7);
+        width:span(28);
+    }
+
+    @include screen(1800) {
+        left:span(6);
+        width:span(29);
+    }
+
+    @include screen(2200) {
+        left:span(5);
+        width:span(30);
+    }
+
+    @include screen(2600) {
+        left:span(4);
+        width:span(31);
+    }
+
+    a:not(.post-preview) {
+        word-break:break-all;
+    }
+
+    .content {
+        margin-bottom:-30px;
+
+        &:after {
+            content:"";
+            display:block;
+            height:30px;
+        }
+    }
+
+    .spacer {
+        flex:1;
+    }
+
+    img, video {
+        display:block;
+        max-width:100%;
+        margin:1em auto;
+    }
+
+    footer {
+        height:30px;
+        padding:5px;
+        text-align:center;
+
+        &:hover {
+            span {
+                display:none;
+            }
+
+            .song {
+                display:block;
+            }
+        }
+
+        span {
+            cursor:pointer;
+        }
+
+        .song {
+            display:none;
+        }
+    }
+}
+
+.page-page, .blog-page, .project-page, .songs-page {
+    // Max width of actual paragraphs and content should only ever be 800px.
+    main {
+        @include screen($lg) {
+            width:span(20);
+        }
+
+        @include screen(1800) {
+            width:span(18);
+        }
+
+        @include screen(1900) {
+            width:span(17);
+        }
+
+        @include screen(2000) {
+            width:span(16);
+        }
+
+        @include screen(2100) {
+            width:span(15);
+        }
+
+        @include screen(2200) {
+            width:span(14);
+        }
+    }
+}
