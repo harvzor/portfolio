@@ -8,7 +8,12 @@ const renderer = function() {
     var ampRenderer = new marked.Renderer();
 
     var linkRender = function(href, title, text) {
-        return '<a target="_blank" href="'+ href +'">' + text + '</a>';
+        // If it is an external link...
+        if (href.startsWith('http')) {
+            return '<a target="_blank" href="'+ href +'">' + text + '</a>';
+        }
+
+        return '<a href="'+ href +'">' + text + '</a>';
     };
 
     renderer.link = linkRender;

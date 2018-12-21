@@ -2,7 +2,7 @@
     "path": "/projects/artists-name-plates",
     "published": true,
     "metaDescription": "I built a website for Artists Name Plates - an ecommerce site that allows users to buy name plates for paintings.",
-    "cover": "/media/projects/artistsnameplates.jpg",
+    "cover": "/media/projects/artists-name-plates/artists-name-plates-homepage-small.png",
     "name": "Artists Name Plates",
     "bodyText": "projects/artists-name-plates.md",
     "controller": "project"
