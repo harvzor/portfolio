@@ -1,6 +1,6 @@
 ## What was the purpose of the website?
 
-Artists Name Plates is a simple website that showcases custom made name plates that are added to the frame of a painting. The website also allows users to order their bespoke made plates.
+[Artists Name Plates](https://artistsnameplates.co.uk/) is a simple website that showcases custom made name plates that are added to the frame of a painting. The website also allows users to order their bespoke made plates.
 
 ## A video highlighting the difference between the old site and the new one
 
@@ -31,7 +31,7 @@ The old website landed me a job at [GrowCreate](https://growcreate.co.uk/) in 20
 
 Therefore, the new website was going to be built with these technologies.
 
-After a multiple redesigns, and different technology switches (from Backbone, to Angular, back to simple jQuery), I finally released the finished website in 2018.
+After a multiple redesigns, and different technology switches (from Backbone, to Angular, back to simple jQuery), I finally released the finished website in November of 2018.
 
 ### What was fixed?
 
@@ -39,3 +39,9 @@ After a multiple redesigns, and different technology switches (from Backbone, to
 - the order form was improved and made prettier
 - user input is now properly checked on both client and server side
 - the website is now mobile friendly
+
+## What did I learn? Reflecting on the project
+
+**I'm a bit of a perfectionist, but I should've worked to build a leaner product which didn't have to be perfect.** Trying to find the right framework and building it to be perfect held me back.
+
+In the end I settled with jQuery to build the order form. By this point, the code is quite complicated. Back when I first started coding the website, I was still a Javascript novice, but now I'd much rather use a framework such as Angular, or at least a better component rendering library such as React.
