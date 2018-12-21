@@ -8,6 +8,7 @@
     clearfix: false,
     background-image: true,
     background-options: false,
+    breakpoint: true,
     box-sizing: true,
     rem: true,
   ),
@@ -66,9 +67,19 @@
 
     @each $_type, $_req in $requirements {
       @each $_i in $_req {
-        $_pass: call(#{$_type}-exists, $_i);
 
-        @if not $_pass {
+        $_pass : null;
+
+        // sass 3.5 or greater
+        @if function-exists('get-function') {
+          $_pass: call(get-function(unquote("#{$_type}-exists")), $_i);
+        }
+        // sass 3.4 or less
+        @else {
+          $_pass: call(unquote("#{$_type}-exists"), $_i);
+        }
+
+        @if not($_pass) {
           $_fail: true;
           @if $warn {
             @warn "You requested custom support of #{$feature}, but the #{$_i} #{$_type} is not available.";
