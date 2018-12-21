@@ -1,4 +1,12 @@
-![Artists Name Plates homepage](/media/projects/artistsnameplates.jpg)
+## What was the purpose of the website?
+
+Artists Name Plates is a simple website that showcases custom made name plates that are added to the frame of a painting. The website also allows users to order their bespoke made plates.
+
+## A video highlighting the difference between the old site and the new one
+
+[Artists Name Plates rebuild](https://www.youtube.com/watch?v=XMnWD3vt1B4)
+
+## Original website built in 2013
 
 2013 was an important year for my family. My parents were just starting their new company, and I had just started getting into the world of programming websites using PHP (a big upgrade from using Dreamweaver).
 
@@ -8,31 +16,26 @@ I was young and ready to start my first real project. My [brother](http://www.fr
 
 **The form was a complete hack job and a good reason why I never want to look at PHP again.** I made a lot of basic mistakes, but I also learnt a lot.
 
-There were a number of issues with the website:
+### What was wrong with the website?
 
-- the content was hard coded
-- the prices were hard coded
+Apart from the rubbish spaghetti code which ran the website, there were a number of glaring issues:
+
+- the content and prices hard coded
 - the order form was ugly
 - the order form didn't really check user input
 - the website wasn't mobile friendly
 
-What this website did prove was that I was capable, to some degree, of programming a website and at the age of 19, this landed me a job at [GrowCreate](https://growcreate.co.uk/).
+## Website rebuild in 2018
 
-At GrowCreate I learnt about [Umbraco CMS](https://umbraco.com/), an opensource CMS based on the .NET framework. I wanted to port my parent's website to be using a CMS so I started work.
+The old website landed me a job at [GrowCreate](https://growcreate.co.uk/) in 2014 which let me hone my web development skills. I learnt how to use C# with the .NET Framework, and how to build scalable websites using [Umbraco CMS](https://umbraco.com/).
 
-My ambitions of upgrading the website were perhaps a bit too high. I got the main parts of the website done in no time, but the order form was tough. I wanted to build it to be dynamic so data didn't have to be posted from each step of the form. I decided to therefore start learning Backbone as the framework of choice, but I just couldn't get my head around it. I then tried rebuilding with Angular but I also didn't get it. Eventually, I settled with just jQuery.
+Therefore, the new website was going to be built with these technologies.
 
-After year on year of promising my parents that the website would be finished sooner or later, I can now proudly say, that in late 2018, I finished it and launched the new site.
+After a multiple redesigns, and different technology switches (from Backbone, to Angular, back to simple jQuery), I finally released the finished website in 2018.
 
+### What was fixed?
 
-------
-
-Artists Name Plates is a small business that makes gold tablets with chosen text that are pinned onto antique frames. The business had a need for a website to make it easier for customers to gather information including the prices for each plate.
-
-Before the website, the only way for customers to make orders was by either ordering through eBay or emailing the business directly. The website added the option for customers to order with a specially made order form. This gives the customer what they need to make repeat successful orders.
-
-## About the project
-
-After just learning how to use PHP to make basic web applications, I was itching for a real project to work on. Along came Artists Name Plates which needed a professional web presence and an online order form. My brother, Fraser Williams, did the original design and coded up most of the static content. It was up to me to design and build the form which had to take in user input and correctly calculate the total price of each order.
-
-For over a year this original implementation stood, but it was clear that updates needed to be made to the project as the site became more popular. I decided to do a complete rebuild of the website with Umbraco CMS so that the clients could edit content and add pages as they saw fit. Also, using ASP.NET, I knew I would be able to create a much more complex form, with more features (such as a postcode lookup) for a better, more modern user experience.
+- the content, pages and prices can be edited in Umbraco CMS
+- the order form was improved and made prettier
+- user input is now properly checked on both client and server side
+- the website is now mobile friendly

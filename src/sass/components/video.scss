@@ -10,6 +10,24 @@
     background-size:cover;
     background-position:50% 50%;
 
+    &:hover, &:focus {
+        &:before {
+            opacity:0.5;
+        }
+    }
+
+    &:before {
+        position:absolute;
+        content:'';
+        width:100%;
+        height:100%;
+        left:0;
+        top:0;
+        background:black;
+        opacity:0;
+        transition:all 0.3s;
+    }
+
     .youtube-video-play {
         position:absolute;
         left:50%;
