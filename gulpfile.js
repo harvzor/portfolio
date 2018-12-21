@@ -9,6 +9,7 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var through2 = require('through2');
 var wait = require('gulp-wait');
+var player;
 var notifier;
 var blessed;
 var fs;
@@ -29,6 +30,7 @@ var screen;
  */
 var note = function() {
     notifier = require('node-notifier');
+    player = require('play-sound')(opts = { player: 'mpv' });
 
     var timer = null;
     var messages = null;
@@ -38,6 +40,12 @@ var note = function() {
             info: '',
             error: ''
         };
+    };
+
+    var playSound = (soundName) => {
+        player.play(__dirname + '\\gulp\\' + soundName, (err) => {
+            if (err) throw err
+        });
     };
 
     resetMessages();
@@ -53,9 +61,12 @@ var note = function() {
                     title: 'Tasks ran:',
                     message: messages.info,
                     icon: __dirname + '\\gulp\\gulp-logo-blue.png',
+                    sound: false,
                     //sound: __dirname + '\\gulp\\yeah.wav',
                     type: 'info'
                 });
+
+                playSound('yeah.wav');
             }
 
             if (messages.error !== '') {
@@ -63,9 +74,12 @@ var note = function() {
                     title: 'Tasks errored:',
                     message: messages.error,
                     icon: __dirname + '\\gulp\\gulp-logo-red.png',
+                    sound: false,
                     //sound: __dirname + '\\gulp\\ugg.wav',
                     type: 'error'
                 });
+
+                playSound('ugg.wav');
             }
 
             resetMessages();
