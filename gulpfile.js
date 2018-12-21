@@ -22,6 +22,11 @@ var scriptsBox;
 var logBox;
 var screen;
 
+/**
+ * Notify the user that any tasks have completed.
+ * It makes sure that only one notification will be given rather than sending lots at the same time.
+ * @returns
+ */
 var note = function() {
     notifier = require('node-notifier');
 
@@ -48,6 +53,7 @@ var note = function() {
                     title: 'Tasks ran:',
                     message: messages.info,
                     icon: __dirname + '\\gulp\\gulp-logo-blue.png',
+                    //sound: __dirname + '\\gulp\\yeah.wav',
                     type: 'info'
                 });
             }
@@ -56,7 +62,8 @@ var note = function() {
                 notifier.notify({
                     title: 'Tasks errored:',
                     message: messages.error,
-                    icon: __dirname + '\\gulp\\gulp-logo-blue.png',
+                    icon: __dirname + '\\gulp\\gulp-logo-red.png',
+                    //sound: __dirname + '\\gulp\\ugg.wav',
                     type: 'error'
                 });
             }
@@ -351,4 +358,3 @@ gulp.task('watch', function() {
 
 // Default - runs the scripts, styles and watch tasks: 'gulp' will run this task
 gulp.task('default', ['cli', 'styles', 'amp-styles', 'scripts', 'start', 'watch'])
-
