@@ -63,6 +63,27 @@ a {
     display:inline-block;
 }
 
+article {
+    ul {
+        padding-inline-start:20px;
+    }
+
+    li {
+        margin:5px 0;
+        list-style-type:none;
+
+        &:before {
+            content:'\2022';
+            float:left;
+            margin-left:-20px;
+            padding:3px 0;
+            color:$background;
+            font-size:2em;
+            line-height:0.5em;
+        }
+    }
+}
+
 .center {
     text-align:center;
 }
