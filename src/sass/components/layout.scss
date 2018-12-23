@@ -94,34 +94,4 @@ aside.nav {
             width:span(14);
         }
     }
-
-    aside.right {
-        @include screen(1600) {
-            width:span(9);
-        }
-
-        @include screen(1800) {
-            width:span(12);
-        }
-
-        @include screen(1900) {
-            width:span(13);
-        }
-
-        @include screen(2000) {
-            width:span(14);
-        }
-
-        @include screen(2100) {
-            width:span(15);
-        }
-
-        @include screen(2200) {
-            width:span(17);
-        }
-
-        @include screen(2600) {
-            width:span(18);
-        }
-    }
 }

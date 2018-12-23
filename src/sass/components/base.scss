@@ -3,27 +3,32 @@ html {
 }
 
 body {
-    background-color:$grey-lightest;
-    background-image:url("/media/main.png");
+    background-color:$background;
+    background-image:url("/media/aside.png");
 
     &.exiting {
-        main, aside.right {
+        main, #nav-close {
             animation:0.1s ease 0s normal forwards 1 fadeOut;
         }
     }
 }
 
 body.nav-toggled {
-    overflow:hidden;
-
     @include screen($sm) {
+        overflow:hidden;
         overflow:auto;
     }
 }
 
-.nav-toggled main {
-    @include screen($sm) {
-        left:span(1);
-        width:span(34);
+.nav-toggled {
+    main {
+        @include screen($sm) {
+            left:span(1);
+            width:span(34);
+        }
+    }
+
+    aside.nav .open-nav {
+        display:none;
     }
 }

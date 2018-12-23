@@ -4,8 +4,12 @@
     clear:both;
 }
 
-@mixin screen($width, $height: 0) {
-    @media only screen and (min-width:$width+'px') and (min-height:$height+'px') { @content; }
+@mixin screen($width) {
+    @media only screen and (min-width:$width + 'px') { @content; }
+}
+
+@mixin screen-max($width) {
+    @media only screen and (max-width:$width - 1 +'px') { @content; }
 }
 
 @function sqr($num) {

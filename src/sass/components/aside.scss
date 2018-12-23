@@ -1,29 +1,27 @@
 aside.nav {
-    float:left;
-    position:fixed;
-    top:0;
-    transform:translateX(span(-35));
-    min-height:600px;
-    height:100%;
     padding:20px span(3);
-    background-color:$background;
-    background-image:url("/media/aside.png");
     color:white;
     overflow:hidden;
-    z-index:2;
     transition:all 0.3s;
 
     @include screen($sm) {
+        float:left;
+        position:fixed;
+        top:0;
+        min-height:600px;
+        height:100%;
         padding-left:30px;
         padding-right:30px;
+        transform:translateX(span(-35));
+        z-index:2;
     }
 
     * {
-        opacity:0;
+        //opacity:0;
         transition:all 0.3s;
 
         @include screen($sm) {
-            opacity:1;
+            //opacity:1;
         }
     }
 
@@ -46,6 +44,20 @@ aside.nav {
         */
     }
 
+    .open-nav {
+        display:block;
+        margin-bottom:-20px;
+        color:white;
+        line-height:30px;
+        font-size:0.8em;
+        text-decoration:none;
+        text-align:center;
+
+        @include screen($sm) {
+            display:none;
+        }
+    }
+
     h2 {
         margin:0;
         text-align:left;
@@ -53,12 +65,20 @@ aside.nav {
     }
 
     nav {
-        position:absolute;
-        width:100%;
-        top:50%;
-        text-align:center;
-        font-size:0;
-        transform:translateY(-50%);
+        overflow:hidden;
+
+        @include screen-max($sm) {
+            display:none;
+        }
+
+        @include screen($sm) {
+            position:absolute;
+            width:100%;
+            top:50%;
+            text-align:center;
+            font-size:0;
+            transform:translateY(-50%);
+        }
 
         a {
             float:left;
@@ -96,9 +116,17 @@ aside.nav {
     */
 
     footer {
-        position:absolute;
-        left:30px;
-        bottom:30px;
+        margin-top:20px;
+
+        @include screen-max($sm) {
+            display:none;
+        }
+
+        @include screen($sm) {
+            position:absolute;
+            left:30px;
+            bottom:30px;
+        }
 
         a {
             position:relative;
@@ -116,6 +144,10 @@ aside.nav {
                 i {
                     top:0;
                 }
+            }
+
+            &:first-child {
+                margin-left:0;
             }
         }
 
@@ -159,12 +191,13 @@ aside.nav {
         transform:translateX(-90%);
     }
 
-    * {
-        opacity:1;
+    #nav-close {
+        opacity:0;
+        animation:none;
+    }
 
-        @include screen($sm) {
-            opacity:0;
-        }
+    nav, footer {
+        display:block;
     }
 }
 
@@ -184,17 +217,11 @@ aside.nav {
     margin-right:-25px;
     background-color:$grey-lightest;
     background-image:url("/media/main.png");
+    animation:1s ease 0s normal forwards 1 fadeIn;
 
     &:hover {
         margin-right:-20px;
     }
-}
-
-.toggle {
-    position:absolute;
-    top:50%;
-    margin-top:-20px;
-    transition:margin 0.3s;
 }
 
 aside.right {
@@ -219,5 +246,12 @@ aside.right {
 
     @include screen($sm) {
         display:block;
+    }
+
+    &.toggle {
+        position:absolute;
+        top:50%;
+        margin-top:-20px;
+        transition:margin 0.3s;
     }
 }
