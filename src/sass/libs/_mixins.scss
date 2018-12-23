@@ -7,3 +7,7 @@
 @mixin screen($width, $height: 0) {
     @media only screen and (min-width:$width+'px') and (min-height:$height+'px') { @content; }
 }
+
+@function sqr($num) {
+    @return $num * $num;
+}

@@ -5,13 +5,18 @@ aside.nav {
     transform:translateX(span(-35));
     min-height:600px;
     height:100%;
-    padding:20px 30px;
+    padding:20px span(3);
     background-color:$background;
     background-image:url("/media/aside.png");
     color:white;
     overflow:hidden;
     z-index:2;
     transition:all 0.3s;
+
+    @include screen($sm) {
+        padding-left:30px;
+        padding-right:30px;
+    }
 
     * {
         opacity:0;
@@ -165,13 +170,12 @@ aside.nav {
 
 #nav-open {
     position:fixed;
-    left:0;
-    margin-left:5px;
+    left:10px;
     background-image:url("/media/aside.png");
     z-index:1;
 
     &:hover {
-        margin-left:10px;
+        margin-left:5px;
     }
 }
 
@@ -186,6 +190,13 @@ aside.nav {
     }
 }
 
+.toggle {
+    position:absolute;
+    top:50%;
+    margin-top:-20px;
+    transition:margin 0.3s;
+}
+
 aside.right {
     position:fixed;
     right:0;
@@ -195,25 +206,18 @@ aside.right {
     height:100%;
     background-color:$background;
     background-image:url("/media/aside.png");
-    animation:0.3s ease 0s normal forwards 1 fadeIn;;
+    animation:0.3s ease 0s normal forwards 1 fadeIn;
 }
 
 .diamond {
+    display:none;
     width:40px;
     height:40px;
     border:0;
     padding:0;
     transform:rotate(45deg);
-}
 
-.toggle {
-    position:absolute;
-    top:50%;
-    margin-top:-20px;
-    cursor:pointer;
-    transition:margin 0.3s;
-
-    &:hover {
-        transform:rotate(45deg);
+    @include screen($sm) {
+        display:block;
     }
 }

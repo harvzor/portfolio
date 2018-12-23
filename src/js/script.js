@@ -52,13 +52,19 @@ hw.exitingAnimation = function() {
 hw.nav = function() {
     var body = document.getElementsByTagName('body')[0];
     var toggles = document.getElementsByClassName('toggle');
+    var burger = document.getElementById('burger');
+
+    var clickEvent = function(e) {
+        e.preventDefault();
+
+        body.classList.toggle('nav-toggled');
+    };
 
     for (var i = 0; i < toggles.length; i++) {
-        toggles[i].addEventListener('click', function(event) {
-            body.classList.toggle('nav-toggled');
-            event.preventDefault();
-        });
+        toggles[i].addEventListener('click', clickEvent);
     }
+
+    burger.addEventListener('click', clickEvent);
 };
 
 // https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/
