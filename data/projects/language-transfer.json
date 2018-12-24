@@ -1,9 +1,10 @@
 {
     "path": "/projects/language-transfer",
     "published": true,
-    "metaDescription": "Proof of concept (prototype) of Language Transfer app.",
+    "metaDescription": "This website  allows users to listen to a language course with minimal friction.",
     "cover": "/media/projects/language-transfer/language-transfer-pixel-2.png",
     "name": "Language Transfer App",
     "bodyText": "projects/language-transfer.md",
+    "technology": ["react", "soundcloud api", "c#", ".net core"],
     "controller": "project"
 }

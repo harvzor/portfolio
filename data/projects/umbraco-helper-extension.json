@@ -1,9 +1,10 @@
 {
     "path": "/projects/umbraco-helper-extension",
     "published": true,
-    "metaDescription": "Browser extension for Umbraco.",
+    "metaDescription": "Browser extension (Chrome / Firefox) for Umbraco users.",
     "cover": null,
     "name": "Umbraco Helper Extension",
     "bodyText": "projects/umbraco-helper-extension.md",
+    "technology": ["web extensions api", "javascript"],
     "controller": "project"
 }

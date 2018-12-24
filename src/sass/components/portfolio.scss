@@ -1,6 +1,6 @@
 .group {
     &:hover {
-        > .example {
+        .example {
             opacity:0.6;
         }
     }
@@ -11,10 +11,14 @@
         color:$grey-dark;
         text-decoration:none;
         transition:all 0.3s;
+        text-align:center;
 
         &:hover, &:focus {
-            text-decoration:underline;
             opacity:1;
+
+            .info-title {
+                text-decoration:underline;
+            }
         }
 
         &:active {
@@ -22,14 +26,20 @@
             color:white;
         }
 
+        .info-title {
+        }
+
         .info {
-            padding-bottom:20px;
-            text-align:center;
+            word-break:normal;
         }
 
         img {
             border:1px solid $border;
             margin:0;
+        }
+
+        .example-technologies {
+            margin-top:20px;
         }
     }
 }

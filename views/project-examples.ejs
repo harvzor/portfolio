@@ -1,10 +1,14 @@
 <div class="group masonry">
     <% projects.forEach(project => { %>
         <a href="<%= project.path %>" class="box example">
-            <div class="info">
-                <%= project.name %>
-            </div>
+            <h3 class="info-title"><%- project.name %></h3>
+            <p class="info"><%- project.metaDescription %></p>
             <img src="<%= project.cover %>" alt="" />
+            <div class="example-technologies">
+                <% project.technology.forEach(technology => { %>
+                    <span class="meta"><%- technology %></span>
+                <% }) %>
+            </div>
         </a>
     <% }); %>
 </div>
