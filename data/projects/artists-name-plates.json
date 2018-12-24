@@ -5,6 +5,6 @@
     "cover": "/media/projects/artists-name-plates/artists-name-plates-homepage-small.png",
     "name": "Artists Name Plates",
     "bodyText": "projects/artists-name-plates.md",
-    "technology": ["umbraco cms", "c#", "asp.net", "jQuery", "sass"],
+    "technology": ["website", "umbraco cms", "c#", "asp.net", "jQuery", "sass"],
     "controller": "project"
 }

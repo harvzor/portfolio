@@ -1,4 +1,4 @@
-## What was the purpose of the website?
+## What is the purpose of this website?
 
 [Artists Name Plates](https://artistsnameplates.co.uk/) is a simple website that showcases custom made name plates that are added to the frame of a painting. The website also allows users to order their bespoke made plates.
 

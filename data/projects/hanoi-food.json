@@ -1,0 +1,10 @@
+{
+    "path": "/projects/hanoi-food",
+    "published": true,
+    "metaDescription": "A website devoted to helping you find the amazing street food of Hanoi.",
+    "cover": "/media/projects/hanoi-food/hanoi-food-homepage-small.jpg",
+    "name": "Hanoi Food",
+    "bodyText": "projects/hanoi-food.md",
+    "technology": ["website", "node.js", "sass"],
+    "controller": "project"
+}

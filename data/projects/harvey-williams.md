@@ -1,4 +1,4 @@
-## What was the purpose of this website?
+## What is the purpose of this website?
 
 I guess the primary reason this website is to show that **I exist**. It allows me to show off what I've done with the [projects](/projects) page or to post my thoughts and advice on topics with the [blog](/blog).
 

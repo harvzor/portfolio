@@ -5,6 +5,6 @@
     "cover": "/media/projects/harvey-williams/harvey-williams-homepage-21122018-small.jpg",
     "name": "This Website",
     "bodyText": "projects/harvey-williams.md",
-    "technology": ["node.js", "sass"],
+    "technology": ["website", "node.js", "sass"],
     "controller": "project"
 }
