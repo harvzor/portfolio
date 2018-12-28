@@ -12,7 +12,24 @@ I'm not sure there's a conventional way to build a NodeJS but I can assure you t
 
 A majority of the website's page content is stored in the `/data/` directory in HTML or MD files. I started with HTML but soon decided that Markdown would be more future proof as it could easily be ported between websites without much work. Further more, it allows the viewing of the content on GitHub in a pretty way.
 
-All of the meta data regarding pages is stored in the `/server/data.js` file. This is almost like the database of the website except the data is just stored in a JSON blob on a file. I have considered moving the data to a database (such as Mongo), but it adds so much overhead (such as needing to sync development/staging/live database and backing them up) that I have so far decided against it.
+The `/data/` folder also contains `JSON` files which describe the pages that there are. For examaple, `blog.json` looks something like this:
+
+```
+{
+    "path": "/blog",
+    "name": "blog",
+    "pageTitle": "Blog",
+    "pageGroup": "blog",
+    "metaDescription": "Read about my latest thoughts and experiences in the world of web development.",
+    "controller": "blogs"
+}
+```
+
+This file defines that if the website is visited at `/blog/`, then a page will be returned using the `blogs` controller.
+
+This approach of storing the data in JSON files in a file structure means that for now I can avoid using a database (and all of the overhead that comes with that, including development/staging/live databases and backing them up).
+
+The benefits of this approach include that the JSON files can simply be indexed into a Mongo-like database in the future.
 
 ### Views
 
@@ -30,7 +47,7 @@ Nothing fancy here, just standard JS with no frameworks (such as jQuery).
 
 Gulp is used for development. I must warn anyone that the gulpfile got a little out of hand - it's been made pretty by using Blessed to make windows in the terminal window which data is printed to.
 
-Running `gulp --silent` compiles the SCSS, JS and runs the website (for easy development). Make sure to run `npm install` before trying this.
+Running `npm start` (which in turn runs `gulp --silent`) compiles the SCSS, JS and runs the website (for easy development). Make sure to run `npm install` before trying this.
 
 ## Misc
 
@@ -38,11 +55,8 @@ Running `gulp --silent` compiles the SCSS, JS and runs the website (for easy dev
 
 IIS is used to run the live site as I already have a Windows server. This is done by using IISNode and changing the `/server/config.js` `type` to `iis`.
 
-### Deployments
-
-Deployments are done using Jenkins. Jenkins watches the master branch for changes and deploys to the live site. Since compiled files (such as the CSS and JS) aren't stored in the repo, Jenkins first has to build them using Gulp. 
+I actually have a whole blog post on how you can setup IIS to run NodeJS websites using NodeJS: https://harveywilliams.net/blog/installing-iisnode
 
 ## Contributing
 
-Found a bug on my site? Thinks there's a feature missing? Found a typo in a blog post? File an issue or send me a pull request!
-
+Found a bug on my site? Think there's a feature missing? Found a typo in a blog post? File an issue or send me a pull request!

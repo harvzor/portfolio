@@ -11,6 +11,9 @@
     "type": "git",
     "url": "https://github.com/HarveyWilliams/portfolio"
   },
+  "scripts": {
+    "start": "gulp --silent"
+  },
   "dependencies": {
     "bunyan": "^1.8.12",
     "compression": "^1.7.2",

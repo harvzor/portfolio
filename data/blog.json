@@ -3,7 +3,6 @@
     "name": "blog",
     "pageTitle": "Blog",
     "pageGroup": "blog",
-    "bodyText": "cv.md",
     "metaDescription": "Read about my latest thoughts and experiences in the world of web development.",
     "controller": "blogs"
 }
