@@ -67,12 +67,17 @@ const data = function() {
         // Foreach of the JSON files...
         paths
             .filter(path => path.includes('.json'))
-            .map(path => {
+            .forEach(path => {
                 let fullPath = dir + '/' + path;
 
                 try {
                     let contents = fs.readFileSync(fullPath, 'utf8');
                     let json = JSON.parse(contents);
+
+                    // If it's in dev mode, then the unpublished blog posts should show.
+                    if (typeof json.published !== 'undefined' && !json.published && !global.dev) {
+                        return;
+                    }
 
                     if (typeof json.bodyText !== 'undefined') {
                         json.bodyText = getContent(json.bodyText);

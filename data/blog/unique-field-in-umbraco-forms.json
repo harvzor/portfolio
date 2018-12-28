@@ -1,7 +1,7 @@
 {
     "path": "/blog/unique-field-in-umbraco-forms",
     "name": "unique-field-in-umbraco-forms",
-    "published": true,
+    "published": false,
     "href": "unique-field-in-umbraco-forms",
     "metaDescription": "A simple code sample which shows how you can force unique field values in an Umbraco Form.",
     "title": "Unique Field in Umbraco Forms",
