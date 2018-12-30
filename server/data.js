@@ -53,7 +53,7 @@ const data = function() {
                 // Replace YouTube links with an embedded YouTube video.
                 .replace(
                     /<p><a target="_blank" href=\"(?:https:\/\/www\.youtube\.com\/watch\?v=){1}(.*)\">[^<]*<\/a><\/p>/gm,
-                    `<a class="youtube-video" href="https://www.youtube.com/embed/$1" target="_blank" style="background-image:url('https://img.youtube.com/vi/$1/maxresdefault.jpg')"><div class="icon-play youtube-video-play"></div></a>`
+                    `<a class="youtube-video" href="https://www.youtube.com/embed/$1" target="_blank" style="background-image:url('https://img.youtube.com/vi/$1/maxresdefault.jpg')" data-id="$1"><div class="icon-play youtube-video-play"></div></a>`
                 );
         }
 

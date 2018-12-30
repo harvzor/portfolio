@@ -1,9 +1,34 @@
 var hw = {};
 
 hw.youtubeVideoSetup = function() {
+    var testImage = function(src, callback) {
+        var image = new Image();
+
+        image.src = src;
+
+        image.onload = function() {
+            if (image.width === 120) {
+                callback();
+            }
+        };
+    };
+
     var videos = document.getElementsByClassName('youtube-video');
 
     for (var i = 0; i < videos.length; i++) {
+        var imageSrc = videos[i].style['background-image']
+            .slice(4, -1).replace(/"/g, "");
+
+        (function() {
+            var videoIndex = i;
+
+            // Some of the videos don't load the max resolution images (for some reason).
+            // This is a fallback to make sure those videos will at least load the high quality image.
+            testImage(imageSrc, function() {
+                videos[videoIndex].style['background-image'] = 'url("https://img.youtube.com/vi/' + videos[videoIndex].getAttribute('data-id') + '/hqdefault.jpg")';
+            });
+        })()
+
         videos[i].addEventListener('click', function(e) {
             var video = this;
 
