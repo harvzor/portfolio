@@ -1,0 +1,13 @@
+{
+    "path": "/blog/favourite-youtube-channels",
+    "name": "favourite-youtube-channels",
+    "published": true,
+    "href": "favourite-youtube-channels",
+    "metaDescription": "I spend a lot of time watching YouTube, but finding good quality content can be hard. This is a list of my favourite YouTube channels which I think you should be watching too.",
+    "title": "Favourite YouTube Channels",
+    "postDate": null,
+    "summary": "I spend a lot of time watching YouTube, but finding good quality content can be hard. This is a list of my favourite YouTube channels which I think you should be watching too.",
+    "bodyText": "blog/favourite-youtube-channels.md",
+    "tags": ["miscellaneous"],
+    "controller": "blog"
+}
