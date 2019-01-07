@@ -36,7 +36,7 @@ Sterling was recently popularised by Matt D'Avella by a fantastic video which co
 
 #### [Second Thought](https://www.youtube.com/channel/UCJm2TgUqtK1_NLBrjNQ1P-w)
 
-An animated channel which mostly consideres "what would happen if" scenarios.
+An animated channel which mostly considers "what would happen if" scenarios.
 
 [What if Someone Tries to Claim a Planet?](https://www.youtube.com/watch?v=qVWaBjR58Ew)
 
@@ -76,7 +76,7 @@ He feels a bit like he's a shill (as in he's getting paid to say good things abo
 
 #### [TechLinked](https://www.youtube.com/channel/UCeeFfhMcJa1kjtfZAGskOCA)
 
-A spin off from Linus Tech Tips, techlinked releases 3 videos a week which briefly explain what new things have happened with tech.
+A spin off from Linus Tech Tips, TechLinked releases 3 videos a week which briefly explain what new things have happened with tech.
 
 [Apple's Reign is OVER!](https://www.youtube.com/watch?v=RAFBTM3Wwxo)
 
@@ -156,7 +156,7 @@ Monkey Abroad makes a very good series where he shows how cheap you can travel a
 
 #### [Kurzgesagt](https://www.youtube.com/user/Kurzgesagt)
 
-Kurzgesagt always makes super high quality, beatifully animated videos. They don't release very regularly but I'm always looking forward to their next video.
+Kurzgesagt always makes super high quality, beautifully animated videos. They don't release very regularly but I'm always looking forward to their next video.
 
 Their videos also have a strong chance of giving you existential dread.
 
@@ -170,7 +170,7 @@ It covers science in a pretty simple way which I feel that anyone can understand
 
 For example, in the video below (called "What If Everyone JUMPED At Once?"), the video also covers what "decimated" means and what "Dunbar's Number" is (nothing to do with jumping). However, the videos are very entertaining.
 
-Vsauce also does this weird thing where, between cuts of the video, he sort of springs upwards. It's easy to ignore at the start but I notice it everytime now.
+Vsauce also does this weird thing where, between cuts of the video, he sort of springs upwards. It's easy to ignore at the start but I notice it every time now.
 
 [What If Everyone JUMPED At Once?](https://www.youtube.com/watch?v=jHbyQ_AQP8c)
 
