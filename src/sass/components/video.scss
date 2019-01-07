@@ -47,9 +47,16 @@
         bottom:0;
         left:0;
         right:0;
-        padding:10px;
+        padding:0.5em;
         color:white;
-        background-color:rgba(black, 0.3);
         text-decoration:none;
+        font-size:0.8em;
+        background-color:rgba(black, 0.7);
+        word-break:keep-all;
+
+        @include screen($xs) {
+            font-size:1em;
+            background-color:rgba(black, 0.3);
+        }
     }
 }
