@@ -17,7 +17,7 @@ module.exports = function(app, fs, express, config) {
 
     var setupController = (page) => {
         try {
-            require('../server/controllers/' + page.controller + 'Controller.js')(app, ampCss, express, config, data, helpers, page);
+            require('../server/controllers/' + page.controller + 'Controller.js')(app, fs, express, config, data, helpers, page);
         } catch (e) {
             logger.error('Failed to render page with name: ' + page.name, e);
         }
@@ -45,9 +45,9 @@ module.exports = function(app, fs, express, config) {
 
     setupControllers(data());
 
-    require('../server/controllers/redirectsController.js')(app, ampCss, express, config, logger, data, helpers);
-    require('../server/controllers/rssController.js')(app, ampCss, express, config, logger, data, helpers);
-    require('../server/controllers/sitemapXmlController.js')(app, ampCss, express, config, logger, data, helpers);
+    require('../server/controllers/redirectsController.js')(app, fs, express, config, data, helpers);
+    require('../server/controllers/rssController.js')(app, fs, express, config, data, helpers);
+    require('../server/controllers/sitemapXmlController.js')(app, fs, express, config, data, helpers);
 
     // Load each controller and run them.
     /*
