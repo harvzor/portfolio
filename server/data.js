@@ -52,8 +52,8 @@ const data = function() {
             return marked(contents, { renderer: renderer.normal })
                 // Replace YouTube links with an embedded YouTube video.
                 .replace(
-                    /<p><a target="_blank" href=\"(?:https:\/\/www\.youtube\.com\/watch\?v=){1}(.*)\">[^<]*<\/a><\/p>/gm,
-                    `<a class="youtube-video" href="https://www.youtube.com/embed/$1" target="_blank" style="background-image:url('https://img.youtube.com/vi/$1/maxresdefault.jpg')" data-id="$1"><div class="icon-play youtube-video-play"></div></a>`
+                    /<p><a target="_blank" href=\"(?:https:\/\/www\.youtube\.com\/watch\?v=){1}(.*)\">([^<]*)<\/a><\/p>/gm,
+                    `<a class="youtube-video" href="https://www.youtube.com/embed/$1" target="_blank" style="background-image:url('https://img.youtube.com/vi/$1/maxresdefault.jpg')" data-id="$1"><div class="icon-play youtube-video-play"></div><div class="youtube-video-title">$2</div></a>`
                 );
         }
 
