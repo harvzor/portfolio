@@ -80,11 +80,15 @@ module.exports = function(app, fs, express, config) {
             logger.info('404 error: %s', req.originalUrl);
 
             res.status(404).render('page', {
+                helpers: helpers,
                 layout: '_common',
                 relativeUrl: '404',
                 pageGroup: '',
                 pageTitle: 'Status: 404',
-                bodyText: '<p>You\'re looking for a page that doesn\'t exist...</p>'
+                bodyText: '<p>You\'re looking for a page that doesn\'t exist...</p><p>Man, what a boring page. I should probably make it a bit more interesting. I\'ll add that to the to-do list.</p>',
+                page: {
+                    controller: 'page'
+                }
             });
         });
 
@@ -92,11 +96,15 @@ module.exports = function(app, fs, express, config) {
             logger.error('500 error: %s', err.stack);
 
             res.status(500).render('page', {
+                helpers: helpers,
                 layout: '_common',
                 relativeUrl: '500',
                 pageGroup: '',
                 pageTitle: 'Status: 500',
-                bodyText: '<p>So sorry, but a problem occured! Please email me if this problem persists.</p>'
+                bodyText: '<p>Oh no. This page has an error... I\'m probably not even aware of this.</p><p>Do you mind getting in contact with me about it? I\'m on <a href="https://twitter.com/Harvzor" target="_blank">Twitter</a>.</p>',
+                page: {
+                    controller: 'page'
+                }
             });
         });
     }
