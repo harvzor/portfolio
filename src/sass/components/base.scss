@@ -1,5 +1,9 @@
 html {
-    overflow-y:overlay;
+    // Not such a good idea as Chrome will follow this rule and note Firefox.
+    // Let's say the screen width is 1920px, Chrome would then say that the page is 1920px, where as Firefox would
+    // still say that the page was 1920px - width of scrollbar. The percentages are then calculated correctly on
+    // Firefox but not Chrome... Perhaps Chrome then figures out left percentages and width percentages wrong.
+    //overflow-y:overlay;
 }
 
 body {
