@@ -1,13 +1,13 @@
 {
-    "path": "/blog/favourite-youtube-channels",
-    "name": "favourite-youtube-channels",
+    "path": "/blog/35-youtube-channels-i-love",
+    "name": "35-youtube-channels-i-love",
     "published": true,
-    "href": "favourite-youtube-channels",
+    "href": "35-youtube-channels-i-love",
     "metaDescription": "I spend a lot of time watching YouTube, but finding good quality content can be hard. This is a list of my favourite YouTube channels which I think you should be watching too.",
-    "title": "Favourite YouTube Channels",
+    "title": "35 YouTube Channels I Love",
     "postDate": "Mon, 07 Jan 2019 00:00:00 GMT",
     "summary": "I spend a lot of time watching YouTube, but finding good quality content can be hard. This is a list of my favourite YouTube channels which I think you should be watching too.",
-    "bodyText": "blog/favourite-youtube-channels.md",
+    "bodyText": "blog/35-youtube-channels-i-love.md",
     "tags": ["miscellaneous"],
     "controller": "blog"
 }
