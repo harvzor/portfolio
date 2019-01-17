@@ -84,6 +84,14 @@ article {
             }
         }
     }
+
+    blockquote {
+        margin:1em 0;
+        padding:0.5em;
+        border-left:0.5em solid $background;
+        font-style:italic;
+        font-size:1.5em;
+    }
 }
 
 .center {

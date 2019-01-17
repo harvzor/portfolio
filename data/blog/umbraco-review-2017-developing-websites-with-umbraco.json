@@ -1,0 +1,14 @@
+{
+    "path": "/blog/umbraco-review-2017-developing-websites-with-umbraco",
+    "name": "umbraco-review-2017-developing-websites-with-umbraco",
+    "published": true,
+    "href": "umbraco-review-2017-developing-websites-with-umbraco",
+    "metaDescription": "For three years I have been using Umbraco as my Content Management System (CMS) for developing websites. This is a review of what’s good, and what could do with improvement within the Umbraco CMS.",
+    "title": "Umbraco Review 2017. Developing Websites With Umbraco",
+    "postDate": "Mon, 02 Jan 2017 00:00:00 GMT",
+    "summary": "For three years I have been using Umbraco as my Content Management System (CMS) for developing websites. This is a review of what’s good, and what could do with improvement within the Umbraco CMS.",
+    "bodyText": "blog/umbraco-review-2017-developing-websites-with-umbraco.md",
+    "canonical": "https://growcreate.co.uk/blog/umbraco-review-2017-developing-websites-with-umbraco/",
+    "tags": ["umbraco", "programming"],
+    "controller": "blog"
+}
