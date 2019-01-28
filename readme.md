@@ -1,12 +1,12 @@
 # https://harveywilliams.net/
 
-This is the source code to my personal blog and website which is hosted at https://harveywilliams.net/.
+![Homepage](/media/projects/harvey-williams/harvey-williams-homepage-21122018.jpg)
+
+This is the source code to my personal blog and website.
 
 This website was one of my first forays into building a full website using NodeJS. I chose this runtime rather than one which I'm more comfortable with because it gives me the opportunity to learn something new. Besides, Node is a lot of fun to work with. Please note that the code written here isn't perfect. Copy at your own risk!
 
 ## How it's built
-
-I'm not sure there's a conventional way to build a NodeJS but I can assure you that this site is not conventional...
 
 ### Data
 
@@ -41,11 +41,13 @@ SCSS is used to style the website. Susy is used as the grid system to give me fu
 
 ### JS
 
-Nothing fancy here, just standard JS with no frameworks (such as jQuery).
+Nothing fancy here, just standard JS with no libraries (such as React).
 
 ### Gulp
 
-Gulp is used for development. I must warn anyone that the gulpfile got a little out of hand - it's been made pretty by using Blessed to make windows in the terminal window which data is printed to.
+Gulp is used for development. I must warn anyone that the gulpfile got a little out of hand - it's been made pretty by using [Blessed](https://github.com/chjj/blessed) to make windows in the terminal window which data is printed to.
+
+![Gulp - using Blessed to create a fancy terminal interface](/project/gulp.png)
 
 Running `npm start` (which in turn runs `gulp --silent`) compiles the SCSS, JS and runs the website (for easy development). Make sure to run `npm install` before trying this.
 
