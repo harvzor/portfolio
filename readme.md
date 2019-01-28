@@ -1,6 +1,6 @@
 # https://harveywilliams.net/
 
-![Homepage](/media/projects/harvey-williams/harvey-williams-homepage-21122018.jpg)
+![Homepage](/public/media/projects/harvey-williams/harvey-williams-homepage-21122018.jpg)
 
 This is the source code to my personal blog and website.
 
