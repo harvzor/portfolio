@@ -46,7 +46,7 @@ The web app uses data and audio which already exists on SoundCloud. I figured th
 
 My app is designed to query SoundCloud to get track data. An issue I had was that a client browser cannot make a cross site call like that. Since there was no backend, I decided to call the data from my browser and then save them to the web app as a `.json` file. You can see one of these such files [here](http://lt2.harveywilliams.net/json/playlists/157713757.json). This does mean that if a track is updated, or new ones are created, my data won't reflect this as it is just a static cache.
 
-## Solved UX issuues
+## Solved UX issues
 
 My prototype web app fixes all of the biggest issues I was having:
 
