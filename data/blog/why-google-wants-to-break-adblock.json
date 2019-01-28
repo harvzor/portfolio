@@ -1,0 +1,13 @@
+{
+    "path": "/blog/why-google-wants-to-break-adblock",
+    "name": "why-google-wants-to-break-adblock",
+    "published": true,
+    "href": "why-google-wants-to-break-adblock",
+    "metaDescription": "Google plans to remove support for an API which gives extensions such as Adblock and uBlock Origin full-control over which content is loaded in your browser. Here's why it might be a good idea.",
+    "title": "Why Google Wants to Break Adblock",
+    "postDate": "Mon, 28 Jan 2019 00:00:00 GMT",
+    "summary": "Google plans to remove support for an API which gives extensions such as Adblock and uBlock Origin full-control over which content is loaded in your browser. Here's why it might be a good idea.",
+    "bodyText": "blog/why-google-wants-to-break-adblock.md",
+    "tags": ["miscellaneous"],
+    "controller": "blog"
+}
