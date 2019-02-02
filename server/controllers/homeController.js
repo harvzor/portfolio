@@ -21,6 +21,7 @@ module.exports = function(app, fs, express, config, data, helpers, page) {
             pageGroup: 'home',
             pageTitle: pageTitle,
             bodyText: page.bodyText,
+            technologies: page.technologies,
             posts: posts.slice(0, posts.length > 3 ? 3 : posts.length),
             page: page
         });

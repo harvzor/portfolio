@@ -8,6 +8,28 @@
         "Hey, World"
     ],
     "bodyText": "home.md",
+    "technologies": [
+        {
+            "title": "Front end",
+            "icon": "code-start",
+            "keywords": [ "HTML5", "CSS3", "Sass", "JS", "React", "Angular" ]
+        },
+        {
+            "title": "Back end",
+            "icon": "code-end",
+            "keywords": [ ".NET Framework/Core", "Node.js", "SQL/NoSQL" ]
+        },
+        {
+            "title": "Servers",
+            "icon": "database",
+            "keywords": [ "Windows Server", "IIS", "MS SQL admin" ]
+        },
+        {
+            "title": "Tools",
+            "icon": "wrench",
+            "keywords": [ "ElasticSearch", "Git", "Gulp/Grunt" ]
+        }
+    ],
     "metaDescription": "Hi. I am a web developer and tech enthusiast from England.",
     "controller": "home"
 }

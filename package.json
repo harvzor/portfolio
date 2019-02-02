@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/HarveyWilliams/portfolio"
+    "url": "https://github.com/Harvzor/portfolio"
   },
   "scripts": {
     "start": "gulp --silent"

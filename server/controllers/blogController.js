@@ -1,28 +1,30 @@
 const logger = require('../logger');
 
-var getPrevAndNextPosts = (data, post) => {
-    var prev = null;
-    var next = null;
+/*
+    var getPrevAndNextPosts = (data, post) => {
+        var prev = null;
+        var next = null;
 
-    var index = data().blog.children
-        .map((x) => { return x.href; })
-        .indexOf(post.href);
+        var index = data().blog.children
+            .map((x) => { return x.href; })
+            .indexOf(post.href);
 
-    // If not the first ever post.
-    if (index < data().blog.children.length - 1) {
-        prev = data().blog.children[index + 1];
-    }
+        // If not the first ever post.
+        if (index < data().blog.children.length - 1) {
+            prev = data().blog.children[index + 1];
+        }
 
-    // If not the latest post.
-    if (index != 0) {
-        next = data().blog.children[index - 1];
-    }
+        // If not the latest post.
+        if (index != 0) {
+            next = data().blog.children[index - 1];
+        }
 
-    return {
-        prev: prev,
-        next: next
+        return {
+            prev: prev,
+            next: next
+        };
     };
-};
+*/
 
 module.exports = function(app, ampCss, express, config, data, helpers, page) {
     // Render blog post.
