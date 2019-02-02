@@ -1,9 +1,9 @@
 {
     "path": "/projects/harvey-williams",
     "published": true,
-    "metaDescription": "I built this website using Node.js and \"love\".",
+    "metaDescription": "This website was one of my first big projects with Node.js.",
     "cover": "/media/projects/harvey-williams/harvey-williams-homepage-21122018-small.jpg",
-    "name": "This Website",
+    "name": "My Portfolio",
     "bodyText": "projects/harvey-williams.md",
     "technology": ["website", "node.js", "sass"],
     "position": 5,

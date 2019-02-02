@@ -31,3 +31,9 @@ I always hated having my picture in the aside along with the rubbish background 
 Also, the website always looked awful on 4k monitors before this update as the content would just stretch on forever.
 
 ![Homepage](/media/projects/harvey-williams/harvey-williams-homepage-21122018.jpg)
+
+### 2nd February, 2018
+
+I added some projects to the homepage and a bit more text.
+
+![Homepage](/media/projects/harvey-williams/harvey-williams-homepage-02022019.jpg)
