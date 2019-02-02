@@ -1,7 +1,10 @@
 <article class="center">
     <%- bodyText %>
 </article>
-<h2 class="center">Key skills</h2>
+<div class="center">
+    <h2>Key skills</h2>
+    <p>Some of the programming related skills I've learnt over the years.</p>
+</div>
 <div class="info-columns">
     <% technologies.forEach(tech => { %>
         <div class="box info-columns-column">
@@ -15,7 +18,19 @@
         </div>
     <% }) %>
 </div>
-<h2 class="center">Latest blog posts</h2>
+<div class="center">
+    <h2>Latest blog posts</h2>
+    <p>See more of my blog posts on <a href="/blog">my blog</a>.</p>
+</div>
 <div class="post-preview-columns">
     <% include partials/posts %>
+</div>
+<div class="center">
+    <h2>My projects</h2>
+    <p>See more of my projects <a href="/projects">here</a>.</p>
+</div>
+<div class="group masonry">
+    <% projects.forEach(project => { %>
+        <%- include('partials/project-preview', { project: project }) %>
+    <% }) %>
 </div>

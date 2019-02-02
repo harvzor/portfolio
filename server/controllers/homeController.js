@@ -10,6 +10,8 @@ module.exports = function(app, fs, express, config, data, helpers, page) {
                 return new Date(b.postDate).getTime() - new Date(a.postDate).getTime();
             });
 
+        let projects = data().projects.children;
+
         // Page title is an array so pick a random one from the array.
         let pageTitle = page.pageTitle[helpers.getRandomInt(0, page.pageTitle.length - 1)];
 
@@ -22,7 +24,8 @@ module.exports = function(app, fs, express, config, data, helpers, page) {
             pageTitle: pageTitle,
             bodyText: page.bodyText,
             technologies: page.technologies,
-            posts: posts.slice(0, posts.length > 3 ? 3 : posts.length),
+            posts: posts.slice(0, 3),
+            projects: projects.slice(0, 3),
             page: page
         });
     });
