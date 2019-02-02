@@ -6,5 +6,6 @@
     "name": "Umbraco Iconator",
     "bodyText": "projects/umbraco-iconator.md",
     "technology": ["umbraco cms", "cms extension", "javascript", "angular 1.x"],
+    "position": 1,
     "controller": "project"
 }

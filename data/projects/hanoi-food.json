@@ -6,5 +6,6 @@
     "name": "Hanoi Food",
     "bodyText": "projects/hanoi-food.md",
     "technology": ["website", "node.js", "sass"],
+    "position": 3,
     "controller": "project"
 }

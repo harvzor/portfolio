@@ -10,7 +10,8 @@ module.exports = function(app, fs, express, config, data, helpers, page) {
                 return new Date(b.postDate).getTime() - new Date(a.postDate).getTime();
             });
 
-        let projects = data().projects.children;
+        let projects = data().projects.children
+            .sort((a,  b) => a.position - b.position);
 
         // Page title is an array so pick a random one from the array.
         let pageTitle = page.pageTitle[helpers.getRandomInt(0, page.pageTitle.length - 1)];

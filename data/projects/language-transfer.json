@@ -6,5 +6,6 @@
     "name": "Language Transfer App",
     "bodyText": "projects/language-transfer.md",
     "technology": ["react", "soundcloud api", "c#", ".net core"],
+    "position": 4,
     "controller": "project"
 }

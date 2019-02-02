@@ -6,5 +6,6 @@
     "name": "This Website",
     "bodyText": "projects/harvey-williams.md",
     "technology": ["website", "node.js", "sass"],
+    "position": 5,
     "controller": "project"
 }

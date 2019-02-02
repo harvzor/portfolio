@@ -6,5 +6,6 @@
     "name": "Artists Name Plates",
     "bodyText": "projects/artists-name-plates.md",
     "technology": ["website", "umbraco cms", "c#", "asp.net", "jQuery", "sass"],
+    "position": 0,
     "controller": "project"
 }

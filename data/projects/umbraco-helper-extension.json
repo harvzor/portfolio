@@ -6,5 +6,6 @@
     "name": "Umbraco Helper Extension",
     "bodyText": "projects/umbraco-helper-extension.md",
     "technology": ["web extensions api", "javascript"],
+    "position": 2,
     "controller": "project"
 }

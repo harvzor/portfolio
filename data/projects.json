@@ -4,6 +4,7 @@
     "name": "projects",
     "pageTitle": "Projects",
     "pageGroup": "projects",
+    "bodyText": "projects.md",
     "metaDescription": "Look through my projects that I have worked on.",
     "controller": "projects"
 }
