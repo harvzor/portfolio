@@ -1,6 +1,8 @@
 import marked = require('marked');
 import fs = require('fs');
 
+import Page from './interfaces/Page';
+
 import config from './config'
 import helpers from './helpers';
 import logger from './logger' ;
