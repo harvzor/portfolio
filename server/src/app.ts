@@ -2,7 +2,7 @@ import express = require('express');
 import compression = require('compression');
 import expressLayouts = require('express-ejs-layouts');
 
-import config from './config';
+import { ConfigType, config } from './config';
 import data from './data';
 import logger from './logger';
 
@@ -26,7 +26,7 @@ app.use(expressLayouts)
 // Inititialise
 /////////////////
 
-if (config.type === 'node') {
+if (config.type === ConfigType.node) {
     // Used for Node server.
     var server = app.listen(config.port, config.ip, function () {
         var host = server.address().address;
@@ -34,7 +34,7 @@ if (config.type === 'node') {
 
         logger.info('Website listening at http://%s:%s.', host, port);
     });
-} else if (config.type == 'iis') {
+} else if (config.type === ConfigType.iis) {
     // Used for IISNode.
     app.listen(process.env.PORT);
 } else {
