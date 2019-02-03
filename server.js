@@ -11,7 +11,7 @@ const fs = require('fs');
 
 const app = require('./server/app.js');
 
-require('./server/routing.js')(app, fs, express, config);
+require('./server/routing.js');
 
 /////////////////
 // Functions

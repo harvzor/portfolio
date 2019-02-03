@@ -113,6 +113,6 @@ const routing = function() {
             });
         });
     }
-};
+}();
 
 module.exports = routing;
