@@ -1,4 +1,4 @@
-const config = require('./server/config.js');
+const config = require('./server/config.json');
 
 global.dev = config.dev;
 
