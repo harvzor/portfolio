@@ -1,0 +1,14 @@
+{
+    "name": "redirects",
+    "redirects": [
+        {
+            "from": "/portfolio",
+            "to": "/projects"
+        },
+        {
+            "from": "/blog/favourite-youtube-channels",
+            "to": "/blog/35-youtube-channels-i-love"
+        }
+    ],
+    "controller": "redirects"
+}

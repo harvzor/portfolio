@@ -50,7 +50,6 @@ const routing = function() {
 
     setupControllers(data());
 
-    require('../server/controllers/redirectsController.js')();
     require('../server/controllers/rssController.js')();
     require('../server/controllers/sitemapXmlController.js')();
 
