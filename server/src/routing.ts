@@ -3,7 +3,7 @@
 import fs = require('fs');
 import express = require('express');
 
-import * as config from './config.json';
+import config from './config';
 import data from './data';
 import logger from './logger';
 import app from './app';

@@ -1,7 +1,7 @@
 import marked = require('marked');
 import fs = require('fs');
 
-import * as config from './config.json'
+import config from './config'
 import helpers from './helpers';
 import logger from './logger' ;
 

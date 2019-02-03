@@ -38,6 +38,8 @@ export default function(page) {
             .split('/')[2]
             .split('?')[0];
 
+        asd
+
         let otherPosts = data().blog.children
             .filter(otherPost => {
                 if (otherPost.href === url) {

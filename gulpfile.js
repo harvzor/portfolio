@@ -9,12 +9,15 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var through2 = require('through2');
 var wait = require('gulp-wait');
+var ts = require('gulp-typescript');
 var player;
 var notifier;
 var blessed;
 var fs;
 var tail;
 var nodemon;
+
+var tsProject = ts.createProject('tsconfig.json');
 
 var cli = false;
 var gulpBox;
@@ -323,6 +326,39 @@ gulp.task('scripts', function() {
     }));
 });
 
+gulp.task('typescript', function (params) {
+    return gulp.src([
+        'server/src/**/*.ts'
+    ])
+    .pipe(plumber({
+        errorHandler: function (err) {
+            if (cli) {
+                scriptsBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
+                screen.render();
+            }
+
+            note('error', 'Error in typescript task.');
+
+            this.emit('end');
+        }
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(tsProject())
+    .on('error', () => { /* Ignore compiler errors */})
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('server/dist'))
+    .pipe(through2.obj(function(file, enc, callback) {
+        if (cli) {
+            scriptsBox.pushLine(formatDate(new Date()) + 'Typescript task completed.');
+            screen.render();
+        }
+
+        note('info', 'Typescript task completed.');
+
+        callback(null, file);
+    }));
+});
+
 // Start - starts the server and restarts it on file change
 gulp.task('start', function() {
     nodemon = require('nodemon');
@@ -331,7 +367,9 @@ gulp.task('start', function() {
         script: 'server.js',
         ext: 'js',
         stdout: false,
-        watch: ['server/*', 'server.js']
+        watch: ['server/dist/**/*.js', 'server.js'],
+        // Not too sure if this does anything.
+        inspect: "server/dist"
     })
     .on('start', function(event) {
         if (cli) {
@@ -368,7 +406,10 @@ gulp.task('watch', function() {
 
     // Watch .js files
     gulp.watch('src/js/script.js', ['scripts']);
+
+    // Watch server .ts files
+    gulp.watch('server/src/**/*.ts', ['typescript']);
 });
 
 // Default - runs the scripts, styles and watch tasks: 'gulp' will run this task
-gulp.task('default', ['cli', 'styles', 'amp-styles', 'scripts', 'start', 'watch'])
+gulp.task('default', ['cli', 'styles', 'amp-styles', 'scripts', 'typescript', 'start', 'watch'])

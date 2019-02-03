@@ -2,7 +2,7 @@ import express = require('express');
 import compression = require('compression');
 import expressLayouts = require('express-ejs-layouts');
 
-import * as config from './config.json';
+import config from './config';
 import data from './data';
 import logger from './logger';
 

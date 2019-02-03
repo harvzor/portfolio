@@ -2,7 +2,7 @@ import app from '../app';
 import logger from '../logger';
 import data from '../data';
 import helpers from '../helpers';
-import * as config from '../config.json';
+import config from '../config'
 
 export default function(page) {
     // Render project pages
