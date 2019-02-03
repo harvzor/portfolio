@@ -1,4 +1,4 @@
-var helpers = {
+const helpers = {
     /**
      * Check if var is object (and not array).
      * @param {*} obj

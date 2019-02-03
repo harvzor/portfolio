@@ -22,7 +22,7 @@ const routing = function() {
 
     var setupController = (page) => {
         try {
-            require('../server/controllers/' + page.controller + 'Controller.js')(app, fs, express, config, data, helpers, page);
+            require('../server/controllers/' + page.controller + 'Controller.js')(page);
         } catch (e) {
             logger.error('Failed to render page with name: ' + page.name, e);
         }
@@ -50,9 +50,9 @@ const routing = function() {
 
     setupControllers(data());
 
-    require('../server/controllers/redirectsController.js')(app, fs, express, config, data, helpers);
-    require('../server/controllers/rssController.js')(app, fs, express, config, data, helpers);
-    require('../server/controllers/sitemapXmlController.js')(app, fs, express, config, data, helpers);
+    require('../server/controllers/redirectsController.js')();
+    require('../server/controllers/rssController.js')();
+    require('../server/controllers/sitemapXmlController.js')();
 
     // Load each controller and run them.
     /*

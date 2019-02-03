@@ -1,5 +1,7 @@
-const logger = require('../logger');
-const helpers = require('../helpers');
+const app = require('../app.js');
+const logger = require('../logger.js');
+const data = require('../data.js');
+const helpers = require('../helpers.js');
 
 var orderBlogPostsByYear = (posts) => {
     var postsByYear = [];
@@ -35,7 +37,7 @@ var orderBlogPostsByYear = (posts) => {
     return postsByYear;
 };
 
-module.exports = function(app, fs, express, config, data, helpers, page) {
+module.exports = function(page) {
     app.get(page.path, (req, res) => {
         const tag = req.query.tag;
 

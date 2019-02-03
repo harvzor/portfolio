@@ -6,11 +6,8 @@ global.dev = config.dev;
 /////////////////
 // Start website
 /////////////////
-const express = require('express');
-const fs = require('fs');
 
-const app = require('./server/app.js');
-
+require('./server/app.js');
 require('./server/routing.js');
 
 /////////////////

@@ -1,6 +1,9 @@
-const logger = require('../logger');
+const app = require('../app.js');
+const logger = require('../logger.js');
+const data = require('../data.js');
+const helpers = require('../helpers.js');
 
-module.exports = function(app, fs, express, config, data, helpers, page) {
+module.exports = function(page) {
     // Render project pages
     app.get(page.path, (req, res) => {
         if (global.dev) {

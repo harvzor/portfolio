@@ -1,4 +1,7 @@
-const logger = require('../logger');
+const app = require('../app.js');
+const logger = require('../logger.js');
+const data = require('../data.js');
+const helpers = require('../helpers.js');
 
 /*
     var getPrevAndNextPosts = (data, post) => {
@@ -26,7 +29,7 @@ const logger = require('../logger');
     };
 */
 
-module.exports = function(app, ampCss, express, config, data, helpers, page) {
+module.exports = function(page) {
     // Render blog post.
     app.get(page.path, (req, res) => {
         let post = null;
