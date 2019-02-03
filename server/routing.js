@@ -1,9 +1,14 @@
-const logger = require('./logger');
+const fs = require('fs');
+const express = require('express');
 
-module.exports = function(app, fs, express, config) {
+const config = require('./config.json');
+const data = require('./data.js');
+const logger = require('./logger');
+const app = require('./app.js');
+const helpers = require('./helpers.js');
+
+const routing = function() {
     //var firstRun = true;
-    const data = require('../server/data.js');
-    const helpers = require('../server/helpers.js');
     var cachedAmpCss;
 
     // Reloads the CSS if in dev mode.
@@ -109,3 +114,5 @@ module.exports = function(app, fs, express, config) {
         });
     }
 };
+
+module.exports = routing;
