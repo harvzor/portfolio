@@ -1,9 +1,9 @@
-const app = require('../app.js');
-const logger = require('../logger.js');
-const data = require('../data.js');
-const helpers = require('../helpers.js');
+import app from '../app';
+import logger from '../logger';
+import data from '../data';
+import helpers from '../helpers';
 
-module.exports = function(page) {
+export default function(page) {
     app.get(page.path, function(req, res) {
         res.render('page', {
             helpers: helpers,

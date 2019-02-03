@@ -1,4 +1,4 @@
-const config = require('./server/config.json');
+const config = require('./server/dist/config.json');
 
 // Allows config to be used in .ejs files too.
 global.dev = config.dev;
@@ -7,8 +7,8 @@ global.dev = config.dev;
 // Start website
 /////////////////
 
-require('./server/app.js');
-require('./server/routing.js');
+require('./server/dist/app.js');
+require('./server/dist/routing.js');
 
 /////////////////
 // Functions

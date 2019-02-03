@@ -1,7 +1,9 @@
-const marked = require('marked');
-const helpers = require('./helpers');
-const fs = require('fs');
-const logger = require('./logger');
+import marked = require('marked');
+import fs = require('fs');
+
+import * as config from './config.json'
+import helpers from './helpers';
+import logger from './logger' ;
 
 const renderer = function() {
     var renderer = new marked.Renderer();
@@ -41,7 +43,7 @@ const data = function() {
      * @param {string} path
      * @param {boolean} isAmp
      */
-    var getContent = function(path, isAmp) {
+    var getContent = function(path: string, isAmp?: Boolean) {
         let contents = fs.readFileSync('data/' + path, 'utf8');
 
         if (path.indexOf('.md') !== -1) {
@@ -60,7 +62,7 @@ const data = function() {
         return contents;
     };
 
-    var findData = (dir, data) => {
+    var findData = (dir: string, data?: any) => {
         data = data || {};
         let paths = fs.readdirSync(dir);
 
@@ -75,7 +77,7 @@ const data = function() {
                     let json = JSON.parse(contents);
 
                     // If it's in dev mode, then the unpublished blog posts should show.
-                    if (typeof json.published !== 'undefined' && !json.published && !global.dev) {
+                    if (typeof json.published !== 'undefined' && !json.published && !config.dev) {
                         return;
                     }
 
@@ -117,43 +119,47 @@ const data = function() {
         return data;
     };
 
+    var forEachPage = function(callback, obj?: Array<any>) {
+        obj = obj || actualData;
+
+        for (let key of Object.keys(actualData)) {
+            let page = obj[key];
+
+            callback(page);
+
+            if (typeof page.children !== 'undefined' && page.children.length > 0) {
+                forEachPage(callback, page.children);
+            }
+        }
+    };
+
+    var flatten = function() {
+        let pages = [];
+
+        forEachPage(page => {
+            pages.push(page);
+        });
+
+        return pages;
+    };
+
+    var getPage = function(url) {
+        return flatten()
+            .find(page => page.path === url);
+    };
+
     // Reloads the data if in dev mode, better for writing new posts!
     return function() {
-        if (actualData === null || global.dev) {
+        if (actualData === null || config.dev) {
             actualData = findData('data');
         }
+
+        actualData.forEachPage = forEachPage;
+        actualData.flatten = flatten;
+        actualData.getPage = getPage;
 
         return actualData;
     };
 }();
 
-data.forEachPage = function(callback, obj) {
-    obj = obj || data();
-
-    for (let key of Object.keys(obj)) {
-        let page = obj[key];
-
-        callback(page);
-
-        if (typeof page.children !== 'undefined' && page.children.length > 0) {
-            data.forEachPage(callback, page.children);
-        }
-    }
-};
-
-data.flatten = function() {
-    let pages = [];
-
-    data.forEachPage(page => {
-        pages.push(page);
-    });
-
-    return pages;
-};
-
-data.getPage = function(url) {
-    return data.flatten()
-        .find(page => page.path === url);
-};
-
-module.exports = data;
+export default data;

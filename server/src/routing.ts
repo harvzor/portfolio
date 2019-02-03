@@ -1,11 +1,13 @@
-const fs = require('fs');
-const express = require('express');
+//declare function require(name:string);
 
-const config = require('./config.json');
-const data = require('./data.js');
-const logger = require('./logger');
-const app = require('./app.js');
-const helpers = require('./helpers.js');
+import fs = require('fs');
+import express = require('express');
+
+import * as config from './config.json';
+import data from './data';
+import logger from './logger';
+import app from './app';
+import helpers from './helpers';
 
 const routing = function() {
     //var firstRun = true;
@@ -20,9 +22,15 @@ const routing = function() {
         return cachedAmpCss;
     }
 
-    var setupController = (page) => {
+    var setupController = async(page) => {
         try {
-            require('../server/controllers/' + page.controller + 'Controller.js')(page);
+            let module = await import(`./controllers/${page.controller}Controller`);
+
+            module.default(page);
+
+            //const controller = require('./controllers/' + page.controller + 'Controller');
+
+            //controller(page);
         } catch (e) {
             logger.error('Failed to render page with name: ' + page.name, e);
         }
@@ -50,15 +58,13 @@ const routing = function() {
 
     setupControllers(data());
 
-    require('../server/controllers/rssController.js')();
-    require('../server/controllers/sitemapXmlController.js')();
+    import(`./controllers/rssController`)
+        .then(module => module.default());
+    import(`./controllers/sitemapXmlController`)
+        .then(module => module.default());
 
-    // Load each controller and run them.
-    /*
-        fs.readdirSync('./server/controllers/').forEach(function(file) {
-            require('../server/controllers/' + page.controller + 'Controller.js')(app, ampCss, express, config, logger, data, helpers);
-        });
-    */
+    //require('./controllers/rssController')();
+    //require('./controllers/sitemapXmlController')();
 
     /////////////////
     // Static files
@@ -69,7 +75,7 @@ const routing = function() {
     // Just used for verifying SSL with Let's Encrypt.
     app.use('/.well-known', express.static('./.well-known'));
 
-    if (global.dev) {
+    if (config.dev) {
         app.use(express.static('./src'));
     }
 
@@ -79,7 +85,7 @@ const routing = function() {
 
     // These have to be setup after everything else.
 
-    if (!global.dev) {
+    if (!config.dev) {
         app.use((req, res, next) => {
             logger.info('404 error: %s', req.originalUrl);
 
@@ -114,4 +120,4 @@ const routing = function() {
     }
 }();
 
-module.exports = routing;
+export default routing;

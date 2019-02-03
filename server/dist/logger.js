@@ -1,5 +1,6 @@
-const bunyan = require('bunyan');
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const bunyan = require("bunyan");
 const logger = bunyan.createLogger({
     name: 'portfolio',
     streams: [
@@ -17,5 +18,5 @@ const logger = bunyan.createLogger({
         }
     ]
 });
-
-module.exports = logger;
+exports.default = logger;
+//# sourceMappingURL=logger.js.map

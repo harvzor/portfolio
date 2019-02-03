@@ -1,10 +1,10 @@
-const express = require('express');
-const compression = require('compression');
-const expressLayouts = require('express-ejs-layouts');
+import express = require('express');
+import compression = require('compression');
+import expressLayouts = require('express-ejs-layouts');
 
-const config = require('./config.json');
-const data = require('./data.js');
-const logger = require('./logger.js');
+import * as config from './config.json';
+import data from './data';
+import logger from './logger';
 
 const app = express();
 
@@ -45,4 +45,4 @@ if (config.type === 'node') {
 // Export
 /////////////////
 
-module.exports = app;
+export default app;
