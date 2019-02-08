@@ -1,6 +1,6 @@
 import app from '../app';
 import logger from '../logger';
-import data from '../data';
+import Data from '../data';
 import helpers from '../helpers';
 
 export default function(page) {

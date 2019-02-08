@@ -1,5 +1,11 @@
 import bunyan = require('bunyan');
 
+interface ILogger {
+    info: Function,
+    warn: Function,
+    error: Function,
+}
+
 const logger = bunyan.createLogger({
     name: 'portfolio',
     streams: [

@@ -4,7 +4,7 @@ import fs = require('fs');
 import express = require('express');
 
 import config from './config';
-import data from './data';
+import Data from './data';
 import logger from './logger';
 import app from './app';
 import helpers from './helpers';
@@ -56,7 +56,7 @@ const routing = function() {
         }
     };
 
-    setupControllers(data());
+    setupControllers(Data.data);
 
     import(`./controllers/rssController`)
         .then(module => module.default());

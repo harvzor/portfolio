@@ -1,6 +1,6 @@
 import app from '../app';
 import logger from '../logger';
-import data from '../data';
+import Data from '../data';
 import helpers from '../helpers';
 
 export default function() {
@@ -11,7 +11,7 @@ export default function() {
         res.render('rss', {
             layout: '_empty', // This probably causes the template to be created twice...
             helpers: helpers,
-            posts: data().blog.children
+            posts: Data.getPage('/blog').children
         });
     });
 };

@@ -1,9 +1,11 @@
+import Page from '../interfaces/Page';
+
 import app from '../app';
 import logger from '../logger';
-import data from '../data';
+import Data from '../data';
 import helpers from '../helpers';
 
-export default function(page) {
+export default function(page: Page) {
     app.get(page.path, function(req, res) {
         res.render('page', {
             helpers: helpers,

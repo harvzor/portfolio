@@ -1,9 +1,11 @@
+import Post from '../interfaces/Pages/Post';
+
 import app from '../app';
 import logger from '../logger';
-import data from '../data';
+import Data from '../data';
 import helpers from '../helpers';
 
-var orderBlogPostsByYear = (posts) => {
+var orderBlogPostsByYear = (posts: Array<Post>) => {
     var postsByYear = [];
     var group = null;
     var post = null;
@@ -37,11 +39,11 @@ var orderBlogPostsByYear = (posts) => {
     return postsByYear;
 };
 
-export default function(page) {
+export default function(page: Post) {
     app.get(page.path, (req, res) => {
         const tag = req.query.tag;
 
-        let posts = data().blog.children;
+        let posts = Data.getPage('/blog').children as Array<Post>;
         const tagsWithQuantity = helpers.getBlogTags(posts);
 
         if (tag) {

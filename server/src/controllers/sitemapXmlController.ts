@@ -1,6 +1,6 @@
 import app from '../app';
 import logger from '../logger';
-import data from '../data';
+import Data from '../data';
 import helpers from '../helpers';
 
 export default function() {
@@ -12,7 +12,7 @@ export default function() {
             layout: '_empty', // This probably causes the template to be created twice...
             helpers: helpers,
             host: req.socket.parser.incoming.headers.host,
-            data: data()
+            data: Data.data
         });
     });
 };

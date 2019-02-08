@@ -27,6 +27,14 @@ interface Page {
      * Code controller name, such as if the controller is "pageController", this value is "page".
      */
     controller: string
+    /**
+     * If this page should be visible if the site is not in dev mode.
+     */
+    published: boolean
+    /**
+     * Child pages.
+     */
+    children: Array<Page>
 }
 
 export default Page;

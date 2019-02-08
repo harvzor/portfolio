@@ -1,19 +1,24 @@
+import Post from '../interfaces/Pages/Post';
+import Project from '../interfaces/Pages/Project';
+
 import app from '../app';
 import logger from '../logger';
-import data from '../data';
+import Data from '../data';
 import helpers from '../helpers';
 
 export default function(page) {
     app.get(page.path, (req, res) => {
-        let dataObject = data();
+        let blogPosts = Data.getPage('/blog').children as Array<Post>;
 
-        let posts = dataObject.blog.children
+        blogPosts = blogPosts
             // Order by date.
             .sort(function(a, b) {
                 return new Date(b.postDate).getTime() - new Date(a.postDate).getTime();
             });
 
-        let projects = data().projects.children
+        let projects = Data.getPage('/projects').children as Array<Project>;
+
+        projects = projects
             .sort((a,  b) => a.position - b.position);
 
         // Page title is an array so pick a random one from the array.
@@ -28,7 +33,7 @@ export default function(page) {
             pageTitle: pageTitle,
             bodyText: page.bodyText,
             technologies: page.technologies,
-            posts: posts.slice(0, 3),
+            posts: blogPosts.slice(0, 3),
             projects: projects.slice(0, 3),
             page: page
         });
