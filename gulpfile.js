@@ -1,4 +1,6 @@
 // Load plugins
+"use-strict";
+
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
@@ -10,16 +12,42 @@ var uglify = require('gulp-uglify');
 var through2 = require('through2');
 var wait = require('gulp-wait');
 var ts = require('gulp-typescript');
-var player;
-var notifier;
-var blessed;
-var fs;
-var tail;
-var nodemon;
+
+
+/**
+ * Lazy load in pacakges if they're used.
+ * @param {*} packageName Name of the package.
+ * @param {*} params Any special params the package is being required in with.
+ */
+var lazyLoadPackage = function(packageName, params) {
+    let package = null;
+
+    return function() {
+        if (package === null) {
+            if (typeof params === 'undefined') {
+                package = require(packageName);
+            } else {
+                package = require(packageName)(params);
+            }
+        }
+
+        return package;
+    };
+};
+
+var fs = lazyLoadPackage('fs');
+var player = lazyLoadPackage('play-sound', { player: 'mpv' });
+var notifier = lazyLoadPackage('node-notifier');
+var blessed = lazyLoadPackage('blessed');
+var tail = lazyLoadPackage('tail');
+var nodemon = lazyLoadPackage('nodemon');
 
 var tsProject = ts.createProject('tsconfig.json');
 
-var cli = false;
+/**
+ * Should be set to true if the special graphicals CLI is used.
+ */
+var graphicalCli = false;
 var gulpBox;
 var stylesBox;
 var scriptsBox;
@@ -29,12 +57,8 @@ var screen;
 /**
  * Notify the user that any tasks have completed.
  * It makes sure that only one notification will be given rather than sending lots at the same time.
- * @returns
  */
 var note = function() {
-    notifier = require('node-notifier');
-    player = require('play-sound')(opts = { player: 'mpv' });
-
     var timer = null;
     var messages = null;
 
@@ -46,7 +70,7 @@ var note = function() {
     };
 
     var playSound = (soundName) => {
-        player.play(__dirname + '\\gulp\\' + soundName, (err) => {
+        player().play(__dirname + '\\gulp\\' + soundName, (err) => {
             if (err) throw err
         });
     };
@@ -60,7 +84,7 @@ var note = function() {
 
         timer = setTimeout(function() {
             if (messages.info !== '') {
-                notifier.notify({
+                notifier().notify({
                     title: 'Tasks ran:',
                     message: messages.info,
                     icon: __dirname + '\\gulp\\gulp-logo-blue.png',
@@ -73,7 +97,7 @@ var note = function() {
             }
 
             if (messages.error !== '') {
-                notifier.notify({
+                notifier().notify({
                     title: 'Tasks errored:',
                     message: messages.error,
                     icon: __dirname + '\\gulp\\gulp-logo-red.png',
@@ -90,6 +114,11 @@ var note = function() {
     };
 }();
 
+/**
+ * Change a date to a string to be pretty printed.
+ * @param {Date} d Date which should be made pretty.
+ * @returns {String} A string that can be printed to Blessed.
+ */
 var formatDate = function(d) {
     var date = new Date(d);
     var hours = date.getHours();
@@ -114,22 +143,24 @@ var formatDate = function(d) {
     return '[{yellow-fg}' + time + '{/yellow-fg}] ';
 };
 
-gulp.task('cli', function() {
-    blessed = require('blessed');
-    tail = require('tail').Tail;
-    fs = require('fs');
+/**
+ * Run the graphical CLI for development.
+ * @param {Function} cb Callback that is run after the task is complete (notifies Gulp that the task is complete).
+ */
+var graphicalCliTask = (cb) => {
+    graphicalCli = true;
 
-    cli = true;
+    let tailer = tail().Tail;
 
-    if (!fs.existsSync('logs/log.txt')) {
-        if (!fs.existsSync('logs')) {
-            fs.mkdirSync('logs');
+    if (!fs().existsSync('logs/log.txt')) {
+        if (!fs().existsSync('logs')) {
+            fs().mkdirSync('logs');
         }
 
-        fs.writeFileSync('logs/log.txt', '');
+        fs().writeFileSync('logs/log.txt', '');
     }
 
-    new tail('logs/log.txt', { separator: '\n', useWatchFile: true })
+    new tailer('logs/log.txt', { separator: '\n', useWatchFile: true })
         .on('line', function(data) {
             var json = JSON.parse(data);
 
@@ -137,13 +168,13 @@ gulp.task('cli', function() {
             screen.render();
         });
 
-    screen = blessed.screen({
+    screen = blessed().screen({
         smartCSR: true,
         resizeTimeout: 300,
         title: 'Gulp!'
     });
 
-    gulpBox = blessed.log({
+    gulpBox = blessed().log({
         parent: screen,
         top: '0',
         left: '0',
@@ -165,7 +196,7 @@ gulp.task('cli', function() {
         label: 'Gulp log',
     });
 
-    stylesBox = blessed.log({
+    stylesBox = blessed().log({
         parent: screen,
         top: gulpBox.height,
         left: '0',
@@ -187,7 +218,7 @@ gulp.task('cli', function() {
         label: 'Styles log',
     });
 
-    scriptsBox = blessed.log({
+    scriptsBox = blessed().log({
         parent: screen,
         top: gulpBox.height * 2,
         left: '0',
@@ -209,7 +240,7 @@ gulp.task('cli', function() {
         label: 'Scripts log',
     });
 
-    logBox = blessed.log({
+    logBox = blessed().log({
         parent: screen,
         top: '0',
         left: '50%',
@@ -231,25 +262,33 @@ gulp.task('cli', function() {
         label: 'Bunyan',
     });
 
-    // Quit on Escape, q, or Control-C.
-    screen.key(['escape', 'q', 'C-c'], function(ch, key) {
-        return screen.destroy();
-    });
+    /*
+        // Quit on Escape, q, or Control-C.
+        screen.key(['escape', 'q', 'C-c'], function(ch, key) {
+            return screen.destroy();
+        });
+    */
 
     // Render the screen.
     screen.render();
-});
 
-var styles = function(source, taskName) {
+    cb();
+};
+
+var stylesTask = function(source, taskName) {
+    if (typeof source === 'undefined') {
+        throw new error('Function incorrectly ran. source is required');
+    }
+
     // Stop the through2 from getting run twice... A bit hacky.
     let first = true;
 
     return gulp.src(source)
         // Hack for Visual Studio Code locking up the file https://github.com/dlmanning/gulp-sass/issues/543
-        .pipe(wait(500))
+        //.pipe(wait(500))
         .pipe(plumber({
             errorHandler: function (err) {
-                if (cli) {
+                if (graphicalCli) {
                     stylesBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
                     screen.render();
                 }
@@ -267,13 +306,15 @@ var styles = function(source, taskName) {
         .pipe(sourcemaps.write('.')) // For some reason this has to go at the end or through2 will occur twice.
         .pipe(gulp.dest('public/css'))
         .pipe(through2.obj((file, enc, callback) => {
-            if (!first) {
-                return;
-            }
+            /*
+                if (!first) {
+                    return;
+                }
+            */
 
             first = false;
 
-            if (cli) {
+            if (graphicalCli) {
                 stylesBox.pushLine(formatDate(new Date()) + taskName + ' task completed.');
                 screen.render();
             }
@@ -284,24 +325,29 @@ var styles = function(source, taskName) {
         }));
 };
 
+/**
+ * Compile Sass to CSS.
+ */
+var mainStylesTask = function() {
+    return stylesTask(['src/sass/main.scss'], 'Styles');
+};
 
-// Styles - compile custom Sass
-gulp.task('styles', function() {
-    styles(['src/sass/main.scss'], 'Styles');
-});
+/*
+    var ampStylesTask = function() {
+        return stylesTask(['src/ampSass/amp.scss'], 'AMP styles');
+    };
+*/
 
-gulp.task('amp-styles', function() {
-    styles(['src/ampSass/amp.scss'], 'AMP styles');
-});
-
-// Scripts - compile custom js
-gulp.task('scripts', function() {
+/**
+ * Compile front end scripts.
+ */
+var scriptsTask = function() {
     return gulp.src([
         'src/js/script.js'
     ])
     .pipe(plumber({
         errorHandler: function (err) {
-            if (cli) {
+            if (graphicalCli) {
                 scriptsBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
                 screen.render();
             }
@@ -315,7 +361,7 @@ gulp.task('scripts', function() {
     .pipe(uglify())
     .pipe(gulp.dest('public/js'))
     .pipe(through2.obj(function(file, enc, callback) {
-        if (cli) {
+        if (graphicalCli) {
             scriptsBox.pushLine(formatDate(new Date()) + 'Scripts task completed.');
             screen.render();
         }
@@ -324,15 +370,18 @@ gulp.task('scripts', function() {
 
         callback(null, file);
     }));
-});
+};
 
-gulp.task('typescript', function (params) {
+/**
+ * Compile TypeScript files.
+ */
+var typescriptTask = function() {
     return gulp.src([
         'server/src/**/*.ts'
     ])
     .pipe(plumber({
         errorHandler: function (err) {
-            if (cli) {
+            if (graphicalCli) {
                 scriptsBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
                 screen.render();
             }
@@ -344,11 +393,11 @@ gulp.task('typescript', function (params) {
     }))
     .pipe(sourcemaps.init())
     .pipe(tsProject())
-    .on('error', () => { /* Ignore compiler errors */})
+    //.on('error', () => { /* Ignore compiler errors */})
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('server/dist'))
     .pipe(through2.obj(function(file, enc, callback) {
-        if (cli) {
+        if (graphicalCli) {
             scriptsBox.pushLine(formatDate(new Date()) + 'Typescript task completed.');
             screen.render();
         }
@@ -357,13 +406,14 @@ gulp.task('typescript', function (params) {
 
         callback(null, file);
     }));
-});
+};
 
-// Start - starts the server and restarts it on file change
-gulp.task('start', function() {
-    nodemon = require('nodemon');
-
-    nodemon({
+/**
+ * Run the server for development.
+ * @param {Function} cb Callback that is run after the task is complete (notifies Gulp that the task is complete).
+ */
+var serverTask = function(cb) {
+    nodemon()({
         script: 'server.js',
         ext: 'js',
         stdout: false,
@@ -372,7 +422,7 @@ gulp.task('start', function() {
         inspect: "server/dist"
     })
     .on('start', function(event) {
-        if (cli) {
+        if (graphicalCli) {
             gulpBox.pushLine(formatDate(new Date()) + 'Server started.');
             screen.render();
         }
@@ -384,7 +434,7 @@ gulp.task('start', function() {
     })
     */
     .on('crash', function() {
-        if (cli) {
+        if (graphicalCli) {
             gulpBox.pushLine(formatDate(new Date()) + '{red-fg}Server crashed!{/red-fg}');
             screen.render();
         }
@@ -392,24 +442,35 @@ gulp.task('start', function() {
         note('error', 'Server crashed.');
     })
     .on('readable', function() {
-        this.stdout.pipe(fs.createWriteStream('logs/nodemon-output.txt'));
-        this.stderr.pipe(fs.createWriteStream('logs/nodemon-err.txt'));
+        this.stdout.pipe(fs().createWriteStream('logs/nodemon-output.txt'));
+        this.stderr.pipe(fs().createWriteStream('logs/nodemon-err.txt'));
     });
-});
 
-// Watch - watcher for changes in scss and js files: 'gulp watch' will run these tasks
-gulp.task('watch', function() {
-    // Watch .scss files
-    gulp.watch('src/sass/**/*.scss', ['styles']);
+    cb();
+};
 
-    gulp.watch('src/ampsass/**/*.scss', ['amp-styles']);
+/**
+ * Watch for changes in the files.
+ */
+var watchTask = function() {
+    gulp.watch('src/sass/**/*.scss', mainStylesTask);
 
-    // Watch .js files
-    gulp.watch('src/js/script.js', ['scripts']);
+    //gulp.watch('src/ampsass/**/*.scss', ampStyles);
 
-    // Watch server .ts files
-    gulp.watch('server/src/**/*.ts', ['typescript']);
-});
+    gulp.watch('src/js/script.js', scriptsTask);
 
-// Default - runs the scripts, styles and watch tasks: 'gulp' will run this task
-gulp.task('default', ['cli', 'styles', 'amp-styles', 'scripts', 'typescript', 'start', 'watch'])
+    gulp.watch('server/src/**/*.ts', typescriptTask);
+};
+
+var build = gulp.parallel(mainStylesTask, scriptsTask, typescriptTask);
+
+var buildAndWatch = gulp.series(
+    graphicalCliTask,
+    gulp.parallel(mainStylesTask, scriptsTask, typescriptTask, serverTask),
+    watchTask
+);
+
+exports.build = build;
+exports.server = serverTask;
+
+exports.default = buildAndWatch;
