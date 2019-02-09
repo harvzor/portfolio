@@ -1,4 +1,3 @@
-// Load plugins
 "use-strict";
 
 var gulp = require('gulp');
@@ -6,13 +5,11 @@ var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
 var plumber = require('gulp-plumber');
+// Sourcemaps seem to only work through gulp-sourcemaps currently, not the built in option.
 var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
-var through2 = require('through2');
-var wait = require('gulp-wait');
 var ts = require('gulp-typescript');
-
 
 /**
  * Lazy load in pacakges if they're used.
@@ -280,12 +277,7 @@ var stylesTask = function(source, taskName) {
         throw new error('Function incorrectly ran. source is required');
     }
 
-    // Stop the through2 from getting run twice... A bit hacky.
-    let first = true;
-
-    return gulp.src(source)
-        // Hack for Visual Studio Code locking up the file https://github.com/dlmanning/gulp-sass/issues/543
-        //.pipe(wait(500))
+    let task = gulp.src(source)
         .pipe(plumber({
             errorHandler: function (err) {
                 if (graphicalCli) {
@@ -303,26 +295,17 @@ var stylesTask = function(source, taskName) {
         .pipe(gulp.dest('public/css'))
         .pipe(cssnano({ zindex: false }))
         .pipe(autoprefixer('last 2 version'))
-        .pipe(sourcemaps.write('.')) // For some reason this has to go at the end or through2 will occur twice.
-        .pipe(gulp.dest('public/css'))
-        .pipe(through2.obj((file, enc, callback) => {
-            /*
-                if (!first) {
-                    return;
-                }
-            */
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('public/css'));
 
-            first = false;
+    if (graphicalCli) {
+        stylesBox.pushLine(formatDate(new Date()) + taskName + ' task completed.');
+        screen.render();
+    }
 
-            if (graphicalCli) {
-                stylesBox.pushLine(formatDate(new Date()) + taskName + ' task completed.');
-                screen.render();
-            }
+    note('info', taskName + ' task completed.');
 
-            note('info', taskName + ' task completed.');
-
-            callback(null, file);
-        }));
+    return task;
 };
 
 /**
@@ -342,70 +325,65 @@ var mainStylesTask = function() {
  * Compile front end scripts.
  */
 var scriptsTask = function() {
-    return gulp.src([
-        'src/js/script.js'
-    ])
-    .pipe(plumber({
-        errorHandler: function (err) {
-            if (graphicalCli) {
-                scriptsBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
-                screen.render();
+    let task = gulp.src([ 'src/js/script.js' ])
+        .pipe(plumber({
+            errorHandler: function (err) {
+                if (graphicalCli) {
+                    scriptsBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
+                    screen.render();
+                }
+
+                note('error', 'Error in scripts task.');
+
+                this.emit('end');
             }
+        }))
+        .pipe(sourcemaps.init())
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(uglify())
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('public/js'));
 
-            note('error', 'Error in scripts task.');
+    if (graphicalCli) {
+        scriptsBox.pushLine(formatDate(new Date()) + 'Scripts task completed.');
+        screen.render();
+    }
 
-            this.emit('end');
-        }
-    }))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(uglify())
-    .pipe(gulp.dest('public/js'))
-    .pipe(through2.obj(function(file, enc, callback) {
-        if (graphicalCli) {
-            scriptsBox.pushLine(formatDate(new Date()) + 'Scripts task completed.');
-            screen.render();
-        }
+    note('info', 'Scripts task completed.');
 
-        note('info', 'Scripts task completed.');
-
-        callback(null, file);
-    }));
+    return task;
 };
 
 /**
  * Compile TypeScript files.
  */
 var typescriptTask = function() {
-    return gulp.src([
-        'server/src/**/*.ts'
-    ])
-    .pipe(plumber({
-        errorHandler: function (err) {
-            if (graphicalCli) {
-                scriptsBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
-                screen.render();
+    let task = gulp.src([ 'server/src/**/*.ts' ])
+        .pipe(plumber({
+            errorHandler: function (err) {
+                if (graphicalCli) {
+                    scriptsBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
+                    screen.render();
+                }
+
+                note('error', 'Error in typescript task.');
+
+                this.emit('end');
             }
+        }))
+        .pipe(sourcemaps.init())
+        .pipe(tsProject())
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('server/dist'));
 
-            note('error', 'Error in typescript task.');
+    if (graphicalCli) {
+        scriptsBox.pushLine(formatDate(new Date()) + 'Typescript task completed.');
+        screen.render();
+    }
 
-            this.emit('end');
-        }
-    }))
-    .pipe(sourcemaps.init())
-    .pipe(tsProject())
-    //.on('error', () => { /* Ignore compiler errors */})
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('server/dist'))
-    .pipe(through2.obj(function(file, enc, callback) {
-        if (graphicalCli) {
-            scriptsBox.pushLine(formatDate(new Date()) + 'Typescript task completed.');
-            screen.render();
-        }
+    note('info', 'Typescript task completed.');
 
-        note('info', 'Typescript task completed.');
-
-        callback(null, file);
-    }));
+    return task;
 };
 
 /**
