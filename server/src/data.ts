@@ -131,7 +131,7 @@ class Data {
             });
 
         return data;
-    };
+    }
     public forEachPage(callback: Function, obj?: Array<Page>): void {
         obj = obj || this.actualData;
 

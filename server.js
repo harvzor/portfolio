@@ -9,11 +9,3 @@ global.dev = config.dev;
 
 require('./server/dist/app.js');
 require('./server/dist/routing.js');
-
-/////////////////
-// Functions
-/////////////////
-
-Array.prototype.filterObjects = function(key, value) {
-    return this.filter(function(x) { return x[key] === value; })
-};

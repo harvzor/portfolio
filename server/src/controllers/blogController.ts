@@ -99,7 +99,7 @@ export default function(page) {
             var url = req.originalUrl.split('/')[3]
                 .split('?')[0];
 
-            var post = data().posts.filterObjects('href', url)[0];
+            var post = data.getPage(url);
 
             res.render('postAmp', {
                 helpers: helpers,
