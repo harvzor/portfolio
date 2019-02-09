@@ -1,9 +1,14 @@
 import bunyan = require('bunyan');
+import fs = require('fs');
 
 interface ILogger {
     info: Function,
     warn: Function,
     error: Function,
+}
+
+if (!fs.existsSync('logs')) {
+    fs.mkdirSync('logs');
 }
 
 const logger = bunyan.createLogger({
