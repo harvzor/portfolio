@@ -42,9 +42,9 @@ var nodemon = lazyLoadPackage('nodemon');
 var tsProject = ts.createProject('tsconfig.json');
 
 /**
- * Should be set to true if the special graphicals CLI is used.
+ * Should be set to true if the special graphicical CLI is used.
  */
-var graphicalCli = false;
+var graphicalCliEnabled = false;
 var gulpBox;
 var stylesBox;
 var scriptsBox;
@@ -75,6 +75,11 @@ var note = function() {
     resetMessages();
 
     return function(type, message) {
+        if (!graphicalCliEnabled) {
+            // Return for Docker (or it will crash!)
+            return;
+        }
+
         clearTimeout(timer);
 
         messages[type] += '\n' + message;
@@ -145,8 +150,6 @@ var formatDate = function(d) {
  * @param {Function} cb Callback that is run after the task is complete (notifies Gulp that the task is complete).
  */
 var graphicalCliTask = (cb) => {
-    graphicalCli = true;
-
     let tailer = tail().Tail;
 
     if (!fs().existsSync('logs/log.txt')) {
@@ -280,7 +283,7 @@ var stylesTask = function(source, taskName) {
     let task = gulp.src(source)
         .pipe(plumber({
             errorHandler: function (err) {
-                if (graphicalCli) {
+                if (graphicalCliEnabled) {
                     stylesBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
                     screen.render();
                 }
@@ -298,7 +301,7 @@ var stylesTask = function(source, taskName) {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('public/css'));
 
-    if (graphicalCli) {
+    if (graphicalCliEnabled) {
         stylesBox.pushLine(formatDate(new Date()) + taskName + ' task completed.');
         screen.render();
     }
@@ -328,7 +331,7 @@ var scriptsTask = function() {
     let task = gulp.src([ 'src/js/script.js' ])
         .pipe(plumber({
             errorHandler: function (err) {
-                if (graphicalCli) {
+                if (graphicalCliEnabled) {
                     scriptsBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
                     screen.render();
                 }
@@ -344,7 +347,7 @@ var scriptsTask = function() {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('public/js'));
 
-    if (graphicalCli) {
+    if (graphicalCliEnabled) {
         scriptsBox.pushLine(formatDate(new Date()) + 'Scripts task completed.');
         screen.render();
     }
@@ -361,7 +364,7 @@ var typescriptTask = function() {
     let task = gulp.src([ 'server/src/**/*.ts' ])
         .pipe(plumber({
             errorHandler: function (err) {
-                if (graphicalCli) {
+                if (graphicalCliEnabled) {
                     scriptsBox.pushLine(formatDate(new Date()) + '{red-fg}' + err.message + '{/red-fg}');
                     screen.render();
                 }
@@ -376,7 +379,7 @@ var typescriptTask = function() {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('server/dist'));
 
-    if (graphicalCli) {
+    if (graphicalCliEnabled) {
         scriptsBox.pushLine(formatDate(new Date()) + 'Typescript task completed.');
         screen.render();
     }
@@ -391,6 +394,10 @@ var typescriptTask = function() {
  * @param {Function} cb Callback that is run after the task is complete (notifies Gulp that the task is complete).
  */
 var serverTask = function(cb) {
+    if (!fs().existsSync('logs')) {
+        fs().mkdirSync('logs');
+    }
+
     nodemon()({
         script: 'server.js',
         ext: 'js',
@@ -400,7 +407,7 @@ var serverTask = function(cb) {
         inspect: "server/dist"
     })
     .on('start', function(event) {
-        if (graphicalCli) {
+        if (graphicalCliEnabled) {
             gulpBox.pushLine(formatDate(new Date()) + 'Server started.');
             screen.render();
         }
@@ -412,7 +419,7 @@ var serverTask = function(cb) {
     })
     */
     .on('crash', function() {
-        if (graphicalCli) {
+        if (graphicalCliEnabled) {
             gulpBox.pushLine(formatDate(new Date()) + '{red-fg}Server crashed!{/red-fg}');
             screen.render();
         }
@@ -443,12 +450,22 @@ var watchTask = function() {
 var build = gulp.parallel(mainStylesTask, scriptsTask, typescriptTask);
 
 var buildAndWatch = gulp.series(
-    graphicalCliTask,
     gulp.parallel(mainStylesTask, scriptsTask, typescriptTask, serverTask),
     watchTask
 );
 
 exports.build = build;
+exports.watch = watchTask;
 exports.server = serverTask;
 
-exports.default = buildAndWatch;
+exports.default = gulp.series(
+    function(cb) {
+        graphicalCliEnabled = true;
+
+        cb();
+    },
+    graphicalCliTask,
+    buildAndWatch
+);
+
+exports.docker = buildAndWatch;
