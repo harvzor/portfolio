@@ -89,38 +89,46 @@ hw.youtubeVideoSetup = function() {
     }
 };
 
-// Delay loading of next page so an exiting animation can be played.
+/**
+ * Delay loading of next page so an exiting animation can be played.
+ */
 hw.exitingAnimation = function() {
     var aElements = document.getElementsByTagName('a');
     var body = document.getElementsByTagName('body')[0];
 
-    for (var i = 0; i < aElements.length; i++) {
-        aElements[i].addEventListener('click', function(e) {
-            var link = this;
+    var clickEvent = function(e) {
+        var link = this;
 
-            if (link.href.indexOf('#') > -1 || link.target == '_blank') {
-                return;
-            }
+        if (link.href.indexOf('#') > -1 || link.target == '_blank') {
+            return;
+        }
 
-            e.preventDefault();
+        e.preventDefault();
 
-            body.classList.add('exiting');
+        body.classList.add('exiting');
 
-            setTimeout(function() {
-                window.location.href = link.href;
-            }, 50);
-        });
+        setTimeout(function() {
+            window.location.href = link.href;
+        }, 50);
+    };
+
+    // There's some kind of bug on mobile where the exiting class remains if you navigate backwards.
+    // Perhaps this will solve it?
+    if (body.offsetWidth > 1023) {
+        for (var i = 0; i < aElements.length; i++) {
+            aElements[i].addEventListener('click', clickEvent);
+        }
     }
 
-    window.onbeforeunload = function(event) {
+    window.onbeforeunload = function() {
         body.classList.add('exiting');
     }
 };
 
 /**
- * Setup navigation events.
+ * Allow nav to be opened.
  */
-hw.navigationEvents = function() {
+hw.nav = function() {
     var body = document.getElementsByTagName('body')[0];
     var toggles = document.getElementsByClassName('toggle');
 
@@ -172,7 +180,7 @@ hw.codeHighlighting = function() {
 };
 
 (function() {
-    hw.navigationEvents();
+    hw.nav();
     hw.youtubeVideoSetup();
     hw.exitingAnimation();
     hw.codeHighlighting();
