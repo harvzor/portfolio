@@ -402,7 +402,7 @@ var serverTask = function(cb) {
         script: 'server.js',
         ext: 'js',
         stdout: false,
-        watch: ['server/dist/**/*.js', 'server.js'],
+        watch: ['server/dist/**/*.js', 'server.js', 'server/config.json'],
         // Not too sure if this does anything.
         inspect: "server/dist"
     })
