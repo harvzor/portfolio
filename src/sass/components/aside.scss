@@ -191,7 +191,7 @@ aside.nav {
     }
 
     * {
-        @include screen($xs) {
+        @include screen($sm) {
             opacity:0;
         }
     }
