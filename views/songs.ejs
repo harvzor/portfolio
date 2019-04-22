@@ -1,12 +1,15 @@
 <article class="box">
     <p>A collection of some of my favourite songs of the moment.</p>
+    <h2>Spotify playlist</h2>
+    <iframe src="https://open.spotify.com/embed/user/motzrht/playlist/2kRg6XQ2xGeHoXEXIquoVo" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <h2>YouTube video list</h2>
     <% songs
         .sort((a, b) => {
             return new Date(b.date).getTime() - new Date(a.date).getTime();
         })
         .forEach(song => {
     %>
-        <h2><%= song.name %> - <%= song.artist %></h2>
+        <h3><%= song.name %> - <%= song.artist %></h3>
         <div class="meta">Added <%= helpers.friendlyDate(song.date) %></div>
         <a class="youtube-video" href="https://www.youtube.com/embed/<%= song.id %>" target="_blank" style="background-image:url('https://img.youtube.com/vi/<%= song.id %>/maxresdefault.jpg')" data-id="<%= song.id %>">
             <div class="icon-play youtube-video-play"></div>
