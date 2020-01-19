@@ -400,9 +400,9 @@ var serverTask = function(cb) {
 
     nodemon()({
         script: 'server.js',
-        ext: 'js',
+        ext: 'js,md,json',
         stdout: false,
-        watch: ['server/dist/**/*.js', 'server.js', 'server/config.json'],
+        watch: ['server/dist/**/*.js', 'server.js', 'server/config.json', 'data/**/*'],
         // Not too sure if this does anything.
         inspect: "server/dist"
     })
