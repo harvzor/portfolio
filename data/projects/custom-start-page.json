@@ -1,0 +1,11 @@
+{
+    "path": "/projects/custom-start-page",
+    "published": true,
+    "metaDescription": "A website dedicated to showcasing customisable startpages.",
+    "cover": "/media/projects/custom-start-page/index.jpg",
+    "name": "Custom Start Page",
+    "bodyText": "projects/custom-start-page.md",
+    "technology": ["website", "node.js", "react", "json schema", "sass"],
+    "position": 0,
+    "controller": "project"
+}
