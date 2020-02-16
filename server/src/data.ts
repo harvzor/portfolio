@@ -35,7 +35,7 @@ const renderer = function() {
 }();
 
 class Data {
-    private actualData: Array<Page> = null;
+    private actualData: Array<Page> | null = null;
     constructor() {
         logger.info('data running');
     }

@@ -3,26 +3,28 @@
 import fs = require('fs');
 import express = require('express');
 
+import Page from './interfaces/Page';
+
 import config from './config';
 import Data from './data';
 import logger from './logger';
 import app from './app';
 import helpers from './helpers';
 
-const routing = function() {
+const routing = async function() {
     //var firstRun = true;
-    var cachedAmpCss;
+    // var cachedAmpCss;
 
     // Reloads the CSS if in dev mode.
-    var ampCss = function() {
-        if (cachedAmpCss == null || config.dev) {
-            cachedAmpCss = fs.readFileSync('./public/css/amp.css', 'utf8');
-        }
+    // const ampCss = function() {
+    //     if (cachedAmpCss == null || config.dev) {
+    //         cachedAmpCss = fs.readFileSync('./public/css/amp.css', 'utf8');
+    //     }
 
-        return cachedAmpCss;
-    }
+    //     return cachedAmpCss;
+    // }
 
-    var setupController = async(page) => {
+    const setupController = async(page: Page) => {
         try {
             let module = await import(`./controllers/${page.controller}Controller`);
 
@@ -36,35 +38,24 @@ const routing = function() {
         }
     };
 
-    var setupControllers = (obj) => {
-        for (let key of Object.keys(obj)) {
-            var page = obj[key];
-
-            /*
-                if (!helpers.isObject(page)) {
-                    continue;
-                }
-            */
-
+    const setupControllers = async(pages: Page[]) => {
+        for (let page of pages) {
             if (typeof page.controller !== 'undefined') {
-                setupController(page);
+                await setupController(page);
             }
 
             if (typeof page.children !== 'undefined' && page.children.length > 0) {
-                setupControllers(page.children);
+                await setupControllers(page.children);
             }
         }
     };
 
-    setupControllers(Data.data);
+    await setupControllers(Data.data);
 
-    import(`./controllers/rssController`)
+    await import(`./controllers/rssController`)
         .then(module => module.default());
-    import(`./controllers/sitemapXmlController`)
+    await import(`./controllers/sitemapXmlController`)
         .then(module => module.default());
-
-    //require('./controllers/rssController')();
-    //require('./controllers/sitemapXmlController')();
 
     /////////////////
     // Static files

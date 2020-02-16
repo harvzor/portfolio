@@ -29,10 +29,10 @@ app.use(expressLayouts)
 if (config.type === ConfigType.node) {
     // Used for Node server.
     var server = app.listen(config.port, config.ip, function () {
-        var host = server.address().address;
-        var port = server.address().port;
+        const host = server.address().address;
+        const port = server.address().port;
 
-        logger.info('Website listening at http://%s:%s.', host, port);
+        logger.info(`Website listening at http://${host}:${port}.`);
     });
 } else if (config.type === ConfigType.iis) {
     // Used for IISNode.
