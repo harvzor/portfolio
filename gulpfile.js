@@ -449,10 +449,10 @@ var watchTask = function() {
 
 var build = gulp.parallel(mainStylesTask, scriptsTask, typescriptTask);
 
-var buildAndWatch = gulp.series(
-    gulp.parallel(mainStylesTask, scriptsTask, typescriptTask, serverTask),
-    watchTask
-);
+// var buildAndWatch = gulp.series(
+//     gulp.parallel(mainStylesTask, scriptsTask, typescriptTask, serverTask),
+//     watchTask
+// );
 
 exports.build = build;
 exports.watch = watchTask;
@@ -464,8 +464,5 @@ exports.default = gulp.series(
 
         cb();
     },
-    graphicalCliTask,
-    buildAndWatch
+    graphicalCliTask
 );
-
-exports.docker = buildAndWatch;

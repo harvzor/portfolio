@@ -47,7 +47,7 @@ Nothing fancy here, just standard JS with no libraries (such as React).
 
 Gulp is used for development. I must warn anyone that the gulpfile got a little out of hand - it's been made pretty by using [Blessed](https://github.com/chjj/blessed) to make windows in the terminal window which data is printed to.
 
-![Gulp - using Blessed to create a fancy terminal interface](/project/gulp.png)
+![Gulp - using Blessed to create a fancy terminal interface](/.github/project/gulp.png)
 
 Running `npm start` (which in turn runs `gulp --silent`) compiles the SCSS, JS and runs the website (for easy development). Make sure to run `npm install` before trying this.
 

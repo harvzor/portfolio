@@ -28,7 +28,7 @@ app.use(expressLayouts)
 
 if (config.type === ConfigType.node) {
     // Used for Node server.
-    var server = app.listen(config.port, config.ip, function () {
+    var server = app.listen(config.port, function () {
         const host = server.address().address;
         const port = server.address().port;
 

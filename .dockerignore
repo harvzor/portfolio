@@ -1,8 +1,11 @@
+.git
 .sass-cache
 .vscode
+gulp
 iisnode
 logs
 node_modules
+.gitignore
 npm-debug.log
 readme.md
 web.config

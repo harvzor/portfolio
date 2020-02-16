@@ -12,7 +12,8 @@
     "url": "https://github.com/Harvzor/portfolio"
   },
   "scripts": {
-    "start": "gulp --silent"
+    "start": "gulp --silent",
+    "build": "gulp build"
   },
   "dependencies": {
     "bunyan": "^1.8.12",
