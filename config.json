@@ -1,0 +1,6 @@
+{
+    "ip": "localhost",
+    "port": 3000,
+    "type": "node",
+    "dev": false
+}

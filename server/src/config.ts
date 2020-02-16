@@ -11,7 +11,7 @@ interface IConfig {
 }
 
 const config = function(): IConfig {
-    const conf = require('../config.json');
+    const conf = require('../../config.json');
 
     return conf;
 }();
