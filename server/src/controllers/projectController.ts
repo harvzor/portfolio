@@ -1,16 +1,22 @@
-const logger = require('../logger');
+import Page from '../interfaces/Page';
 
-module.exports = function(app, fs, express, config, data, helpers, page) {
+import app from '../app';
+import logger from '../logger';
+import Data from '../data';
+import helpers from '../helpers';
+import config from '../config'
+
+export default function(page: Page) {
     // Render project pages
     app.get(page.path, (req, res) => {
-        if (global.dev) {
-            page = data.getPage(page.path);
+        if (config.dev) {
+            //page = data.getPage(page.path);
         }
 
         res.render('project-example', {
             helpers: helpers,
             layout: '_common',
-            relativeUrl: page.href,
+            //relativeUrl: page.href,
             metaDescription: page.metaDescription,
             pageGroup: 'projects',
             parentPages: [
@@ -20,7 +26,7 @@ module.exports = function(app, fs, express, config, data, helpers, page) {
                 }
             ],
             pageTitle: page.name,
-            cover: page.cover,
+            //cover: page.cover,
             bodyText: page.bodyText,
             page: page
         });

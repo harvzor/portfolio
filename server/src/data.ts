@@ -1,7 +1,11 @@
-const marked = require('marked');
-const helpers = require('./helpers');
-const fs = require('fs');
-const logger = require('./logger');
+import marked = require('marked');
+import fs = require('fs');
+
+import Page from './interfaces/Page';
+
+import config from './config'
+import helpers from './helpers';
+import logger from './logger' ;
 
 const renderer = function() {
     var renderer = new marked.Renderer();
@@ -30,18 +34,25 @@ const renderer = function() {
     };
 }();
 
-const data = function() {
-    logger.info('data running');
+class Data {
+    private actualData: Array<Page> | null = null;
+    constructor() {
+        logger.info('data running');
+    }
+    get data() {
+        if (this.actualData === null || config.dev) {
+            this.actualData = this.findData('data');
+        }
 
-    var actualData = null;
-
+        return this.actualData;
+    }
     /**
      * Reads a file.
      * Will return HTML, even if the original format is Markdown.
      * @param {string} path
      * @param {boolean} isAmp
      */
-    var getContent = function(path, isAmp) {
+    private getContent(path: string, isAmp?: Boolean) {
         let contents = fs.readFileSync('data/' + path, 'utf8');
 
         if (path.indexOf('.md') !== -1) {
@@ -58,10 +69,9 @@ const data = function() {
         }
 
         return contents;
-    };
-
-    var findData = (dir, data) => {
-        data = data || {};
+    }
+    private findData(dir: string, data?: Array<Page>) {
+        data = data || [];
         let paths = fs.readdirSync(dir);
 
         // Foreach of the JSON files...
@@ -71,16 +81,16 @@ const data = function() {
                 let fullPath = dir + '/' + path;
 
                 try {
-                    let contents = fs.readFileSync(fullPath, 'utf8');
-                    let json = JSON.parse(contents);
+                    let stringPageContents = fs.readFileSync(fullPath, 'utf8');
+                    let page: Page = JSON.parse(stringPageContents);
 
                     // If it's in dev mode, then the unpublished blog posts should show.
-                    if (typeof json.published !== 'undefined' && !json.published && !global.dev) {
+                    if (typeof page.published !== 'undefined' && !page.published && !config.dev) {
                         return;
                     }
 
-                    if (typeof json.bodyText !== 'undefined') {
-                        json.bodyText = getContent(json.bodyText);
+                    if (typeof page.bodyText !== 'undefined') {
+                        page.bodyText = this.getContent(page.bodyText);
 
                         //json.ampBodyText = getContent(page.bodyText, true);
                     }
@@ -89,11 +99,17 @@ const data = function() {
                     // https://stackoverflow.com/a/31354426
                     //json.lastModified = fs.statSync(fullPath).mtime;
 
-                    if (helpers.isObject(data)) {
-                        data[json.name] = json;
-                    } else {
-                        data.push(json);
-                    }
+                    //let parentPage = data.find(p => p.name === page.name);
+
+                    data.push(page);
+
+                    /*
+                        if (typeof parentPage !== 'undefined') {
+                            parentPage.children.push(page);
+                        } else {
+                            data.push(page);
+                        }
+                    */
                 } catch (e) {
                     logger.error(e);
                 }
@@ -103,57 +119,43 @@ const data = function() {
         paths
             .filter(path => !path.includes('.'))
             .forEach(path => {
-                if (typeof data[path] === 'undefined') {
-                    data[path] = [];
+                let parentPage = data.find(p => p.name === path);
 
-                    findData(dir + '/' + path, data[path]);
+                if (typeof parentPage !== 'undefined') {
+                    parentPage.children = [];
+
+                    this.findData(dir + '/' + path, parentPage.children);
                 } else {
-                    data[path].children = [];
-
-                    findData(dir + '/' + path, data[path].children);
+                    logger.error(`Error adding page to data tree as it has no parent for path ${path}.`);
                 }
             });
 
         return data;
-    };
+    }
+    public forEachPage(callback: Function, obj?: Array<Page>): void {
+        obj = obj || this.actualData;
 
-    // Reloads the data if in dev mode, better for writing new posts!
-    return function() {
-        if (actualData === null || global.dev) {
-            actualData = findData('data');
-        }
+        for (let page of obj) {
+            callback(page);
 
-        return actualData;
-    };
-}();
-
-data.forEachPage = function(callback, obj) {
-    obj = obj || data();
-
-    for (let key of Object.keys(obj)) {
-        let page = obj[key];
-
-        callback(page);
-
-        if (typeof page.children !== 'undefined' && page.children.length > 0) {
-            data.forEachPage(callback, page.children);
+            if (typeof page.children !== 'undefined' && page.children.length > 0) {
+                this.forEachPage(callback, page.children);
+            }
         }
     }
-};
+    public flatten(): Array<Page> {
+        let pages = [];
 
-data.flatten = function() {
-    let pages = [];
+        this.forEachPage(page => {
+            pages.push(page);
+        });
 
-    data.forEachPage(page => {
-        pages.push(page);
-    });
+        return pages;
+    }
+    public getPage(url: string): Page {
+        return this.flatten()
+            .find(page => page.path === url);
+    }
+}
 
-    return pages;
-};
-
-data.getPage = function(url) {
-    return data.flatten()
-        .find(page => page.path === url);
-};
-
-module.exports = data;
+export default new Data();

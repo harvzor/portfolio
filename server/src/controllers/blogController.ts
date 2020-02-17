@@ -1,4 +1,8 @@
-const logger = require('../logger');
+import app from '../app';
+import logger from '../logger';
+import Data from '../data';
+import helpers from '../helpers';
+import Post from '../interfaces/Pages/Post';
 
 /*
     var getPrevAndNextPosts = (data, post) => {
@@ -26,18 +30,16 @@ const logger = require('../logger');
     };
 */
 
-module.exports = function(app, ampCss, express, config, data, helpers, page) {
+export default function(page) {
     // Render blog post.
     app.get(page.path, (req, res) => {
         let post = null;
 
-        let url = req.originalUrl
-            .split('/')[2]
-            .split('?')[0];
+        let blogPosts = Data.getPage('/blog').children as Array<Post>;
 
-        let otherPosts = data().blog.children
+        let otherPosts = blogPosts
             .filter(otherPost => {
-                if (otherPost.href === url) {
+                if (otherPost.path === req.originalUrl) {
                     post = otherPost;
 
                     return false;
@@ -64,13 +66,13 @@ module.exports = function(app, ampCss, express, config, data, helpers, page) {
                 };
             })
             .filter(otherPost => otherPost.matching > 0)
-            .sort((otherPostA, otherPostB) => otherPostA.matching < otherPostB.matching)
+            .sort((otherPostA, otherPostB) => otherPostA.matching - otherPostB.matching)
             .slice(0, 3);
 
         res.render('post', {
             helpers: helpers,
             layout: '_common',
-            relativeUrl: url,
+            //relativeUrl: url,
             metaDescription: post.metaDescription,
             pageGroup: 'blog',
             parentPages: [
@@ -97,7 +99,7 @@ module.exports = function(app, ampCss, express, config, data, helpers, page) {
             var url = req.originalUrl.split('/')[3]
                 .split('?')[0];
 
-            var post = data().posts.filterObjects('href', url)[0];
+            var post = data.getPage(url);
 
             res.render('postAmp', {
                 helpers: helpers,

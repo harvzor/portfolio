@@ -1,4 +1,15 @@
-const bunyan = require('bunyan');
+import bunyan = require('bunyan');
+import fs = require('fs');
+
+interface ILogger {
+    info: Function,
+    warn: Function,
+    error: Function,
+}
+
+if (!fs.existsSync('logs')) {
+    fs.mkdirSync('logs');
+}
 
 const logger = bunyan.createLogger({
     name: 'portfolio',
@@ -18,4 +29,4 @@ const logger = bunyan.createLogger({
     ]
 });
 
-module.exports = logger;
+export default logger;

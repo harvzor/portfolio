@@ -1,4 +1,7 @@
-var helpers = {
+import Post from "./interfaces/Pages/Post";
+import Tag from "./interfaces/Tag";
+
+const helpers = {
     /**
      * Check if var is object (and not array).
      * @param {*} obj
@@ -80,12 +83,16 @@ var helpers = {
     getYear: () => {
         return new Date().getUTCFullYear();
     },
-    getBlogTags: function(posts) {
-        var allTags = [];
-        var uniqueTags = [];
-        var tagsWithQuantity = [];
+    getBlogTags: function(posts: Array<Post>): Array<Tag> {
+        var allTags: Array<string> = [];
+        var uniqueTags: Array<string> = [];
+        var tagsWithQuantity: Array<Tag> = [];
 
-        tagsWithQuantity.push({ name: 'all', tag: '', quantity: posts.length });
+        tagsWithQuantity.push({
+            name: 'all',
+            tag: '',
+            quantity: posts.length
+        });
 
         for (var i = 0; i < posts.length; i++) {
             allTags = allTags.concat(posts[i].tags);
@@ -95,10 +102,14 @@ var helpers = {
 
         for (var i = 0; i < uniqueTags.length; i++) {
             var quantity = allTags.filter(function(tag) {
-                return tag == uniqueTags[i];
+                return tag === uniqueTags[i];
             }).length;
 
-            tagsWithQuantity.push({ name: uniqueTags[i], tag: uniqueTags[i], quantity: quantity });
+            tagsWithQuantity.push({
+                name: uniqueTags[i],
+                tag: uniqueTags[i],
+                quantity: quantity
+            });
         }
 
         return tagsWithQuantity;
@@ -117,4 +128,4 @@ var helpers = {
     }
 };
 
-module.exports = helpers;
+export default helpers;

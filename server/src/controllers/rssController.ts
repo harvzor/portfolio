@@ -1,6 +1,9 @@
-const logger = require('../logger');
+import app from '../app';
+import logger from '../logger';
+import Data from '../data';
+import helpers from '../helpers';
 
-module.exports = function(app, fs, express, config, data, helpers) {
+export default function() {
     // Redirect old portfolio link to projects.
     app.get('/rss', function(req, res) {
         res.set('Content-Type', 'text/xml');
@@ -8,7 +11,7 @@ module.exports = function(app, fs, express, config, data, helpers) {
         res.render('rss', {
             layout: '_empty', // This probably causes the template to be created twice...
             helpers: helpers,
-            posts: data().blog.children
+            posts: Data.getPage('/blog').children
         });
     });
 };

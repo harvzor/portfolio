@@ -1,6 +1,9 @@
-const logger = require('../logger');
+import app from '../app';
+import logger from '../logger';
+import Data from '../data';
+import helpers from '../helpers';
 
-module.exports = function(app, fs, express, config, data, helpers, page) {
+export default function(page) {
     app.get(page.path, (req, res) => {
         res.render('songs', {
             helpers: helpers,

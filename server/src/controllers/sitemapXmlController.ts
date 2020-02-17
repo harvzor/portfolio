@@ -1,6 +1,9 @@
-const logger = require('../logger');
+import app from '../app';
+import logger from '../logger';
+import Data from '../data';
+import helpers from '../helpers';
 
-module.exports = function(app, fs, express, config, data, helpers) {
+export default function() {
     // Redirect old portfolio link to projects.
     app.get('/sitemap.xml', function(req, res) {
         res.set('Content-Type', 'text/xml');
@@ -9,7 +12,7 @@ module.exports = function(app, fs, express, config, data, helpers) {
             layout: '_empty', // This probably causes the template to be created twice...
             helpers: helpers,
             host: req.socket.parser.incoming.headers.host,
-            data: data()
+            data: Data.data
         });
     });
 };

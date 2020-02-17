@@ -1,60 +1,61 @@
-const logger = require('./logger');
+//declare function require(name:string);
 
-module.exports = function(app, fs, express, config) {
+import fs = require('fs');
+import express = require('express');
+
+import Page from './interfaces/Page';
+
+import config from './config';
+import Data from './data';
+import logger from './logger';
+import app from './app';
+import helpers from './helpers';
+
+const routing = async function() {
     //var firstRun = true;
-    const data = require('../server/data.js');
-    const helpers = require('../server/helpers.js');
-    var cachedAmpCss;
+    // var cachedAmpCss;
 
     // Reloads the CSS if in dev mode.
-    var ampCss = function() {
-        if (cachedAmpCss == null || config.dev) {
-            cachedAmpCss = fs.readFileSync('./public/css/amp.css', 'utf8');
-        }
+    // const ampCss = function() {
+    //     if (cachedAmpCss == null || config.dev) {
+    //         cachedAmpCss = fs.readFileSync('./public/css/amp.css', 'utf8');
+    //     }
 
-        return cachedAmpCss;
-    }
+    //     return cachedAmpCss;
+    // }
 
-    var setupController = (page) => {
+    const setupController = async(page: Page) => {
         try {
-            require('../server/controllers/' + page.controller + 'Controller.js')(app, fs, express, config, data, helpers, page);
+            let module = await import(`./controllers/${page.controller}Controller`);
+
+            module.default(page);
+
+            //const controller = require('./controllers/' + page.controller + 'Controller');
+
+            //controller(page);
         } catch (e) {
             logger.error('Failed to render page with name: ' + page.name, e);
         }
     };
 
-    var setupControllers = (obj) => {
-        for (let key of Object.keys(obj)) {
-            var page = obj[key];
-
-            /*
-                if (!helpers.isObject(page)) {
-                    continue;
-                }
-            */
-
+    const setupControllers = async(pages: Page[]) => {
+        for (let page of pages) {
             if (typeof page.controller !== 'undefined') {
-                setupController(page);
+                await setupController(page);
             }
 
             if (typeof page.children !== 'undefined' && page.children.length > 0) {
-                setupControllers(page.children);
+                await setupControllers(page.children);
             }
         }
     };
 
-    setupControllers(data());
+    await setupControllers(Data.data);
 
-    require('../server/controllers/redirectsController.js')(app, fs, express, config, data, helpers);
-    require('../server/controllers/rssController.js')(app, fs, express, config, data, helpers);
-    require('../server/controllers/sitemapXmlController.js')(app, fs, express, config, data, helpers);
-
-    // Load each controller and run them.
-    /*
-        fs.readdirSync('./server/controllers/').forEach(function(file) {
-            require('../server/controllers/' + page.controller + 'Controller.js')(app, ampCss, express, config, logger, data, helpers);
-        });
-    */
+    await import(`./controllers/rssController`)
+        .then(module => module.default());
+    await import(`./controllers/sitemapXmlController`)
+        .then(module => module.default());
 
     /////////////////
     // Static files
@@ -65,7 +66,7 @@ module.exports = function(app, fs, express, config) {
     // Just used for verifying SSL with Let's Encrypt.
     app.use('/.well-known', express.static('./.well-known'));
 
-    if (global.dev) {
+    if (config.dev) {
         app.use(express.static('./src'));
     }
 
@@ -75,7 +76,7 @@ module.exports = function(app, fs, express, config) {
 
     // These have to be setup after everything else.
 
-    if (!global.dev) {
+    if (!config.dev) {
         app.use((req, res, next) => {
             logger.info('404 error: %s', req.originalUrl);
 
@@ -108,4 +109,6 @@ module.exports = function(app, fs, express, config) {
             });
         });
     }
-};
+}();
+
+export default routing;

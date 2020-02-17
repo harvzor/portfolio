@@ -1,7 +1,11 @@
-const logger = require('../logger');
-const helpers = require('../helpers');
+import Post from '../interfaces/Pages/Post';
 
-var orderBlogPostsByYear = (posts) => {
+import app from '../app';
+import logger from '../logger';
+import Data from '../data';
+import helpers from '../helpers';
+
+var orderBlogPostsByYear = (posts: Array<Post>) => {
     var postsByYear = [];
     var group = null;
     var post = null;
@@ -35,11 +39,11 @@ var orderBlogPostsByYear = (posts) => {
     return postsByYear;
 };
 
-module.exports = function(app, fs, express, config, data, helpers, page) {
+export default function(page: Post) {
     app.get(page.path, (req, res) => {
         const tag = req.query.tag;
 
-        let posts = data().blog.children;
+        let posts = Data.getPage('/blog').children as Array<Post>;
         const tagsWithQuantity = helpers.getBlogTags(posts);
 
         if (tag) {

@@ -1,0 +1,17 @@
+kind: pipeline
+name: docker
+
+steps:
+- name: docker
+  image: plugins/docker
+  settings:
+    # dry_run: true
+    username: harvzor
+    password:
+      from_secret: docker_password
+    repo: harvzor/portfolio
+    tags: latest
+
+trigger:
+  branch:
+  - master
