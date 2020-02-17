@@ -10,7 +10,7 @@ steps:
     password:
       from_secret: docker_password
     repo: harvzor/portfolio
-    tags: latest
+    auto_tag: true
 
 trigger:
   branch:
