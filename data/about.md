@@ -1,14 +1,14 @@
-Hi. I'm a web developer. I'm not currently really based anywhere but if it helps, **I'm from England**.
+Hi. I'm a web developer. I'm from England but I'm currently living in Germany.
 
-I prefer backend development and I'm experienced with **C#** and **NodeJS**. I can also do frontend development with **HTML5**, **CSS3** (but preferably **Sass**) and **JS**. I have experience with frontend frameworks/libraries such as **React** and **Angular**.
+I prefer backend development and I'm experienced with **C#** and **Node.js** backends. I've built microservices, orchestrated by Kubernetes, but I also have experience with older style MVC applications.
+
+I can also do frontend development with **HTML**, **CSS** and **JavaScript**. I have experience with frameworks/libraries such as **React** and **Angular**.
 
 I have integrated some websites with **ElasticSearch**.
 
-I'm a big fan of MVC, modular programming, and doing it right the first time.
-
 ## Say that again, but without the jargon
 
-Basically, I can build websites. I care about quality, because good code is more fun to work with.
+Basically, I can build websites. I prefer building the hidden logic rather than the user interface (less design, more logic).
 
 ## Need to see more?
 
@@ -16,4 +16,6 @@ Take a look at some of the [projects](/projects) I have worked on. If you're tec
 
 ## Interests
 
-I'm a bit of a nerd, and I love open source code. Whenever I'm working, and pretty much when there's a moment of silence, I like to listen to music - anything with a guitar and an indie feel I'll like. I've been attempting to learn German for a long time but it's still pretty basic.
+I'm a bit of a nerd, and I love open source code. Whenever I'm working, and pretty much when there's a moment of silence, I like to listen to music - anything with a guitar and an indie feel I'll like.
+
+I like motorbiking. I like traveling. Ideally I try to combine these things together.

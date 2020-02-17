@@ -10,24 +10,24 @@
     "bodyText": "home.md",
     "technologies": [
         {
-            "title": "Front end",
+            "title": "Frontend",
             "icon": "code-start",
-            "keywords": [ "HTML5", "CSS3", "Sass", "JS", "React", "Angular" ]
+            "keywords": [ "HTML5", "CSS3", "Sass", "TypeScript", "JavaScript", "React", "Angular" ]
         },
         {
-            "title": "Back end",
+            "title": "Backend",
             "icon": "code-end",
-            "keywords": [ ".NET Framework/Core", "Node.js", "SQL/NoSQL" ]
+            "keywords": [ ".NET Core", "Node.js", "Rust" ]
         },
         {
-            "title": "Servers",
+            "title": "Databases",
             "icon": "database",
-            "keywords": [ "Windows Server", "IIS", "MS SQL admin" ]
+            "keywords": [ "PostgreSQL", "MSSQL", "Redis" ]
         },
         {
             "title": "Tools",
             "icon": "wrench",
-            "keywords": [ "ElasticSearch", "Git", "Gulp/Grunt" ]
+            "keywords": [ "ElasticSearch", "Docker", "Kubernetes", "Git", "Gulp", "Webpack", "Drone CI", "Travis CI", "RabbitMQ" ]
         }
     ],
     "metaDescription": "Hi. I am a web developer and tech enthusiast from England.",
