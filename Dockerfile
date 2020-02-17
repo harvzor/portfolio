@@ -8,7 +8,7 @@ RUN npm install
 COPY . ./
 
 RUN npm run-script build
-RUN ./dist.sh
+RUN dist.sh
 
 FROM node:8 as runtime
 WORKDIR /app
