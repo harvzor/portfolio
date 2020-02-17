@@ -11,3 +11,5 @@ public/css/main.css.map
 public/js/
 
 server/dist/
+
+secrets.yml
