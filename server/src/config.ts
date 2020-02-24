@@ -7,6 +7,7 @@ class IConfig {
     PORT?: number;
     TYPE?: ConfigType;
     DEV?: boolean;
+    ALLOW_ROBOTS?: boolean;
 }
 
 enum ConfigType {
@@ -27,6 +28,10 @@ class Config implements IConfig {
      * If the application is in development mode.
      */
     DEV: boolean;
+    /**
+     * If robots should crawl the website.
+     */
+    ALLOW_ROBOTS: boolean;
     constructor() {
         const conf = JSON.parse(fs.readFileSync('./config.json', 'utf8')) as IConfig;
 
@@ -37,6 +42,7 @@ class Config implements IConfig {
         this.PORT = parseInt(envs.PORT || conf.PORT);
         this.TYPE = envs.TYPE || conf.TYPE;
         this.DEV =  String(envs.DEV || conf.DEV).toLowerCase() === "true";
+        this.ALLOW_ROBOTS =  String(envs.ALLOW_ROBOTS || conf.ALLOW_ROBOTS).toLowerCase() === "true";
 
         logger.info(this.PORT, this.TYPE, this.DEV, typeof(this.DEV) );
     }

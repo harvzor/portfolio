@@ -53,6 +53,8 @@ const routing = async function() {
         .then(module => module.default());
     await import(`./controllers/sitemapXmlController`)
         .then(module => module.default());
+    await import(`./controllers/robotsTextController`)
+        .then(module => module.default());
 
     /////////////////
     // Static files

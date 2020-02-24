@@ -1,5 +1,6 @@
 {
     "PORT": 80,
     "TYPE": "node",
-    "DEV": false
+    "DEV": false,
+    "ALLOW_ROBOTS": true
 }
