@@ -40,7 +40,7 @@ class Data {
         logger.info('data running');
     }
     get data() {
-        if (this.actualData === null || config.dev) {
+        if (this.actualData === null || config.DEV) {
             this.actualData = this.findData('data');
         }
 
@@ -85,7 +85,7 @@ class Data {
                     let page: Page = JSON.parse(stringPageContents);
 
                     // If it's in dev mode, then the unpublished blog posts should show.
-                    if (typeof page.published !== 'undefined' && !page.published && !config.dev) {
+                    if (typeof page.published !== 'undefined' && !page.published && !config.DEV) {
                         return;
                     }
 

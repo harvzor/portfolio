@@ -9,7 +9,7 @@ import config from '../config'
 export default function(page: Page) {
     // Render project pages
     app.get(page.path, (req, res) => {
-        if (config.dev) {
+        if (config.DEV) {
             //page = data.getPage(page.path);
         }
 

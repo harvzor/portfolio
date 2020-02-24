@@ -1,6 +1,3 @@
-//declare function require(name:string);
-
-import fs = require('fs');
 import express = require('express');
 
 import Page from './interfaces/Page';
@@ -66,7 +63,7 @@ const routing = async function() {
     // Just used for verifying SSL with Let's Encrypt.
     app.use('/.well-known', express.static('./.well-known'));
 
-    if (config.dev) {
+    if (config.DEV) {
         app.use(express.static('./src'));
     }
 
@@ -76,7 +73,7 @@ const routing = async function() {
 
     // These have to be setup after everything else.
 
-    if (!config.dev) {
+    if (!config.DEV) {
         app.use((req, res, next) => {
             logger.info('404 error: %s', req.originalUrl);
 

@@ -26,15 +26,15 @@ app.use(expressLayouts)
 // Inititialise
 /////////////////
 
-if (config.type === ConfigType.node) {
+if (config.TYPE === ConfigType.node) {
     // Used for Node server.
-    var server = app.listen(config.port, function () {
+    var server = app.listen(config.PORT, function () {
         const host = server.address().address;
         const port = server.address().port;
 
         logger.info(`Website listening at http://${host}:${port}.`);
     });
-} else if (config.type === ConfigType.iis) {
+} else if (config.TYPE === ConfigType.iis) {
     // Used for IISNode.
     app.listen(process.env.PORT);
 } else {
