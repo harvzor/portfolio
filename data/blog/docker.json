@@ -1,0 +1,13 @@
+{
+    "path": "/blog/docker",
+    "name": "docker",
+    "published": true,
+    "href": "docker",
+    "metaDescription": "",
+    "title": "Getting started Docker Compose",
+    "postDate": "Mon, 01 Jun 2020 00:00:00 GMT",
+    "summary": "",
+    "bodyText": "blog/docker.md",
+    "tags": ["docker"],
+    "controller": "blog"
+}
