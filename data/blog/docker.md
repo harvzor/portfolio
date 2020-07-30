@@ -133,6 +133,8 @@ Because `pgadmin` depends on `postgres`, Docker Compose will run the `postgres` 
 
 Now you can access pgAdmin via your web browser with http://localhost:1111
 
+The `pgadmin` container can also access the database server using the hostname `postgres` as all containers in the same `docker-compose.yml` have their own network created where they can access each other.
+
 ### Using Traefik
 
 [Traefik](https://docs.traefik.io/) is a reverse proxy gateway server. For developing, it can allow you to have easily accessible URLs on your local dev environment.
@@ -141,18 +143,8 @@ Here's an example `docker-compose.yml` that uses Postgres, with pgAdmin, with Tr
 
 ```
 version: '3'
-services:
 
-  traefik:
-    image: traefik:2.2
-    command:
-      - --providers.docker.defaultRule=Host(`{{ normalize .Name }}.docker.localhost`)
-      - --api.insecure=true
-    ports:
-      - "80:80"
-      - "8080:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+services:
 
   postgres:
     image: postgres:10.8-alpine
@@ -179,12 +171,23 @@ services:
     depends_on:
       - traefik
       - postgres
+
+  traefik:
+    image: traefik:2.2
+    command:
+      - --providers.docker.defaultRule=Host(`{{ normalize .Name }}.docker.localhost`)
+      - --api.insecure=true
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 ```
 
-Run:
+Run all the containers using:
 
 ```
-$ docker-compose up traefik
+$ docker-compose up
 ```
 
 Navigate to http://localhost:8080 to see the Traefik dashboard.
@@ -194,6 +197,8 @@ Navigate to http://localhost:8080 to see the Traefik dashboard.
 Navigate to http://pgadmin-{folder-name}.docker.localhost to access pgAdmin, make sure to replace `{folder-name}` with the name of the folder which your `docker-compose.yml` is stored in!
 
 ## Lazydocker
+
+... information about using Lazydocker ...
 
 ```
 lazydocker
