@@ -31,9 +31,9 @@
 
 ## Contents
 
-- Intro
-- Developing with Docker Compose
-- Why use Docker and Docker Compose?
+- [Intro](#intro)
+- [Developing with Docker Compose](#developing-with-docker-compose)
+- [Why use Docker and Docker Compose?](#why-use-docker-and-docker-compose-)
 
 ## Intro
 
@@ -43,12 +43,13 @@ You will see:
 
 - how to run a service with Docker Compose
 - how to use Traefik as a reverse proxy (makes accessing services from your browser way easier)
-- using `lazydocker` to start containers after initial setup
 - the benefits of using Docker vs traditional installation of services
 
 ## Developing with Docker Compose
 
-You will need to have [Docker and Docker Compose](https://docs.docker.com/get-docker/) installed before you get started.
+You will need to have [Docker and Docker Compose](https://docs.docker.com/get-docker/) installed before you get started. 
+
+I'm using Docker 19.03.13 and Docker Compose 1.27.4.
 
 In this example, I will be using [PostgreSQL](https://www.postgresql.org/) (a database similar to MySQL/MSSQL).
 
@@ -90,6 +91,13 @@ We can see what containers we have running by running:
 $ docker container ls
 ```
 
+The output should be similar to:
+
+```
+CONTAINER ID        IMAGE                  COMMAND                  CREATED        STATUS              PORTS                    NAMES
+89897d61fcaa        postgres:10.8-alpine   "docker-entrypoint.s…"   27 seconds ago Up 26 seconds       0.0.0.0:5432->5432/tcp   dev_postgres_1
+```
+
 You can see that the name of the container has been set to `postgres-` and the name of the folder that the `docker-compose.yaml` file is in.
 
 ### Adding pgAdmin
@@ -129,11 +137,13 @@ Now run:
 $ docker-compose up pgadmin
 ```
 
-Because `pgadmin` depends on `postgres`, Docker Compose will run the `postgres` first.
+Because `pgadmin` depends on `postgres`, Docker Compose will run `postgres` first.
 
 Now you can access pgAdmin via your web browser with http://localhost:1111
 
 The `pgadmin` container can also access the database server using the hostname `postgres` as all containers in the same `docker-compose.yml` have their own network created where they can access each other.
+
+![pgAdmin control panel with configuration to connect to Postgres](/media/blog/getting-started-with-docker-compose/pgadmin.png)
 
 ### Using Traefik
 
@@ -192,16 +202,19 @@ $ docker-compose up
 
 Navigate to http://localhost:8080 to see the Traefik dashboard.
 
-![Traefik](/media/blog/docker/traefik.png)
+![Traefik](/media/blog/getting-started-with-docker-compose/traefik.png)
+
+
+#### Connecting to services
 
 Navigate to http://pgadmin-{folder-name}.docker.localhost to access pgAdmin, make sure to replace `{folder-name}` with the name of the folder which your `docker-compose.yml` is stored in!
 
-## Lazydocker
+This works by default in Chrome (and other Chromium based browsers such as Edge), but not with Firefox or cURL. Chrome can resolve the URL. There's a good StackOverflow post [here](https://stackoverflow.com/questions/45838847/docker-localhost-only-works-in-chrome) which can get you started on this rabbit hole.
 
-... information about using Lazydocker ...
+My advice to the Firefox users is to modify your hosts file to include this line:
 
 ```
-lazydocker
+127.0.0.1 pgadmin-{folder-name}.docker.localhost
 ```
 
 ## Why use Docker and Docker Compose?
