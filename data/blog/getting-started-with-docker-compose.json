@@ -1,0 +1,13 @@
+{
+    "path": "/blog/getting-started-with-docker-compose",
+    "name": "getting-started-with-docker-compose",
+    "published": true,
+    "href": "getting-started-with-docker-compose",
+    "metaDescription": "How to use Docker Compose with Traefik reverse proxy to manage dependencies in your projects.",
+    "title": "Getting started with Docker Compose",
+    "postDate": "Mon, 26 Oct 2020 00:00:00 GMT",
+    "summary": "How to use Docker Compose with Traefik reverse proxy to manage dependencies in your projects.",
+    "bodyText": "blog/getting-started-with-docker-compose.md",
+    "tags": ["docker"],
+    "controller": "blog"
+}
