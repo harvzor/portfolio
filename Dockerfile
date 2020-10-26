@@ -1,4 +1,4 @@
-FROM node:8 AS build
+FROM node:12 AS build
 WORKDIR /app
 
 COPY package*.json ./
@@ -10,7 +10,7 @@ COPY . ./
 RUN npm run-script build
 RUN bash dist.sh
 
-FROM node:8 as runtime
+FROM node:12 as runtime
 WORKDIR /app
 COPY --from=build /app/dist ./
 
