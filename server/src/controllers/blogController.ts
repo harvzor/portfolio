@@ -33,15 +33,14 @@ import Post from '../interfaces/Pages/Post';
 export default function(page) {
     // Render blog post.
     app.get(page.path, (req, res) => {
-        let post = null;
-
         let blogPosts = Data.getPage('/blog').children as Array<Post>;
+
+        const post = blogPosts
+            .find(otherPost => otherPost.path === req.route.path);
 
         let otherPosts = blogPosts
             .filter(otherPost => {
-                if (otherPost.path === req.originalUrl) {
-                    post = otherPost;
-
+                if (otherPost.path === post.path) {
                     return false;
                 }
 
