@@ -1,5 +1,4 @@
 import express = require('express');
-import compression = require('compression');
 import expressLayouts = require('express-ejs-layouts');
 
 import { ConfigType, config } from './config';
@@ -7,8 +6,6 @@ import Data from './data';
 import logger from './logger';
 
 const app = express();
-
-app.use(compression());
 
 app.locals.songOfTheMoment = function() {
     return Data.getPage('/songs').children[0];
