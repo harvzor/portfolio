@@ -9,7 +9,7 @@
         </handlers>
         
         <rewrite>
-            <!--
+			<!--
             <outboundRules>
                 <rule name="Require clients to revalidationpermanent redirects">
                     <match serverVariable="RESPONSE_Cache_Control" pattern=".*" />
@@ -19,15 +19,15 @@
                     <action type="Rewrite" value="public, must-revalidate, max-age=0"/>
                 </rule>
             </outboundRules>
-            -->
+			-->
             <rules>
-                <rule name="HTTP/S to HTTPS Redirect" enabled="true" stopProcessing="true">
+                <!-- <rule name="HTTP/S to HTTPS Redirect" enabled="true" stopProcessing="true">
                     <match url="(.*)" />
                     <conditions>
                         <add input="{HTTPS}" pattern="off" ignoreCase="true" />
                     </conditions>
                     <action type="Redirect" redirectType="Found" url="https://{HTTP_HOST}/{R:1}" />
-                </rule>
+                </rule> -->
                 <rule name="sendToNode">
                     <match url="/*" />
                     <action type="Rewrite" url="server.js" />
@@ -35,10 +35,11 @@
             </rules>
         </rewrite>
 
-        <iisnode
-            nodeProcessCommandLine="&quot;%programfiles%\nodejs\node.exe&quot;" />
+		<!--
+			<iisnode
+				nodeProcessCommandLine="&quot;C:\node\node.exe&quot;" devErrorsEnabled="false" />
+		-->
 
         <httpErrors existingResponse="PassThrough" />
     </system.webServer>
 </configuration>
-
