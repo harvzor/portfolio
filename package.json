@@ -20,7 +20,7 @@
     "ejs": "^2.5.9",
     "express": "^4.16.3",
     "express-ejs-layouts": "^2.4.0",
-    "marked": "^0.3.19"
+    "marked": "^4.0.10"
   },
   "devDependencies": {
     "@types/bunyan": "^1.8.5",
