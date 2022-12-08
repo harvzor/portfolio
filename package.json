@@ -18,7 +18,7 @@
   "dependencies": {
     "bunyan": "^1.8.12",
     "ejs": "^2.5.9",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-ejs-layouts": "^2.4.0",
     "marked": "^0.3.19"
   },
