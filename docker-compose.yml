@@ -1,5 +1,6 @@
 services:
   portfolio:
+    image: portfolio:latest
     build:
       context: .
       target: runtime
