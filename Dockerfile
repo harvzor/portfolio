@@ -3,7 +3,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm ci
 
 COPY . ./
 
@@ -14,7 +14,7 @@ FROM node:12-alpine AS runtime
 WORKDIR /app
 COPY --from=build /app/dist ./
 
-RUN npm install --only=prod
+RUN npm ci --only=prod
 
 EXPOSE 80
 CMD [ "node", "server.js" ]
