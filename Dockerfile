@@ -10,7 +10,7 @@ COPY . ./
 RUN npm run-script build
 RUN bash dist.sh
 
-FROM node:12 as runtime
+FROM node:12-alpine AS runtime
 WORKDIR /app
 COPY --from=build /app/dist ./
 
